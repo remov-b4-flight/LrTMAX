@@ -2,7 +2,7 @@
 
   (general
     (thickness 1.6)
-    (drawings 112)
+    (drawings 111)
     (tracks 0)
     (zones 0)
     (modules 0)
@@ -206,9 +206,8 @@
   (gr_text 5 (at 41.7 52.7 90) (layer Dwgs.User)
     (effects (font (size 1.5 1.5) (thickness 0.3)))
   )
-  (gr_line (start 37.5 97.5) (end 37.5 127.1) (layer Dwgs.User) (width 0.2))
+  (gr_line (start 37.5 50) (end 37.5 112.5) (layer Dwgs.User) (width 0.2))
   (gr_line (start 43.8 50) (end 43.8 54.9) (layer Dwgs.User) (width 0.2))
-  (gr_line (start 37.5 50) (end 37.5 97.5) (layer Dwgs.User) (width 0.2))
   (gr_line (start 150 155) (end 150 160) (layer Dwgs.User) (width 0.2))
   (gr_line (start 145 155) (end 145 160) (layer Dwgs.User) (width 0.2))
   (gr_line (start 25 50) (end 45 50) (layer Dwgs.User) (width 0.2))
