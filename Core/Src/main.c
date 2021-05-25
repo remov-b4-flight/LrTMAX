@@ -67,10 +67,10 @@ DMA_HandleTypeDef hdma_tim3_ch1_trig;
 
 /* USER CODE BEGIN PV */
 #if !(ENC_9R5KQ)
-#warning "You are building binary for EC11 encoder."
+#error "EC11 encoder is not supported."
 #endif
 #if !(MIDI)
-#warning "You are building binary for USB HID device."
+#error "HID is not supported."
 #endif
 //! STM32 TIM3 instance handle
 TIM_HandleTypeDef htim3;
@@ -176,19 +176,7 @@ void Delay_us(uint32_t microsec){
 
 	HAL_TIM_Base_Stop(&htim14);
 }
-#if 0
-/**
- * @brief  Get rotary encoder signal sttus.
- * @return Packed rotary encoder signals.
- */
-uint16_t get_Rotary_Encoder(void){
-	uint16_t r1 = (ENC1_GPIO_Port->IDR) & 0x0030;
-	uint16_t r230 = (ENC230_GPIO_Port->IDR) & 0x3f00;
-	uint16_t r5 = (ENC5_GPIO_Port->IDR) & 0x0003;
-	uint16_t r4 = (ENC4_GPIO_Port->IDR) & 0xc000;
-	return (r4 | r230 | r1 | r5);
-}
-#endif
+
 static inline void Start_MsgTimer(uint32_t tick){
 	Msg_Timer_Count = tick;
 	Msg_Timer_Enable = true;
@@ -447,9 +435,6 @@ int main(void)
 #if MIDI
 		//Operate as MIDI Instruments.
 		EmulateMIDI();
-#else //HID
-		//Operates as USB Keyboards.
-		EmulateKeyboard();
 #endif
 
 	} else if(LrE6State == LRE6_USB_LINK_LOST) {

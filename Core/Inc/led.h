@@ -33,7 +33,7 @@ enum led_color_t {
 #define COLOR_MAX 11
 
 //! @def LrE-6 board definition
-#define LED_COUNT		6
+#define LED_COUNT		8
 #define BITS_PER_LED    24  // (RGB) 3 * 8bit
 #define TOTAL_BITS      (LED_COUNT * BITS_PER_LED)
 

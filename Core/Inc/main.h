@@ -4,6 +4,8 @@
   * @file           : main.h
   * @brief          : Header for main.c file.
   *                   This file contains the common defines of the application.
+  * @author	remov-b4-flight
+  * @copyright GPLv3
   ******************************************************************************
   * @attention
   *
@@ -33,7 +35,7 @@ extern "C" {
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 #define USBD_DEVICE_VER_MAJ	0x00
-#define USBD_DEVICE_VER_MIN	0x45
+#define USBD_DEVICE_VER_MIN	0x00
 /* USER CODE END Includes */
 
 /* Exported types ------------------------------------------------------------*/
@@ -51,7 +53,8 @@ typedef union keyscan_t {
 		unsigned char rot3:2;	//Rotary encoder
 		unsigned char rot4:2;	//Rotary encoder
 		unsigned char rot5:2;	//Rotary encoder
-        unsigned int  uu:4;		//dummy
+        unsigned char rot6:2;	//Rotary encoder
+        unsigned char rot7:2;	//Rotary encoder
     } nb;
 } KEYSCAN;
 /* USER CODE END ET */
@@ -85,8 +88,8 @@ uint16_t get_Rotary_Encoder(void);
 #define TIM_PERIOD_1SEC 10000
 #define TIM_PERIOD_125uS 125
 #define TIM_PERIOD_10mS 10000
-#define LrE6_PID 0x0BEA
-#define LrE6_PRODUCT "LrE-6"
+#define LrE6_PID 0xA380
+#define LrE6_PRODUCT "LrTMAX"
 #define LrE6_VENDOR "Ruffles Inc."
 #define PWM_PERIOD 59
 #define PWM_HI 45
@@ -173,12 +176,8 @@ uint16_t get_Rotary_Encoder(void);
 #undef		LrE6_PID
 #undef		LrE6_PRODUCT
 #if MIDI
-	#define LrE6_PID 0xA320
-	#define LrE6_PRODUCT "LrE-6"
-#else
-	#define	LrE6_PID 0xB737
-	#define LrE6_PRODUCT "LrKB"
-	#define LrE6_WIN	1	//Use windows shortcut.
+	#define LrE6_PID 0xA380
+	#define LrE6_PRODUCT "LrTMAX"
 #endif
 #define LrE6_VENDOR "Ruffles Inc."
 
@@ -195,14 +194,18 @@ enum enc9R5_t {
 #endif
 //! LrE-6 Ports on Board
 #define Mx_GPIO_Port GPIOA
-#define ENC1_GPIO_Port GPIOA
-#define ENC230_GPIO_Port GPIOB
-#define ENC4_GPIO_Port GPIOC
-#define ENC5_GPIO_Port GPIOF
+#define ENC0_GPIO_Port GPIOA
+#define ENC1_GPIO_Port GPIOB
+#define ENC2_GPIO_Port GPIOB
+#define ENC3_GPIO_Port GPIOC
+#define ENC4_GPIO_Port GPIOF
+#define ENC5_GPIO_Port GPIOB
+#define ENC6_GPIO_Port GPIOB
+#define ENC7_GPIO_Port GPIOB
 
 //! LrE-6 Hardware definition
 #define KEY_COUNT	16
-#define	ROT_COUNT	6
+#define	ROT_COUNT	8
 
 //! LrE-6 States
 enum lre6_state_t {
@@ -229,8 +232,6 @@ enum {
 	LrE6_SCENE2 = 2,
 	LrE6_SCENE3 = 3,
 };
-#else
-#define	LrE6_SCENE0 0
 #endif
 //! Rotator definitions
 enum {
@@ -240,6 +241,8 @@ enum {
 	LrE6_ROT3,
 	LrE6_ROT4,
 	LrE6_ROT5,
+	LrE6_ROT6,
+	LrE6_ROT7,
 };
 
 #define SCENE_COUNT		4
@@ -253,12 +256,14 @@ enum {
 
 #define LxMASK	0x0F
 //
-#define PRMASK_R0	0x3000
-#define PRMASK_R1	0x0030
-#define PRMASK_R2	0x0300
-#define PRMASK_R3	0x0C00
-#define PRMASK_R4	0xC000
-#define PRMASK_R5	0x0003
+#define PRMASK_R0	0x0030
+#define PRMASK_R1	0x0300
+#define PRMASK_R2	0x0C00
+#define PRMASK_R3	0xC000
+#define PRMASK_R4	0x0003
+#define PRMASK_R5	0x3000
+#define PRMASK_R6	0x000C
+#define PRMASK_R7	0x00C0
 
 // Screen timer definitions
 #define MSG_TIMER_DEFAULT	1000	//4s (1 tick=4ms)

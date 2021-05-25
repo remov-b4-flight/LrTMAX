@@ -203,7 +203,7 @@ void HAL_I2C_MspDeInit(I2C_HandleTypeDef* hi2c)
     PB13     ------> I2C2_SCL
     PB14     ------> I2C2_SDA
     */
-    HAL_GPIO_DeInit(SCL_GPIO_Port, SDL_Pin);
+    HAL_GPIO_DeInit(SCL_GPIO_Port, SCL_Pin);
 
     HAL_GPIO_DeInit(SDA_GPIO_Port, SDA_Pin);
 
