@@ -29,8 +29,9 @@ enum led_color_t {
 	LED_COLOR_ORANGE, //!< LED_COLOR_ORANGE
 	LED_COLOR_GLAY,   //!< LED_COLOR_GLAY
 	LED_COLOR_DARK,   //!< LED_COLOR_DARK
+	LED_COLOR_HILIGHT,
 };
-#define COLOR_MAX 11
+#define COLOR_MAX 12
 
 //! @def LrE-6 board definition
 #define LED_COUNT		8

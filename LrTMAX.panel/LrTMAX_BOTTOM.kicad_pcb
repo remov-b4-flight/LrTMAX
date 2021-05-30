@@ -2,7 +2,7 @@
 
   (general
     (thickness 1.6)
-    (drawings 40)
+    (drawings 43)
     (tracks 0)
     (zones 0)
     (modules 0)
@@ -101,6 +101,9 @@
     (uvia_drill 0.1)
   )
 
+  (gr_circle (center 196.1 44.983773) (end 196.4 45.083773) (layer Dwgs.User) (width 0.15))
+  (gr_line (start 182.1 47) (end 185 45) (layer Dwgs.User) (width 0.15))
+  (gr_line (start 179.8 45) (end 182.1 47) (layer Dwgs.User) (width 0.15))
   (gr_circle (center 145 145) (end 147.4 145) (layer Dwgs.User) (width 0.15))
   (gr_circle (center 55 145) (end 57.4 145) (layer Dwgs.User) (width 0.15))
   (gr_circle (center 55 55) (end 57.4 55) (layer Dwgs.User) (width 0.15))
@@ -143,11 +146,11 @@
   (gr_line (start 145 155) (end 145 160) (layer Dwgs.User) (width 0.2))
   (gr_line (start 25 50) (end 45 50) (layer Dwgs.User) (width 0.2))
   (gr_line (start 40 55) (end 45 55) (layer Dwgs.User) (width 0.2))
-  (gr_text "4 x 2.7Φ THRU ALL 4.8Φ CSK" (at 170.5 45) (layer Dwgs.User)
+  (gr_text "4 x 2.7Φ THRU ALL        4.8Φ 90\n" (at 175.5 46) (layer Dwgs.User)
     (effects (font (size 1.5 1.5) (thickness 0.3)))
   )
-  (gr_line (start 154 47.4) (end 145.2 54.6) (layer Dwgs.User) (width 0.2))
-  (gr_line (start 187.5 47.4) (end 154 47.4) (layer Dwgs.User) (width 0.2))
+  (gr_line (start 154.5 47.5) (end 145.2 54.6) (layer Dwgs.User) (width 0.2))
+  (gr_line (start 202.5 47.5) (end 154.5 47.5) (layer Dwgs.User) (width 0.2))
   (gr_line (start 35 87.5) (end 45 87.5) (layer Dwgs.User) (width 0.2))
   (gr_circle (center 55 145) (end 56.35 145) (layer Dwgs.User) (width 0.2))
   (gr_circle (center 145 145) (end 146.35 145) (layer Dwgs.User) (width 0.2))

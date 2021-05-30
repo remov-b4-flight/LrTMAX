@@ -35,7 +35,7 @@ extern "C" {
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 #define USBD_DEVICE_VER_MAJ	0x00
-#define USBD_DEVICE_VER_MIN	0x00
+#define USBD_DEVICE_VER_MIN	0x01
 /* USER CODE END Includes */
 
 /* Exported types ------------------------------------------------------------*/
@@ -199,7 +199,10 @@ enum enc9R5_t {
 #define ENC2_GPIO_Port GPIOB
 #define ENC3_GPIO_Port GPIOC
 #define ENC4_GPIO_Port GPIOF
-#define ENC5_GPIO_Port GPIOB
+
+#define ENC5_GPIO_PortA GPIOB
+#define ENC5_GPIO_PortB GPIOC
+
 #define ENC6_GPIO_Port GPIOB
 #define ENC7_GPIO_Port GPIOB
 

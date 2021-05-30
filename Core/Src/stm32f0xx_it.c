@@ -214,7 +214,8 @@ void EXTI0_1_IRQHandler(void)
 {
   /* USER CODE BEGIN EXTI0_1_IRQn 0 */
     uint32_t pr = EXTI->PR;
-	//rotator 4
+
+	// Rotator 4 (EXTI[0:1] / PF[0:1])
 	if( pr & PRMASK_R4 ){
 		uint8_t	r4 = (ENC4_GPIO_Port->IDR) & ROT_MASK;
     	if ( r4 == ENC_MV0 || r4 ==ENC_MV3 ) { //Stopped
@@ -265,7 +266,8 @@ void EXTI2_3_IRQHandler(void)
 {
   /* USER CODE BEGIN EXTI2_3_IRQn 0 */
     uint32_t pr = EXTI->PR;
-	//rotator 6
+
+	// Rotator 6 (EXTI[2:3] / PB[2:3])
 	if( pr & PRMASK_R6 ){
 		uint8_t	r6 = (ENC6_GPIO_Port->IDR >> 2) & ROT_MASK;
     	if ( r6 == ENC_MV0 || r6 ==ENC_MV3 ) { //Stopped
@@ -318,7 +320,7 @@ void EXTI4_15_IRQHandler(void)
   /* USER CODE BEGIN EXTI4_15_IRQn 0 */
     uint32_t pr = EXTI->PR;
 
-    // Rotator0
+    // Rotator0 (EXTI[4:5] / PA[4:5]
     if(pr & PRMASK_R0){
         uint8_t	r0 = ((ENC0_GPIO_Port->IDR) >> 4 );
     	if ( r0 == ENC_MV0 || r0 == ENC_MV3 ) { //Stopped
@@ -360,7 +362,7 @@ void EXTI4_15_IRQHandler(void)
 			  return;
     }
 
-    //Rotator 7
+    // Rotator 7 (EXTI[6:7] / PB[6:7])
     if(pr & PRMASK_R7){
         uint8_t	r7 = ((ENC7_GPIO_Port->IDR) >> 6 );
     	if ( r7 == ENC_MV0 || r7 == ENC_MV3 ) { //Stopped
@@ -402,7 +404,7 @@ void EXTI4_15_IRQHandler(void)
 			  return;
     }
 
-    //Rotator 1
+    //Rotator 1 (EXTI[8:9] / PB[8:9])
     if(pr & PRMASK_R1){
     	uint8_t	r1 = ((ENC1_GPIO_Port->IDR) >> 8) & ROT_MASK;
     	if ( r1 == ENC_MV0 || r1 == ENC_MV3 ) { //Stopped
@@ -444,7 +446,7 @@ void EXTI4_15_IRQHandler(void)
 			return;
     }
 
-    //Rotator 2
+    //Rotator 2 (EXTI[10:11] / PB[10:11])
 	if( pr & PRMASK_R2 ){
 		uint8_t	r2 = (ENC2_GPIO_Port->IDR >> 10 ) & ROT_MASK;
     	if ( r2 == ENC_MV0 || r2 == ENC_MV3 ) { //Stopped
@@ -488,9 +490,10 @@ void EXTI4_15_IRQHandler(void)
 			return;
 	}
 
-    //Rotator 5
+    //Rotator 5 (EXTI[12:13] / PA[12],PC[13])
     if( pr & PRMASK_R3 ){
-    	uint8_t	r5 = ( ENC5_GPIO_Port->IDR >> 14 ) & ROT_MASK;
+    	uint8_t	r5 = (ENC5_GPIO_PortA->IDR | ENC5_GPIO_PortA->IDR) >> 12;
+    			r5 &= ROT_MASK;
     	if ( r5 == ENC_MV0 || r5 == ENC_MV3 ) { //Stopped
 			if( rot0_prev == ENC_MV1 || rot0_prev == ENC_MV2 ){
 				Key_Stat.nb.rot5 = ROT_NOT_MOVE;
@@ -531,8 +534,8 @@ void EXTI4_15_IRQHandler(void)
 
     }
 
-    //Rotator 4
-    if(pr & PRMASK_R4){ //EXTI14&15
+    //Rotator 3 (EXTI[14:15] / PC[14:15])
+    if(pr & PRMASK_R3){ //EXTI14&15
     	uint8_t	r4 = ( (ENC4_GPIO_Port->IDR) >> 14 ) & ROT_MASK;
     	if ( r4 == ENC_MV0 || r4 == ENC_MV3 ) { //Stopped
 			if(rot4_prev == ENC_MV1 || rot4_prev == ENC_MV2){
