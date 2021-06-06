@@ -435,6 +435,7 @@ int main(void)
 #if MIDI
 		//Operate as MIDI Instruments.
 		EmulateMIDI();
+#else //HID
 #endif
 
 	} else if(LrE6State == LRE6_USB_LINK_LOST) {
