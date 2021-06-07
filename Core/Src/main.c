@@ -422,8 +422,9 @@ int main(void)
 		SSD1306_SetScreen(ON);
 
 		sprintf(Msg_Buffer[0], CONN_MSG, LrE6_PRODUCT ,USBD_DEVICE_VER_MAJ, USBD_DEVICE_VER_MIN);
-
+#if 0
 		SSD1306_LoadBitmap();
+#endif
 		SSD1306_RenderBanner(Msg_Buffer[0], 12, 12, INP);
 		SSD1306_FlashScreen();
 
@@ -932,9 +933,8 @@ void Error_Handler(void)
   /* USER CODE BEGIN Error_Handler_Debug */
   /* User can add his own implementation to report the HAL error return state */
   __disable_irq();
-  while (1)
-  {
-  }
+    strcpy(Msg_Buffer[0], "Error");
+	Msg_Print();  
   /* USER CODE END Error_Handler_Debug */
 }
 

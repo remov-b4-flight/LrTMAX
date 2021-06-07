@@ -39,7 +39,7 @@ enum led_color_t {
 #define TOTAL_BITS      (LED_COUNT * BITS_PER_LED)
 
 //! @def LED intensity definition
-#define LFFH	0xFF
+#define LHIL	0xC0
 #define LBRIGHT	0x80
 #define LMAX	0x78
 #define L43		0x58

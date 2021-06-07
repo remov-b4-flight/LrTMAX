@@ -1,8 +1,8 @@
 /* USER CODE BEGIN Header */
 /**
   ******************************************************************************
-  * @file           : main.h
-  * @brief          : Header for main.c file.
+  * @file	main.h
+  * @brief	Header for main.c file.
   *                   This file contains the common defines of the application.
   * @author	remov-b4-flight
   * @copyright GPLv3
@@ -35,7 +35,7 @@ extern "C" {
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 #define USBD_DEVICE_VER_MAJ	0x00
-#define USBD_DEVICE_VER_MIN	0x01
+#define USBD_DEVICE_VER_MIN	0x46
 /* USER CODE END Includes */
 
 /* Exported types ------------------------------------------------------------*/
