@@ -1,0 +1,1813 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<export version="D">
+  <design>
+    <source>/Users/jenoki/workspace/LrTMAX/LrTMAX.4lpb/LrTMAX.sch</source>
+    <date>2021年06月12日 土曜日 10:44:46</date>
+    <tool>Eeschema (5.1.6-0)</tool>
+    <sheet number="1" name="/" tstamps="/">
+      <title_block>
+        <title>LrE-6</title>
+        <company>Ruffles Inc,.</company>
+        <rev/>
+        <date>2019-01-24</date>
+        <source>LrTMAX.sch</source>
+        <comment number="1" value=""/>
+        <comment number="2" value=""/>
+        <comment number="3" value=""/>
+        <comment number="4" value=""/>
+      </title_block>
+    </sheet>
+  </design>
+  <components>
+    <comp ref="U1">
+      <value>STM32F072C8Tx</value>
+      <footprint>Package_QFP:LQFP-48_7x7mm_P0.5mm</footprint>
+      <datasheet>http://www.st.com/st-web-ui/static/active/en/resource/technical/document/datasheet/DM00090510.pdf</datasheet>
+      <libsource lib="LrE-6-rescue" part="STM32F072C8Tx-MCU_ST_STM32F0" description=""/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5C490C50</tstamp>
+    </comp>
+    <comp ref="C40">
+      <value>10n</value>
+      <footprint>Capacitor_SMD:C_0603_1608Metric</footprint>
+      <datasheet>~</datasheet>
+      <libsource lib="LrE-6-rescue" part="C-Device" description=""/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5C490EFE</tstamp>
+    </comp>
+    <comp ref="C43">
+      <value>0.1u</value>
+      <footprint>Capacitor_SMD:C_0603_1608Metric</footprint>
+      <datasheet>~</datasheet>
+      <libsource lib="LrE-6-rescue" part="C-Device" description=""/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5C490F9B</tstamp>
+    </comp>
+    <comp ref="C44">
+      <value>0.1u</value>
+      <footprint>Capacitor_SMD:C_0603_1608Metric</footprint>
+      <datasheet>~</datasheet>
+      <libsource lib="LrE-6-rescue" part="C-Device" description=""/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5C4911FC</tstamp>
+    </comp>
+    <comp ref="C45">
+      <value>0.1u</value>
+      <footprint>Capacitor_SMD:C_0603_1608Metric</footprint>
+      <datasheet>~</datasheet>
+      <libsource lib="LrE-6-rescue" part="C-Device" description=""/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5C49129B</tstamp>
+    </comp>
+    <comp ref="C42">
+      <value>4.7u</value>
+      <footprint>Capacitor_SMD:C_0805_2012Metric</footprint>
+      <datasheet>~</datasheet>
+      <libsource lib="LrE-6-rescue" part="C-Device" description=""/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5C49133B</tstamp>
+    </comp>
+    <comp ref="C41">
+      <value>10n</value>
+      <footprint>Capacitor_SMD:C_0603_1608Metric</footprint>
+      <datasheet>~</datasheet>
+      <libsource lib="LrE-6-rescue" part="C-Device" description=""/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5C4913C6</tstamp>
+    </comp>
+    <comp ref="C46">
+      <value>4.7u</value>
+      <footprint>Capacitor_SMD:C_0805_2012Metric</footprint>
+      <datasheet>~</datasheet>
+      <libsource lib="LrE-6-rescue" part="C-Device" description=""/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5C494805</tstamp>
+    </comp>
+    <comp ref="H1">
+      <value>MountingHole</value>
+      <footprint>MountingHole:MountingHole_3.2mm_M3</footprint>
+      <datasheet>~</datasheet>
+      <libsource lib="LrE-6-rescue" part="MountingHole-Mechanical" description=""/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5C4990AB</tstamp>
+    </comp>
+    <comp ref="H2">
+      <value>MountingHole</value>
+      <footprint>MountingHole:MountingHole_3.2mm_M3</footprint>
+      <datasheet>~</datasheet>
+      <libsource lib="LrE-6-rescue" part="MountingHole-Mechanical" description=""/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5C4990F9</tstamp>
+    </comp>
+    <comp ref="H3">
+      <value>MountingHole</value>
+      <footprint>MountingHole:MountingHole_3.2mm_M3</footprint>
+      <datasheet>~</datasheet>
+      <libsource lib="LrE-6-rescue" part="MountingHole-Mechanical" description=""/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5C49919E</tstamp>
+    </comp>
+    <comp ref="H4">
+      <value>MountingHole</value>
+      <footprint>MountingHole:MountingHole_3.2mm_M3</footprint>
+      <datasheet>~</datasheet>
+      <libsource lib="LrE-6-rescue" part="MountingHole-Mechanical" description=""/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5C499229</tstamp>
+    </comp>
+    <comp ref="J1">
+      <value>USB_B_Micro</value>
+      <footprint>LrE-6:USB_Micro-B_MCUBF-09_1</footprint>
+      <datasheet>~</datasheet>
+      <libsource lib="LrE-6-rescue" part="USB_B_Micro-Connector" description=""/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5C49B5B9</tstamp>
+    </comp>
+    <comp ref="J2">
+      <value>SM06B-SRSS-TB</value>
+      <footprint>Connector_JST:JST_SH_SM06B-SRSS-TB_1x06-1MP_P1.00mm_Horizontal</footprint>
+      <datasheet>~</datasheet>
+      <libsource lib="LrE-6-rescue" part="Conn_01x06-Connector_Generic" description=""/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5C49BFE9</tstamp>
+    </comp>
+    <comp ref="U4">
+      <value>SPX3819M5-L3-3TR</value>
+      <footprint>Package_TO_SOT_SMD:SOT-23-5</footprint>
+      <datasheet>http://www.st.com/content/ccc/resource/technical/document/datasheet/29/10/f7/87/2f/66/47/f4/DM00076097.pdf/files/DM00076097.pdf/jcr:content/translations/en.DM00076097.pdf</datasheet>
+      <libsource lib="LrE-6-rescue" part="LDK130-08_SOT23_SOT353-Regulator_Linear" description=""/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5C49CE6A</tstamp>
+    </comp>
+    <comp ref="C56">
+      <value>1u</value>
+      <footprint>Capacitor_SMD:C_0805_2012Metric</footprint>
+      <datasheet>~</datasheet>
+      <libsource lib="LrE-6-rescue" part="C-Device" description=""/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5C4A31C8</tstamp>
+    </comp>
+    <comp ref="C54">
+      <value>1u</value>
+      <footprint>Capacitor_SMD:C_0805_2012Metric</footprint>
+      <datasheet>~</datasheet>
+      <libsource lib="LrE-6-rescue" part="C-Device" description=""/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5C4A6079</tstamp>
+    </comp>
+    <comp ref="C49">
+      <value>1u</value>
+      <footprint>Capacitor_SMD:C_0805_2012Metric</footprint>
+      <datasheet>~</datasheet>
+      <libsource lib="LrE-6-rescue" part="C-Device" description=""/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5C4BD331</tstamp>
+    </comp>
+    <comp ref="C50">
+      <value>1u</value>
+      <footprint>Capacitor_SMD:C_0805_2012Metric</footprint>
+      <datasheet>~</datasheet>
+      <libsource lib="LrE-6-rescue" part="C-Device" description=""/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5C4D2D25</tstamp>
+    </comp>
+    <comp ref="R40">
+      <value>10K</value>
+      <footprint>Resistor_SMD:R_0805_2012Metric</footprint>
+      <datasheet>~</datasheet>
+      <libsource lib="LrE-6-rescue" part="R-Device" description=""/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5C4EACBD</tstamp>
+    </comp>
+    <comp ref="R41">
+      <value>10K</value>
+      <footprint>Resistor_SMD:R_0805_2012Metric</footprint>
+      <datasheet>~</datasheet>
+      <libsource lib="LrE-6-rescue" part="R-Device" description=""/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5C4EAD6C</tstamp>
+    </comp>
+    <comp ref="R45">
+      <value>62</value>
+      <footprint>Resistor_SMD:R_0805_2012Metric</footprint>
+      <datasheet>~</datasheet>
+      <libsource lib="LrE-6-rescue" part="R-Device" description=""/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5C509B04</tstamp>
+    </comp>
+    <comp ref="SW14">
+      <value>EC11_SMD</value>
+      <footprint>Rotary_Encoder:RotaryEncoder_Alps_EC11E-Switch_Vertical_H20mm</footprint>
+      <datasheet>~</datasheet>
+      <libsource lib="LrE-6-rescue" part="Rotary_Encoder_Switch-Device" description=""/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5C6AB5C2</tstamp>
+    </comp>
+    <comp ref="SW15">
+      <value>EC11_SMD</value>
+      <footprint>Rotary_Encoder:RotaryEncoder_Alps_EC11E-Switch_Vertical_H20mm</footprint>
+      <datasheet>~</datasheet>
+      <libsource lib="LrE-6-rescue" part="Rotary_Encoder_Switch-Device" description=""/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5C6AB6D3</tstamp>
+    </comp>
+    <comp ref="SW10">
+      <value>EC11_SMD</value>
+      <footprint>Rotary_Encoder:RotaryEncoder_Alps_EC11E-Switch_Vertical_H20mm</footprint>
+      <datasheet>~</datasheet>
+      <libsource lib="LrE-6-rescue" part="Rotary_Encoder_Switch-Device" description=""/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5C6AB791</tstamp>
+    </comp>
+    <comp ref="R19">
+      <value>10K</value>
+      <footprint>Resistor_SMD:R_0805_2012Metric</footprint>
+      <datasheet>~</datasheet>
+      <libsource lib="LrE-6-rescue" part="R-Device" description=""/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5C6AC0FC</tstamp>
+    </comp>
+    <comp ref="R18">
+      <value>10K</value>
+      <footprint>Resistor_SMD:R_0805_2012Metric</footprint>
+      <datasheet>~</datasheet>
+      <libsource lib="LrE-6-rescue" part="R-Device" description=""/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5C6AC218</tstamp>
+    </comp>
+    <comp ref="R21">
+      <value>10K</value>
+      <footprint>Resistor_SMD:R_0805_2012Metric</footprint>
+      <datasheet>~</datasheet>
+      <libsource lib="LrE-6-rescue" part="R-Device" description=""/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5C6AC31F</tstamp>
+    </comp>
+    <comp ref="R20">
+      <value>10K</value>
+      <footprint>Resistor_SMD:R_0805_2012Metric</footprint>
+      <datasheet>~</datasheet>
+      <libsource lib="LrE-6-rescue" part="R-Device" description=""/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5C6AC425</tstamp>
+    </comp>
+    <comp ref="R11">
+      <value>10K</value>
+      <footprint>Resistor_SMD:R_0805_2012Metric</footprint>
+      <datasheet>~</datasheet>
+      <libsource lib="LrE-6-rescue" part="R-Device" description=""/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5C6AC516</tstamp>
+    </comp>
+    <comp ref="R10">
+      <value>10K</value>
+      <footprint>Resistor_SMD:R_0805_2012Metric</footprint>
+      <datasheet>~</datasheet>
+      <libsource lib="LrE-6-rescue" part="R-Device" description=""/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5C6AC614</tstamp>
+    </comp>
+    <comp ref="C18">
+      <value>22n</value>
+      <footprint>Capacitor_SMD:C_0805_2012Metric</footprint>
+      <datasheet>~</datasheet>
+      <libsource lib="LrE-6-rescue" part="C-Device" description=""/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5C92A85A</tstamp>
+    </comp>
+    <comp ref="C19">
+      <value>22n</value>
+      <footprint>Capacitor_SMD:C_0805_2012Metric</footprint>
+      <datasheet>~</datasheet>
+      <libsource lib="LrE-6-rescue" part="C-Device" description=""/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5C92A94C</tstamp>
+    </comp>
+    <comp ref="C20">
+      <value>22n</value>
+      <footprint>Capacitor_SMD:C_0805_2012Metric</footprint>
+      <datasheet>~</datasheet>
+      <libsource lib="LrE-6-rescue" part="C-Device" description=""/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5C92AA33</tstamp>
+    </comp>
+    <comp ref="C21">
+      <value>22n</value>
+      <footprint>Capacitor_SMD:C_0805_2012Metric</footprint>
+      <datasheet>~</datasheet>
+      <libsource lib="LrE-6-rescue" part="C-Device" description=""/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5C92ABB3</tstamp>
+    </comp>
+    <comp ref="C10">
+      <value>22n</value>
+      <footprint>Capacitor_SMD:C_0805_2012Metric</footprint>
+      <datasheet>~</datasheet>
+      <libsource lib="LrE-6-rescue" part="C-Device" description=""/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5C92ACD6</tstamp>
+    </comp>
+    <comp ref="C11">
+      <value>22n</value>
+      <footprint>Capacitor_SMD:C_0805_2012Metric</footprint>
+      <datasheet>~</datasheet>
+      <libsource lib="LrE-6-rescue" part="C-Device" description=""/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5C92ADE4</tstamp>
+    </comp>
+    <comp ref="SW1">
+      <value>Tact_SW_8mm</value>
+      <footprint>Button_Switch_THT:SW_PUSH_6mm_H9.5mm</footprint>
+      <libsource lib="LrE-6-rescue" part="SW_Push_45deg-Switch" description=""/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5CCE212B</tstamp>
+    </comp>
+    <comp ref="SW2">
+      <value>Tact_SW_8mm</value>
+      <footprint>Button_Switch_THT:SW_PUSH_6mm_H9.5mm</footprint>
+      <libsource lib="LrE-6-rescue" part="SW_Push_45deg-Switch" description=""/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5CCE2246</tstamp>
+    </comp>
+    <comp ref="SW3">
+      <value>Tact_SW_8mm</value>
+      <footprint>Button_Switch_THT:SW_PUSH_6mm_H9.5mm</footprint>
+      <libsource lib="LrE-6-rescue" part="SW_Push_45deg-Switch" description=""/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5CCE2412</tstamp>
+    </comp>
+    <comp ref="SW4">
+      <value>Tact_SW_8mm</value>
+      <footprint>Button_Switch_THT:SW_PUSH_6mm_H9.5mm</footprint>
+      <libsource lib="LrE-6-rescue" part="SW_Push_45deg-Switch" description=""/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5CCE2530</tstamp>
+    </comp>
+    <comp ref="SW5">
+      <value>Tact_SW_8mm</value>
+      <footprint>Button_Switch_THT:SW_PUSH_6mm_H9.5mm</footprint>
+      <libsource lib="LrE-6-rescue" part="SW_Push_45deg-Switch" description=""/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5CCE27CC</tstamp>
+    </comp>
+    <comp ref="SW6">
+      <value>Tact_SW_8mm</value>
+      <footprint>Button_Switch_THT:SW_PUSH_6mm_H9.5mm</footprint>
+      <libsource lib="LrE-6-rescue" part="SW_Push_45deg-Switch" description=""/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5CCE28E5</tstamp>
+    </comp>
+    <comp ref="SW7">
+      <value>Tact_SW_8mm</value>
+      <footprint>Button_Switch_THT:SW_PUSH_6mm_H9.5mm</footprint>
+      <libsource lib="LrE-6-rescue" part="SW_Push_45deg-Switch" description=""/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5CCE2A37</tstamp>
+    </comp>
+    <comp ref="SW8">
+      <value>Tact_SW_8mm</value>
+      <footprint>Button_Switch_THT:SW_PUSH_6mm_H9.5mm</footprint>
+      <libsource lib="LrE-6-rescue" part="SW_Push_45deg-Switch" description=""/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5CCE2B60</tstamp>
+    </comp>
+    <comp ref="D4">
+      <value>1N4148W</value>
+      <footprint>LrE-6:D_SOD-123</footprint>
+      <datasheet>https://www.vishay.com/docs/85748/1n4148w.pdf</datasheet>
+      <libsource lib="LrE-6-rescue" part="1N4148W-Diode" description=""/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5C4E1850</tstamp>
+    </comp>
+    <comp ref="D8">
+      <value>1N4148W</value>
+      <footprint>LrE-6:D_SOD-123</footprint>
+      <datasheet>https://www.vishay.com/docs/85748/1n4148w.pdf</datasheet>
+      <libsource lib="LrE-6-rescue" part="1N4148W-Diode" description=""/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5C4E2E74</tstamp>
+    </comp>
+    <comp ref="R4">
+      <value>1K</value>
+      <footprint>Resistor_SMD:R_0805_2012Metric</footprint>
+      <datasheet>~</datasheet>
+      <libsource lib="LrE-6-rescue" part="R-Device" description=""/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5C4E6032</tstamp>
+    </comp>
+    <comp ref="D3">
+      <value>1N4148W</value>
+      <footprint>LrE-6:D_SOD-123</footprint>
+      <datasheet>https://www.vishay.com/docs/85748/1n4148w.pdf</datasheet>
+      <libsource lib="LrE-6-rescue" part="1N4148W-Diode" description=""/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5C4E8A83</tstamp>
+    </comp>
+    <comp ref="D7">
+      <value>1N4148W</value>
+      <footprint>LrE-6:D_SOD-123</footprint>
+      <datasheet>https://www.vishay.com/docs/85748/1n4148w.pdf</datasheet>
+      <libsource lib="LrE-6-rescue" part="1N4148W-Diode" description=""/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5C4E949A</tstamp>
+    </comp>
+    <comp ref="R3">
+      <value>1K</value>
+      <footprint>Resistor_SMD:R_0805_2012Metric</footprint>
+      <datasheet>~</datasheet>
+      <libsource lib="LrE-6-rescue" part="R-Device" description=""/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5C4EAB19</tstamp>
+    </comp>
+    <comp ref="R2">
+      <value>1K</value>
+      <footprint>Resistor_SMD:R_0805_2012Metric</footprint>
+      <datasheet>~</datasheet>
+      <libsource lib="LrE-6-rescue" part="R-Device" description=""/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5C4EBA08</tstamp>
+    </comp>
+    <comp ref="D2">
+      <value>1N4148W</value>
+      <footprint>LrE-6:D_SOD-123</footprint>
+      <datasheet>https://www.vishay.com/docs/85748/1n4148w.pdf</datasheet>
+      <libsource lib="LrE-6-rescue" part="1N4148W-Diode" description=""/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5C4EC382</tstamp>
+    </comp>
+    <comp ref="D6">
+      <value>1N4148W</value>
+      <footprint>LrE-6:D_SOD-123</footprint>
+      <datasheet>https://www.vishay.com/docs/85748/1n4148w.pdf</datasheet>
+      <libsource lib="LrE-6-rescue" part="1N4148W-Diode" description=""/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5C4ED026</tstamp>
+    </comp>
+    <comp ref="D1">
+      <value>1N4148W</value>
+      <footprint>LrE-6:D_SOD-123</footprint>
+      <datasheet>https://www.vishay.com/docs/85748/1n4148w.pdf</datasheet>
+      <libsource lib="LrE-6-rescue" part="1N4148W-Diode" description=""/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5C6AD044</tstamp>
+    </comp>
+    <comp ref="D5">
+      <value>1N4148W</value>
+      <footprint>LrE-6:D_SOD-123</footprint>
+      <datasheet>https://www.vishay.com/docs/85748/1n4148w.pdf</datasheet>
+      <libsource lib="LrE-6-rescue" part="1N4148W-Diode" description=""/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5C6AE01B</tstamp>
+    </comp>
+    <comp ref="R1">
+      <value>1K</value>
+      <footprint>Resistor_SMD:R_0805_2012Metric</footprint>
+      <datasheet>~</datasheet>
+      <libsource lib="LrE-6-rescue" part="R-Device" description=""/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5C6B3D26</tstamp>
+    </comp>
+    <comp ref="D14">
+      <value>1N4148W</value>
+      <footprint>LrE-6:D_SOD-123</footprint>
+      <datasheet>https://www.vishay.com/docs/85748/1n4148w.pdf</datasheet>
+      <libsource lib="LrE-6-rescue" part="1N4148W-Diode" description=""/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5CACD41C</tstamp>
+    </comp>
+    <comp ref="D15">
+      <value>1N4148W</value>
+      <footprint>LrE-6:D_SOD-123</footprint>
+      <datasheet>https://www.vishay.com/docs/85748/1n4148w.pdf</datasheet>
+      <libsource lib="LrE-6-rescue" part="1N4148W-Diode" description=""/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5CACE3B1</tstamp>
+    </comp>
+    <comp ref="D10">
+      <value>1N4148W</value>
+      <footprint>LrE-6:D_SOD-123</footprint>
+      <datasheet>https://www.vishay.com/docs/85748/1n4148w.pdf</datasheet>
+      <libsource lib="LrE-6-rescue" part="1N4148W-Diode" description=""/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5CACF29F</tstamp>
+    </comp>
+    <comp ref="R48">
+      <value>1K</value>
+      <footprint>Resistor_SMD:R_0805_2012Metric</footprint>
+      <datasheet>~</datasheet>
+      <libsource lib="LrE-6-rescue" part="R-Device" description=""/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5C5249AB</tstamp>
+    </comp>
+    <comp ref="D18">
+      <value>LED0603_BL</value>
+      <footprint>LED_SMD:LED_0603_1608Metric</footprint>
+      <datasheet>~</datasheet>
+      <libsource lib="LrE-6-rescue" part="LED-Device" description=""/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5C54E897</tstamp>
+    </comp>
+    <comp ref="TP1">
+      <value>TestPoint</value>
+      <footprint>TestPoint:TestPoint_THTPad_D1.0mm_Drill0.5mm</footprint>
+      <datasheet>~</datasheet>
+      <libsource lib="LrE-6-rescue" part="TestPoint-Connector" description=""/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5C9CF623</tstamp>
+    </comp>
+    <comp ref="R47">
+      <value>10K</value>
+      <footprint>Resistor_SMD:R_0805_2012Metric</footprint>
+      <datasheet>~</datasheet>
+      <libsource lib="LrE-6-rescue" part="R-Device" description=""/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5C4ACB2C</tstamp>
+    </comp>
+    <comp ref="C53">
+      <value>1u</value>
+      <footprint>Capacitor_SMD:C_0805_2012Metric</footprint>
+      <datasheet>~</datasheet>
+      <libsource lib="LrE-6-rescue" part="C-Device" description=""/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5C4ACA82</tstamp>
+    </comp>
+    <comp ref="D31">
+      <value>WS2812B-2020</value>
+      <footprint>LrE-6:LED_WS2812B-2020</footprint>
+      <datasheet>https://cdn-shop.adafruit.com/product-files/2686/SK6812MINI_REV.01-1-2.pdf</datasheet>
+      <libsource lib="LrE-6" part="WS2812B-2020" description="RGB LED with integrated controller"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5CFA2C68</tstamp>
+    </comp>
+    <comp ref="D32">
+      <value>WS2812B-2020</value>
+      <footprint>LrE-6:LED_WS2812B-2020</footprint>
+      <datasheet>https://cdn-shop.adafruit.com/product-files/2686/SK6812MINI_REV.01-1-2.pdf</datasheet>
+      <libsource lib="LrE-6" part="WS2812B-2020" description="RGB LED with integrated controller"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5CFAA8BB</tstamp>
+    </comp>
+    <comp ref="D33">
+      <value>WS2812B-2020</value>
+      <footprint>LrE-6:LED_WS2812B-2020</footprint>
+      <datasheet>https://cdn-shop.adafruit.com/product-files/2686/SK6812MINI_REV.01-1-2.pdf</datasheet>
+      <libsource lib="LrE-6" part="WS2812B-2020" description="RGB LED with integrated controller"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5CFAB701</tstamp>
+    </comp>
+    <comp ref="D34">
+      <value>WS2812B-2020</value>
+      <footprint>LrE-6:LED_WS2812B-2020</footprint>
+      <datasheet>https://cdn-shop.adafruit.com/product-files/2686/SK6812MINI_REV.01-1-2.pdf</datasheet>
+      <libsource lib="LrE-6" part="WS2812B-2020" description="RGB LED with integrated controller"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5CFAC587</tstamp>
+    </comp>
+    <comp ref="D35">
+      <value>WS2812B-2020</value>
+      <footprint>LrE-6:LED_WS2812B-2020</footprint>
+      <datasheet>https://cdn-shop.adafruit.com/product-files/2686/SK6812MINI_REV.01-1-2.pdf</datasheet>
+      <libsource lib="LrE-6" part="WS2812B-2020" description="RGB LED with integrated controller"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5CFAD843</tstamp>
+    </comp>
+    <comp ref="D36">
+      <value>WS2812B-2020</value>
+      <footprint>LrE-6:LED_WS2812B-2020</footprint>
+      <datasheet>https://cdn-shop.adafruit.com/product-files/2686/SK6812MINI_REV.01-1-2.pdf</datasheet>
+      <libsource lib="LrE-6" part="WS2812B-2020" description="RGB LED with integrated controller"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5CFAE065</tstamp>
+    </comp>
+    <comp ref="C31">
+      <value>0.1u</value>
+      <footprint>Capacitor_SMD:C_0805_2012Metric</footprint>
+      <datasheet>~</datasheet>
+      <libsource lib="LrE-6-rescue" part="C-Device" description=""/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5D7055E7</tstamp>
+    </comp>
+    <comp ref="C32">
+      <value>0.1u</value>
+      <footprint>Capacitor_SMD:C_0805_2012Metric</footprint>
+      <datasheet>~</datasheet>
+      <libsource lib="LrE-6-rescue" part="C-Device" description=""/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5D706229</tstamp>
+    </comp>
+    <comp ref="C33">
+      <value>0.1u</value>
+      <footprint>Capacitor_SMD:C_0805_2012Metric</footprint>
+      <datasheet>~</datasheet>
+      <libsource lib="LrE-6-rescue" part="C-Device" description=""/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5D706B4B</tstamp>
+    </comp>
+    <comp ref="C35">
+      <value>0.1u</value>
+      <footprint>Capacitor_SMD:C_0805_2012Metric</footprint>
+      <datasheet>~</datasheet>
+      <libsource lib="LrE-6-rescue" part="C-Device" description=""/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5D7076C0</tstamp>
+    </comp>
+    <comp ref="C36">
+      <value>0.1u</value>
+      <footprint>Capacitor_SMD:C_0805_2012Metric</footprint>
+      <datasheet>~</datasheet>
+      <libsource lib="LrE-6-rescue" part="C-Device" description=""/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5D708E26</tstamp>
+    </comp>
+    <comp ref="C34">
+      <value>0.1u</value>
+      <footprint>Capacitor_SMD:C_0805_2012Metric</footprint>
+      <datasheet>~</datasheet>
+      <libsource lib="LrE-6-rescue" part="C-Device" description=""/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5D707270</tstamp>
+    </comp>
+    <comp ref="C55">
+      <value>10n</value>
+      <footprint>Capacitor_SMD:C_0805_2012Metric</footprint>
+      <datasheet>~</datasheet>
+      <libsource lib="LrE-6-rescue" part="C-Device" description=""/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5C4910AD</tstamp>
+    </comp>
+    <comp ref="Q1">
+      <value>2N7002</value>
+      <footprint>Package_TO_SOT_SMD:SOT-23</footprint>
+      <datasheet>https://www.fairchildsemi.com/datasheets/2N/2N7002.pdf</datasheet>
+      <libsource lib="LrE-6-rescue" part="2N7002-Transistor_FET" description=""/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5D0213C1</tstamp>
+    </comp>
+    <comp ref="R46">
+      <value>10K</value>
+      <footprint>Resistor_SMD:R_0805_2012Metric</footprint>
+      <datasheet>~</datasheet>
+      <libsource lib="LrE-6-rescue" part="R-Device" description=""/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5D024220</tstamp>
+    </comp>
+    <comp ref="C30">
+      <value>0.1u</value>
+      <footprint>Capacitor_SMD:C_0805_2012Metric</footprint>
+      <datasheet>~</datasheet>
+      <libsource lib="LrE-6-rescue" part="C-Device" description=""/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5D54B231</tstamp>
+    </comp>
+    <comp ref="C52">
+      <value>4.7u</value>
+      <footprint>Capacitor_SMD:C_0805_2012Metric</footprint>
+      <datasheet>~</datasheet>
+      <libsource lib="LrE-6-rescue" part="C-Device" description=""/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5E946B99</tstamp>
+    </comp>
+    <comp ref="C51">
+      <value>4.7u</value>
+      <footprint>Capacitor_SMD:C_0805_2012Metric</footprint>
+      <datasheet>~</datasheet>
+      <libsource lib="LrE-6-rescue" part="C-Device" description=""/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5E947AA4</tstamp>
+    </comp>
+    <comp ref="C48">
+      <value>1u</value>
+      <footprint>Capacitor_SMD:C_0805_2012Metric</footprint>
+      <datasheet>~</datasheet>
+      <libsource lib="LrE-6-rescue" part="C-Device" description=""/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5EE6A509</tstamp>
+    </comp>
+    <comp ref="C47">
+      <value>1u</value>
+      <footprint>Capacitor_SMD:C_0805_2012Metric</footprint>
+      <datasheet>~</datasheet>
+      <libsource lib="LrE-6-rescue" part="C-Device" description=""/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5C4B998D</tstamp>
+    </comp>
+    <comp ref="U3">
+      <value>SSD1306_OLED_0.91</value>
+      <footprint>LrE-6:OLED-9.1</footprint>
+      <libsource lib="LrE-6" part="OLED-0.91" description=""/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5E1BA71E</tstamp>
+    </comp>
+    <comp ref="R44">
+      <value>100</value>
+      <footprint>Resistor_SMD:R_0805_2012Metric</footprint>
+      <datasheet>~</datasheet>
+      <libsource lib="Device" part="R" description="Resistor"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5EEE6BD3</tstamp>
+    </comp>
+    <comp ref="R42">
+      <value>1K</value>
+      <footprint>Resistor_SMD:R_0805_2012Metric</footprint>
+      <datasheet>~</datasheet>
+      <libsource lib="Device" part="R" description="Resistor"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5EEE73A1</tstamp>
+    </comp>
+    <comp ref="SW17">
+      <value>EC11_SMD</value>
+      <footprint>Rotary_Encoder:RotaryEncoder_Alps_EC11E-Switch_Vertical_H20mm</footprint>
+      <datasheet>~</datasheet>
+      <libsource lib="LrE-6-rescue" part="Rotary_Encoder_Switch-Device" description=""/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>60A92800</tstamp>
+    </comp>
+    <comp ref="R25">
+      <value>10K</value>
+      <footprint>Resistor_SMD:R_0805_2012Metric</footprint>
+      <datasheet>~</datasheet>
+      <libsource lib="LrE-6-rescue" part="R-Device" description=""/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>60A92812</tstamp>
+    </comp>
+    <comp ref="R24">
+      <value>10K</value>
+      <footprint>Resistor_SMD:R_0805_2012Metric</footprint>
+      <datasheet>~</datasheet>
+      <libsource lib="LrE-6-rescue" part="R-Device" description=""/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>60A92818</tstamp>
+    </comp>
+    <comp ref="C24">
+      <value>22n</value>
+      <footprint>Capacitor_SMD:C_0805_2012Metric</footprint>
+      <datasheet>~</datasheet>
+      <libsource lib="LrE-6-rescue" part="C-Device" description=""/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>60A92843</tstamp>
+    </comp>
+    <comp ref="C25">
+      <value>22n</value>
+      <footprint>Capacitor_SMD:C_0805_2012Metric</footprint>
+      <datasheet>~</datasheet>
+      <libsource lib="LrE-6-rescue" part="C-Device" description=""/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>60A92849</tstamp>
+    </comp>
+    <comp ref="D17">
+      <value>1N4148W</value>
+      <footprint>LrE-6:D_SOD-123</footprint>
+      <datasheet>https://www.vishay.com/docs/85748/1n4148w.pdf</datasheet>
+      <libsource lib="LrE-6-rescue" part="1N4148W-Diode" description=""/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>60A9288C</tstamp>
+    </comp>
+    <comp ref="D37">
+      <value>WS2812B-2020</value>
+      <footprint>LrE-6:LED_WS2812B-2020</footprint>
+      <datasheet>https://cdn-shop.adafruit.com/product-files/2686/SK6812MINI_REV.01-1-2.pdf</datasheet>
+      <libsource lib="LrE-6" part="WS2812B-2020" description="RGB LED with integrated controller"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>60809BD1</tstamp>
+    </comp>
+    <comp ref="D38">
+      <value>WS2812B-2020</value>
+      <footprint>LrE-6:LED_WS2812B-2020</footprint>
+      <datasheet>https://cdn-shop.adafruit.com/product-files/2686/SK6812MINI_REV.01-1-2.pdf</datasheet>
+      <libsource lib="LrE-6" part="WS2812B-2020" description="RGB LED with integrated controller"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>60809BD7</tstamp>
+    </comp>
+    <comp ref="C37">
+      <value>0.1u</value>
+      <footprint>Capacitor_SMD:C_0805_2012Metric</footprint>
+      <datasheet>~</datasheet>
+      <libsource lib="LrE-6-rescue" part="C-Device" description=""/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>60809BE9</tstamp>
+    </comp>
+    <comp ref="C38">
+      <value>0.1u</value>
+      <footprint>Capacitor_SMD:C_0805_2012Metric</footprint>
+      <datasheet>~</datasheet>
+      <libsource lib="LrE-6-rescue" part="C-Device" description=""/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>60809BF1</tstamp>
+    </comp>
+    <comp ref="D13">
+      <value>1N4148W</value>
+      <footprint>LrE-6:D_SOD-123</footprint>
+      <datasheet>https://www.vishay.com/docs/85748/1n4148w.pdf</datasheet>
+      <libsource lib="LrE-6-rescue" part="1N4148W-Diode" description=""/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5CACBDAF</tstamp>
+    </comp>
+    <comp ref="D11">
+      <value>1N4148W</value>
+      <footprint>LrE-6:D_SOD-123</footprint>
+      <datasheet>https://www.vishay.com/docs/85748/1n4148w.pdf</datasheet>
+      <libsource lib="LrE-6-rescue" part="1N4148W-Diode" description=""/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5CACAD5F</tstamp>
+    </comp>
+    <comp ref="D12">
+      <value>1N4148W</value>
+      <footprint>LrE-6:D_SOD-123</footprint>
+      <datasheet>https://www.vishay.com/docs/85748/1n4148w.pdf</datasheet>
+      <libsource lib="LrE-6-rescue" part="1N4148W-Diode" description=""/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5CAC9D35</tstamp>
+    </comp>
+    <comp ref="C17">
+      <value>22n</value>
+      <footprint>Capacitor_SMD:C_0805_2012Metric</footprint>
+      <datasheet>~</datasheet>
+      <libsource lib="LrE-6-rescue" part="C-Device" description=""/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5C92B0B3</tstamp>
+    </comp>
+    <comp ref="C16">
+      <value>22n</value>
+      <footprint>Capacitor_SMD:C_0805_2012Metric</footprint>
+      <datasheet>~</datasheet>
+      <libsource lib="LrE-6-rescue" part="C-Device" description=""/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5C92AEF7</tstamp>
+    </comp>
+    <comp ref="C15">
+      <value>22n</value>
+      <footprint>Capacitor_SMD:C_0805_2012Metric</footprint>
+      <datasheet>~</datasheet>
+      <libsource lib="LrE-6-rescue" part="C-Device" description=""/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5C8CF86C</tstamp>
+    </comp>
+    <comp ref="C14">
+      <value>22n</value>
+      <footprint>Capacitor_SMD:C_0805_2012Metric</footprint>
+      <datasheet>~</datasheet>
+      <libsource lib="LrE-6-rescue" part="C-Device" description=""/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5C8CF744</tstamp>
+    </comp>
+    <comp ref="C13">
+      <value>22n</value>
+      <footprint>Capacitor_SMD:C_0805_2012Metric</footprint>
+      <datasheet>~</datasheet>
+      <libsource lib="LrE-6-rescue" part="C-Device" description=""/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5C8CF611</tstamp>
+    </comp>
+    <comp ref="C12">
+      <value>22n</value>
+      <footprint>Capacitor_SMD:C_0805_2012Metric</footprint>
+      <datasheet>~</datasheet>
+      <libsource lib="LrE-6-rescue" part="C-Device" description=""/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5C8CF4FD</tstamp>
+    </comp>
+    <comp ref="R16">
+      <value>10K</value>
+      <footprint>Resistor_SMD:R_0805_2012Metric</footprint>
+      <datasheet>~</datasheet>
+      <libsource lib="LrE-6-rescue" part="R-Device" description=""/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5C6ABE01</tstamp>
+    </comp>
+    <comp ref="R17">
+      <value>10K</value>
+      <footprint>Resistor_SMD:R_0805_2012Metric</footprint>
+      <datasheet>~</datasheet>
+      <libsource lib="LrE-6-rescue" part="R-Device" description=""/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5C6ABCC1</tstamp>
+    </comp>
+    <comp ref="R14">
+      <value>10K</value>
+      <footprint>Resistor_SMD:R_0805_2012Metric</footprint>
+      <datasheet>~</datasheet>
+      <libsource lib="LrE-6-rescue" part="R-Device" description=""/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5C6ABBD0</tstamp>
+    </comp>
+    <comp ref="R15">
+      <value>10K</value>
+      <footprint>Resistor_SMD:R_0805_2012Metric</footprint>
+      <datasheet>~</datasheet>
+      <libsource lib="LrE-6-rescue" part="R-Device" description=""/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5C6ABADC</tstamp>
+    </comp>
+    <comp ref="R12">
+      <value>10K</value>
+      <footprint>Resistor_SMD:R_0805_2012Metric</footprint>
+      <datasheet>~</datasheet>
+      <libsource lib="LrE-6-rescue" part="R-Device" description=""/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5C6AB990</tstamp>
+    </comp>
+    <comp ref="R13">
+      <value>10K</value>
+      <footprint>Resistor_SMD:R_0805_2012Metric</footprint>
+      <datasheet>~</datasheet>
+      <libsource lib="LrE-6-rescue" part="R-Device" description=""/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5C6AB881</tstamp>
+    </comp>
+    <comp ref="SW13">
+      <value>EC11_SMD</value>
+      <footprint>Rotary_Encoder:RotaryEncoder_Alps_EC11E-Switch_Vertical_H20mm</footprint>
+      <datasheet>~</datasheet>
+      <libsource lib="LrE-6-rescue" part="Rotary_Encoder_Switch-Device" description=""/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5C6AB18A</tstamp>
+    </comp>
+    <comp ref="SW12">
+      <value>EC11_SMD</value>
+      <footprint>Rotary_Encoder:RotaryEncoder_Alps_EC11E-Switch_Vertical_H20mm</footprint>
+      <datasheet>~</datasheet>
+      <libsource lib="LrE-6-rescue" part="Rotary_Encoder_Switch-Device" description=""/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5C6AB096</tstamp>
+    </comp>
+    <comp ref="SW11">
+      <value>EC11_SMD</value>
+      <footprint>Rotary_Encoder:RotaryEncoder_Alps_EC11E-Switch_Vertical_H20mm</footprint>
+      <datasheet>~</datasheet>
+      <libsource lib="LrE-6-rescue" part="Rotary_Encoder_Switch-Device" description=""/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5C6AAF87</tstamp>
+    </comp>
+    <comp ref="SW16">
+      <value>EC11_SMD</value>
+      <footprint>Rotary_Encoder:RotaryEncoder_Alps_EC11E-Switch_Vertical_H20mm</footprint>
+      <datasheet>~</datasheet>
+      <libsource lib="LrE-6-rescue" part="Rotary_Encoder_Switch-Device" description=""/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>60A927FA</tstamp>
+    </comp>
+    <comp ref="R23">
+      <value>10K</value>
+      <footprint>Resistor_SMD:R_0805_2012Metric</footprint>
+      <datasheet>~</datasheet>
+      <libsource lib="LrE-6-rescue" part="R-Device" description=""/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>60A92806</tstamp>
+    </comp>
+    <comp ref="R22">
+      <value>10K</value>
+      <footprint>Resistor_SMD:R_0805_2012Metric</footprint>
+      <datasheet>~</datasheet>
+      <libsource lib="LrE-6-rescue" part="R-Device" description=""/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>60A9280C</tstamp>
+    </comp>
+    <comp ref="C22">
+      <value>22n</value>
+      <footprint>Capacitor_SMD:C_0805_2012Metric</footprint>
+      <datasheet>~</datasheet>
+      <libsource lib="LrE-6-rescue" part="C-Device" description=""/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>60A9284F</tstamp>
+    </comp>
+    <comp ref="C23">
+      <value>22n</value>
+      <footprint>Capacitor_SMD:C_0805_2012Metric</footprint>
+      <datasheet>~</datasheet>
+      <libsource lib="LrE-6-rescue" part="C-Device" description=""/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>60A92855</tstamp>
+    </comp>
+    <comp ref="D16">
+      <value>1N4148W</value>
+      <footprint>LrE-6:D_SOD-123</footprint>
+      <datasheet>https://www.vishay.com/docs/85748/1n4148w.pdf</datasheet>
+      <libsource lib="LrE-6-rescue" part="1N4148W-Diode" description=""/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>60A92886</tstamp>
+    </comp>
+  </components>
+  <libparts>
+    <libpart lib="Device" part="R">
+      <description>Resistor</description>
+      <docs>~</docs>
+      <footprints>
+        <fp>R_*</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">R</field>
+        <field name="Value">R</field>
+      </fields>
+      <pins>
+        <pin num="1" name="~" type="passive"/>
+        <pin num="2" name="~" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="LrE-6" part="OLED-0.91">
+      <fields>
+        <field name="Reference">U</field>
+        <field name="Value">OLED-0.91</field>
+      </fields>
+      <pins>
+        <pin num="1" name="C2P" type="passive"/>
+        <pin num="2" name="C2N" type="passive"/>
+        <pin num="3" name="C1P" type="passive"/>
+        <pin num="4" name="C1N" type="passive"/>
+        <pin num="5" name="VBAT" type="power_in"/>
+        <pin num="6" name="VBREF" type="passive"/>
+        <pin num="7" name="VSS" type="power_in"/>
+        <pin num="8" name="VDD" type="power_in"/>
+        <pin num="9" name="RES#" type="input"/>
+        <pin num="10" name="SCLK" type="input"/>
+        <pin num="11" name="SDIN" type="BiDi"/>
+        <pin num="12" name="IREF" type="power_in"/>
+        <pin num="13" name="VCOMH" type="input"/>
+        <pin num="14" name="VCC" type="power_in"/>
+      </pins>
+    </libpart>
+    <libpart lib="LrE-6" part="WS2812B-2020">
+      <description>RGB LED with integrated controller</description>
+      <docs>https://cdn-shop.adafruit.com/datasheets/WS2812B.pdf</docs>
+      <footprints>
+        <fp>LED*WS2812*PLCC*5.0x5.0mm*P3.2mm*</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">D</field>
+        <field name="Value">WS2812B-2020</field>
+        <field name="Footprint">LrE-6:LED_WS2812B-2020</field>
+      </fields>
+      <pins>
+        <pin num="1" name="DOUT" type="output"/>
+        <pin num="2" name="VSS" type="power_in"/>
+        <pin num="3" name="DIN" type="input"/>
+        <pin num="4" name="VDD" type="power_in"/>
+      </pins>
+    </libpart>
+    <libpart lib="LrE-6-rescue" part="1N4148W-Diode">
+      <footprints>
+        <fp>D*SOD?123*</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">D</field>
+        <field name="Value">1N4148W-Diode</field>
+        <field name="Footprint">Diode_SMD:D_SOD-123</field>
+      </fields>
+      <pins>
+        <pin num="1" name="K" type="passive"/>
+        <pin num="2" name="A" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="LrE-6-rescue" part="2N7002-Transistor_FET">
+      <footprints>
+        <fp>SOT?23*</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">Q</field>
+        <field name="Value">2N7002-Transistor_FET</field>
+        <field name="Footprint">Package_TO_SOT_SMD:SOT-23</field>
+      </fields>
+      <pins>
+        <pin num="1" name="G" type="input"/>
+        <pin num="2" name="S" type="passive"/>
+        <pin num="3" name="D" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="LrE-6-rescue" part="C-Device">
+      <footprints>
+        <fp>C_*</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">C</field>
+        <field name="Value">C-Device</field>
+      </fields>
+      <pins>
+        <pin num="1" name="~" type="passive"/>
+        <pin num="2" name="~" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="LrE-6-rescue" part="Conn_01x06-Connector_Generic">
+      <footprints>
+        <fp>Connector*:*_1x??_*</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">J</field>
+        <field name="Value">Conn_01x06-Connector_Generic</field>
+      </fields>
+      <pins>
+        <pin num="1" name="Pin_1" type="passive"/>
+        <pin num="2" name="Pin_2" type="passive"/>
+        <pin num="3" name="Pin_3" type="passive"/>
+        <pin num="4" name="Pin_4" type="passive"/>
+        <pin num="5" name="Pin_5" type="passive"/>
+        <pin num="6" name="Pin_6" type="passive"/>
+        <pin num="MP" name="GND" type="input"/>
+      </pins>
+    </libpart>
+    <libpart lib="LrE-6-rescue" part="LDK130-08_SOT23_SOT353-Regulator_Linear">
+      <footprints>
+        <fp>SOT?23*</fp>
+        <fp>SOT?353*</fp>
+        <fp>*SC?70*</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">U</field>
+        <field name="Value">LDK130-08_SOT23_SOT353-Regulator_Linear</field>
+      </fields>
+      <pins>
+        <pin num="1" name="IN" type="power_in"/>
+        <pin num="2" name="GND" type="power_in"/>
+        <pin num="3" name="EN" type="input"/>
+        <pin num="4" name="BP" type="passive"/>
+        <pin num="5" name="OUT" type="power_out"/>
+      </pins>
+    </libpart>
+    <libpart lib="LrE-6-rescue" part="LED-Device">
+      <footprints>
+        <fp>LED*</fp>
+        <fp>LED_SMD:*</fp>
+        <fp>LED_THT:*</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">D</field>
+        <field name="Value">LED-Device</field>
+      </fields>
+      <pins>
+        <pin num="1" name="K" type="passive"/>
+        <pin num="2" name="A" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="LrE-6-rescue" part="MountingHole-Mechanical">
+      <footprints>
+        <fp>MountingHole*</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">H</field>
+        <field name="Value">MountingHole-Mechanical</field>
+      </fields>
+    </libpart>
+    <libpart lib="LrE-6-rescue" part="R-Device">
+      <footprints>
+        <fp>R_*</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">R</field>
+        <field name="Value">R-Device</field>
+      </fields>
+      <pins>
+        <pin num="1" name="~" type="passive"/>
+        <pin num="2" name="~" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="LrE-6-rescue" part="Rotary_Encoder_Switch-Device">
+      <footprints>
+        <fp>RotaryEncoder*Switch*</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">SW</field>
+        <field name="Value">Rotary_Encoder_Switch-Device</field>
+      </fields>
+      <pins>
+        <pin num="A" name="A" type="passive"/>
+        <pin num="B" name="B" type="passive"/>
+        <pin num="C" name="C" type="passive"/>
+        <pin num="MP" name="GND" type="input"/>
+        <pin num="S1" name="S1" type="passive"/>
+        <pin num="S2" name="S2" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="LrE-6-rescue" part="STM32F072C8Tx-MCU_ST_STM32F0">
+      <footprints>
+        <fp>LQFP*7x7mm*P0.5mm*</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">U</field>
+        <field name="Value">STM32F072C8Tx-MCU_ST_STM32F0</field>
+        <field name="Footprint">Package_QFP:LQFP-48_7x7mm_P0.5mm</field>
+      </fields>
+      <pins>
+        <pin num="1" name="VBAT" type="power_in"/>
+        <pin num="2" name="PC13" type="BiDi"/>
+        <pin num="3" name="PC14" type="BiDi"/>
+        <pin num="4" name="PC15" type="BiDi"/>
+        <pin num="5" name="PF0" type="input"/>
+        <pin num="6" name="PF1" type="input"/>
+        <pin num="7" name="NRST" type="input"/>
+        <pin num="8" name="VSSA" type="power_in"/>
+        <pin num="9" name="VDDA" type="power_in"/>
+        <pin num="10" name="PA0" type="BiDi"/>
+        <pin num="11" name="PA1" type="BiDi"/>
+        <pin num="12" name="PA2" type="BiDi"/>
+        <pin num="13" name="PA3" type="BiDi"/>
+        <pin num="14" name="PA4" type="BiDi"/>
+        <pin num="15" name="PA5" type="BiDi"/>
+        <pin num="16" name="PA6" type="BiDi"/>
+        <pin num="17" name="PA7" type="BiDi"/>
+        <pin num="18" name="PB0" type="BiDi"/>
+        <pin num="19" name="PB1" type="BiDi"/>
+        <pin num="20" name="PB2" type="BiDi"/>
+        <pin num="21" name="PB10" type="BiDi"/>
+        <pin num="22" name="PB11" type="BiDi"/>
+        <pin num="23" name="VSS" type="power_in"/>
+        <pin num="24" name="VDD" type="power_in"/>
+        <pin num="25" name="PB12" type="BiDi"/>
+        <pin num="26" name="PB13" type="BiDi"/>
+        <pin num="27" name="PB14" type="BiDi"/>
+        <pin num="28" name="PB15" type="BiDi"/>
+        <pin num="29" name="PA8" type="BiDi"/>
+        <pin num="30" name="PA9" type="BiDi"/>
+        <pin num="31" name="PA10" type="BiDi"/>
+        <pin num="32" name="PA11" type="BiDi"/>
+        <pin num="33" name="PA12" type="BiDi"/>
+        <pin num="34" name="PA13" type="BiDi"/>
+        <pin num="35" name="VSS" type="power_in"/>
+        <pin num="36" name="VDDIO2" type="power_in"/>
+        <pin num="37" name="PA14" type="BiDi"/>
+        <pin num="38" name="PA15" type="BiDi"/>
+        <pin num="39" name="PB3" type="BiDi"/>
+        <pin num="40" name="PB4" type="BiDi"/>
+        <pin num="41" name="PB5" type="BiDi"/>
+        <pin num="42" name="PB6" type="BiDi"/>
+        <pin num="43" name="PB7" type="BiDi"/>
+        <pin num="44" name="BOOT0" type="input"/>
+        <pin num="45" name="PB8" type="BiDi"/>
+        <pin num="46" name="PB9" type="BiDi"/>
+        <pin num="47" name="VSS" type="power_in"/>
+        <pin num="48" name="VDD" type="power_in"/>
+      </pins>
+    </libpart>
+    <libpart lib="LrE-6-rescue" part="SW_Push_45deg-Switch">
+      <fields>
+        <field name="Reference">SW</field>
+        <field name="Value">SW_Push_45deg-Switch</field>
+      </fields>
+      <pins>
+        <pin num="1" name="1" type="passive"/>
+        <pin num="2" name="2" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="LrE-6-rescue" part="TestPoint-Connector">
+      <footprints>
+        <fp>Pin*</fp>
+        <fp>Test*</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">TP</field>
+        <field name="Value">TestPoint-Connector</field>
+      </fields>
+      <pins>
+        <pin num="1" name="1" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="LrE-6-rescue" part="USB_B_Micro-Connector">
+      <footprints>
+        <fp>USB*</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">J</field>
+        <field name="Value">USB_B_Micro-Connector</field>
+      </fields>
+      <pins>
+        <pin num="1" name="VBUS" type="power_out"/>
+        <pin num="2" name="D-" type="passive"/>
+        <pin num="3" name="D+" type="passive"/>
+        <pin num="4" name="ID" type="passive"/>
+        <pin num="5" name="GND" type="power_out"/>
+        <pin num="6" name="Shield" type="passive"/>
+      </pins>
+    </libpart>
+  </libparts>
+  <libraries>
+    <library logical="Device">
+      <uri>/Library/Application Support/kicad/library/Device.lib</uri>
+    </library>
+    <library logical="LrE-6">
+      <uri>/Users/jenoki/workspace/LrTMAX/LrTMAX.4lpb/LrE-6.lib</uri>
+    </library>
+    <library logical="LrE-6-rescue">
+      <uri>/Users/jenoki/workspace/LrTMAX/LrTMAX.4lpb/LrE-6-rescue.lib</uri>
+    </library>
+  </libraries>
+  <nets>
+    <net code="1" name="Net-(U1-Pad17)">
+      <node ref="U1" pin="17"/>
+    </net>
+    <net code="2" name="Net-(U1-Pad18)">
+      <node ref="U1" pin="18"/>
+    </net>
+    <net code="3" name="Net-(U1-Pad19)">
+      <node ref="U1" pin="19"/>
+    </net>
+    <net code="4" name="/ENC6A">
+      <node ref="U1" pin="20"/>
+      <node ref="C22" pin="1"/>
+      <node ref="R22" pin="2"/>
+      <node ref="SW16" pin="A"/>
+    </net>
+    <net code="5" name="/ENC2A">
+      <node ref="U1" pin="21"/>
+      <node ref="C14" pin="1"/>
+      <node ref="SW12" pin="A"/>
+      <node ref="R14" pin="2"/>
+    </net>
+    <net code="6" name="/ENC2B">
+      <node ref="R15" pin="2"/>
+      <node ref="SW12" pin="B"/>
+      <node ref="U1" pin="22"/>
+      <node ref="C15" pin="1"/>
+    </net>
+    <net code="7" name="GND">
+      <node ref="C40" pin="2"/>
+      <node ref="C43" pin="1"/>
+      <node ref="C44" pin="1"/>
+      <node ref="U1" pin="8"/>
+      <node ref="C45" pin="1"/>
+      <node ref="D36" pin="2"/>
+      <node ref="C42" pin="1"/>
+      <node ref="C23" pin="2"/>
+      <node ref="C41" pin="1"/>
+      <node ref="C22" pin="2"/>
+      <node ref="D33" pin="2"/>
+      <node ref="U1" pin="47"/>
+      <node ref="SW16" pin="MP"/>
+      <node ref="SW16" pin="MP"/>
+      <node ref="SW16" pin="C"/>
+      <node ref="U1" pin="44"/>
+      <node ref="SW11" pin="MP"/>
+      <node ref="SW11" pin="MP"/>
+      <node ref="SW11" pin="C"/>
+      <node ref="SW12" pin="MP"/>
+      <node ref="SW12" pin="MP"/>
+      <node ref="SW12" pin="C"/>
+      <node ref="C53" pin="2"/>
+      <node ref="SW13" pin="MP"/>
+      <node ref="SW13" pin="MP"/>
+      <node ref="SW13" pin="C"/>
+      <node ref="C46" pin="1"/>
+      <node ref="J1" pin="5"/>
+      <node ref="J1" pin="6"/>
+      <node ref="J2" pin="3"/>
+      <node ref="J2" pin="MP"/>
+      <node ref="J2" pin="MP"/>
+      <node ref="U4" pin="2"/>
+      <node ref="C56" pin="2"/>
+      <node ref="U1" pin="35"/>
+      <node ref="C12" pin="2"/>
+      <node ref="C13" pin="2"/>
+      <node ref="C14" pin="2"/>
+      <node ref="C54" pin="2"/>
+      <node ref="C15" pin="2"/>
+      <node ref="C31" pin="2"/>
+      <node ref="C32" pin="2"/>
+      <node ref="C16" pin="2"/>
+      <node ref="C33" pin="2"/>
+      <node ref="C17" pin="2"/>
+      <node ref="TP1" pin="1"/>
+      <node ref="C35" pin="2"/>
+      <node ref="R45" pin="2"/>
+      <node ref="C36" pin="2"/>
+      <node ref="D32" pin="2"/>
+      <node ref="U1" pin="23"/>
+      <node ref="D31" pin="2"/>
+      <node ref="SW14" pin="C"/>
+      <node ref="SW14" pin="MP"/>
+      <node ref="SW14" pin="MP"/>
+      <node ref="SW15" pin="C"/>
+      <node ref="SW15" pin="MP"/>
+      <node ref="SW15" pin="MP"/>
+      <node ref="D18" pin="1"/>
+      <node ref="SW10" pin="C"/>
+      <node ref="SW10" pin="MP"/>
+      <node ref="SW10" pin="MP"/>
+      <node ref="D34" pin="2"/>
+      <node ref="C38" pin="2"/>
+      <node ref="C37" pin="2"/>
+      <node ref="D38" pin="2"/>
+      <node ref="D37" pin="2"/>
+      <node ref="C18" pin="2"/>
+      <node ref="C19" pin="2"/>
+      <node ref="C20" pin="2"/>
+      <node ref="C34" pin="2"/>
+      <node ref="C21" pin="2"/>
+      <node ref="C10" pin="2"/>
+      <node ref="C11" pin="2"/>
+      <node ref="C55" pin="2"/>
+      <node ref="Q1" pin="2"/>
+      <node ref="C30" pin="2"/>
+      <node ref="C25" pin="2"/>
+      <node ref="C24" pin="2"/>
+      <node ref="C52" pin="1"/>
+      <node ref="C51" pin="1"/>
+      <node ref="C48" pin="2"/>
+      <node ref="R4" pin="2"/>
+      <node ref="SW17" pin="MP"/>
+      <node ref="SW17" pin="MP"/>
+      <node ref="SW17" pin="C"/>
+      <node ref="R3" pin="2"/>
+      <node ref="R2" pin="1"/>
+      <node ref="C47" pin="1"/>
+      <node ref="D35" pin="2"/>
+      <node ref="R1" pin="2"/>
+      <node ref="R42" pin="2"/>
+      <node ref="U3" pin="7"/>
+    </net>
+    <net code="8" name="Net-(U1-Pad28)">
+      <node ref="U1" pin="28"/>
+    </net>
+    <net code="9" name="Net-(U1-Pad29)">
+      <node ref="U1" pin="29"/>
+    </net>
+    <net code="10" name="/ENC3A">
+      <node ref="SW13" pin="A"/>
+      <node ref="R16" pin="2"/>
+      <node ref="U1" pin="3"/>
+      <node ref="C16" pin="1"/>
+    </net>
+    <net code="11" name="Net-(U1-Pad38)">
+      <node ref="U1" pin="38"/>
+    </net>
+    <net code="12" name="/ENC6B">
+      <node ref="C23" pin="1"/>
+      <node ref="R23" pin="2"/>
+      <node ref="SW16" pin="B"/>
+      <node ref="U1" pin="39"/>
+    </net>
+    <net code="13" name="/ENC3B">
+      <node ref="SW13" pin="B"/>
+      <node ref="R17" pin="2"/>
+      <node ref="U1" pin="4"/>
+      <node ref="C17" pin="1"/>
+    </net>
+    <net code="14" name="/L1">
+      <node ref="SW6" pin="1"/>
+      <node ref="U1" pin="40"/>
+      <node ref="SW5" pin="1"/>
+      <node ref="SW7" pin="1"/>
+      <node ref="SW8" pin="1"/>
+    </net>
+    <net code="15" name="/L2">
+      <node ref="SW11" pin="S1"/>
+      <node ref="U1" pin="41"/>
+      <node ref="SW10" pin="S1"/>
+      <node ref="SW13" pin="S1"/>
+      <node ref="SW12" pin="S1"/>
+    </net>
+    <net code="16" name="/ENC7A">
+      <node ref="U1" pin="42"/>
+      <node ref="R24" pin="2"/>
+      <node ref="C24" pin="1"/>
+      <node ref="SW17" pin="A"/>
+    </net>
+    <net code="17" name="/ENC7B">
+      <node ref="SW17" pin="B"/>
+      <node ref="C25" pin="1"/>
+      <node ref="R25" pin="2"/>
+      <node ref="U1" pin="43"/>
+    </net>
+    <net code="18" name="/ENC4A">
+      <node ref="U1" pin="5"/>
+      <node ref="C18" pin="1"/>
+      <node ref="SW14" pin="A"/>
+      <node ref="R18" pin="2"/>
+    </net>
+    <net code="19" name="/ENC4B">
+      <node ref="C19" pin="1"/>
+      <node ref="R19" pin="2"/>
+      <node ref="SW14" pin="B"/>
+      <node ref="U1" pin="6"/>
+    </net>
+    <net code="20" name="/NRST">
+      <node ref="R47" pin="2"/>
+      <node ref="U3" pin="9"/>
+      <node ref="C53" pin="1"/>
+      <node ref="J2" pin="1"/>
+      <node ref="U1" pin="7"/>
+    </net>
+    <net code="21" name="+3V3">
+      <node ref="R40" pin="1"/>
+      <node ref="R19" pin="1"/>
+      <node ref="R18" pin="1"/>
+      <node ref="R21" pin="1"/>
+      <node ref="R20" pin="1"/>
+      <node ref="R11" pin="1"/>
+      <node ref="U1" pin="24"/>
+      <node ref="R10" pin="1"/>
+      <node ref="R47" pin="1"/>
+      <node ref="U1" pin="1"/>
+      <node ref="U1" pin="36"/>
+      <node ref="U1" pin="48"/>
+      <node ref="U1" pin="9"/>
+      <node ref="C40" pin="1"/>
+      <node ref="C43" pin="2"/>
+      <node ref="C44" pin="2"/>
+      <node ref="C45" pin="2"/>
+      <node ref="C56" pin="1"/>
+      <node ref="C42" pin="2"/>
+      <node ref="C41" pin="2"/>
+      <node ref="R48" pin="1"/>
+      <node ref="R24" pin="1"/>
+      <node ref="R25" pin="1"/>
+      <node ref="U4" pin="5"/>
+      <node ref="J2" pin="2"/>
+      <node ref="R22" pin="1"/>
+      <node ref="R41" pin="1"/>
+      <node ref="R16" pin="1"/>
+      <node ref="R17" pin="1"/>
+      <node ref="R23" pin="1"/>
+      <node ref="R14" pin="1"/>
+      <node ref="R44" pin="1"/>
+      <node ref="R15" pin="1"/>
+      <node ref="U3" pin="5"/>
+      <node ref="R12" pin="1"/>
+      <node ref="R13" pin="1"/>
+      <node ref="C48" pin="1"/>
+      <node ref="C46" pin="2"/>
+    </net>
+    <net code="22" name="Net-(J1-Pad4)">
+      <node ref="J1" pin="4"/>
+    </net>
+    <net code="23" name="Net-(J2-Pad6)">
+      <node ref="J2" pin="6"/>
+    </net>
+    <net code="24" name="Net-(C55-Pad1)">
+      <node ref="C55" pin="1"/>
+      <node ref="U4" pin="4"/>
+    </net>
+    <net code="25" name="/VBUS">
+      <node ref="D36" pin="4"/>
+      <node ref="C34" pin="1"/>
+      <node ref="D32" pin="4"/>
+      <node ref="D31" pin="4"/>
+      <node ref="C54" pin="1"/>
+      <node ref="C35" pin="1"/>
+      <node ref="C36" pin="1"/>
+      <node ref="D33" pin="4"/>
+      <node ref="C33" pin="1"/>
+      <node ref="C32" pin="1"/>
+      <node ref="D37" pin="4"/>
+      <node ref="D35" pin="4"/>
+      <node ref="J1" pin="1"/>
+      <node ref="C30" pin="1"/>
+      <node ref="R46" pin="1"/>
+      <node ref="C31" pin="1"/>
+      <node ref="U4" pin="1"/>
+      <node ref="C38" pin="1"/>
+      <node ref="U4" pin="3"/>
+      <node ref="D34" pin="4"/>
+      <node ref="C37" pin="1"/>
+      <node ref="D38" pin="4"/>
+    </net>
+    <net code="26" name="/USB_DP">
+      <node ref="U1" pin="33"/>
+      <node ref="J1" pin="3"/>
+    </net>
+    <net code="27" name="/USB_DM">
+      <node ref="U1" pin="32"/>
+      <node ref="J1" pin="2"/>
+    </net>
+    <net code="28" name="Net-(C49-Pad2)">
+      <node ref="C49" pin="2"/>
+      <node ref="U3" pin="1"/>
+    </net>
+    <net code="29" name="Net-(C50-Pad2)">
+      <node ref="U3" pin="3"/>
+      <node ref="C50" pin="2"/>
+    </net>
+    <net code="30" name="/SCL">
+      <node ref="U1" pin="26"/>
+      <node ref="U3" pin="10"/>
+      <node ref="R40" pin="2"/>
+    </net>
+    <net code="31" name="/SDA">
+      <node ref="U1" pin="27"/>
+      <node ref="U3" pin="11"/>
+      <node ref="R41" pin="2"/>
+    </net>
+    <net code="32" name="/M0">
+      <node ref="U1" pin="10"/>
+      <node ref="D1" pin="1"/>
+      <node ref="D5" pin="1"/>
+      <node ref="D14" pin="1"/>
+      <node ref="R1" pin="1"/>
+      <node ref="D10" pin="1"/>
+    </net>
+    <net code="33" name="/M1">
+      <node ref="D15" pin="1"/>
+      <node ref="U1" pin="11"/>
+      <node ref="D6" pin="1"/>
+      <node ref="D11" pin="1"/>
+      <node ref="D2" pin="1"/>
+      <node ref="R2" pin="2"/>
+    </net>
+    <net code="34" name="/M2">
+      <node ref="R3" pin="1"/>
+      <node ref="D7" pin="1"/>
+      <node ref="D3" pin="1"/>
+      <node ref="D16" pin="1"/>
+      <node ref="U1" pin="12"/>
+      <node ref="D12" pin="1"/>
+    </net>
+    <net code="35" name="/M3">
+      <node ref="D4" pin="1"/>
+      <node ref="D13" pin="1"/>
+      <node ref="D17" pin="1"/>
+      <node ref="U1" pin="13"/>
+      <node ref="D8" pin="1"/>
+      <node ref="R4" pin="1"/>
+    </net>
+    <net code="36" name="/ENC1A">
+      <node ref="U1" pin="45"/>
+      <node ref="SW11" pin="A"/>
+      <node ref="C12" pin="1"/>
+      <node ref="R12" pin="2"/>
+    </net>
+    <net code="37" name="/ENC1B">
+      <node ref="U1" pin="46"/>
+      <node ref="SW11" pin="B"/>
+      <node ref="R13" pin="2"/>
+      <node ref="C13" pin="1"/>
+    </net>
+    <net code="38" name="/L0">
+      <node ref="SW2" pin="1"/>
+      <node ref="U1" pin="30"/>
+      <node ref="SW1" pin="1"/>
+      <node ref="SW4" pin="1"/>
+      <node ref="SW3" pin="1"/>
+    </net>
+    <net code="39" name="/ENC5A">
+      <node ref="SW15" pin="A"/>
+      <node ref="C20" pin="1"/>
+      <node ref="U1" pin="25"/>
+      <node ref="R20" pin="2"/>
+    </net>
+    <net code="40" name="/ENC5B">
+      <node ref="U1" pin="2"/>
+      <node ref="C21" pin="1"/>
+      <node ref="R21" pin="2"/>
+      <node ref="SW15" pin="B"/>
+    </net>
+    <net code="41" name="/SWCLK">
+      <node ref="J2" pin="5"/>
+      <node ref="U1" pin="37"/>
+    </net>
+    <net code="42" name="/SWDIO">
+      <node ref="J2" pin="4"/>
+      <node ref="U1" pin="34"/>
+    </net>
+    <net code="43" name="/L3">
+      <node ref="SW14" pin="S1"/>
+      <node ref="SW16" pin="S1"/>
+      <node ref="SW15" pin="S1"/>
+      <node ref="U1" pin="31"/>
+      <node ref="SW17" pin="S1"/>
+    </net>
+    <net code="44" name="/ENC0A">
+      <node ref="SW10" pin="A"/>
+      <node ref="C10" pin="1"/>
+      <node ref="R10" pin="2"/>
+      <node ref="U1" pin="14"/>
+    </net>
+    <net code="45" name="/ENC0B">
+      <node ref="SW10" pin="B"/>
+      <node ref="U1" pin="15"/>
+      <node ref="R11" pin="2"/>
+      <node ref="C11" pin="1"/>
+    </net>
+    <net code="46" name="Net-(D14-Pad2)">
+      <node ref="D14" pin="2"/>
+      <node ref="SW14" pin="S2"/>
+    </net>
+    <net code="47" name="Net-(D15-Pad2)">
+      <node ref="D15" pin="2"/>
+      <node ref="SW15" pin="S2"/>
+    </net>
+    <net code="48" name="Net-(D10-Pad2)">
+      <node ref="D10" pin="2"/>
+      <node ref="SW10" pin="S2"/>
+    </net>
+    <net code="49" name="Net-(D1-Pad2)">
+      <node ref="SW1" pin="2"/>
+      <node ref="D1" pin="2"/>
+    </net>
+    <net code="50" name="Net-(D2-Pad2)">
+      <node ref="D2" pin="2"/>
+      <node ref="SW2" pin="2"/>
+    </net>
+    <net code="51" name="Net-(D3-Pad2)">
+      <node ref="D3" pin="2"/>
+      <node ref="SW3" pin="2"/>
+    </net>
+    <net code="52" name="Net-(D4-Pad2)">
+      <node ref="D4" pin="2"/>
+      <node ref="SW4" pin="2"/>
+    </net>
+    <net code="53" name="Net-(D5-Pad2)">
+      <node ref="D5" pin="2"/>
+      <node ref="SW5" pin="2"/>
+    </net>
+    <net code="54" name="Net-(D6-Pad2)">
+      <node ref="D6" pin="2"/>
+      <node ref="SW6" pin="2"/>
+    </net>
+    <net code="55" name="Net-(D7-Pad2)">
+      <node ref="D7" pin="2"/>
+      <node ref="SW7" pin="2"/>
+    </net>
+    <net code="56" name="Net-(D8-Pad2)">
+      <node ref="D8" pin="2"/>
+      <node ref="SW8" pin="2"/>
+    </net>
+    <net code="57" name="Net-(D18-Pad2)">
+      <node ref="R48" pin="2"/>
+      <node ref="D18" pin="2"/>
+    </net>
+    <net code="59" name="/LED_DOUT">
+      <node ref="R46" pin="2"/>
+      <node ref="D31" pin="3"/>
+      <node ref="Q1" pin="3"/>
+    </net>
+    <net code="60" name="/LED1OUT">
+      <node ref="D31" pin="1"/>
+      <node ref="D32" pin="3"/>
+    </net>
+    <net code="61" name="/LED2OUT">
+      <node ref="D33" pin="3"/>
+      <node ref="D32" pin="1"/>
+    </net>
+    <net code="62" name="/LED3OUT">
+      <node ref="D33" pin="1"/>
+      <node ref="D34" pin="3"/>
+    </net>
+    <net code="63" name="/LED4OUT">
+      <node ref="D35" pin="3"/>
+      <node ref="D34" pin="1"/>
+    </net>
+    <net code="64" name="/LED5OUT">
+      <node ref="D36" pin="3"/>
+      <node ref="D35" pin="1"/>
+    </net>
+    <net code="65" name="/LED_DON">
+      <node ref="Q1" pin="1"/>
+      <node ref="U1" pin="16"/>
+    </net>
+    <net code="66" name="Net-(C50-Pad1)">
+      <node ref="C50" pin="1"/>
+      <node ref="U3" pin="4"/>
+    </net>
+    <net code="67" name="Net-(C49-Pad1)">
+      <node ref="U3" pin="2"/>
+      <node ref="C49" pin="1"/>
+    </net>
+    <net code="68" name="Net-(C52-Pad2)">
+      <node ref="U3" pin="14"/>
+      <node ref="C52" pin="2"/>
+    </net>
+    <net code="69" name="Net-(C51-Pad2)">
+      <node ref="C51" pin="2"/>
+      <node ref="U3" pin="13"/>
+    </net>
+    <net code="70" name="Net-(R45-Pad1)">
+      <node ref="U3" pin="12"/>
+      <node ref="R45" pin="1"/>
+    </net>
+    <net code="71" name="Net-(U3-Pad6)">
+      <node ref="U3" pin="6"/>
+    </net>
+    <net code="72" name="Net-(C47-Pad2)">
+      <node ref="C47" pin="2"/>
+      <node ref="U3" pin="8"/>
+      <node ref="R44" pin="2"/>
+      <node ref="R42" pin="1"/>
+    </net>
+    <net code="73" name="Net-(D17-Pad2)">
+      <node ref="SW17" pin="S2"/>
+      <node ref="D17" pin="2"/>
+    </net>
+    <net code="74" name="Net-(D38-Pad1)">
+      <node ref="D38" pin="1"/>
+    </net>
+    <net code="75" name="/LED7OUT">
+      <node ref="D37" pin="1"/>
+      <node ref="D38" pin="3"/>
+    </net>
+    <net code="76" name="/LED6OUT">
+      <node ref="D36" pin="1"/>
+      <node ref="D37" pin="3"/>
+    </net>
+    <net code="77" name="Net-(D13-Pad2)">
+      <node ref="SW13" pin="S2"/>
+      <node ref="D13" pin="2"/>
+    </net>
+    <net code="78" name="Net-(D11-Pad2)">
+      <node ref="SW11" pin="S2"/>
+      <node ref="D11" pin="2"/>
+    </net>
+    <net code="79" name="Net-(D12-Pad2)">
+      <node ref="SW12" pin="S2"/>
+      <node ref="D12" pin="2"/>
+    </net>
+    <net code="80" name="Net-(D16-Pad2)">
+      <node ref="SW16" pin="S2"/>
+      <node ref="D16" pin="2"/>
+    </net>
+  </nets>
+</export>

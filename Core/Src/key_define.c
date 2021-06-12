@@ -68,8 +68,8 @@ const KEY_DEFINE keytable[SCENE_COUNT][KEY_DEFINE_COUNT] = {
 		{.type = TYPE_SWITCH,	.axis = 2,	.color = LED_COLOR_GREEN,	.duration = LED_TIMER_HALF,		.message = "Flag \x83"},		//rot2 CCW
 		{.type = TYPE_SWITCH,	.axis = 3,	.color = LED_COLOR_YELLOW,	.duration = LED_TIMER_HALF,		.message = "Rotate \x80"},		//rot3 CW
 		{.type = TYPE_SWITCH,	.axis = 3,	.color = LED_COLOR_YELLOW,	.duration = LED_TIMER_HALF,		.message = "Rotate \x81"},		//rot3 CCW
-		{.type = TYPE_SWITCH,	.axis = 4,	.color = LED_COLOR_MAGENTA,	.duration = LED_TIMER_HALF,		.message = "Scroll \x82"},		//rot4 CW
-		{.type = TYPE_SWITCH,	.axis = 4,	.color = LED_COLOR_MAGENTA,	.duration = LED_TIMER_HALF,		.message = "Scroll \x83"},		//rot4 CCW
+		{.type = TYPE_SWITCH,	.axis = 4,	.color = LED_COLOR_MAGENTA,	.duration = LED_TIMER_HALF,		.message = "Scroll \x83"},		//rot4 CW
+		{.type = TYPE_SWITCH,	.axis = 4,	.color = LED_COLOR_MAGENTA,	.duration = LED_TIMER_HALF,		.message = "Scroll \x82"},		//rot4 CCW
 		{.type = TYPE_ROTARY,	.axis = 5,	.color = LED_COLOR_ORANGE,	.duration = LED_TIMER_HALF,		.message = "Zoom In"},			//rot5 CW
 		{.type = TYPE_ROTARY,	.axis = 5,	.color = LED_COLOR_ORANGE,	.duration = LED_TIMER_HALF,		.message = "Zoom Out"},			//rot5 CCW
 		{.type = TYPE_ROTARY,	.axis = 6,	.color = LED_COLOR_OFF,		.duration = LED_TIMER_DEFAULT,	.message = NULL},				//rot6 CW
