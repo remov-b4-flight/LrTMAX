@@ -55,7 +55,9 @@ void LED_TestPattern(){
 	LEDColor[2] = LED_COLOR_ORANGE;
 	LEDColor[3] = LED_COLOR_YELLOW;
 	LEDColor[4] = LED_COLOR_GREEN;
-	LEDColor[5] = LED_COLOR_BLUE;
+	LEDColor[5] = LED_COLOR_CYAN;
+	LEDColor[6] = LED_COLOR_BLUE;
+	LEDColor[7] = LED_COLOR_MAGENTA;
 	LED_SendPulse();
 }
 #if 0

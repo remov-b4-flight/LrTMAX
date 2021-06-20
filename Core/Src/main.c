@@ -480,7 +480,9 @@ int main(void)
 				Start_MsgTimer(MSG_TIMER_UPDATE);
 
 				//Rotate LED colors
-				uint8_t	tempcolor = LEDColor[5];
+				uint8_t	tempcolor = LEDColor[7];
+				LEDColor[7] = LEDColor[6];
+				LEDColor[6] = LEDColor[5];
 				LEDColor[5] = LEDColor[4];
 				LEDColor[4] = LEDColor[3];
 				LEDColor[3] = LEDColor[2];

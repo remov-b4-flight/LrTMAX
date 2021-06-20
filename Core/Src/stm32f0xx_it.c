@@ -320,9 +320,9 @@ void EXTI4_15_IRQHandler(void)
   /* USER CODE BEGIN EXTI4_15_IRQn 0 */
     uint32_t pr = EXTI->PR;
 
-    // Rotator0 (EXTI[4:5] / PA[4:5]
+    // Rotator 0 (EXTI[4:5] / PA[4:5]
     if(pr & PRMASK_R0){
-        uint8_t	r0 = ((ENC0_GPIO_Port->IDR) >> 4 );
+        uint8_t	r0 = ((ENC0_GPIO_Port->IDR) >> 4 ) & ROT_MASK;
     	if ( r0 == ENC_MV0 || r0 == ENC_MV3 ) { //Stopped
 			if( rot0_prev == ENC_MV1 || rot0_prev == ENC_MV2 ){
 				Key_Stat.nb.rot0 = ROT_NOT_MOVE;
@@ -364,7 +364,7 @@ void EXTI4_15_IRQHandler(void)
 
     // Rotator 7 (EXTI[6:7] / PB[6:7])
     if(pr & PRMASK_R7){
-        uint8_t	r7 = ((ENC7_GPIO_Port->IDR) >> 6 );
+        uint8_t	r7 = ((ENC7_GPIO_Port->IDR) >> 6 ) & ROT_MASK;
     	if ( r7 == ENC_MV0 || r7 == ENC_MV3 ) { //Stopped
 			if( rot7_prev == ENC_MV1 || rot7_prev == ENC_MV2 ){
 				Key_Stat.nb.rot7 = ROT_NOT_MOVE;
@@ -492,10 +492,10 @@ void EXTI4_15_IRQHandler(void)
 
     //Rotator 5 (EXTI[12:13] / PA[12],PC[13])
     if( pr & PRMASK_R3 ){
-    	uint8_t	r5 = (ENC5_GPIO_PortA->IDR | ENC5_GPIO_PortA->IDR) >> 12;
+    	uint8_t	r5 = (ENC5_GPIO_PortA->IDR | ENC5_GPIO_PortB->IDR) >> 12;
     			r5 &= ROT_MASK;
     	if ( r5 == ENC_MV0 || r5 == ENC_MV3 ) { //Stopped
-			if( rot0_prev == ENC_MV1 || rot0_prev == ENC_MV2 ){
+			if( rot5_prev == ENC_MV1 || rot5_prev == ENC_MV2 ){
 				Key_Stat.nb.rot5 = ROT_NOT_MOVE;
 				isKeyPressed = true;
 				isKeyRelaseSent = true;

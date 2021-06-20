@@ -92,8 +92,8 @@ uint16_t get_Rotary_Encoder(void);
 #define LrE6_PRODUCT "LrTMAX"
 #define LrE6_VENDOR "Ruffles Inc."
 #define PWM_PERIOD 59
-#define PWM_HI 45
-#define PWM_LO 22
+#define PWM_HI 40
+#define PWM_LO 20
 #define ENC5B_Pin GPIO_PIN_13
 #define ENC5B_GPIO_Port GPIOC
 #define ENC5B_EXTI_IRQn EXTI4_15_IRQn
@@ -250,7 +250,7 @@ enum {
 
 #define SCENE_COUNT		4
 //! Define key that designated for scene change.
-#define SCENE_BIT		9
+#define SCENE_BIT		7
 #define KEY_PER_SCENE	(KEY_COUNT)
 #define	CC_CH_PER_SCENE	16
 #define NOTES_PER_SCENE	32
