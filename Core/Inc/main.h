@@ -47,14 +47,14 @@ typedef union keyscan_t {
         unsigned char n1:4;		//Switch Line1
         unsigned char n2:4;		//Switch Line2
 		unsigned char n3:4;		//Switch Line3
-		unsigned char rot0:2;	//Rotary encoder
-		unsigned char rot1:2;	//Rotary encoder
-		unsigned char rot2:2;	//Rotary encoder
-		unsigned char rot3:2;	//Rotary encoder
-		unsigned char rot4:2;	//Rotary encoder
-		unsigned char rot5:2;	//Rotary encoder
-        unsigned char rot6:2;	//Rotary encoder
-        unsigned char rot7:2;	//Rotary encoder
+		unsigned char enc0:2;	//Rotary encoder
+		unsigned char enc1:2;	//Rotary encoder
+		unsigned char enc2:2;	//Rotary encoder
+		unsigned char enc3:2;	//Rotary encoder
+		unsigned char enc4:2;	//Rotary encoder
+		unsigned char enc5:2;	//Rotary encoder
+        unsigned char enc6:2;	//Rotary encoder
+        unsigned char enc7:2;	//Rotary encoder
     } nb;
 } KEYSCAN;
 /* USER CODE END ET */
@@ -78,7 +78,6 @@ void Error_Handler(void);
 /* USER CODE BEGIN EFP */
 void Delay_us(uint32_t microsec);
 void Start_LCDTimer(uint32_t tick);
-uint16_t get_Rotary_Encoder(void);
 /* USER CODE END EFP */
 
 /* Private defines -----------------------------------------------------------*/
@@ -91,9 +90,9 @@ uint16_t get_Rotary_Encoder(void);
 #define LrE6_PID 0xA380
 #define LrE6_PRODUCT "LrTMAX"
 #define LrE6_VENDOR "Ruffles Inc."
-#define PWM_PERIOD 59
-#define PWM_HI 40
-#define PWM_LO 20
+#define PWM_PERIOD 59	//1.25 us
+#define PWM_HI 38 //45
+#define PWM_LO 15 //22
 #define ENC5B_Pin GPIO_PIN_13
 #define ENC5B_GPIO_Port GPIOC
 #define ENC5B_EXTI_IRQn EXTI4_15_IRQn
@@ -181,7 +180,9 @@ uint16_t get_Rotary_Encoder(void);
 #endif
 #define LrE6_VENDOR "Ruffles Inc."
 
+#if 0
 #define	TIM_PWM_50PER (TIM_PERIOD_4mS / 2)
+#endif
 
 #if ENC_9R5KQ
 //! 9R5KQ type Encoder
@@ -208,7 +209,7 @@ enum enc9R5_t {
 
 //! LrE-6 Hardware definition
 #define KEY_COUNT	16
-#define	ROT_COUNT	8
+#define	ENC_COUNT	8
 
 //! LrE-6 States
 enum lre6_state_t {
@@ -236,16 +237,16 @@ enum {
 	LrE6_SCENE3 = 3,
 };
 #endif
-//! Rotator definitions
+//! Encoder definitions
 enum {
-	LrE6_ROT0 = 0,
-	LrE6_ROT1,
-	LrE6_ROT2,
-	LrE6_ROT3,
-	LrE6_ROT4,
-	LrE6_ROT5,
-	LrE6_ROT6,
-	LrE6_ROT7,
+	LrE6_ENC0 = 0,
+	LrE6_ENC1,
+	LrE6_ENC2,
+	LrE6_ENC3,
+	LrE6_ENC4,
+	LrE6_ENC5,
+	LrE6_ENC6,
+	LrE6_ENC7,
 };
 
 #define SCENE_COUNT		4
@@ -255,7 +256,7 @@ enum {
 #define	CC_CH_PER_SCENE	16
 #define NOTES_PER_SCENE	32
 //! Key define structure
-#define KEY_DEFINE_COUNT	( KEY_COUNT + (ROT_COUNT * 2) )
+#define KEY_DEFINE_COUNT	( KEY_COUNT + (ENC_COUNT * 2) )
 
 #define LxMASK	0x0F
 //
@@ -279,15 +280,11 @@ enum {
 #define LED_TIMER_LONG		35		//560ms
 #define	LED_TIMER_CONNECT	150
 
-#define ROT_NOT_MOVE        0
-#define ROT_MOVE_CW         1
-#define ROT_MOVE_CCW        2
-#define ROT_MASK			0x03
+#define ENC_NOT_MOVE        0
+#define ENC_MOVE_CW         1
+#define ENC_MOVE_CCW        2
+#define ENC_MASK			0x03
 #define MOD_SW_BIT_MASK		0x0fffffff
-
-//! USB time definitions
-#define USB_RECONNECT_WAIT	10
-#define	USB_RECONNECT_MAX	100
 
 //! I2C time definitions
 #define I2C_RETRY_WAIT		8

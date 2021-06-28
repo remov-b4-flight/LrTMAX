@@ -86,14 +86,14 @@ bool		isKeyPressed;
 KEYSCAN     Key_Stat;
 //! In key scanning wheather Line selected to read for key matrix.
 uint8_t		Key_Line;
-//! If true, MIDI Event/HID packet is sent by key pressed/rotator moved. if false, not sent.
+//! If true, MIDI Event/HID packet is sent by key pressed/encoder moved. if false, not sent.
 bool		isKeyRelaseSent;
 #if MIDI
-//! If true, MIDI event previous sent is switch. if false, it's rotator
+//! If true, MIDI event previous sent is switch. if false, it's encoder
 bool		isPrev_sw;
 //! Bit masks for which bit of KEYSCAN variable acts as key.
 uint32_t	MaskKey[SCENE_COUNT];
-//! Bit masks for which bit of KEYSCAN variable acts as rotator.
+//! Bit masks for which bit of KEYSCAN variable acts as encoder.
 uint32_t	MaskRot[SCENE_COUNT];
 #endif
 
@@ -134,7 +134,7 @@ char Msg_Buffer[MSG_LINES][MSG_WIDTH + 1];
 // MIDI variables
 #if MIDI
 //! MIDI CC message value for each channels.
-uint8_t MIDI_CC_Value[SCENE_COUNT][ROT_COUNT];
+uint8_t MIDI_CC_Value[SCENE_COUNT][ENC_COUNT];
 //! keep previous sent 'Key On' note/channel for release message.
 uint8_t prev_note;
 //! USB MIDI message buffer
@@ -228,22 +228,18 @@ static void EmulateMIDI(){
 
         if ( Key_Stat.wd & MaskKey[LrE6Scene] ) { //Matrix switches
         	uint8_t	note = (LrE6Scene * NOTES_PER_SCENE) + bitpos;
-
         	if (bitpos == SCENE_BIT) { //[SCENE] switch?
-            	//Move to next Scene.
-        		LrE6Scene++;
-        		if(LrE6Scene >= SCENE_COUNT){
-        			LrE6Scene = LrE6_SCENE0;
-        		}
+               	//Move to next Scene.
+            	LrE6Scene++;
+            	if(LrE6Scene >= SCENE_COUNT){
+            		LrE6Scene = LrE6_SCENE0;
+            	}
         		LED_SetScene(LrE6Scene);
         		strcpy(msg_string, scene_name[LrE6Scene]);
-        		isKeyPressed = false;
-        		isKeyReport = false;
-        		isPrev_sw = false;
-        	}else{
-        		sprintf(msg_string, "Note: %3d    S%1d", note, (LrE6Scene % SCENE_COUNT) );
-                isKeyReport = true;
-        	}
+             }else{
+            	sprintf(msg_string, "Note: %3d    S%1d", note, (LrE6Scene % SCENE_COUNT) );
+             }
+        	isKeyReport = true;
 
             //Print Message to LCD & LED
             if (keytable[LrE6Scene][bitpos].message != NULL) {
@@ -269,7 +265,7 @@ static void EmulateMIDI(){
 				isPrev_sw = true;
             }
         }else if( Key_Stat.wd & MaskRot[LrE6Scene] ) {
-        	//Send CC Event from rotator
+        	//Send CC Event from encoder
         	uint8_t axis = (bitpos - KEY_COUNT) / 2;
         	uint8_t val = MIDI_CC_Value[LrE6Scene][axis];
         	uint8_t channel = (LrE6Scene * CC_CH_PER_SCENE) + axis;
@@ -406,7 +402,7 @@ int main(void)
   LrE6State = LRE6_USB_NOLINK;
 
 #if MIDI
-  memset(MIDI_CC_Value, MIDI_CC_INITIAL, SCENE_COUNT * ROT_COUNT);
+  memset(MIDI_CC_Value, MIDI_CC_INITIAL, SCENE_COUNT * ENC_COUNT);
   LED_SetScene(LrE6Scene);
   MakeMasks();
 #endif
@@ -416,18 +412,19 @@ int main(void)
 	if (LrE6State == LRE6_USB_LINKUP) {
 		//USB device configured by host
 		memset(LEDColor, LED_COLOR_OFF, LED_COUNT);
-		LED_Set(LED_IDX_ENC0, LED_COLOR_RED);
-		LEDTimer[LED_IDX_ENC0] = LED_TIMER_CONNECT;
-
+		LED_SetPulse(LED_IDX_ENC0, LED_COLOR_RED, LED_TIMER_CONNECT);
 		SSD1306_SetScreen(ON);
-
 		sprintf(Msg_Buffer[0], CONN_MSG, LrE6_PRODUCT ,USBD_DEVICE_VER_MAJ, USBD_DEVICE_VER_MIN);
-#if 0
+
+#ifdef DEBUG
+		Msg_Print();
+#else
+	#if 0
 		SSD1306_LoadBitmap();
-#endif
+	#endif
 		SSD1306_RenderBanner(Msg_Buffer[0], 12, 12, INP);
 		SSD1306_FlashScreen();
-
+#endif
 		Msg_Off_Flag = false;
 		Start_MsgTimer(MSG_TIMER_DEFAULT);
 		LrE6State = LRE6_USB_LINKED;

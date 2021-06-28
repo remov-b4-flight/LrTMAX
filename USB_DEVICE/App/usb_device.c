@@ -59,13 +59,20 @@ USBD_HandleTypeDef hUsbDeviceFS;
 
 void MX_USB_MIDI_INIT(void)
 {
-  USBD_Init(&hUsbDeviceFS, &FS_Desc, DEVICE_FS);
+  if (USBD_Init(&hUsbDeviceFS, &FS_Desc, DEVICE_FS) != USBD_OK){
+	  Error_Handler();
+  }
 
-  USBD_RegisterClass(&hUsbDeviceFS, &USBD_MIDI);
+  if (USBD_RegisterClass(&hUsbDeviceFS, &USBD_MIDI) != USBD_OK){
+	  Error_Handler();
+  }
+  if (USBD_MIDI_RegisterInterface(&hUsbDeviceFS, &USBD_Interface_fops_FS) != USBD_OK){
+	  Error_Handler();
+  }
 
-  USBD_MIDI_RegisterInterface(&hUsbDeviceFS, &USBD_Interface_fops_FS);
-
-  USBD_Start(&hUsbDeviceFS);
+  if (USBD_Start(&hUsbDeviceFS) != USBD_OK){
+	  Error_Handler();
+  }
 }
 
 /* USER CODE END 1 */

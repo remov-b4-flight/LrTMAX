@@ -37,7 +37,7 @@ static uint16_t MIDI_DataRx(uint8_t *msg, uint16_t length);
 static uint16_t MIDI_DataTx(uint8_t *msg, uint16_t length);
 #endif
 
-extern uint8_t MIDI_CC_Value[SCENE_COUNT][ROT_COUNT];
+extern uint8_t MIDI_CC_Value[SCENE_COUNT][ENC_COUNT];
 extern uint8_t LrE6Scene;
 
 // for Cure Series
@@ -170,7 +170,7 @@ USBD_MIDI_ItfTypeDef USBD_Interface_fops_FS =
  *	@param	length	Length of received data.
  */
 static uint16_t MIDI_DataRx(uint8_t *msg, uint16_t length){
-#if 1
+
   uint8_t code_idx_num = msg[MIDI_EV_IDX_HEADER] & 0x0F;
   uint8_t cc_channel = msg[MIDI_EV_IDX_CHANNEL];
   uint8_t value = msg[MIDI_EV_IDX_VALUE];
@@ -183,7 +183,7 @@ static uint16_t MIDI_DataRx(uint8_t *msg, uint16_t length){
   if (code_idx_num == MIDI_CC_HEADER){
 	  MIDI_CC_Value[cc_scene][channel] = value;
   }
-#endif
+
   return 0;
 }
 

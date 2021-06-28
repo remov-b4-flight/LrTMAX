@@ -11,7 +11,6 @@
 
 extern TIM_HandleTypeDef htim3;
 extern bool	isLEDsendpulse;
-uint32_t period;
 uint8_t	LEDColor[LED_COUNT];	// coded LED color value
 uint8_t	LEDPulse[TOTAL_BITS];	// Data formed PWM width send to LED
 uint8_t	LEDTimer[LED_COUNT];	// Individual LED Timer Counter
@@ -43,7 +42,6 @@ const LEDDATA LEDTable[COLOR_MAX] = {
 void LED_Initialize(){
 	memset(LEDColor, LED_COLOR_OFF, LED_COUNT);
 	memset(LEDTimer, LED_TIMER_CONSTANT, LED_COUNT);
-
 	LED_SendPulse();
 }
 /**
@@ -58,32 +56,9 @@ void LED_TestPattern(){
 	LEDColor[5] = LED_COLOR_CYAN;
 	LEDColor[6] = LED_COLOR_BLUE;
 	LEDColor[7] = LED_COLOR_MAGENTA;
-	LED_SendPulse();
-}
-#if 0
-/**
- *	@brief	Flush a LED immediately with LEDColor[]
- *	@param	index	index of LEDs.
- *	@param	color	color of LED.
- */
-void LED_Set_Quick(uint8_t index, uint8_t color){
-	LEDColor[index] = color;
-	LED_SendPulse();
-}
-#endif
-/**
- *	@brief	Set single LEDColor[] value to flush LED at loop in main()
- *	@param	index	index of LEDs.
- *	@param	color	color of LED
- * 	@attention	Difference of LED_Set() and LED_Set_Quick() is
- * 	Using LED_Set(), Real flash LED point is pended until return to main().
- * 	Using LED_Set_Quick() , It flashes LEDs immediately.
- */
-inline void LED_Set(uint8_t index, uint8_t color){
-	LEDColor[index] = color;
-	isLEDsendpulse = true;
-}
 
+	LED_SendPulse();
+}
 /**
  *	@brief	Make LED flashing by setting LEDTimer[]
  *	@param	index	index of LEDs.
@@ -92,7 +67,7 @@ inline void LED_Set(uint8_t index, uint8_t color){
  */
 inline void LED_SetPulse(uint8_t index, uint8_t color, uint8_t pulse){
 	LEDColor[index] = color;
-    LEDTimer[index] = pulse;	// 4ms unit (i.e. pulse=25 => 100ms)
+    LEDTimer[index] = pulse;	// 16ms unit (i.e. pulse=25 => 400ms)
 	isLEDsendpulse = true;
 }
 
@@ -124,7 +99,6 @@ void LED_SendPulse(){
 
 	//Send 'RESET' signal(280us > low data) for LEDs
 	Delay_us(LED_RESET_WIDTH);
-	//End of RESET
 
 	//Start DMA
 	htim3.Instance->CNT = PWM_HI + 1;

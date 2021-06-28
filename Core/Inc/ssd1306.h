@@ -79,7 +79,7 @@ extern	I2C_HandleTypeDef		SSD1306_I2C_PORT;
 //! @def SSD1306 OLED character rendering
 #define SCREEN_BLANK			0x00
 #define FONT_PRINTABLE_START	0x20
-#define FONT_PRINTABLE_END		0x83
+#define FONT_PRINTABLE_END		0x7e
 #define BYTES_PER_CHAR_DATA		16
 #define BITS_PER_PAGE			8
 #define MAX_PAGE				(SSD1306_HEIGHT / BITS_PER_PAGE)

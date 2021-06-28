@@ -51,7 +51,7 @@ enum led_color_t {
 
 #define LED_TIMER_CONSTANT	0xFF
 #define	LED_IDX_ENC0	0
-#define LED_RESET_WIDTH	280	//in usec.
+#define LED_RESET_WIDTH	330	//in usec.(more than 280)
 /**
  * @typedef RGB LED intensity definition
  * @brief used for set RGB LED intensity definition.
@@ -71,8 +71,6 @@ typedef union leddata_t {
 /* Exported functions prototypes ---------------------------------------------*/
     void LED_Initialize();
     void LED_TestPattern();
-    void LED_Set_Quick(uint8_t index, uint8_t color);
-    void LED_Set(uint8_t index, uint8_t color);
     void LED_SetPulse(uint8_t index, uint8_t color,uint8_t pulse);
     void LED_SendPulse();
 
