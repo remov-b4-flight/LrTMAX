@@ -379,7 +379,7 @@ int main(void)
   HAL_TIM_Base_Start_IT(&htim1);		//Start Switch matrix timer.
 
   LED_Initialize();						//Set all LEDs to 'OFF'
-
+  GPIOA->PUPDR |= GPIO_PUPDR_PUPDR6_0;
   HAL_Delay(SSD1306_PWRUP_WAIT);		//Wait for LCD module power up.
 
   //Initialize SSD1306 OLED
