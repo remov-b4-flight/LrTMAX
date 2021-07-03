@@ -570,7 +570,7 @@ void EXTI4_15_IRQHandler(void)
 				isKeyRelaseSent = false;
 			}
 		}
-	    enc4_prev = r3;
+	    enc3_prev = r3;
 
 		HAL_GPIO_EXTI_IRQHandler(GPIO_PIN_14);
 		HAL_GPIO_EXTI_IRQHandler(GPIO_PIN_15);
