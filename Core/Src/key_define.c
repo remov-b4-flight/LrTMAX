@@ -40,10 +40,10 @@ const char *scene_name[SCENE_COUNT] = {
 //! LED patterns that set by switching scenes.
 const uint8_t LED_Scene[SCENE_COUNT][LED_COUNT] = {
 	//0					1					2					3					4					5				6				7
-	{LED_COLOR_OFF,		LED_COLOR_OFF,		LED_COLOR_OFF,		LED_COLOR_OFF,		LED_COLOR_OFF,		LED_COLOR_OFF,	LED_COLOR_OFF,	LED_COLOR_OFF	},	//Scene0
-	{LED_COLOR_OFF,		LED_COLOR_OFF,		LED_COLOR_OFF,		LED_COLOR_OFF,		LED_COLOR_OFF,		LED_COLOR_OFF,	LED_COLOR_OFF,	LED_COLOR_OFF	},	//Scene1
-	{LED_COLOR_OFF,		LED_COLOR_DARK,		LED_COLOR_GLAY,		LED_COLOR_WHITE,	LED_COLOR_HILIGHT,	LED_COLOR_OFF,	LED_COLOR_OFF,	LED_COLOR_OFF	},	//Scene2
-	{LED_COLOR_OFF,		LED_COLOR_RED,		LED_COLOR_ORANGE,	LED_COLOR_YELLOW,	LED_COLOR_GREEN,	LED_COLOR_CYAN,	LED_COLOR_BLUE,	LED_COLOR_MAGENTA},	//Scene3
+	{LED_COLOR_RED,		LED_COLOR_OFF,		LED_COLOR_OFF,		LED_COLOR_OFF,		LED_COLOR_OFF,		LED_COLOR_OFF,	LED_COLOR_OFF,	LED_COLOR_OFF	},	//Scene0
+	{LED_COLOR_RED,		LED_COLOR_DARK,		LED_COLOR_DARK,		LED_COLOR_DARK,		LED_COLOR_DARK,		LED_COLOR_DARK,	LED_COLOR_OFF,	LED_COLOR_OFF	},	//Scene1
+	{LED_COLOR_RED,		LED_COLOR_DARK,		LED_COLOR_GLAY,		LED_COLOR_WHITE,	LED_COLOR_HILIGHT,	LED_COLOR_OFF,	LED_COLOR_OFF,	LED_COLOR_OFF	},	//Scene2
+	{LED_COLOR_DARK,	LED_COLOR_RED,		LED_COLOR_ORANGE,	LED_COLOR_YELLOW,	LED_COLOR_GREEN,	LED_COLOR_CYAN,	LED_COLOR_BLUE,	LED_COLOR_MAGENTA},	//Scene3
 };
 
 //! @union Key/encoder configuration table
@@ -106,12 +106,12 @@ const KEY_DEFINE keytable[SCENE_COUNT][KEY_DEFINE_COUNT] = {
 		{.type = TYPE_ROTARY,	.axis = 1,	.color = LED_COLOR_BLUE,	.duration = LED_TIMER_HALF,		.message = "Color-Temp. \x7e"},	//enc1 CCW
 		{.type = TYPE_ROTARY,	.axis = 2,	.color = LED_COLOR_MAGENTA,	.duration = LED_TIMER_HALF,		.message = "Magenta"},			//enc2 CW
 		{.type = TYPE_ROTARY,	.axis = 2,	.color = LED_COLOR_GREEN,	.duration = LED_TIMER_HALF,		.message = "Green"},			//enc2 CCW
-		{.type = TYPE_ROTARY,	.axis = 3,	.color = LED_COLOR_GLAY,	.duration = LED_TIMER_HALF,		.message = "Exposure \x7d"},	//enc3 CW
-		{.type = TYPE_ROTARY,	.axis = 3,	.color = LED_COLOR_WHITE,	.duration = LED_TIMER_HALF,		.message = "Exposure \x7e"},	//enc3 CCW
-		{.type = TYPE_ROTARY,	.axis = 4,	.color = LED_COLOR_GLAY,	.duration = LED_TIMER_HALF,		.message = "Contrast \x7d"},	//enc4 CW
-		{.type = TYPE_ROTARY,	.axis = 4,	.color = LED_COLOR_WHITE,	.duration = LED_TIMER_HALF,		.message = "Contrast \x7e"},	//enc4 CCW
-		{.type = TYPE_ROTARY,	.axis = 5,	.color = LED_COLOR_GLAY,	.duration = LED_TIMER_HALF,		.message = "Vibrance \x7d"},	//enc5 CW
-		{.type = TYPE_ROTARY,	.axis = 5,	.color = LED_COLOR_WHITE,	.duration = LED_TIMER_HALF,		.message = "Vibrance \x7e"},	//enc5 CCW
+		{.type = TYPE_ROTARY,	.axis = 3,	.color = LED_COLOR_WHITE,	.duration = LED_TIMER_HALF,		.message = "Exposure \x7d"},	//enc3 CW
+		{.type = TYPE_ROTARY,	.axis = 3,	.color = LED_COLOR_GLAY,	.duration = LED_TIMER_HALF,		.message = "Exposure \x7e"},	//enc3 CCW
+		{.type = TYPE_ROTARY,	.axis = 4,	.color = LED_COLOR_WHITE,	.duration = LED_TIMER_HALF,		.message = "Contrast \x7d"},	//enc4 CW
+		{.type = TYPE_ROTARY,	.axis = 4,	.color = LED_COLOR_GLAY,	.duration = LED_TIMER_HALF,		.message = "Contrast \x7e"},	//enc4 CCW
+		{.type = TYPE_ROTARY,	.axis = 5,	.color = LED_COLOR_WHITE,	.duration = LED_TIMER_HALF,		.message = "Vibrance \x7d"},	//enc5 CW
+		{.type = TYPE_ROTARY,	.axis = 5,	.color = LED_COLOR_GLAY,	.duration = LED_TIMER_HALF,		.message = "Vibrance \x7e"},	//enc5 CCW
 		{.type = TYPE_ROTARY,	.axis = 6,	.color = LED_COLOR_OFF,		.duration = LED_TIMER_DEFAULT,	.message = "A6\x7b"},			//enc6 CW
 		{.type = TYPE_ROTARY,	.axis = 6,	.color = LED_COLOR_OFF,		.duration = LED_TIMER_DEFAULT,	.message = "A6\x7c"},			//enc6 CCW
 		{.type = TYPE_ROTARY,	.axis = 7,	.color = LED_COLOR_CYAN,	.duration = LED_TIMER_DEFAULT,	.message = "A7\x7b"},			//enc7 CW

@@ -379,7 +379,7 @@ int main(void)
   HAL_TIM_Base_Start_IT(&htim1);		//Start Switch matrix timer.
 
   LED_Initialize();						//Set all LEDs to 'OFF'
-  GPIOA->PUPDR |= GPIO_PUPDR_PUPDR6_0;
+  GPIOA->PUPDR |= GPIO_PUPDR_PUPDR6_0;	//Pull up PA6
   HAL_Delay(SSD1306_PWRUP_WAIT);		//Wait for LCD module power up.
 
   //Initialize SSD1306 OLED
@@ -412,7 +412,7 @@ int main(void)
 	if (LrE6State == LRE6_USB_LINKUP) {
 		//USB device configured by host
 		memset(LEDColor, LED_COLOR_OFF, LED_COUNT);
-		LED_SetPulse(LED_IDX_ENC0, LED_COLOR_RED, LED_TIMER_CONNECT);
+		LED_SetPulse(LED_IDX_ENC0, LED_COLOR_PINK, LED_TIMER_CONNECT);
 		SSD1306_SetScreen(ON);
 		sprintf(Msg_Buffer[0], CONN_MSG, LrE6_PRODUCT ,USBD_DEVICE_VER_MAJ, USBD_DEVICE_VER_MIN);
 
