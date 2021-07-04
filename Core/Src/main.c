@@ -252,7 +252,7 @@ static void EmulateMIDI(){
             	Msg_Off_Flag = false;
             	Start_MsgTimer(MSG_TIMER_DEFAULT);
             }
-            LED_SetPulse(keytable[LrE6Scene][bitpos].axis, keytable[LrE6Scene][bitpos].color, keytable[LrE6Scene][bitpos].duration);
+            LED_SetPulse(keytable[LrE6Scene][bitpos].axis, keytable[LrE6Scene][bitpos].color, keytable[LrE6Scene][bitpos].period);
 
             if (isKeyReport == true) {
 				//Set 'Note ON
@@ -288,7 +288,7 @@ static void EmulateMIDI(){
             	Msg_Off_Flag = false;
             	Start_MsgTimer(MSG_TIMER_DEFAULT);
             }
-            LED_SetPulse(keytable[LrE6Scene][bitpos].axis, keytable[LrE6Scene][bitpos].color, keytable[LrE6Scene][bitpos].duration);
+            LED_SetPulse(keytable[LrE6Scene][bitpos].axis, keytable[LrE6Scene][bitpos].color, keytable[LrE6Scene][bitpos].period);
             isKeyReport = true;
 
         }else if(isPrev_sw == true && rkey == 0) {// Switch is released
@@ -411,8 +411,8 @@ int main(void)
   while (1) {
 	if (LrE6State == LRE6_USB_LINKUP) {
 		//USB device configured by host
-		memset(LEDColor, LED_COLOR_OFF, LED_COUNT);
-		LED_SetPulse(LED_IDX_ENC0, LED_COLOR_PINK, LED_TIMER_CONNECT);
+		memset(LEDColor, LED_OFF, LED_COUNT);
+		LED_SetPulse(LED_IDX_ENC0, LED_PINK, LED_TIM_CONNECT);
 		SSD1306_SetScreen(ON);
 		sprintf(Msg_Buffer[0], CONN_MSG, LrE6_PRODUCT ,USBD_DEVICE_VER_MAJ, USBD_DEVICE_VER_MIN);
 

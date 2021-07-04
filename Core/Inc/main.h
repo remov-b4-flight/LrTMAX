@@ -275,10 +275,10 @@ enum {
 #define MSG_TIMER_UPDATE	250		//1s (LCD update in USB not connected)
 
 // LED timer definitions
-#define LED_TIMER_DEFAULT	25		//400ms (1 tick=16ms)
-#define LED_TIMER_HALF		12		//192ms
-#define LED_TIMER_LONG		35		//560ms
-#define	LED_TIMER_CONNECT	150
+#define LED_TIM_NORM		25		//400ms (1 tick=16ms)
+#define LED_TIM_HALF		12		//192ms
+#define LED_TIM_LONG		35		//560ms
+#define	LED_TIM_CONNECT		150
 
 #define ENC_NOT_MOVE        0
 #define ENC_MOVE_CW         1

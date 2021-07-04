@@ -41,7 +41,7 @@ const LEDDATA LEDTable[COLOR_MAX] = {
  * @brief	LED Initialize - Sets all LEDs to 'OFF'
  */
 void LED_Initialize(){
-	memset(LEDColor, LED_COLOR_OFF, LED_COUNT);
+	memset(LEDColor, LED_OFF, LED_COUNT);
 	memset(LEDTimer, LED_TIMER_CONSTANT, LED_COUNT);
 	LED_SendPulse();
 }
@@ -49,14 +49,14 @@ void LED_Initialize(){
  *	@brief	Sets decorative color pattern to LEDs.
  */
 void LED_TestPattern(){
-	LEDColor[0] = LED_COLOR_WHITE;
-	LEDColor[1] = LED_COLOR_RED;
-	LEDColor[2] = LED_COLOR_ORANGE;
-	LEDColor[3] = LED_COLOR_YELLOW;
-	LEDColor[4] = LED_COLOR_GREEN;
-	LEDColor[5] = LED_COLOR_CYAN;
-	LEDColor[6] = LED_COLOR_BLUE;
-	LEDColor[7] = LED_COLOR_MAGENTA;
+	LEDColor[0] = LED_WHITE;
+	LEDColor[1] = LED_RED;
+	LEDColor[2] = LED_ORANGE;
+	LEDColor[3] = LED_YELLOW;
+	LEDColor[4] = LED_GREEN;
+	LEDColor[5] = LED_CYAN;
+	LEDColor[6] = LED_BLUE;
+	LEDColor[7] = LED_MAGENTA;
 
 	LED_SendPulse();
 }
