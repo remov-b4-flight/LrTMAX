@@ -65,3 +65,4 @@ dkms.conf
 *.FCStd1
 *.zip
 .DS_Store
+*.kicad_pcb-bak
