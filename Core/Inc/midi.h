@@ -29,7 +29,7 @@ enum midi_event_index {
 //! Configuration descriptor
 #define CONFIG1			0x01
 #define BUSPOWERED		0x80
-#define MIDI_POWER		0xA0 //=320mA
+#define MIDI_POWER		0x60 //=192mA
 
 //! Interface descriptor
 #define INTF0			0x00
