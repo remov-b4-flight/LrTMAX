@@ -21,6 +21,8 @@ _BEGIN_STD_C
 #include "stm32f0xx_hal.h"
 #include "ssd1306_fonts.h"
 
+#define SSD1306_USE_DMA	1
+
 //! @def LrE-6 I2C hardware
 #define SSD1306_I2C_PORT		hi2c2
 #define SSD1306_I2C_ADDR        (0x3C << 1)
