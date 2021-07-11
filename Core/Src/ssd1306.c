@@ -13,7 +13,7 @@
 #include <string.h>
 #include "main.h"
 #include "ssd1306.h"
-extern char Msg_Buffer[MSG_LINES][MSG_WIDTH + 1];
+char Msg_Buffer[MSG_LINES][MSG_WIDTH + 1];
 extern uint8_t Font8x16[];
 
 //! @brief SSD1306 OLED frame buffer
@@ -54,7 +54,7 @@ static inline void SSD1306_WriteCommand(uint8_t cmd) {
 	HAL_I2C_Mem_Write(&SSD1306_I2C_PORT, SSD1306_I2C_ADDR, SSD1306_CMD, 1, &cmd, 1, HAL_MAX_DELAY);
 }
 
-#if not SSD1306_USE_DMA
+#if !(SSD1306_USE_DMA)
 /**
  * @brief Write SSD1306 data register
  * @param buffer	:	pointer to data buffer

@@ -129,7 +129,7 @@ extern	uint8_t	LEDColor[LED_COUNT];
 extern	uint8_t	LEDTimer[LED_COUNT];
 
 //! String message buffer of screen
-char Msg_Buffer[MSG_LINES][MSG_WIDTH + 1];
+extern char Msg_Buffer[MSG_LINES][MSG_WIDTH + 1];
 
 // MIDI variables
 #if MIDI

@@ -61,8 +61,7 @@ typedef union keyscan_t {
 
 /* Exported constants --------------------------------------------------------*/
 /* USER CODE BEGIN EC */
-#define MSG_LINES	2
-#define MSG_WIDTH	16
+
 /* USER CODE END EC */
 
 /* Exported macro ------------------------------------------------------------*/
@@ -179,10 +178,6 @@ void Start_LCDTimer(uint32_t tick);
 	#define LrE6_PRODUCT "LrTMAX"
 #endif
 #define LrE6_VENDOR "Ruffles Inc."
-
-#if 0
-#define	TIM_PWM_50PER (TIM_PERIOD_4mS / 2)
-#endif
 
 #if ENC_9R5KQ
 //! 9R5KQ type Encoder

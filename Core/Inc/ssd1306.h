@@ -77,6 +77,8 @@ extern	I2C_HandleTypeDef		SSD1306_I2C_PORT;
 //! @def SSD1306 OLED screen dimensions
 #define SSD1306_HEIGHT          32		// height
 #define SSD1306_WIDTH           128		// width
+#define MSG_LINES	2
+#define MSG_WIDTH	16
 
 //! @def SSD1306 OLED character rendering
 #define SCREEN_BLANK			0x00
