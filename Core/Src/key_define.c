@@ -24,7 +24,6 @@
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
 #include "key_define.h"
-#include "EmulateHID.h"
 #include "led.h"
 
 /* Variables ----------------------------------------------------------------*/

@@ -419,9 +419,7 @@ int main(void)
 #ifdef DEBUG
 		Msg_Print();
 #else
-	#if 0
 		SSD1306_LoadBitmap();
-	#endif
 		SSD1306_RenderBanner(Msg_Buffer[0], 12, 12, INP);
 		SSD1306_FlashScreen();
 #endif
@@ -433,7 +431,6 @@ int main(void)
 #if MIDI
 		//Operate as MIDI Instruments.
 		EmulateMIDI();
-#else //HID
 #endif
 
 	} else if(LrE6State == LRE6_USB_LINK_LOST) {

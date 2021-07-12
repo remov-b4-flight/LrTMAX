@@ -19,7 +19,7 @@ extern uint8_t Font8x16[];
 //! @brief SSD1306 OLED frame buffer
 static uint8_t Frame_Buffer[SSD1306_WIDTH * MAX_PAGE];
 
-#if 0
+#ifndef DEBUG
 /**
  * @brief Bitmap image that appears on connect to USB (MIDI/HID)
  */
@@ -164,7 +164,7 @@ bool SSD1306_FlashScreen(void) {
 void SSD1306_SetScreen(bool on){
     SSD1306_WriteCommand( (on)? CMD_DISPLAY_ON : CMD_DISPLAY_OFF );
 }
-
+#ifndef debug
 /**
  * @brief Render Msg_Buffer contents to frame buffer
  * @pre Sets up string contents to Msg_Buffer
@@ -189,7 +189,7 @@ void SSD1306_Render2Buffer(void){
 		}//Msg_Buffer column Loop
 	}//Msg_Buffer line Loop
 }
-
+#endif
 /**
  * @brief Rendar banner message to frame buffer
  * @param string	Message to screen
@@ -227,7 +227,7 @@ void SSD1306_RenderBanner(char *string, int x, int y ,uint8_t op){
 		}//Frame Buffer column Loop
 	}//String Loop
 }
-#if 0
+#ifndef DEBUG
 /**
  * @brief Load bitmap image to frame buffer
  * @param bitmap SSD1306 style bitmap 8bit array.
