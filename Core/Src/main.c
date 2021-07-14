@@ -374,15 +374,18 @@ int main(void)
 #endif
   MX_I2C2_Init();
   /* USER CODE BEGIN 2 */
-  hdma_tim3_ch1_trig.Instance->CCR &= ~(DMA_CCR_HTIE | DMA_CCR_TEIE);		//Disable DMA1 half or error transfer interrupt(for LEDs).
-  HAL_GPIO_WritePin(L0_GPIO_Port, L0_Pin, GPIO_PIN_SET);	//Initialize Switch matrix.
+
+  //Initialize Switch matrix
+  HAL_GPIO_WritePin(L0_GPIO_Port, L0_Pin, GPIO_PIN_SET);	//Initialize L0-3.
   HAL_TIM_Base_Start_IT(&htim1);		//Start Switch matrix timer.
 
+  //Initialze series of WS2812C
+  hdma_tim3_ch1_trig.Instance->CCR &= ~(DMA_CCR_HTIE | DMA_CCR_TEIE);		//Disable DMA1 half or error transfer interrupt(for LEDs).
   LED_Initialize();						//Set all LEDs to 'OFF'
   GPIOA->PUPDR |= GPIO_PUPDR_PUPDR6_0;	//Pull up PA6
-  HAL_Delay(SSD1306_PWRUP_WAIT);		//Wait for LCD module power up.
 
   //Initialize SSD1306 OLED
+  HAL_Delay(SSD1306_PWRUP_WAIT);		//Wait for LCD module power up.
   SSD1306_Initialize();
   /* USER CODE END 2 */
 
