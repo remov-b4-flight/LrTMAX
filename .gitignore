@@ -53,11 +53,9 @@ dkms.conf
 
 #Others
 /Datasheets/
-/Documents/
+# /Documents/
 /Debug/
 /Release/
-/Src/Backup/
-/Inc/Backup/
 /.settings/
 /.code_review_properties
 *.launch
