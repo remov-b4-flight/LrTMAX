@@ -69,9 +69,6 @@ DMA_HandleTypeDef hdma_tim3_ch1_trig;
 #if !(ENC_9R5KQ)
 #error "EC11 encoder is not supported."
 #endif
-#if !(MIDI)
-#error "HID is not supported."
-#endif
 //! STM32 TIM3 instance handle
 TIM_HandleTypeDef htim3;
 extern	USBD_HandleTypeDef hUsbDeviceFS;
@@ -366,6 +363,7 @@ int main(void)
   //Initialize Switch matrix
   HAL_GPIO_WritePin(L0_GPIO_Port, L0_Pin, GPIO_PIN_SET);	//Initialize L0-3.
   HAL_TIM_Base_Start_IT(&htim1);		//Start Switch matrix timer.
+  MakeMasks();
 
   //Initialze series of WS2812C
   LED_Initialize();						//Set all LEDs to 'OFF'
@@ -393,7 +391,6 @@ int main(void)
 
   memset(MIDI_CC_Value, MIDI_CC_INITIAL, SCENE_COUNT * ENC_COUNT);
   LED_SetScene(LrE6Scene);
-  MakeMasks();
 
   //Main loop
   while (1) {
