@@ -32,10 +32,8 @@
 #include "midi.h"
 
 // basic MIDI RX/TX functions
-#if MIDI
 static uint16_t MIDI_DataRx(uint8_t *msg, uint16_t length);
 static uint16_t MIDI_DataTx(uint8_t *msg, uint16_t length);
-#endif
 
 extern uint8_t MIDI_CC_Value[SCENE_COUNT][ENC_COUNT];
 extern uint8_t LrE6Scene;

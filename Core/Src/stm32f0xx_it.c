@@ -102,15 +102,11 @@ extern uint8_t LrE6Scene;
 #endif
 
 static inline void MIDI_CC_Inc(uint8_t rot){
-#if MIDI
 	if (MIDI_CC_Value[LrE6Scene][rot] < MIDI_CC_MAX ) MIDI_CC_Value[LrE6Scene][rot]++;
-#endif
 }
 
 static inline void MIDI_CC_Dec(uint8_t rot){
-#if MIDI
 	if (MIDI_CC_Value[LrE6Scene][rot] >= (MIDI_CC_MIN + 1) ) MIDI_CC_Value[LrE6Scene][rot]--;
-#endif
 }
 
 /* USER CODE END 0 */

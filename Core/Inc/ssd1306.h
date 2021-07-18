@@ -27,7 +27,7 @@ _BEGIN_STD_C
 #define SSD1306_I2C_PORT		hi2c2
 #define SSD1306_I2C_ADDR        (0x3C << 1)
 extern	I2C_HandleTypeDef		SSD1306_I2C_PORT;
-#define SSD1306_PWRUP_WAIT		10	//(ms)
+#define SSD1306_PWRUP_WAIT		5	//(ms)
 
 #define SSD1306_CMD				0x00
 #define	SSD1306_DATA			0x40

@@ -88,14 +88,12 @@ KEYSCAN     Key_Stat;
 uint8_t		Key_Line;
 //! If true, MIDI Event/HID packet is sent by key pressed/encoder moved. if false, not sent.
 bool		isKeyRelaseSent;
-#if MIDI
 //! If true, MIDI event previous sent is switch. if false, it's encoder
 bool		isPrev_sw;
 //! Bit masks for which bit of KEYSCAN variable acts as key.
 uint32_t	MaskKey[SCENE_COUNT];
 //! Bit masks for which bit of KEYSCAN variable acts as encoder.
 uint32_t	MaskRot[SCENE_COUNT];
-#endif
 
 // LCD variables
 //! Timer counter ticked by end of L3 matrix scanning. (16ms interval).
@@ -117,12 +115,10 @@ bool		isLEDsendpulse;
 //! Flag is set by timer ISR, It makes LED_Timer[] count up in main()
 bool		LED_Timer_Update;
 
-#if MIDI
 // Scene related
 extern	KEY_DEFINE keytable[SCENE_COUNT][KEY_DEFINE_COUNT];
 extern	char *scene_name[SCENE_COUNT];
 extern uint8_t	led_axis_table[KEY_DEFINE_COUNT];
-#endif
 
 extern	uint8_t	LED_Scene[SCENE_COUNT][LED_COUNT];
 extern	uint8_t	LEDColor[LED_COUNT];
@@ -132,7 +128,6 @@ extern	uint8_t	LEDTimer[LED_COUNT];
 extern char Msg_Buffer[MSG_LINES][MSG_WIDTH + 1];
 
 // MIDI variables
-#if MIDI
 //! MIDI CC message value for each channels.
 uint8_t MIDI_CC_Value[SCENE_COUNT][ENC_COUNT];
 //! keep previous sent 'Key On' note/channel for release message.
@@ -141,7 +136,6 @@ uint8_t prev_note;
 uint8_t	USBMIDI_Event[4];
 //! Instance Handle of USB interface
 extern USBD_HandleTypeDef *pInstance;
-#endif
 
 /* USER CODE END PV */
 
@@ -186,7 +180,6 @@ static inline void Msg_Print(){
 	isMsgFlash = true;
 }
 
-#if MIDI
 /**
  * @brief alter LED contents by scene
  * @param scene	Scene No
@@ -312,7 +305,6 @@ static void EmulateMIDI(){
         isKeyPressed = false;
     }
 }
-#endif //MIDI
 /* USER CODE END 0 */
 
 /**
@@ -342,10 +334,7 @@ int main(void)
   LrE6State = LRE6_RESET;
   LrE6Scene	= LrE6_SCENE0;
 
-#if MIDI
   isPrev_sw = false;
-#endif
-
   isKeyRelaseSent = true;
   isLEDsendpulse = false;
 #if 0
@@ -367,22 +356,20 @@ int main(void)
   MX_TIM1_Init();
   MX_TIM14_Init();
   MX_ADC_Init();
-#if MIDI
+#if 1
   MX_USB_MIDI_INIT();
-#else //HID
+#else
   MX_USB_DEVICE_Init();
 #endif
   MX_I2C2_Init();
   /* USER CODE BEGIN 2 */
-
   //Initialize Switch matrix
   HAL_GPIO_WritePin(L0_GPIO_Port, L0_Pin, GPIO_PIN_SET);	//Initialize L0-3.
   HAL_TIM_Base_Start_IT(&htim1);		//Start Switch matrix timer.
 
   //Initialze series of WS2812C
-  hdma_tim3_ch1_trig.Instance->CCR &= ~(DMA_CCR_HTIE | DMA_CCR_TEIE);		//Disable DMA1 half or error transfer interrupt(for LEDs).
   LED_Initialize();						//Set all LEDs to 'OFF'
-  GPIOA->PUPDR |= GPIO_PUPDR_PUPDR6_0;	//Pull up PA6
+  GPIOA->PUPDR |= GPIO_PUPDR_PUPDR6_0;	//Pull up PA6 (WS2812C-2020 workaround)
 
   //Initialize SSD1306 OLED
   HAL_Delay(SSD1306_PWRUP_WAIT);		//Wait for LCD module power up.
@@ -404,11 +391,9 @@ int main(void)
   Msg_Off_Flag = false;
   LrE6State = LRE6_USB_NOLINK;
 
-#if MIDI
   memset(MIDI_CC_Value, MIDI_CC_INITIAL, SCENE_COUNT * ENC_COUNT);
   LED_SetScene(LrE6Scene);
   MakeMasks();
-#endif
 
   //Main loop
   while (1) {
@@ -431,11 +416,8 @@ int main(void)
 		LrE6State = LRE6_USB_LINKED;
 
 	} else if (LrE6State == LRE6_USB_LINKED) {
-#if MIDI
 		//Operate as MIDI Instruments.
 		EmulateMIDI();
-#endif
-
 	} else if(LrE6State == LRE6_USB_LINK_LOST) {
 		LED_TestPattern();
 		Msg_1st_timeout = false;
@@ -785,7 +767,7 @@ static void MX_TIM3_Init(void)
     Error_Handler();
   }
   /* USER CODE BEGIN TIM3_Init 2 */
-
+  hdma_tim3_ch1_trig.Instance->CCR &= ~(DMA_CCR_HTIE | DMA_CCR_TEIE);		//Disable DMA1 half or error transfer interrupt(for LEDs).
   /* USER CODE END TIM3_Init 2 */
   HAL_TIM_MspPostInit(&htim3);
 

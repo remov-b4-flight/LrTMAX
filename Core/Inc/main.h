@@ -173,10 +173,8 @@ void Start_LCDTimer(uint32_t tick);
 /* USER CODE BEGIN Private defines */
 #undef		LrE6_PID
 #undef		LrE6_PRODUCT
-#if MIDI
-	#define LrE6_PID 0xA380
-	#define LrE6_PRODUCT "LrTMAX"
-#endif
+#define LrE6_PID 0xA380
+#define LrE6_PRODUCT "LrTMAX"
 #define LrE6_VENDOR "Ruffles Inc."
 
 #if ENC_9R5KQ
@@ -223,7 +221,6 @@ enum {
 	L3
 };
 
-#if MIDI
 //! Scene definition in MIDI
 enum {
 	LrE6_SCENE0 = 0,
@@ -231,7 +228,7 @@ enum {
 	LrE6_SCENE2 = 2,
 	LrE6_SCENE3 = 3,
 };
-#endif
+
 //! Encoder definitions
 enum {
 	LrE6_ENC0 = 0,

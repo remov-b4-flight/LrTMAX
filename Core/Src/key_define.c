@@ -27,7 +27,6 @@
 #include "led.h"
 
 /* Variables ----------------------------------------------------------------*/
-#if MIDI
 //! User-friendly scene names appears on LCD.
 const char *scene_name[SCENE_COUNT] = {
 /*		 0123456789ABCDEF */
@@ -39,10 +38,10 @@ const char *scene_name[SCENE_COUNT] = {
 //! LED patterns that set by switching scenes.
 const uint8_t LED_Scene[SCENE_COUNT][LED_COUNT] = {
 	//0			1			2			3			4			5			6			7
-	{LED_RED,	LED_OFF,	LED_OFF,	LED_OFF,	LED_OFF,	LED_OFF,	LED_OFF,	LED_OFF	},	//Scene0
-	{LED_RED,	LED_DARK,	LED_DARK,	LED_DARK,	LED_DARK,	LED_DARK,	LED_OFF,	LED_OFF	},	//Scene1
-	{LED_RED,	LED_DARK,	LED_GLAY,	LED_WHITE,	LED_HILIGHT,LED_OFF,	LED_OFF,	LED_OFF	},	//Scene2
-	{LED_DARK,	LED_RED,	LED_ORANGE,	LED_YELLOW,	LED_GREEN,	LED_CYAN,	LED_BLUE,	LED_MAGENTA},//Scene3
+	{LED_OFF,	LED_OFF,	LED_OFF,	LED_OFF,	LED_OFF,	LED_OFF,	LED_OFF,	LED_OFF	},	//Scene0
+	{LED_OFF,	LED_OFF,	LED_OFF,	LED_OFF,	LED_OFF,	LED_OFF,	LED_OFF,	LED_OFF	},	//Scene1
+	{LED_OFF,	LED_DARK,	LED_GLAY,	LED_WHITE,	LED_HILIGHT,LED_OFF,	LED_OFF,	LED_OFF	},	//Scene2
+	{LED_OFF,	LED_RED,	LED_ORANGE,	LED_YELLOW,	LED_GREEN,	LED_CYAN,	LED_BLUE,	LED_MAGENTA},//Scene3
 };
 
 //! @union Key/encoder configuration table
@@ -185,5 +184,4 @@ const KEY_DEFINE keytable[SCENE_COUNT][KEY_DEFINE_COUNT] = {
 		{.type = TYPE_ROTARY,	.axis = 7,	.color =LED_MAGENTA,.period = LED_TIM_NORM,	.message = "Magenta " DOWNA},	//enc7 CCW
 	}
 };
-#endif
 /* ******************************************************* **** END OF FILE****/
