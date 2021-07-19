@@ -226,9 +226,10 @@ static void EmulateMIDI(){
             	}
         		LED_SetScene(LrE6Scene);
         		strcpy(msg_string, scene_name[LrE6Scene]);
-             }else{
+            }else{
+                LED_SetPulse(keytable[LrE6Scene][bitpos].axis, keytable[LrE6Scene][bitpos].color, keytable[LrE6Scene][bitpos].period);
             	sprintf(msg_string, "Note: %3d    S%1d", note, (LrE6Scene % SCENE_COUNT) );
-             }
+            }
         	isKeyReport = true;
 
             //Print Message to LCD & LED
@@ -242,7 +243,6 @@ static void EmulateMIDI(){
             	Msg_Off_Flag = false;
             	Start_MsgTimer(MSG_TIMER_DEFAULT);
             }
-            LED_SetPulse(keytable[LrE6Scene][bitpos].axis, keytable[LrE6Scene][bitpos].color, keytable[LrE6Scene][bitpos].period);
 
             if (isKeyReport == true) {
 				//Set 'Note ON
