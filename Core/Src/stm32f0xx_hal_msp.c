@@ -162,7 +162,7 @@ void HAL_I2C_MspInit(I2C_HandleTypeDef* hi2c)
     hdma_i2c2_tx.Init.Direction = DMA_MEMORY_TO_PERIPH;
     hdma_i2c2_tx.Init.PeriphInc = DMA_PINC_DISABLE;
     hdma_i2c2_tx.Init.MemInc = DMA_MINC_ENABLE;
-    hdma_i2c2_tx.Init.PeriphDataAlignment = DMA_PDATAALIGN_BYTE;
+    hdma_i2c2_tx.Init.PeriphDataAlignment = DMA_PDATAALIGN_WORD;
     hdma_i2c2_tx.Init.MemDataAlignment = DMA_MDATAALIGN_BYTE;
     hdma_i2c2_tx.Init.Mode = DMA_NORMAL;
     hdma_i2c2_tx.Init.Priority = DMA_PRIORITY_MEDIUM;
@@ -256,7 +256,7 @@ void HAL_TIM_Base_MspInit(TIM_HandleTypeDef* htim_base)
     hdma_tim3_ch1_trig.Init.PeriphInc = DMA_PINC_DISABLE;
     hdma_tim3_ch1_trig.Init.MemInc = DMA_MINC_ENABLE;
     hdma_tim3_ch1_trig.Init.PeriphDataAlignment = DMA_PDATAALIGN_HALFWORD;
-    hdma_tim3_ch1_trig.Init.MemDataAlignment = DMA_MDATAALIGN_BYTE;
+    hdma_tim3_ch1_trig.Init.MemDataAlignment = DMA_MDATAALIGN_HALFWORD;
     hdma_tim3_ch1_trig.Init.Mode = DMA_NORMAL;
     hdma_tim3_ch1_trig.Init.Priority = DMA_PRIORITY_LOW;
     if (HAL_DMA_Init(&hdma_tim3_ch1_trig) != HAL_OK)
