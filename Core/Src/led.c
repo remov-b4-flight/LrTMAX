@@ -39,6 +39,7 @@ const LEDDATA LEDTable[COLOR_MAX] = {
 
 /**
  * @brief	LED Initialize - Sets all LEDs to 'OFF'
+ * @pre		TIM3 Initialized.
  */
 void LED_Initialize(){
 	memset(LEDColor, LED_OFF, LED_COUNT);
@@ -92,9 +93,11 @@ static void Color2Pulse(){
 /**
  *	@brief	Send PWM pulses to LEDs rely on LEDColor[] array
  *	@pre	LEDPulse[] contains pulse width array.
+ *	@return	result of Send
  */
-void LED_SendPulse(){
+bool LED_SendPulse(){
 
+	bool r = true;
 	//Convert LEDColor[] to LEDPulse[]
 	Color2Pulse();
 
@@ -103,7 +106,10 @@ void LED_SendPulse(){
 
 	//Start DMA
 	htim3.Instance->CNT = PWM_HI + 1;
-	HAL_TIM_PWM_Start_DMA(&htim3, TIM_CHANNEL_1, (uint32_t *)LEDPulse, TOTAL_BITS);
+	if (HAL_TIM_PWM_Start_DMA(&htim3, TIM_CHANNEL_1, (uint32_t *)LEDPulse, TOTAL_BITS) != HAL_OK){
+		r = false;
+	}
+	return r;
 }
 
 /* ******************************************************* **** END OF FILE****/

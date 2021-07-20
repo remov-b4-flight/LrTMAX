@@ -171,8 +171,8 @@ void Start_LCDTimer(uint32_t tick);
 #define ENC1B_GPIO_Port GPIOB
 #define ENC1B_EXTI_IRQn EXTI4_15_IRQn
 /* USER CODE BEGIN Private defines */
-#undef		LrE6_PID
-#undef		LrE6_PRODUCT
+#undef	LrE6_PID
+#undef	LrE6_PRODUCT
 #define LrE6_PID 0xA380
 #define LrE6_PRODUCT "LrTMAX"
 #define LrE6_VENDOR "Ruffles Inc."
@@ -270,7 +270,9 @@ enum {
 #define LED_TIM_NORM		25		//400ms (1 tick=16ms)
 #define LED_TIM_HALF		12		//192ms
 #define LED_TIM_LONG		35		//560ms
-#define	LED_TIM_CONNECT		150
+#define	LED_TIM_CONNECT		100		//1.5Sec
+//! LED TIM3 definitions
+#define LED_TIM_RETRY_WAIT	11
 
 #define ENC_NOT_MOVE        0
 #define ENC_MOVE_CW         1
@@ -279,7 +281,7 @@ enum {
 #define MOD_SW_BIT_MASK		0x0fffffff
 
 //! I2C time definitions
-#define I2C_RETRY_WAIT		8
+#define I2C_RETRY_WAIT		2
 
 //! For temperature calculator
 #define TEMP110_CAL_ADDR ((uint16_t*) ((uint32_t) 0x1FFFF7C2))

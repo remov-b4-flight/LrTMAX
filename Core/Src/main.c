@@ -90,7 +90,7 @@ bool		isPrev_sw;
 //! Bit masks for which bit of KEYSCAN variable acts as key.
 uint32_t	MaskKey[SCENE_COUNT];
 //! Bit masks for which bit of KEYSCAN variable acts as encoder.
-uint32_t	MaskRot[SCENE_COUNT];
+uint32_t	MaskEnc[SCENE_COUNT];
 
 // LCD variables
 //! Timer counter ticked by end of L3 matrix scanning. (16ms interval).
@@ -195,7 +195,7 @@ static bool	MakeMasks(){
 		for(uint8_t bit = 0; bit < KEY_DEFINE_COUNT; bit++){
 			uint32_t	or_bit = (1 << bit);
 			MaskKey[scn] |= (keytable[scn][bit].type == TYPE_SWITCH)?	or_bit : 0;
-			MaskRot[scn] |= (keytable[scn][bit].type == TYPE_ROTARY)?	or_bit : 0;
+			MaskEnc[scn] |= (keytable[scn][bit].type == TYPE_ROTARY)?	or_bit : 0;
 		}
 	}
 	return ret;
@@ -254,7 +254,7 @@ static void EmulateMIDI(){
 				prev_note = note;
 				isPrev_sw = true;
             }
-        }else if( Key_Stat.wd & MaskRot[LrE6Scene] ) {
+        }else if( Key_Stat.wd & MaskEnc[LrE6Scene] ) {
         	//Send CC Event from encoder
         	uint8_t axis = (bitpos - KEY_COUNT) / 2;
         	uint8_t val = MIDI_CC_Value[LrE6Scene][axis];
@@ -475,10 +475,8 @@ int main(void)
 	//LED Timer
 	if (LED_Timer_Update == true){ //4x4ms = 16ms interval
 		for (uint8_t i = 0; i < LED_COUNT; i++){
-			if (LEDTimer[i] != LED_TIMER_CONSTANT) {
-				if (--LEDTimer[i] == 0) {
-					LED_SetPulse(i, LED_Scene[LrE6Scene][i], LED_TIMER_CONSTANT);
-				}
+			if (LEDTimer[i] != LED_TIMER_CONSTANT && --LEDTimer[i] == 0) {
+				LED_SetPulse(i, LED_Scene[LrE6Scene][i], LED_TIMER_CONSTANT);
 		 	}
 		}
 		LED_Timer_Update = false;
@@ -487,8 +485,11 @@ int main(void)
 
 	//Flashing LEDs
 	if (isLEDsendpulse == true) {
-		LED_SendPulse();
-		isLEDsendpulse = false;
+		if (LED_SendPulse() == true){
+			isLEDsendpulse = false;
+		}else{
+			HAL_Delay(LED_TIM_RETRY_WAIT);	// i2c is busy, retry with interval
+		}
 		continue;
 	}
 
@@ -514,7 +515,8 @@ int main(void)
 		continue;
 	}
 	// Enter sleep until next interrupt.
-	if(hdma_tim3_ch1_trig.State != HAL_DMA_STATE_BUSY){
+	if(	hdma_tim3_ch1_trig.State != HAL_DMA_STATE_BUSY
+		&& hdma_i2c2_tx.State != HAL_DMA_STATE_BUSY) {
 		HAL_PWR_EnterSLEEPMode(PWR_LOWPOWERREGULATOR_ON, PWR_SLEEPENTRY_WFI);
 	}
     /* USER CODE END WHILE */
