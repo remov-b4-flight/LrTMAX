@@ -267,12 +267,12 @@ enum {
 #define MSG_TIMER_UPDATE	250		//1s (LCD update in USB not connected)
 
 // LED timer definitions
-#define LED_TIM_NORM		25		//400ms (1 tick=16ms)
-#define LED_TIM_HALF		12		//192ms
-#define LED_TIM_LONG		35		//560ms
+#define LED_TIM_NORM		20		//320ms (1 tick=16ms)
+#define LED_TIM_HALF		10		//160ms
+#define LED_TIM_LONG		40		//640ms
 #define	LED_TIM_CONNECT		100		//1.5Sec
 //! LED TIM3 definitions
-#define LED_TIM_RETRY_WAIT	11
+#define LED_TIM_RETRY_WAIT	21		//Transfer period for I2C
 
 #define ENC_NOT_MOVE        0
 #define ENC_MOVE_CW         1
@@ -281,7 +281,7 @@ enum {
 #define MOD_SW_BIT_MASK		0x0fffffff
 
 //! I2C time definitions
-#define I2C_RETRY_WAIT		2
+#define I2C_RETRY_WAIT		2		//Transfer period for TIM3 PWM
 
 //! For temperature calculator
 #define TEMP110_CAL_ADDR ((uint16_t*) ((uint32_t) 0x1FFFF7C2))

@@ -18,7 +18,7 @@
  */
 
 /**
-*	@note This file is modified by remov-b4-flight for use with LrE-6.
+*	@note This file is modified by remov-b4-flight for use with LrTMAX.
 *	Original headers are up.
 *	Unneeded parts of original source are excluded by #if 0
 *	@author modified by remov-b4-flight
@@ -39,7 +39,7 @@ extern uint8_t MIDI_CC_Value[SCENE_COUNT][ENC_COUNT];
 extern uint8_t LrE6Scene;
 
 // for Cure Series
-#if 0 //Unused for LrE-6
+#if 0 //Unused for LrTMAX
 #define MIDI_BUFFER_SIZ (512)//FIFO buffer byte size for midi message buffer
 RingBufferU8 rbuf_usb_rx[MIDI_OUT_JACK_NUM]; //for input from USB
 RingBufferU8 rbuf_jack_rx[MIDI_IN_JACK_NUM];  //for input from MIDI-IN jack
@@ -150,9 +150,8 @@ bool isRxBufEmpty()
 	}
 	return true;
 }
-#endif//Unused for LrE-6
+#endif//Unused for LrTMAX
 
-#if MIDI
 /**
  *	@brief	Array of callback function pointer with MIDI.
  */
@@ -202,9 +201,9 @@ static uint16_t MIDI_DataTx(uint8_t *msg, uint16_t length){
 #endif
   return USBD_OK;
 }
-#endif //MIDI
 
-#if 0 //Unused for LrE-6
+
+#if 0 //Unused for LrTMAX
 void sendMidiMessage(uint8_t *msg, uint16_t size){
   if(size == 4){
 //	APP_Rx_Buffer[0] = msg[0];
@@ -454,4 +453,4 @@ void midiProcess(){
 		}
 	}
 }
-#endif //Unused for LrE-6
+#endif //Unused for LrTMAX

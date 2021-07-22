@@ -102,8 +102,11 @@ bool LED_SendPulse(){
 	Color2Pulse();
 
 	//Send 'RESET' signal(280us > low data) for LEDs
+#if 1
 	Delay_us(LED_RESET_WIDTH);
-
+#else
+	HAL_Delay(1);
+#endif
 	//Start DMA
 	htim3.Instance->CNT = PWM_HI + 1;
 	if (HAL_TIM_PWM_Start_DMA(&htim3, TIM_CHANNEL_1, (uint32_t *)LEDPulse, TOTAL_BITS) != HAL_OK){

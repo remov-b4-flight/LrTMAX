@@ -1653,7 +1653,6 @@ HAL_StatusTypeDef HAL_TIM_PWM_Stop_IT(TIM_HandleTypeDef *htim, uint32_t Channel)
   /* Return function status */
   return HAL_OK;
 }
-#pragma GCC optimize ("O0")
 /**
   * @brief  Starts the TIM PWM signal generation in DMA mode.
   * @param  htim TIM PWM handle
@@ -1881,7 +1880,6 @@ HAL_StatusTypeDef HAL_TIM_PWM_Stop_DMA(TIM_HandleTypeDef *htim, uint32_t Channel
   /* Return function status */
   return HAL_OK;
 }
-#pragma GCC optimize ("O2")
 
 /**
   * @}

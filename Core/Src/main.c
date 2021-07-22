@@ -471,7 +471,6 @@ int main(void)
 		}// Msg_Off_Flag
 	}// LrE6State
 
-
 	//LED Timer
 	if (LED_Timer_Update == true){ //4x4ms = 16ms interval
 		for (uint8_t i = 0; i < LED_COUNT; i++){
@@ -514,6 +513,7 @@ int main(void)
 		}
 		continue;
 	}
+
 	// Enter sleep until next interrupt.
 	if(	hdma_tim3_ch1_trig.State != HAL_DMA_STATE_BUSY
 		&& hdma_i2c2_tx.State != HAL_DMA_STATE_BUSY) {

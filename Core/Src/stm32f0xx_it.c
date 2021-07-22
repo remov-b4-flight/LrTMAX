@@ -96,17 +96,15 @@ uint8_t     enc6_prev;
 //! previous value of encoder 7
 uint8_t     enc7_prev;
 
-#ifdef MIDI
 extern uint8_t MIDI_CC_Value[SCENE_COUNT][ENC_COUNT];
 extern uint8_t LrE6Scene;
-#endif
 
-static inline void MIDI_CC_Inc(uint8_t rot){
-	if (MIDI_CC_Value[LrE6Scene][rot] < MIDI_CC_MAX ) MIDI_CC_Value[LrE6Scene][rot]++;
+static inline void MIDI_CC_Inc(uint8_t enc){
+	if (MIDI_CC_Value[LrE6Scene][enc] < MIDI_CC_MAX ) MIDI_CC_Value[LrE6Scene][enc]++;
 }
 
-static inline void MIDI_CC_Dec(uint8_t rot){
-	if (MIDI_CC_Value[LrE6Scene][rot] >= (MIDI_CC_MIN + 1) ) MIDI_CC_Value[LrE6Scene][rot]--;
+static inline void MIDI_CC_Dec(uint8_t enc){
+	if (MIDI_CC_Value[LrE6Scene][enc] >= (MIDI_CC_MIN + 1) ) MIDI_CC_Value[LrE6Scene][enc]--;
 }
 
 /* USER CODE END 0 */
@@ -133,11 +131,9 @@ void NMI_Handler(void)
 
   /* USER CODE END NonMaskableInt_IRQn 0 */
   /* USER CODE BEGIN NonMaskableInt_IRQn 1 */
-#ifdef DEBUG
   while (1)
   {
   }
-#endif
   /* USER CODE END NonMaskableInt_IRQn 1 */
 }
 
@@ -151,13 +147,11 @@ void HardFault_Handler(void)
   SSD1306_Render2Buffer();
   SSD1306_FlashScreen();
   /* USER CODE END HardFault_IRQn 0 */
-#ifdef DEBUG
   while (1)
   {
     /* USER CODE BEGIN W1_HardFault_IRQn 0 */
     /* USER CODE END W1_HardFault_IRQn 0 */
   }
-#endif
 }
 
 /**
