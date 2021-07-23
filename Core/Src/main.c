@@ -413,7 +413,7 @@ int main(void)
 #endif
 		Msg_Off_Flag = false;
 		Start_MsgTimer(MSG_TIMER_DEFAULT);
-		LED_SetPulse(LED_IDX_ENC0, LED_GREEN, LED_TIM_CONNECT);
+		LED_SetPulse(LED_IDX_ENC0, LED_PINK, LED_TIM_CONNECT);
 		LrE6State = LRE6_USB_LINKED;
 
 	} else if (LrE6State == LRE6_USB_LINKED) {

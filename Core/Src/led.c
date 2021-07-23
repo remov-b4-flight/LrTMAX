@@ -80,7 +80,7 @@ inline void LED_SetPulse(uint8_t index, uint8_t color, uint8_t pulse){
 static void Color2Pulse(){
 	uint8_t	pulse = 0;
 	LEDDATA	leddata;
-
+	//Convert LEDColor[] to LEDPulse[];
 	for(uint8_t	led = 0; led < LED_COUNT; led++){
 		uint8_t c = LEDColor[led];
 		leddata.n = LEDTable[c].n;
@@ -88,7 +88,8 @@ static void Color2Pulse(){
 			LEDPulse[pulse++] = (leddata.n & mask)? PWM_HI:PWM_LO;
 		}
 	}
-	LEDPulse[TOTAL_BITS] = 0;//(PWM_PERIOD + 1);
+	//Set RESET state when PWM completed.
+	LEDPulse[TOTAL_BITS] = 0;
 }
 
 /**
@@ -107,11 +108,8 @@ bool LED_SendPulse(){
 	//AF -> GPIO
 	GPIOA->MODER &= ~(GPIO_MODER_MODER6_1);
 	GPIOA->MODER |=	GPIO_MODER_MODER6_0;
-#if 0
+	//Earning RESET Time period.
 	Delay_us(LED_RESET_WIDTH);
-#else
-	HAL_Delay(1);
-#endif
 	//GPIO -> AF
 	GPIOA->MODER ^= (GPIO_MODER_MODER6_1|GPIO_MODER_MODER6_0);
 	htim3.Instance->CNT = (PWM_PERIOD);
