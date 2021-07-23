@@ -594,6 +594,12 @@ void DMA1_Channel4_5_6_7_IRQHandler(void)
   /* USER CODE BEGIN DMA1_Channel4_5_6_7_IRQn 0 */
   if(DMA1->ISR & DMA_ISR_TCIF4){
 	HAL_TIM_PWM_Stop_DMA(&htim3, TIM_CHANNEL_1);
+
+	GPIOA->ODR |= GPIO_PIN_6;
+	//AF -> GPIO
+	GPIOA->MODER &= ~(GPIO_MODER_MODER6_1);
+	GPIOA->MODER |=	GPIO_MODER_MODER6_0;
+
   }
   /* USER CODE END DMA1_Channel4_5_6_7_IRQn 0 */
   HAL_DMA_IRQHandler(&hdma_i2c2_tx);

@@ -366,8 +366,8 @@ int main(void)
   MakeMasks();
 
   //Initialze series of WS2812C
-  LED_Initialize();						//Set all LEDs to 'OFF'
   GPIOA->PUPDR |= GPIO_PUPDR_PUPDR6_0;	//Pull up PA6 (WS2812C-2020 workaround)
+  LED_Initialize();						//Set all LEDs to 'OFF'
 
   //Initialize SSD1306 OLED
   HAL_Delay(SSD1306_PWRUP_WAIT);		//Wait for LCD module power up.
@@ -390,14 +390,12 @@ int main(void)
   LrE6State = LRE6_USB_NOLINK;
 
   memset(MIDI_CC_Value, MIDI_CC_INITIAL, SCENE_COUNT * ENC_COUNT);
-  LED_SetScene(LrE6Scene);
 
   //Main loop
   while (1) {
 	if (LrE6State == LRE6_USB_LINKUP) {
 		//USB device configured by host
-		memset(LEDColor, LED_OFF, LED_COUNT);
-		LED_SetPulse(LED_IDX_ENC0, LED_PINK, LED_TIM_CONNECT);
+		LED_SetScene(LrE6Scene);
 		SSD1306_SetScreen(ON);
 		sprintf(Msg_Buffer[0], CONN_MSG, LrE6_PRODUCT ,USBD_DEVICE_VER_MAJ, USBD_DEVICE_VER_MIN);
 
@@ -410,6 +408,7 @@ int main(void)
 #endif
 		Msg_Off_Flag = false;
 		Start_MsgTimer(MSG_TIMER_DEFAULT);
+		LED_SetPulse(LED_IDX_ENC0, LED_PINK, LED_TIM_CONNECT);
 		LrE6State = LRE6_USB_LINKED;
 
 	} else if (LrE6State == LRE6_USB_LINKED) {

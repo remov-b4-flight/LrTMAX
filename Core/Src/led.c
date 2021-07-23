@@ -12,7 +12,7 @@
 extern TIM_HandleTypeDef htim3;
 extern bool	isLEDsendpulse;
 uint8_t		LEDColor[LED_COUNT];	// coded LED color value
-uint16_t	LEDPulse[TOTAL_BITS];	// Data formed PWM width send to LED
+uint16_t	LEDPulse[TOTAL_BITS + 1];	// Data formed PWM width send to LED
 uint8_t		LEDTimer[LED_COUNT];	// Individual LED Timer Counter
 
 /**
@@ -30,7 +30,7 @@ const LEDDATA LEDTable[COLOR_MAX] = {
 	{.rgbw = {.r=LHLF,.g=LHLF,.b=LOFF}},//COLOR_YELLOW,
 	{.rgbw = {.r=LHLF,.g=LOFF,.b=LHLF}},//COLOR_MAGENTA,
 	{.rgbw = {.r=LOFF,.g=LHLF,.b=LHLF}},//COLOR_CYAN,
-	{.rgbw = {.r=LMAX,.g=LHLF,.b=LOFF}},//COLOR_ORANGE,
+	{.rgbw = {.r=LMAX,.g=LQTR,.b=LOFF}},//COLOR_ORANGE,
 	{.rgbw = {.r=LQTR,.g=LQTR,.b=LQTR}},//COLOR_GLAY,
 	{.rgbw = {.r=LDRK,.g=LDRK,.b=LDRK}},//COLOR_DARK,
 	{.rgbw = {.r=LHIL,.g=LHIL,.b=LHIL}},//COLOR_HILIGHT,
@@ -88,6 +88,7 @@ static void Color2Pulse(){
 			LEDPulse[pulse++] = (leddata.n & mask)? PWM_HI:PWM_LO;
 		}
 	}
+	LEDPulse[TOTAL_BITS] = (PWM_PERIOD + 1);
 }
 
 /**
@@ -102,14 +103,21 @@ bool LED_SendPulse(){
 	Color2Pulse();
 
 	//Send 'RESET' signal(280us > low data) for LEDs
-#if 1
+	GPIOA->ODR |= GPIO_PIN_6;	//'RESET' state
+	//AF -> GPIO
+	GPIOA->MODER &= ~(GPIO_MODER_MODER6_1);
+	GPIOA->MODER |=	GPIO_MODER_MODER6_0;
+#if 0
 	Delay_us(LED_RESET_WIDTH);
 #else
 	HAL_Delay(1);
 #endif
+	//GPIO -> AF
+	GPIOA->MODER ^= (GPIO_MODER_MODER6_1|GPIO_MODER_MODER6_0);
+	htim3.Instance->CNT = 0;
+
 	//Start DMA
-	htim3.Instance->CNT = PWM_HI + 1;
-	if (HAL_TIM_PWM_Start_DMA(&htim3, TIM_CHANNEL_1, (uint32_t *)LEDPulse, TOTAL_BITS) != HAL_OK){
+	if (HAL_TIM_PWM_Start_DMA(&htim3, TIM_CHANNEL_1, (uint32_t *)LEDPulse, TOTAL_BITS + 1) != HAL_OK){
 		r = false;
 	}
 	return r;
