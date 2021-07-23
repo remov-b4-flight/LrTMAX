@@ -367,6 +367,11 @@ int main(void)
 
   //Initialze series of WS2812C
   GPIOA->PUPDR |= GPIO_PUPDR_PUPDR6_0;	//Pull up PA6 (WS2812C-2020 workaround)
+  GPIOA->ODR |= GPIO_PIN_6;				//'RESET' state
+  //AF -> GPIO
+  GPIOA->MODER &= ~(GPIO_MODER_MODER6_1);
+  GPIOA->MODER |=	GPIO_MODER_MODER6_0;
+
   LED_Initialize();						//Set all LEDs to 'OFF'
 
   //Initialize SSD1306 OLED
@@ -408,7 +413,7 @@ int main(void)
 #endif
 		Msg_Off_Flag = false;
 		Start_MsgTimer(MSG_TIMER_DEFAULT);
-		LED_SetPulse(LED_IDX_ENC0, LED_PINK, LED_TIM_CONNECT);
+		LED_SetPulse(LED_IDX_ENC0, LED_GREEN, LED_TIM_CONNECT);
 		LrE6State = LRE6_USB_LINKED;
 
 	} else if (LrE6State == LRE6_USB_LINKED) {

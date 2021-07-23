@@ -88,7 +88,7 @@ static void Color2Pulse(){
 			LEDPulse[pulse++] = (leddata.n & mask)? PWM_HI:PWM_LO;
 		}
 	}
-	LEDPulse[TOTAL_BITS] = (PWM_PERIOD + 1);
+	LEDPulse[TOTAL_BITS] = 0;//(PWM_PERIOD + 1);
 }
 
 /**
@@ -114,7 +114,7 @@ bool LED_SendPulse(){
 #endif
 	//GPIO -> AF
 	GPIOA->MODER ^= (GPIO_MODER_MODER6_1|GPIO_MODER_MODER6_0);
-	htim3.Instance->CNT = 0;
+	htim3.Instance->CNT = (PWM_PERIOD);
 
 	//Start DMA
 	if (HAL_TIM_PWM_Start_DMA(&htim3, TIM_CHANNEL_1, (uint32_t *)LEDPulse, TOTAL_BITS + 1) != HAL_OK){
