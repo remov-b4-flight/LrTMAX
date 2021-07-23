@@ -81,7 +81,7 @@ uint8_t		LrE6Scene;
 bool		isKeyPressed;
 //! Key pressed/released status set by timer key scanning.
 KEYSCAN     Key_Stat;
-//! In key scanning wheather Line selected to read for key matrix.
+//! In key scanning whether Line selected to read for key matrix.
 uint8_t		Key_Line;
 //! If true, MIDI Event/HID packet is sent by key pressed/encoder moved. if false, not sent.
 bool		isKeyRelaseSent;
