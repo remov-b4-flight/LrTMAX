@@ -596,7 +596,7 @@ void DMA1_Channel4_5_6_7_IRQHandler(void)
 	HAL_TIM_PWM_Stop_DMA(&htim3, TIM_CHANNEL_1);
 
 	GPIOA->ODR |= GPIO_PIN_6;	//'RESET' state
-	//AF -> GPIO
+	//Set PA6 AF -> GPIO
 	GPIOA->MODER &= ~(GPIO_MODER_MODER6_1);
 	GPIOA->MODER |=	GPIO_MODER_MODER6_0;
 

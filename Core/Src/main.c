@@ -186,7 +186,7 @@ static void LED_SetScene(uint8_t scene){
 	LED_SendPulse();
 }
 /**
- * @brief Make MaskKey[],MaskRot[] from keytable
+ * @brief Make MaskKey[],MaskRot[] from keytable[](in key_define.c)
  * @return false : there is some configuration error.
  */
 static bool	MakeMasks(){
@@ -365,7 +365,7 @@ int main(void)
   HAL_TIM_Base_Start_IT(&htim1);		//Start Switch matrix timer.
   MakeMasks();
 
-  //Initialze series of WS2812C
+  //Initialize series of WS2812C
   GPIOA->PUPDR |= GPIO_PUPDR_PUPDR6_0;	//Pull up PA6 (WS2812C-2020 workaround)
   GPIOA->ODR |= GPIO_PIN_6;				//'RESET' state
   //AF -> GPIO
@@ -394,6 +394,7 @@ int main(void)
   Msg_Off_Flag = false;
   LrE6State = LRE6_USB_NOLINK;
 
+  //Initialize CC Value table
   memset(MIDI_CC_Value, MIDI_CC_INITIAL, SCENE_COUNT * ENC_COUNT);
 
   //Main loop
@@ -496,6 +497,7 @@ int main(void)
 		continue;
 	}
 
+	//LCD off Timer
 	if(Msg_Off_Flag == true){
 		Msg_Off_Flag = false;
 		SSD1306_SetScreen(OFF);
@@ -518,7 +520,7 @@ int main(void)
 		continue;
 	}
 
-	// Enter sleep until next interrupt.
+	// Enter CPU sleep until next interrupt.
 	if(	hdma_tim3_ch1_trig.State != HAL_DMA_STATE_BUSY
 		&& hdma_i2c2_tx.State != HAL_DMA_STATE_BUSY) {
 		HAL_PWR_EnterSLEEPMode(PWR_LOWPOWERREGULATOR_ON, PWR_SLEEPENTRY_WFI);

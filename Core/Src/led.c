@@ -11,30 +11,30 @@
 
 extern TIM_HandleTypeDef htim3;
 extern bool	isLEDsendpulse;
-uint8_t		LEDColor[LED_COUNT];	// coded LED color value
+uint8_t		LEDColor[LED_COUNT];		// coded LED color value
 uint16_t	LEDPulse[TOTAL_BITS + 1];	// Data formed PWM width send to LED
-uint8_t		LEDTimer[LED_COUNT];	// Individual LED Timer Counter
+uint8_t		LEDTimer[LED_COUNT];		// Individual LED Timer Counter
 
 /**
  * @brief RGB LED intensity table
  * @details define Light intensity for each R,G,B
- * values forms array indexed by LED_COLOR_XXX (in enum led_color_t)
+ * values forms array indexed by LED_XXX (in enum led_color_t)
  */
 const LEDDATA LEDTable[COLOR_MAX] = {
 	//			R		G		B
-	{.rgbw = {.r=LOFF,.g=LOFF,.b=LOFF}},//COLOR_OFF,
-	{.rgbw = {.r=LMAX,.g=LOFF,.b=LOFF}},//COLOR_RED,
-	{.rgbw = {.r=LOFF,.g=LOFF,.b=LMAX}},//COLOR_BLUE,
-	{.rgbw = {.r=LOFF,.g=LMAX,.b=LOFF}},//COLOR_GREEN,
-	{.rgbw = {.r=LMAX,.g=LMAX,.b=LMAX}},//COLOR_WHITE,
-	{.rgbw = {.r=LHLF,.g=LHLF,.b=LOFF}},//COLOR_YELLOW,
-	{.rgbw = {.r=LHLF,.g=LOFF,.b=LHLF}},//COLOR_MAGENTA,
-	{.rgbw = {.r=LOFF,.g=LHLF,.b=LHLF}},//COLOR_CYAN,
-	{.rgbw = {.r=LMAX,.g=LQTR,.b=LOFF}},//COLOR_ORANGE,
-	{.rgbw = {.r=LQTR,.g=LQTR,.b=LQTR}},//COLOR_GLAY,
-	{.rgbw = {.r=LDRK,.g=LDRK,.b=LDRK}},//COLOR_DARK,
-	{.rgbw = {.r=LHIL,.g=LHIL,.b=LHIL}},//COLOR_HILIGHT,
-	{.rgbw = {.r=LMAX,.g=LHLF,.b=LMAX}},//COLOR_PINK,
+	{.rgbw = {.r=LOFF,.g=LOFF,.b=LOFF}},//LED_OFF,
+	{.rgbw = {.r=LMAX,.g=LOFF,.b=LOFF}},//LED_RED,
+	{.rgbw = {.r=LOFF,.g=LOFF,.b=LMAX}},//LED_BLUE,
+	{.rgbw = {.r=LOFF,.g=LMAX,.b=LOFF}},//LED_GREEN,
+	{.rgbw = {.r=LMAX,.g=LMAX,.b=LMAX}},//LED_WHITE,
+	{.rgbw = {.r=LHLF,.g=LHLF,.b=LOFF}},//LED_YELLOW,
+	{.rgbw = {.r=LHLF,.g=LOFF,.b=LHLF}},//LED_MAGENTA,
+	{.rgbw = {.r=LOFF,.g=LHLF,.b=LHLF}},//LED_CYAN,
+	{.rgbw = {.r=LMAX,.g=LQTR,.b=LOFF}},//LED_ORANGE,
+	{.rgbw = {.r=LQTR,.g=LQTR,.b=LQTR}},//LED_GLAY,
+	{.rgbw = {.r=LDRK,.g=LDRK,.b=LDRK}},//LED_DARK,
+	{.rgbw = {.r=LHIL,.g=LHIL,.b=LHIL}},//LED_HILIGHT,
+	{.rgbw = {.r=LMAX,.g=LHLF,.b=LMAX}},//LED_PINK,
 };
 
 /**
@@ -88,7 +88,7 @@ static void Color2Pulse(){
 			LEDPulse[pulse++] = (leddata.n & mask)? PWM_HI:PWM_LO;
 		}
 	}
-	//Set RESET state when PWM completed.
+	//Set 'RESET' state when PWM completed.
 	LEDPulse[TOTAL_BITS] = 0;
 }
 
@@ -105,12 +105,12 @@ bool LED_SendPulse(){
 
 	//Send 'RESET' signal(280us > low data) for LEDs
 	GPIOA->ODR |= GPIO_PIN_6;	//'RESET' state
-	//AF -> GPIO
+	//Set PA6 AF -> GPIO
 	GPIOA->MODER &= ~(GPIO_MODER_MODER6_1);
 	GPIOA->MODER |=	GPIO_MODER_MODER6_0;
-	//Earning RESET Time period.
+	//Earning 'RESET' Time period.
 	Delay_us(LED_RESET_WIDTH);
-	//GPIO -> AF
+	//Set PA6 GPIO -> AF
 	GPIOA->MODER ^= (GPIO_MODER_MODER6_1|GPIO_MODER_MODER6_0);
 	htim3.Instance->CNT = (PWM_PERIOD);
 
