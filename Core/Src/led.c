@@ -34,7 +34,7 @@ const LEDDATA LEDTable[COLOR_MAX] = {
 	{.rgbw = {.r=LQTR,.g=LQTR,.b=LQTR}},//LED_GLAY,
 	{.rgbw = {.r=LDRK,.g=LDRK,.b=LDRK}},//LED_DARK,
 	{.rgbw = {.r=LHIL,.g=LHIL,.b=LHIL}},//LED_HILIGHT,
-	{.rgbw = {.r=LMAX,.g=LHLF,.b=LMAX}},//LED_PINK,
+	{.rgbw = {.r=LMAX,.g=LQTR,.b=LHLF}},//LED_PINK,
 };
 
 /**
