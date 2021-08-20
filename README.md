@@ -1,5 +1,5 @@
 # LrTMAX
-Adobe Lightroom MIDI Developper Controller project (STM32F072 based)  
+Adobe Lightroom MIDI Developer Controller project (STM32F072 based)  
 LrTMAX MIDI controller is formed by embedded hardware board and its firmware.  
 It used with [MIDI2LR](https://github.com/rsjaffe/MIDI2LR) software,  
 You can control development parameters on RAW photos.  
