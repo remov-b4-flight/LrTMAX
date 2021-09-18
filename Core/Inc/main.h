@@ -35,7 +35,7 @@ extern "C" {
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 #define USBD_DEVICE_VER_MAJ	0x00
-#define USBD_DEVICE_VER_MIN	0x48
+#define USBD_DEVICE_VER_MIN	0x49
 /* USER CODE END Includes */
 
 /* Exported types ------------------------------------------------------------*/
@@ -278,8 +278,9 @@ enum {
 #define ENC_MOVE_CW         1
 #define ENC_MOVE_CCW        2
 #define ENC_MASK			0x03
-#define MOD_SW_BIT_MASK		0x0fffffff
-
+#if 0
+#define MOD_SW_BIT_MASK		0xffffffff
+#endif
 //! I2C time definitions
 #define I2C_RETRY_WAIT		2		//Transfer period for TIM3 PWM
 

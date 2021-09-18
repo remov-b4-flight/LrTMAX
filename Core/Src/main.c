@@ -213,7 +213,11 @@ static void EmulateMIDI(){
 	if (isKeyPressed) {
     	//Send 'Note On' Event from key matrix
         uint8_t		bitpos = ntz32(Key_Stat.wd);
+#if 0
         uint32_t	rkey = (Key_Stat.wd & MOD_SW_BIT_MASK);
+#else
+        uint32_t	rkey = (Key_Stat.wd);
+#endif
         bool 		isKeyReport = false;
 
         if ( Key_Stat.wd & MaskKey[LrE6Scene] ) { //Matrix switches
@@ -270,7 +274,7 @@ static void EmulateMIDI(){
             if (keytable[LrE6Scene][bitpos].message != NULL) {
             	SSD1306_SetScreen(ON);
                 sprintf(msg_string,
-                	((channel > 99)? "C%3d = %3d    S%1d":"Ch%1d = %3d    S%1d"), channel, val, LrE6Scene);
+                	((channel > 99)? "C%3d = %3d    S%1d" : "Ch%1d = %3d    S%1d"), channel, val, LrE6Scene);
                 strcpy(Msg_Buffer[0], keytable[LrE6Scene][bitpos].message);
             	strcpy(Msg_Buffer[1], msg_string);
             	Msg_Print();
