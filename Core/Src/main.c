@@ -410,6 +410,7 @@ int main(void)
 		sprintf(Msg_Buffer[0], CONN_MSG, LrE6_PRODUCT ,USBD_DEVICE_VER_MAJ, USBD_DEVICE_VER_MIN);
 
 #ifdef DEBUG
+		memset(Msg_Buffer[1], ' ', MSG_WIDTH );
 		Msg_Print();
 #else
 		SSD1306_LoadBitmap();
