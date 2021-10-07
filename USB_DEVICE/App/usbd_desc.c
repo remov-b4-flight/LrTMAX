@@ -4,7 +4,6 @@
   * @file           : App/usbd_desc.c
   * @version        : v2.0_Cube
   * @brief          : This file implements the USB device descriptors.
-  * @author			remov-b4-flight
   ******************************************************************************
   * @attention
   *
@@ -197,7 +196,7 @@ __ALIGN_BEGIN uint8_t USBD_FS_DeviceDesc[USB_LEN_DEV_DESC] __ALIGN_END =
   #pragma data_alignment=4
 #endif /* defined ( __ICCARM__ ) */
 
-/** USB lang indentifier descriptor. */
+/** USB lang identifier descriptor. */
 __ALIGN_BEGIN uint8_t USBD_LangIDDesc[USB_LEN_LANGID_STR_DESC] __ALIGN_END =
 {
      USB_LEN_LANGID_STR_DESC,

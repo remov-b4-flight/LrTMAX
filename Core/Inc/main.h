@@ -1,11 +1,9 @@
 /* USER CODE BEGIN Header */
 /**
   ******************************************************************************
-  * @file	main.h
-  * @brief	Header for main.c file.
+  * @file           : main.h
+  * @brief          : Header for main.c file.
   *                   This file contains the common defines of the application.
-  * @author	remov-b4-flight
-  * @copyright GPLv3
   ******************************************************************************
   * @attention
   *

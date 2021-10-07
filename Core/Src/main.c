@@ -1,8 +1,8 @@
 /* USER CODE BEGIN Header */
 /**
   ******************************************************************************
-  * @file	main.c
-  * @brief	Main program body
+  * @file           : main.c
+  * @brief          : Main program body
   * @author	remov-b4-flight
   * @copyright GPLv3
   ******************************************************************************
@@ -46,7 +46,6 @@
 
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
-
 /* USER CODE END PD */
 
 /* Private macro -------------------------------------------------------------*/
