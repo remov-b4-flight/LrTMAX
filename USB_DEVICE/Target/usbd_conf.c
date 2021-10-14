@@ -24,8 +24,9 @@
 #include "stm32f0xx_hal.h"
 #include "usbd_def.h"
 #include "usbd_core.h"
+#if 0
 #include "usbd_hid.h"
-
+#endif
 /* USER CODE BEGIN Includes */
 #include <stdbool.h>
 /* USER CODE END Includes */
@@ -603,8 +604,12 @@ void USBD_LL_Delay(uint32_t Delay)
   */
 void *USBD_static_malloc(uint32_t size)
 {
+#if 0
   static uint32_t mem[(sizeof(USBD_HID_HandleTypeDef)/4)+1];/* On 32-bit boundary */
   return mem;
+#else
+  return NULL;
+#endif
 }
 
 /**

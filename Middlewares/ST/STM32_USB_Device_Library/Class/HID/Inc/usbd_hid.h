@@ -43,10 +43,6 @@ extern "C" {
   */
 #define HID_EPIN_ADDR                 0x81U
 #define HID_EPIN_SIZE                 0x04U
-/* USER CODE BEGIN 0 */
-#undef HID_EPIN_SIZE
-#define HID_EPIN_SIZE                 0x05
-/* USER CODE END 0 */
 
 #define USB_HID_CONFIG_DESC_SIZ       34U
 #define USB_HID_DESC_SIZ              9U
@@ -71,11 +67,6 @@ extern "C" {
 
 #define HID_REQ_SET_REPORT            0x09U
 #define HID_REQ_GET_REPORT            0x01U
-/* USER CODE BEGIN 1 */
-#define HID_LS_BINTERVAL			0x10U
-#define HID_IF_PROT_KEY				0x01U
-#define HID_LS_MAX_PKT				0x40U
-/* USER CODE END 1 */
 /**
   * @}
   */
