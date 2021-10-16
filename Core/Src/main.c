@@ -355,10 +355,10 @@ int main(void)
   MX_TIM3_Init();
   MX_TIM1_Init();
   MX_TIM14_Init();
-  MX_ADC_Init();
 #if 1
   MX_USB_MIDI_INIT();
 #else
+  MX_ADC_Init();
   MX_USB_DEVICE_Init();
 #endif
   MX_I2C2_Init();
@@ -384,13 +384,16 @@ int main(void)
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
-
+#if 0
   const uint16_t ts_cal110 = *TEMP110_CAL_ADDR;
   const uint16_t ts_cal30 = *TEMP30_CAL_ADDR;
 #ifdef DEBUG
   const int16_t k = (110 - 30) * 1000 / (ts_cal110 - ts_cal30);
 #else
   const float k = (110.0 - 30.0) / (ts_cal110 - ts_cal30);
+#endif
+#else
+  uint32_t	nc_count;
 #endif
 
   Start_MsgTimer(MSG_TIMER_DEFAULT);
@@ -429,6 +432,7 @@ int main(void)
 		LED_TestPattern();
 		Msg_1st_timeout = false;
 		Start_MsgTimer(MSG_TIMER_DEFAULT);
+		nc_count = 0;
 		LrE6State = LRE6_USB_NOLINK;
 
 	} else if(LrE6State == LRE6_USB_NOLINK) {
@@ -437,7 +441,7 @@ int main(void)
 			if (Msg_1st_timeout == true) {
 				LrE6State = LRE6_USB_LINK_LOST;
 			} else {
-
+#if 0
 				HAL_ADC_Start(&hadc);
 				//get value from ADC and display it...
 				while (HAL_ADC_PollForConversion(&hadc, 100) != HAL_OK)	; //wait until ADC OK
@@ -456,6 +460,9 @@ int main(void)
 				int8_t temp_s = tempf % 100;
 
 				sprintf(Msg_Buffer[0], "%02d.%02d degC", temp_i, temp_s);
+#endif
+#else
+				sprintf(Msg_Buffer[0], "%12ld", nc_count++);
 #endif
 				SSD1306_SetScreen(ON);
 
@@ -579,7 +586,7 @@ void SystemClock_Config(void)
     Error_Handler();
   }
 }
-
+#if 0
 /**
   * @brief ADC Initialization Function
   * @param None
@@ -631,7 +638,7 @@ static void MX_ADC_Init(void)
   /* USER CODE END ADC_Init 2 */
 
 }
-
+#endif
 /**
   * @brief I2C2 Initialization Function
   * @param None
