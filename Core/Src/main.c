@@ -160,7 +160,7 @@ void EmulateKeyboard();
 void Delay_us(uint32_t microsec){
 
 	htim14.Init.Period = microsec;
-#if 1
+#if 0
 	HAL_TIM_Base_Init(&htim14);
 #endif
 	HAL_TIM_Base_Start(&htim14);
