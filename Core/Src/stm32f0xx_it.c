@@ -485,8 +485,7 @@ void EXTI4_15_IRQHandler(void)
 
     //Encoder 5 (EXTI[12:13] / PA[12],PC[13])
     if( pr & PRMASK_R5 ){
-    	uint8_t	r5 = (ENC5_GPIO_PortA->IDR | ENC5_GPIO_PortB->IDR) >> 12;
-    			r5 &= ENC_MASK;
+ 		uint8_t r5 = ( (ENC5A_GPIO_Port->IDR & ENC5A_MASK) | (ENC5B_GPIO_Port->IDR & ENC5B_MASK) ) >> 12;
     	if ( r5 == ENC_MV0 || r5 == ENC_MV3 ) { //Stopped
 			if( enc5_prev == ENC_MV1 || enc5_prev == ENC_MV2 ){
 				Key_Stat.nb.enc5 = ENC_NOT_MOVE;

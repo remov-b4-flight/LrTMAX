@@ -2198,7 +2198,7 @@ Wire Wire Line
 Wire Wire Line
 	7600 6950 7600 6050
 $Comp
-L Device:R R44
+L LrE-6-rescue:R-Device R44
 U 1 1 5EEE6BD3
 P 8800 6400
 F 0 "R44" H 8550 6500 50  0000 L CNN
@@ -2209,7 +2209,7 @@ F 3 "~" H 8800 6400 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L Device:R R42
+L LrE-6-rescue:R-Device R42
 U 1 1 5EEE73A1
 P 8450 6700
 F 0 "R42" V 8243 6700 50  0000 C CNN

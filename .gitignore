@@ -53,7 +53,7 @@ dkms.conf
 
 #Others
 /Datasheets/
-# /Documents/
+/Documents/html/
 /Debug/
 /Release/
 /.settings/
@@ -63,4 +63,5 @@ dkms.conf
 *.FCStd1
 *.zip
 .DS_Store
+._.DS_Store
 *.kicad_pcb-bak

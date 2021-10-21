@@ -1,8 +1,8 @@
 /* USER CODE BEGIN Header */
 /**
   ******************************************************************************
-  * @file           : main.c
-  * @brief          : Main program body
+  * @file main.c
+  * @brief  Main program body
   * @author	remov-b4-flight
   * @copyright GPLv3
   ******************************************************************************
@@ -142,7 +142,9 @@ static void MX_DMA_Init(void);
 static void MX_TIM3_Init(void);
 static void MX_TIM1_Init(void);
 static void MX_TIM14_Init(void);
+#if 0
 static void MX_ADC_Init(void);
+#endif
 static void MX_I2C2_Init(void);
 /* USER CODE BEGIN PFP */
 void EmulateKeyboard();
@@ -158,7 +160,9 @@ void EmulateKeyboard();
 void Delay_us(uint32_t microsec){
 
 	htim14.Init.Period = microsec;
+#if 1
 	HAL_TIM_Base_Init(&htim14);
+#endif
 	HAL_TIM_Base_Start(&htim14);
 	htim14.Instance->SR = 0;
 
@@ -212,11 +216,7 @@ static void EmulateMIDI(){
 	if (isKeyPressed) {
     	//Send 'Note On' Event from key matrix
         uint8_t		bitpos = ntz32(Key_Stat.wd);
-#if 0
-        uint32_t	rkey = (Key_Stat.wd & MOD_SW_BIT_MASK);
-#else
         uint32_t	rkey = (Key_Stat.wd);
-#endif
         bool 		isKeyReport = false;
 
         if ( Key_Stat.wd & MaskKey[LrE6Scene] ) { //Matrix switches
@@ -393,7 +393,7 @@ int main(void)
   const float k = (110.0 - 30.0) / (ts_cal110 - ts_cal30);
 #endif
 #else
-  uint32_t	nc_count;
+  uint32_t	nc_count = 0;
 #endif
 
   Start_MsgTimer(MSG_TIMER_DEFAULT);

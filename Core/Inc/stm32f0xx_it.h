@@ -43,8 +43,15 @@
 
 /* Exported macro ------------------------------------------------------------*/
 /* USER CODE BEGIN EM */
-#if !(ENC_9R5KQ)
-//! Standard EC11 type Encoder
+#if ENC_9R5KQ
+//! 9R5KQ type Encoder
+enum enc9R5_t {
+	ENC_MV3 =	3,
+	ENC_MV2	=	2,
+	ENC_MV1	=	1,
+	ENC_MV0	=	0,
+};
+#else
 enum ec11_t {
 	//! Standard EC11 type Encoder
 	ENC_MOVE =	0,
@@ -52,7 +59,10 @@ enum ec11_t {
 	ENC_MVCW =	1,
 	ENC_NOMV =	3,
 };
-#endif /* ENC_9R5KQ */
+#endif
+
+#define ENC5A_MASK	0x1000
+#define ENC5B_MASK	0x2000
 /* USER CODE END EM */
 
 /* Exported functions prototypes ---------------------------------------------*/

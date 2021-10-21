@@ -175,15 +175,6 @@ void Start_LCDTimer(uint32_t tick);
 #define LrE6_PRODUCT "LrTMAX"
 #define LrE6_VENDOR "Ruffles Inc."
 
-#if ENC_9R5KQ
-//! 9R5KQ type Encoder
-enum enc9R5_t {
-	ENC_MV3 =	3,
-	ENC_MV2	=	2,
-	ENC_MV1	=	1,
-	ENC_MV0	=	0,
-};
-#endif
 //! LrE-6 Ports on Board
 #define Mx_GPIO_Port GPIOA
 #define ENC0_GPIO_Port GPIOA
@@ -192,8 +183,8 @@ enum enc9R5_t {
 #define ENC3_GPIO_Port GPIOC
 #define ENC4_GPIO_Port GPIOF
 
-#define ENC5_GPIO_PortA GPIOB
-#define ENC5_GPIO_PortB GPIOC
+#define ENC5A_GPIO_Port GPIOB
+#define ENC5B_GPIO_Port GPIOC
 
 #define ENC6_GPIO_Port GPIOB
 #define ENC7_GPIO_Port GPIOB
@@ -281,13 +272,13 @@ enum {
 #endif
 //! I2C time definitions
 #define I2C_RETRY_WAIT		2		//Transfer period for TIM3 PWM
-
+#if 0
 //! For temperature calculator
 #define TEMP110_CAL_ADDR ((uint16_t*) ((uint32_t) 0x1FFFF7C2))
 #define TEMP30_CAL_ADDR ((uint16_t*) ((uint32_t) 0x1FFFF7B8))
 #define VDD_CALIB ((uint16_t) (330))
 #define VDD_APPLI ((uint16_t) (300))
-
+#endif
 /* USER CODE END Private defines */
 
 #ifdef __cplusplus
