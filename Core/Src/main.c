@@ -531,12 +531,13 @@ int main(void)
 		}
 		continue;
 	}
-
+#if 0
 	// Enter CPU sleep until next interrupt.
 	if(	hdma_tim3_ch1_trig.State != HAL_DMA_STATE_BUSY
 		&& hdma_i2c2_tx.State != HAL_DMA_STATE_BUSY) {
 		HAL_PWR_EnterSLEEPMode(PWR_LOWPOWERREGULATOR_ON, PWR_SLEEPENTRY_WFI);
 	}
+#endif
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
