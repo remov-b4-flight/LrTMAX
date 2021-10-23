@@ -337,9 +337,6 @@ int main(void)
   isPrev_sw = false;
   isKeyRelaseSent = true;
   isLEDsendpulse = false;
-#if 0
-  ExpandModifiers();
-#endif
   /* USER CODE END Init */
 
   /* Configure the system clock */
