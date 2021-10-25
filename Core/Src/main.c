@@ -65,9 +65,7 @@ TIM_HandleTypeDef htim14;
 DMA_HandleTypeDef hdma_tim3_ch1_trig;
 
 /* USER CODE BEGIN PV */
-#if !(ENC_9R5KQ)
-#error "EC11 encoder is not supported."
-#endif
+
 //! STM32 TIM3 instance handle
 TIM_HandleTypeDef htim3;
 extern	USBD_HandleTypeDef hUsbDeviceFS;
