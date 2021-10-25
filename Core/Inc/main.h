@@ -80,7 +80,7 @@ void Start_LCDTimer(uint32_t tick);
 /* Private defines -----------------------------------------------------------*/
 #define TIM_PRESC_1uS 47
 #define TIM_PRESC_100uS 4799
-#define TIM_PERIOD_4mS 8000
+#define TIM_PERIOD_8mS 8000
 #define TIM_PERIOD_1SEC 10000
 #define TIM_PERIOD_125uS 125
 #if 0
