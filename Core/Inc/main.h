@@ -80,10 +80,12 @@ void Start_LCDTimer(uint32_t tick);
 /* Private defines -----------------------------------------------------------*/
 #define TIM_PRESC_1uS 47
 #define TIM_PRESC_100uS 4799
-#define TIM_PERIOD_4mS 4000
+#define TIM_PERIOD_4mS 8000
 #define TIM_PERIOD_1SEC 10000
 #define TIM_PERIOD_125uS 125
+#if 0
 #define TIM_PERIOD_10mS 10000
+#endif
 #define LrE6_PID 0xA380
 #define LrE6_PRODUCT "LrTMAX"
 #define LrE6_VENDOR "Ruffles Inc."
@@ -251,15 +253,15 @@ enum {
 #define PRMASK_R7	0x00C0
 
 // Screen timer definitions
-#define MSG_TIMER_DEFAULT	1000	//4s (1 tick=4ms)
-#define MSG_TIMER_INIT		10      //40ms SSD1306 initialize time
-#define MSG_TIMER_UPDATE	250		//1s (LCD update in USB not connected)
+#define MSG_TIMER_DEFAULT	500		//4s (1 tick=8ms)
+#define MSG_TIMER_INIT		8      	//40ms SSD1306 initialize time
+#define MSG_TIMER_UPDATE	125		//1s (LCD update in USB not connected)
 
 // LED timer definitions
-#define LED_TIM_NORM		20		//320ms (1 tick=16ms)
-#define LED_TIM_HALF		10		//160ms
-#define LED_TIM_LONG		40		//640ms
-#define	LED_TIM_CONNECT		100		//1.5Sec
+#define LED_TIM_NORM		10		//320ms (1 tick=32ms)
+#define LED_TIM_HALF		5		//160ms
+#define LED_TIM_LONG		20		//640ms
+#define	LED_TIM_CONNECT		50		//1.5Sec
 //! LED TIM3 definitions
 #define LED_TIM_RETRY_WAIT	21		//Transfer period for I2C
 
