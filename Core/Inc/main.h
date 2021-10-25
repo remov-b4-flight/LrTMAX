@@ -253,9 +253,9 @@ enum {
 #define PRMASK_R7	0x00C0
 
 // Screen timer definitions
-#define MSG_TIMER_DEFAULT	500		//4s (1 tick=8ms)
+#define MSG_TIMER_DEFAULT	500		//4Sec (1 tick=8ms)
 #define MSG_TIMER_INIT		8      	//40ms SSD1306 initialize time
-#define MSG_TIMER_UPDATE	125		//1s (LCD update in USB not connected)
+#define MSG_TIMER_UPDATE	125		//1Sec (LCD update in USB not connected)
 
 // LED timer definitions
 #define LED_TIM_NORM		10		//320ms (1 tick=32ms)
