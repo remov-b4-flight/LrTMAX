@@ -43,7 +43,7 @@
 
 /* Exported macro ------------------------------------------------------------*/
 /* USER CODE BEGIN EM */
-#if ENC_9R5KQ
+
 //! 9R5KQ type Encoder
 enum enc9R5_t {
 	ENC_MV3 =	3,
@@ -51,15 +51,6 @@ enum enc9R5_t {
 	ENC_MV1	=	1,
 	ENC_MV0	=	0,
 };
-#else
-enum ec11_t {
-	//! Standard EC11 type Encoder
-	ENC_MOVE =	0,
-	ENC_MVCCW =	2,
-	ENC_MVCW =	1,
-	ENC_NOMV =	3,
-};
-#endif
 
 #define ENC5A_MASK	0x1000
 #define ENC5B_MASK	0x2000

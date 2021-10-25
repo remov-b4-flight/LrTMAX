@@ -65,9 +65,7 @@ TIM_HandleTypeDef htim14;
 DMA_HandleTypeDef hdma_tim3_ch1_trig;
 
 /* USER CODE BEGIN PV */
-#if !(ENC_9R5KQ)
-#error "EC11 encoder is not supported."
-#endif
+
 //! STM32 TIM3 instance handle
 TIM_HandleTypeDef htim3;
 extern	USBD_HandleTypeDef hUsbDeviceFS;
@@ -82,8 +80,10 @@ bool		isKeyPressed;
 KEYSCAN     Key_Stat;
 //! In key scanning whether Line selected to read for key matrix.
 uint8_t		Key_Line;
+#if 0
 //! If true, MIDI Event/HID packet is sent by key pressed/encoder moved. if false, not sent.
 bool		isKeyRelaseSent;
+#endif
 //! If true, MIDI event previous sent is switch. if false, it's encoder
 bool		isPrev_sw;
 //! Bit masks for which bit of KEYSCAN variable acts as key.
@@ -335,7 +335,9 @@ int main(void)
   LrE6Scene	= LrE6_SCENE0;
 
   isPrev_sw = false;
+#if 0
   isKeyRelaseSent = true;
+#endif
   isLEDsendpulse = false;
   /* USER CODE END Init */
 
