@@ -80,8 +80,10 @@ bool		isKeyPressed;
 KEYSCAN     Key_Stat;
 //! In key scanning whether Line selected to read for key matrix.
 uint8_t		Key_Line;
+#if 0
 //! If true, MIDI Event/HID packet is sent by key pressed/encoder moved. if false, not sent.
 bool		isKeyRelaseSent;
+#endif
 //! If true, MIDI event previous sent is switch. if false, it's encoder
 bool		isPrev_sw;
 //! Bit masks for which bit of KEYSCAN variable acts as key.
@@ -333,7 +335,9 @@ int main(void)
   LrE6Scene	= LrE6_SCENE0;
 
   isPrev_sw = false;
+#if 0
   isKeyRelaseSent = true;
+#endif
   isLEDsendpulse = false;
   /* USER CODE END Init */
 
