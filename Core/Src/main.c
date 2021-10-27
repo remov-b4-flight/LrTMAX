@@ -38,9 +38,9 @@
 /* Private typedef -----------------------------------------------------------*/
 /* USER CODE BEGIN PTD */
 #ifdef DEBUG
-#define CONN_MSG	"%s %2x.%02xD"
+#define CONN_MSG	"%2x.%02xD"
 #else
-#define CONN_MSG	"%s %2x.%02x"
+#define CONN_MSG	"%2x.%02x"
 #endif
 /* USER CODE END PTD */
 
@@ -382,7 +382,7 @@ int main(void)
 		//USB device configured by host
 		LED_SetScene(LrE6Scene);
 		SSD1306_SetScreen(ON);
-		sprintf(Msg_Buffer[0], CONN_MSG, LrE6_PRODUCT ,USBD_DEVICE_VER_MAJ, USBD_DEVICE_VER_MIN);
+		sprintf(Msg_Buffer[0], CONN_MSG, USBD_DEVICE_VER_MAJ, USBD_DEVICE_VER_MIN);
 
 #ifdef DEBUG
 		int ch = ' ';
@@ -390,7 +390,7 @@ int main(void)
 		Msg_Print();
 #else
 		SSD1306_LoadBitmap();
-		SSD1306_RenderBanner(Msg_Buffer[0], 12, 12, INP);
+		SSD1306_RenderBanner(Msg_Buffer[0], 80, 0, INP);
 		SSD1306_FlashScreen();
 #endif
 		Msg_Off_Flag = false;
