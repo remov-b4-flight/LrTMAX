@@ -10,6 +10,7 @@
 #include "led.h"
 
 extern TIM_HandleTypeDef htim3;
+extern TIM_HandleTypeDef htim14;
 extern bool	isLEDsendpulse;
 uint8_t		LEDColor[LED_COUNT];		// coded LED color value
 uint16_t	LEDPulse[TOTAL_BITS + 1];	// Data formed PWM width send to LED
@@ -46,6 +47,20 @@ void LED_Initialize(){
 	memset(LEDTimer, LED_TIMER_CONSTANT, LED_COUNT);
 	LED_SendPulse();
 }
+
+/**
+ * @brief Delay process in us unit.
+ * @param microsec : duration to wait.
+ */
+static void LED_Delay_us(uint32_t microsec){
+	HAL_TIM_Base_Start(&htim14);
+	htim14.Instance->SR = 0;
+
+	while((htim14.Instance->SR & TIM_SR_UIF) == 0)	;	//wait until timer up.
+
+	HAL_TIM_Base_Stop(&htim14);
+}
+
 /**
  *	@brief	Sets decorative color pattern to LEDs.
  */
@@ -109,7 +124,7 @@ bool LED_SendPulse(){
 	GPIOA->MODER &= ~(GPIO_MODER_MODER6_1);
 	GPIOA->MODER |=	GPIO_MODER_MODER6_0;
 	//Earning 'RESET' Time period.
-	Delay_us(LED_RESET_WIDTH);
+	LED_Delay_us(LED_RESET_WIDTH);
 	//Set PA6 GPIO -> AF
 	GPIOA->MODER ^= (GPIO_MODER_MODER6_1|GPIO_MODER_MODER6_0);
 	htim3.Instance->CNT = (PWM_PERIOD);

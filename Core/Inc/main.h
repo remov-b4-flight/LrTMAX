@@ -73,7 +73,6 @@ void HAL_TIM_MspPostInit(TIM_HandleTypeDef *htim);
 void Error_Handler(void);
 
 /* USER CODE BEGIN EFP */
-void Delay_us(uint32_t microsec);
 void Start_LCDTimer(uint32_t tick);
 /* USER CODE END EFP */
 

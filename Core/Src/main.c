@@ -94,12 +94,10 @@ int32_t		Msg_Timer_Count;
 bool		Msg_Timer_Enable;
 //! If true, Screen is cleared in main() that is determined on timer interrupt.
 bool		Msg_Off_Flag;
-//! Indicates 1st Msg_Timer timeout has occured from power on reset.
-bool		Msg_1st_timeout;
 //! If true, Screen is flashed by Msg_Buffer[] at main() function.
-bool		isMsgFlash;
+static	bool	isMsgFlash;
 //! If true, frame_buffer[] contents flashes the screen.
-bool		isRender;
+static	bool	isRender;
 
 // LED variables
 //! If true, LEDs are flashed by LEDColor[] array.
@@ -148,24 +146,6 @@ void EmulateKeyboard();
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
-
-/**
- * @brief Delay process in us unit.
- * @param microsec : duration to wait.
- */
-void Delay_us(uint32_t microsec){
-
-	htim14.Init.Period = microsec;
-#if 0
-	HAL_TIM_Base_Init(&htim14);
-#endif
-	HAL_TIM_Base_Start(&htim14);
-	htim14.Instance->SR = 0;
-
-	while((htim14.Instance->SR & TIM_SR_UIF) == 0)	;	//wait until timer up.
-
-	HAL_TIM_Base_Stop(&htim14);
-}
 
 static inline void Start_MsgTimer(uint32_t tick){
 	Msg_Timer_Count = tick;
@@ -310,6 +290,8 @@ static void EmulateMIDI(){
 int main(void)
 {
   /* USER CODE BEGIN 1 */
+  //! Indicates 1st Msg_Timer timeout has occured from power on reset.
+  bool Msg_1st_timeout = true;
 
   /* USER CODE END 1 */
 
@@ -323,7 +305,6 @@ int main(void)
   Msg_Off_Flag = false;
   Msg_Timer_Enable = false;
   Msg_Timer_Count = MSG_TIMER_DEFAULT;
-  Msg_1st_timeout = true;
   isMsgFlash = false;
   isRender = true;
 
