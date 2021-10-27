@@ -292,7 +292,6 @@ int main(void)
   /* USER CODE BEGIN 1 */
   //! Indicates 1st Msg_Timer timeout has occured from power on reset.
   bool Msg_1st_timeout = true;
-
   /* USER CODE END 1 */
 
   /* MCU Configuration--------------------------------------------------------*/
