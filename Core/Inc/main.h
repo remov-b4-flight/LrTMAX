@@ -1,8 +1,8 @@
 /* USER CODE BEGIN Header */
 /**
   ******************************************************************************
-  * @file           : main.h
-  * @brief          : Header for main.c file.
+  * @file	main.h
+  * @brief	Header for main.c file.
   *                   This file contains the common defines of the application.
   ******************************************************************************
   * @attention
@@ -82,11 +82,9 @@ void Start_LCDTimer(uint32_t tick);
 #define TIM_PERIOD_8mS 8000
 #define TIM_PERIOD_1SEC 10000
 #define TIM_PERIOD_125uS 125
-#if 0
-#define TIM_PERIOD_10mS 10000
-#endif
+
 #define LrE6_PID 0xA380
-#define LrE6_PRODUCT "LrTMAX"
+#define Lr_PRODUCT "LrTMAX"
 #define LrE6_VENDOR "Ruffles Inc."
 #define PWM_PERIOD 59	//1.25 us
 #define PWM_HI 38 //791ns
@@ -171,9 +169,9 @@ void Start_LCDTimer(uint32_t tick);
 #define ENC1B_EXTI_IRQn EXTI4_15_IRQn
 /* USER CODE BEGIN Private defines */
 #undef	LrE6_PID
-#undef	LrE6_PRODUCT
+#undef	Lr_PRODUCT
 #define LrE6_PID 0xA380
-#define LrE6_PRODUCT "LrTMAX"
+#define Lr_PRODUCT "LrTMAX"
 #define LrE6_VENDOR "Ruffles Inc."
 
 //! LrE-6 Ports on Board
@@ -268,9 +266,7 @@ enum {
 #define ENC_MOVE_CW         1
 #define ENC_MOVE_CCW        2
 #define ENC_MASK			0x03
-#if 0
-#define MOD_SW_BIT_MASK		0xffffffff
-#endif
+
 //! I2C time definitions
 #define I2C_RETRY_WAIT		2		//Transfer period for TIM3 PWM
 #if 0

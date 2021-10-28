@@ -2,7 +2,7 @@
  * @file	midi.h
  * @brief	header file for USB MIDI function.
  * @author	remov-b4-flight
- * @copyright GPLv3
+ * @copyright	3-Clause BSD Licence 
  */
 
 #ifndef INC_MIDI_NOTE_H_

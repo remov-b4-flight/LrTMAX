@@ -2,7 +2,7 @@
  * 	@file led.h
  *	@brief (WS2812B style) RGB LEDs control functions.
  *	@author remov-b4-flight
- *	@copyright	GPLv3
+ *	@copyright	3-Clause BSD Licence
  */
 
 #ifndef _LED_H    /* Guard against multiple inclusion */

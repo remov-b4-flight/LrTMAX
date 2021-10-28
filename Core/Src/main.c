@@ -4,7 +4,7 @@
   * @file main.c
   * @brief  Main program body
   * @author	remov-b4-flight
-  * @copyright GPLv3
+  * @copyright	3-Clause BSD Licence
   ******************************************************************************
   * @attention
   *
@@ -38,7 +38,7 @@
 /* Private typedef -----------------------------------------------------------*/
 /* USER CODE BEGIN PTD */
 #ifdef DEBUG
-#define CONN_MSG	"%2x.%02xD"
+#define CONN_MSG	"%s %2x.%02xD"
 #else
 #define CONN_MSG	"%2x.%02x"
 #endif
@@ -54,8 +54,9 @@
 /* USER CODE END PM */
 
 /* Private variables ---------------------------------------------------------*/
+#if 0
 ADC_HandleTypeDef hadc;
-
+#endif
 I2C_HandleTypeDef hi2c2;
 DMA_HandleTypeDef hdma_i2c2_tx;
 
@@ -381,13 +382,14 @@ int main(void)
 		//USB device configured by host
 		LED_SetScene(LrE6Scene);
 		SSD1306_SetScreen(ON);
-		sprintf(Msg_Buffer[0], CONN_MSG, USBD_DEVICE_VER_MAJ, USBD_DEVICE_VER_MIN);
 
 #ifdef DEBUG
 		int ch = ' ';
+		sprintf(Msg_Buffer[0], CONN_MSG, Lr_PRODUCT, USBD_DEVICE_VER_MAJ, USBD_DEVICE_VER_MIN);
 		memset(Msg_Buffer[1], ch, MSG_WIDTH );
 		Msg_Print();
 #else
+		sprintf(Msg_Buffer[0], CONN_MSG, USBD_DEVICE_VER_MAJ, USBD_DEVICE_VER_MIN);
 		SSD1306_LoadBitmap();
 		SSD1306_RenderBanner(Msg_Buffer[0], 80, 0, INP);
 		SSD1306_FlashScreen();

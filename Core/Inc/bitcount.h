@@ -2,7 +2,7 @@
  * @file	bitcount.h
  * @brief	header file for 'bit count' functions.
  * @author	remov-b4-flight
- * @copyright	GPLv3
+ * @copyright	3-Clause BSD Licence
  */
 
 #ifndef BITCOUNT_H

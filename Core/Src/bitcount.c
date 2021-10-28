@@ -1,8 +1,8 @@
 /**
  *	@file	bitcount.c
  *	@brief 'bit count' functions
- *  @author	remov-b4-flight
- *	@copyright	GPLv3
+ *	@author	remov-b4-flight
+ *	@copyright	3-Clause BSD Licence
  *
  */
 /* Includes ------------------------------------------------------------------*/
