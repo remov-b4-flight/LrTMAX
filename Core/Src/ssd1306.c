@@ -18,7 +18,7 @@ extern uint8_t Font8x16[];
 extern uint8_t connect_bitmap[];
 
 //! @brief SSD1306 OLED frame buffer
-static uint8_t Frame_Buffer[SSD1306_WIDTH * MAX_PAGE];
+static uint8_t Frame_Buffer[SSD1306_WIDTH * (MAX_PAGE+1)];
 
 /**
  * @brief Write SSD1306 command register
@@ -138,7 +138,6 @@ bool SSD1306_FlashScreen(void) {
 void SSD1306_SetScreen(bool on){
     SSD1306_WriteCommand( (on)? CMD_DISPLAY_ON : CMD_DISPLAY_OFF );
 }
-#ifndef debug
 /**
  * @brief Render Msg_Buffer contents to frame buffer
  * @pre Sets up string contents to Msg_Buffer
@@ -163,7 +162,7 @@ void SSD1306_Render2Buffer(void){
 		}//Msg_Buffer column Loop
 	}//Msg_Buffer line Loop
 }
-#endif
+#ifndef DEBUG
 /**
  * @brief Rendar banner message to frame buffer
  * @param string	Message to screen
@@ -173,12 +172,12 @@ void SSD1306_Render2Buffer(void){
  */
 void SSD1306_RenderBanner(char *string, int x, int y ,uint8_t op){
 	uint8_t	page = y / BITS_PER_PAGE;
-	if (page == MAX_PAGE) {
-		page = MAX_PAGE -1;
+	if (page >= MAX_PAGE) {
+		page = MAX_PAGE;
 	}
-	int l = strlen(string);
-	if ( ((l * FONT_WIDTH) + x) > SSD1306_WIDTH ){
-		x = SSD1306_WIDTH - (FONT_WIDTH * l);
+	int len = strlen(string);
+	if ( ((len * FONT_WIDTH) + x) > (SSD1306_WIDTH-1) ){
+		x = SSD1306_WIDTH - (FONT_WIDTH * len);
 		if (x < 0) {
 			x = 0;
 		}
@@ -201,14 +200,13 @@ void SSD1306_RenderBanner(char *string, int x, int y ,uint8_t op){
 		}//Frame Buffer column Loop
 	}//String Loop
 }
+#endif
 #ifndef DEBUG
 /**
  * @brief Load bitmap image to frame buffer
  * @param bitmap SSD1306 style bitmap 8bit array.
  */
 void SSD1306_LoadBitmap(){
-	for (size_t i = 0; i < FB_SIZE; i++){
-		Frame_Buffer[i] = connect_bitmap[i];
-	}
+	memcpy(Frame_Buffer,connect_bitmap,FB_SIZE);
 }
 #endif

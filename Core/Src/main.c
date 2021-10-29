@@ -391,7 +391,7 @@ int main(void)
 #else
 		sprintf(Msg_Buffer[0], CONN_MSG, USBD_DEVICE_VER_MAJ, USBD_DEVICE_VER_MIN);
 		SSD1306_LoadBitmap();
-		SSD1306_RenderBanner(Msg_Buffer[0], 80, 0, INP);
+		SSD1306_RenderBanner(Msg_Buffer[0], 88, 0, XOR);
 		SSD1306_FlashScreen();
 #endif
 		Msg_Off_Flag = false;
@@ -488,6 +488,9 @@ int main(void)
 		Msg_Off_Flag = false;
 		SSD1306_SetScreen(OFF);
 		SSD1306_ClearBuffer();
+#if 0
+		HAL_PWR_EnterSLEEPMode(PWR_LOWPOWERREGULATOR_ON, PWR_SLEEPENTRY_WFI);
+#endif
 		continue;
 	}
 
@@ -505,13 +508,6 @@ int main(void)
 		}
 		continue;
 	}
-#if 0
-	// Enter CPU sleep until next interrupt.
-	if(	hdma_tim3_ch1_trig.State != HAL_DMA_STATE_BUSY
-		&& hdma_i2c2_tx.State != HAL_DMA_STATE_BUSY) {
-		HAL_PWR_EnterSLEEPMode(PWR_LOWPOWERREGULATOR_ON, PWR_SLEEPENTRY_WFI);
-	}
-#endif
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
