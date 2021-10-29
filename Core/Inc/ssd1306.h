@@ -23,7 +23,7 @@ _BEGIN_STD_C
 
 #define SSD1306_USE_DMA	1
 
-//! @def LrE-6 I2C hardware
+//! @def LrTMAX I2C hardware
 #define SSD1306_I2C_PORT		hi2c2
 #define SSD1306_I2C_ADDR        (0x3C << 1)
 extern	I2C_HandleTypeDef		SSD1306_I2C_PORT;

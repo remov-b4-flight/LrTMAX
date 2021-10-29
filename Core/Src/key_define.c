@@ -6,7 +6,7 @@
 * In MIDI use , users can send individual CC/Note event channel per switch and encoder.
 * At switches, LrTMAX sends Note message has velocity= 127 when switch on, and sends velocity = 0 when switch off.
 * At encoder, LrTMAX sends CC message every encoders move,values are increase/decrease by towards.
-* LrE-6 MIDI can use 'Scene'. Users can alter all SW/Encoder definition. To alter Scene, push SW10.
+* Lr**** MIDI can use 'Scene'. Users can alter all SW/Encoder definition. To alter Scene, push SW10.
 * Users can use up to 4 Scenes. SW10 is fixed for Scene function.
 *
 * Scene / CC event channel definition (by Encoders)

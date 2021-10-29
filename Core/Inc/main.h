@@ -174,7 +174,7 @@ void Start_LCDTimer(uint32_t tick);
 #define Lr_PRODUCT "LrTMAX"
 #define LrE6_VENDOR "Ruffles Inc."
 
-//! LrE-6 Ports on Board
+//! LrTMAX Ports on Board
 #define Mx_GPIO_Port GPIOA
 #define ENC0_GPIO_Port GPIOA
 #define ENC1_GPIO_Port GPIOB
@@ -188,11 +188,11 @@ void Start_LCDTimer(uint32_t tick);
 #define ENC6_GPIO_Port GPIOB
 #define ENC7_GPIO_Port GPIOB
 
-//! LrE-6 Hardware definition
+//! Lr**** Hardware definition
 #define KEY_COUNT	16
 #define	ENC_COUNT	8
 
-//! LrE-6 States
+//! Lr**** States
 enum lre6_state_t {
 	LRE6_RESET,        //!< LRE6_RESET
 	LRE6_USB_NOLINK,   //!< LRE6_USB_NOLINK

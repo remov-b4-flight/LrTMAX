@@ -70,9 +70,9 @@ DMA_HandleTypeDef hdma_tim3_ch1_trig;
 //! STM32 TIM3 instance handle
 TIM_HandleTypeDef htim3;
 extern	USBD_HandleTypeDef hUsbDeviceFS;
-//! LrE-6 USB connection state
+//! Lr**** USB connection state
 uint8_t		LrE6State;
-//! LrE-6 scene index
+//! Lr**** Scene index
 uint8_t		LrE6Scene;
 // keyboard variable
 //! If true, ISR detected any Key/Encoder was moved.

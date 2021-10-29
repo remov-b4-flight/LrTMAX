@@ -23,7 +23,7 @@ static uint8_t  USBD_MIDI_DataOut (USBD_HandleTypeDef *pdev, uint8_t epnum);
 static uint8_t  *USBD_MIDI_GetCfgDesc (uint16_t *length);
 //uint8_t  *USBD_MIDI_GetDeviceQualifierDescriptor (uint16_t *length);
 USBD_HandleTypeDef *pInstance = NULL; 
-#if 0 //Unused for LrE-6
+#if 0 //Unused for Lr****
 uint32_t APP_Rx_ptr_in  = 0;
 uint32_t APP_Rx_ptr_out = 0;
 uint32_t APP_Rx_length  = 0;
@@ -110,7 +110,7 @@ static uint8_t USBD_MIDI_DeInit (USBD_HandleTypeDef *pdev, uint8_t cfgidx){
 }
 
 static uint8_t USBD_MIDI_DataIn (USBD_HandleTypeDef *pdev, uint8_t epnum){
-#if 0 //Unused for LrE-6
+#if 0 //Unused for Lr****
   if (USB_Tx_State == 1){
     USB_Tx_State = 0;
   }
@@ -132,7 +132,7 @@ static uint8_t  USBD_MIDI_DataOut (USBD_HandleTypeDef *pdev, uint8_t epnum)
   USBD_LL_PrepareReceive(pdev,MIDI_OUT_EP,(uint8_t*)(USB_Rx_Buffer),MIDI_DATA_OUT_PACKET_SIZE);
   return USBD_OK;
 }
-#if 0 //Unused for LrE-6
+#if 0 //Unused for Lr****
 void USBD_MIDI_SendPacket (){
   uint16_t USB_Tx_ptr;
   uint16_t USB_Tx_length;
