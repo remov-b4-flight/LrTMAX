@@ -27,7 +27,7 @@
 #include "led.h"
 
 /* Variables ----------------------------------------------------------------*/
-//! User-friendly scene names appears on LCD.
+//! User-friendly scene names appears on OLED.
 const char *scene_name[SCENE_COUNT] = {
 /*		 0123456789ABCDEF */
 		"Library",

@@ -620,7 +620,7 @@ void TIM1_BRK_UP_TRG_COM_IRQHandler(void)
             break;
     }
 
-    //LCD timer
+    //OLED timer
     if(Msg_Timer_Enable == true && (--Msg_Timer_Count) <= 0){
     	Msg_Timer_Enable = false;
         Msg_Off_Flag = true;

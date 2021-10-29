@@ -88,7 +88,7 @@ uint32_t	MaskKey[SCENE_COUNT];
 //! Bit masks for which bit of KEYSCAN variable acts as encoder.
 uint32_t	MaskEnc[SCENE_COUNT];
 
-// LCD variables
+// OLED variables
 //! Timer counter ticked by end of L3 matrix scanning. (16ms interval).
 int32_t		Msg_Timer_Count;
 //! If true Msg_Timer counting is enabled.
@@ -212,7 +212,7 @@ static void EmulateMIDI(){
             }
         	isKeyReport = true;
 
-            //Print Message to LCD & LED
+            //Print Message to OLED & LED
             if (keytable[LrE6Scene][bitpos].message != NULL) {
             	SSD1306_SetScreen(ON);
 
@@ -246,7 +246,7 @@ static void EmulateMIDI(){
             USBMIDI_Event[MIDI_EV_IDX_VALUE] = val;
             isPrev_sw = false;
 
-            //Print Message to LCD & LED
+            //Print Message to OLED & LED
             if (keytable[LrE6Scene][bitpos].message != NULL) {
             	SSD1306_SetScreen(ON);
                 sprintf(msg_string,
@@ -351,7 +351,7 @@ int main(void)
   LED_Initialize();						//Set all LEDs to 'OFF'
 
   //Initialize SSD1306 OLED
-  HAL_Delay(SSD1306_PWRUP_WAIT);		//Wait for LCD module power up.
+  HAL_Delay(SSD1306_PWRUP_WAIT);		//Wait for OLED module power up.
   SSD1306_Initialize();
   /* USER CODE END 2 */
 
@@ -442,7 +442,7 @@ int main(void)
 
 				Msg_Print();
 
-				//Restart LCD timer.
+				//Restart OLED timer.
 				Msg_Off_Flag = false;
 				Start_MsgTimer(MSG_TIMER_UPDATE);
 
@@ -483,7 +483,7 @@ int main(void)
 		continue;
 	}
 
-	//LCD off Timer
+	//OLED off Timer
 	if(Msg_Off_Flag == true){
 		Msg_Off_Flag = false;
 		SSD1306_SetScreen(OFF);
@@ -494,7 +494,7 @@ int main(void)
 		continue;
 	}
 
-	//Flashing LCD.
+	//Flashing OLED.
 	if (isMsgFlash == true) {
 		if (isRender == true) {
 			SSD1306_Render2Buffer();

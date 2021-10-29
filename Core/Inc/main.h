@@ -3,7 +3,7 @@
   ******************************************************************************
   * @file	main.h
   * @brief	Header for main.c file.
-  *                   This file contains the common defines of the application.
+  * 		This file contains the common defines of the application.
   ******************************************************************************
   * @attention
   *
@@ -73,7 +73,7 @@ void HAL_TIM_MspPostInit(TIM_HandleTypeDef *htim);
 void Error_Handler(void);
 
 /* USER CODE BEGIN EFP */
-void Start_LCDTimer(uint32_t tick);
+
 /* USER CODE END EFP */
 
 /* Private defines -----------------------------------------------------------*/
@@ -252,7 +252,7 @@ enum {
 // Screen timer definitions
 #define MSG_TIMER_DEFAULT	500		//4Sec (1 tick=8ms)
 #define MSG_TIMER_INIT		8      	//40ms SSD1306 initialize time
-#define MSG_TIMER_UPDATE	125		//1Sec (LCD update in USB not connected)
+#define MSG_TIMER_UPDATE	125		//1Sec (OLED update in USB not connected)
 
 // LED timer definitions
 #define LED_TIM_NORM		10		//320ms (1 tick=32ms)
