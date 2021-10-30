@@ -575,6 +575,14 @@ void TIM1_BRK_UP_TRG_COM_IRQHandler(void)
 {
   /* USER CODE BEGIN TIM1_BRK_UP_TRG_COM_IRQn 0 */
     uint8_t r;
+
+    //OLED timer
+    if(Msg_Timer_Enable == true && (--Msg_Timer_Count) <= 0){
+    	Msg_Timer_Enable = false;
+    	Msg_Timer_Count = -1;
+        Msg_Off_Flag = true;
+    }
+
     //keyboard matrix
     switch(Key_Line){
         case L0:
@@ -620,11 +628,6 @@ void TIM1_BRK_UP_TRG_COM_IRQHandler(void)
             break;
     }
 
-    //OLED timer
-    if(Msg_Timer_Enable == true && (--Msg_Timer_Count) <= 0){
-    	Msg_Timer_Enable = false;
-        Msg_Off_Flag = true;
-    }
 
 
   /* USER CODE END TIM1_BRK_UP_TRG_COM_IRQn 0 */

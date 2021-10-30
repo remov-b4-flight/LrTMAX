@@ -33,7 +33,7 @@ extern "C" {
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 #define USBD_DEVICE_VER_MAJ	0x00
-#define USBD_DEVICE_VER_MIN	0x52
+#define USBD_DEVICE_VER_MIN	0x53
 /* USER CODE END Includes */
 
 /* Exported types ------------------------------------------------------------*/
@@ -250,15 +250,15 @@ enum {
 #define PRMASK_R7	0x00C0
 
 // Screen timer definitions
-#define MSG_TIMER_DEFAULT	500		//4Sec (1 tick=8ms)
-#define MSG_TIMER_INIT		8      	//40ms SSD1306 initialize time
-#define MSG_TIMER_UPDATE	125		//1Sec (OLED update in USB not connected)
+#define MSG_TIMER_DEFAULT	600		//4.8Sec (1 tick=8ms)
+#define MSG_TIMER_INIT		10		//80ms SSD1306 initialize time
+#define MSG_TIMER_UPDATE	200		//1.6Sec (OLED update in USB not connected)
 
 // LED timer definitions
-#define LED_TIM_NORM		10		//320ms (1 tick=32ms)
-#define LED_TIM_HALF		5		//160ms
-#define LED_TIM_LONG		20		//640ms
-#define	LED_TIM_CONNECT		50		//1.5Sec
+#define LED_TIM_NORM		20		//640ms (1 tick=32ms)
+#define LED_TIM_HALF		10		//320ms
+#define LED_TIM_LONG		40		//1.28Sec
+#define	LED_TIM_CONNECT		100		//3.2Sec
 //! LED TIM3 definitions
 #define LED_TIM_RETRY_WAIT	21		//Transfer period for I2C
 
