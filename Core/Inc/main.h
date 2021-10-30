@@ -83,9 +83,9 @@ void Error_Handler(void);
 #define TIM_PERIOD_1SEC 10000
 #define TIM_PERIOD_125uS 125
 
-#define LrE6_PID 0xA380
+#define Lr_PID 0xA380
 #define Lr_PRODUCT "LrTMAX"
-#define LrE6_VENDOR "Ruffles Inc."
+#define Lr_VENDOR "Ruffles Inc."
 #define PWM_PERIOD 59	//1.25 us
 #define PWM_HI 38 //791ns
 #define PWM_LO 15 //312ns
@@ -168,11 +168,11 @@ void Error_Handler(void);
 #define ENC1B_GPIO_Port GPIOB
 #define ENC1B_EXTI_IRQn EXTI4_15_IRQn
 /* USER CODE BEGIN Private defines */
-#undef	LrE6_PID
+#undef	Lr_PID
 #undef	Lr_PRODUCT
-#define LrE6_PID 0xA380
+#define Lr_PID 0xA380
 #define Lr_PRODUCT "LrTMAX"
-#define LrE6_VENDOR "Ruffles Inc."
+#define Lr_VENDOR "Ruffles Inc."
 
 //! LrTMAX Ports on Board
 #define Mx_GPIO_Port GPIOA
