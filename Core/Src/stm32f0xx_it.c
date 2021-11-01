@@ -64,13 +64,12 @@ extern bool		isKeyPressed;
 extern KEYSCAN	Key_Stat;
 
 extern bool		Msg_Off_Flag;
-extern bool		Msg_Timer_Enable;
-extern int32_t	Msg_Timer_Count;
 extern char		*Msg_Buffer[];
 
 extern uint8_t	LEDColor[];
 extern uint8_t	LEDTimer[];
 extern bool		LED_Timer_Update;
+extern bool		Msg_Timer_Update;
 
 uint32_t previous_scan = 0;
 uint32_t previous_key = 0;
@@ -96,14 +95,14 @@ uint8_t     enc6_prev;
 uint8_t     enc7_prev;
 
 extern uint8_t MIDI_CC_Value[SCENE_COUNT][ENC_COUNT];
-extern uint8_t LrE6Scene;
+extern uint8_t LrScene;
 
 static inline void MIDI_CC_Inc(uint8_t enc){
-	if (MIDI_CC_Value[LrE6Scene][enc] < MIDI_CC_MAX ) MIDI_CC_Value[LrE6Scene][enc]++;
+	if (MIDI_CC_Value[LrScene][enc] < MIDI_CC_MAX ) MIDI_CC_Value[LrScene][enc]++;
 }
 
 static inline void MIDI_CC_Dec(uint8_t enc){
-	if (MIDI_CC_Value[LrE6Scene][enc] >= (MIDI_CC_MIN + 1) ) MIDI_CC_Value[LrE6Scene][enc]--;
+	if (MIDI_CC_Value[LrScene][enc] >= (MIDI_CC_MIN + 1) ) MIDI_CC_Value[LrScene][enc]--;
 }
 
 /* USER CODE END 0 */
@@ -114,6 +113,7 @@ extern DMA_HandleTypeDef hdma_i2c2_tx;
 extern I2C_HandleTypeDef hi2c2;
 extern DMA_HandleTypeDef hdma_tim3_ch1_trig;
 extern TIM_HandleTypeDef htim1;
+extern TIM_HandleTypeDef htim7;
 /* USER CODE BEGIN EV */
 extern TIM_HandleTypeDef htim3;
 /* USER CODE END EV */
@@ -219,21 +219,21 @@ void EXTI0_1_IRQHandler(void)
 		}else if( r4 == ENC_MV1 ){ //Moved
 			if( enc4_prev == ENC_MV0 ){
 				Key_Stat.nb.enc4 = ENC_MOVE_CW;
-	          	MIDI_CC_Inc(LrE6_ENC4);
+	          	MIDI_CC_Inc(Lr_ENC4);
 				isKeyPressed = true;
 			}else if( enc4_prev == ENC_MV3 ){
 				Key_Stat.nb.enc4 = ENC_MOVE_CCW;
-	          	MIDI_CC_Dec(LrE6_ENC4);
+	          	MIDI_CC_Dec(Lr_ENC4);
 				isKeyPressed = true;
 			}
 		}else if( r4 == ENC_MV2 ){ //Moved
 			if( enc4_prev == ENC_MV0 ){
 				Key_Stat.nb.enc4 = ENC_MOVE_CCW;
-	          	MIDI_CC_Dec(LrE6_ENC4);
+	          	MIDI_CC_Dec(Lr_ENC4);
 				isKeyPressed = true;
 			}else if( enc4_prev == ENC_MV3 ){
 				Key_Stat.nb.enc4 = ENC_MOVE_CW;
-	            MIDI_CC_Inc(LrE6_ENC4);
+	            MIDI_CC_Inc(Lr_ENC4);
 				isKeyPressed = true;
 			}
 		}
@@ -267,21 +267,21 @@ void EXTI2_3_IRQHandler(void)
 		}else if( r6 == ENC_MV1 ){ //Moved
 			if( enc6_prev == ENC_MV0 ){
 				Key_Stat.nb.enc6 = ENC_MOVE_CW;
-	          	MIDI_CC_Inc(LrE6_ENC6);
+	          	MIDI_CC_Inc(Lr_ENC6);
 				isKeyPressed = true;
 			}else if( enc6_prev == ENC_MV3 ){
 				Key_Stat.nb.enc6 = ENC_MOVE_CCW;
-	          	MIDI_CC_Dec(LrE6_ENC6);
+	          	MIDI_CC_Dec(Lr_ENC6);
 				isKeyPressed = true;
 			}
 		}else if( r6 == ENC_MV2 ){ //Moved
 			if( enc6_prev == ENC_MV0 ){
 				Key_Stat.nb.enc6 = ENC_MOVE_CCW;
-	          	MIDI_CC_Dec(LrE6_ENC6);
+	          	MIDI_CC_Dec(Lr_ENC6);
 				isKeyPressed = true;
 			}else if( enc6_prev == ENC_MV3 ){
 				Key_Stat.nb.enc6 = ENC_MOVE_CW;
-	            MIDI_CC_Inc(LrE6_ENC6);
+	            MIDI_CC_Inc(Lr_ENC6);
 				isKeyPressed = true;
 			}
 		}
@@ -315,21 +315,21 @@ void EXTI4_15_IRQHandler(void)
 		}else if( r0 == ENC_MV1 ){ //Moved
 			if(enc0_prev == ENC_MV0){
 				Key_Stat.nb.enc0 = ENC_MOVE_CW;
-		        MIDI_CC_Inc(LrE6_ENC0);
+		        MIDI_CC_Inc(Lr_ENC0);
 				isKeyPressed = true;
 			}else if( enc0_prev == ENC_MV3 ){
 				Key_Stat.nb.enc0 = ENC_MOVE_CCW;
-		        MIDI_CC_Dec(LrE6_ENC0);
+		        MIDI_CC_Dec(Lr_ENC0);
 		        isKeyPressed = true;
 			}
 		}else if( r0 == ENC_MV2 ){ //Moved
 			if( enc0_prev == ENC_MV0 ){
 				Key_Stat.nb.enc0 = ENC_MOVE_CCW;
-		        MIDI_CC_Dec(LrE6_ENC0);
+		        MIDI_CC_Dec(Lr_ENC0);
 				isKeyPressed = true;
 			}else if( enc0_prev == ENC_MV3 ){
 				Key_Stat.nb.enc0 = ENC_MOVE_CW;
-		        MIDI_CC_Inc(LrE6_ENC0);
+		        MIDI_CC_Inc(Lr_ENC0);
 				isKeyPressed = true;
 			}
 		}
@@ -352,21 +352,21 @@ void EXTI4_15_IRQHandler(void)
 		}else if( r7 == ENC_MV1 ){ //Moved
 			if(enc7_prev == ENC_MV0){
 				Key_Stat.nb.enc7 = ENC_MOVE_CW;
-		        MIDI_CC_Inc(LrE6_ENC7);
+		        MIDI_CC_Inc(Lr_ENC7);
 				isKeyPressed = true;
 			}else if( enc7_prev == ENC_MV3 ){
 				Key_Stat.nb.enc7 = ENC_MOVE_CCW;
-		        MIDI_CC_Dec(LrE6_ENC7);
+		        MIDI_CC_Dec(Lr_ENC7);
 		        isKeyPressed = true;
 			}
 		}else if( r7 == ENC_MV2 ){ //Moved
 			if( enc7_prev == ENC_MV0 ){
 				Key_Stat.nb.enc7 = ENC_MOVE_CCW;
-		        MIDI_CC_Dec(LrE6_ENC7);
+		        MIDI_CC_Dec(Lr_ENC7);
 				isKeyPressed = true;
 			}else if( enc7_prev == ENC_MV3 ){
 				Key_Stat.nb.enc7 = ENC_MOVE_CW;
-		        MIDI_CC_Inc(LrE6_ENC7);
+		        MIDI_CC_Inc(Lr_ENC7);
 				isKeyPressed = true;
 			}
 		}
@@ -389,21 +389,21 @@ void EXTI4_15_IRQHandler(void)
 		}else if( r1 == ENC_MV1 ){ //Moved
 			if( enc1_prev == ENC_MV0 ){
 				Key_Stat.nb.enc1 = ENC_MOVE_CW;
-				MIDI_CC_Inc(LrE6_ENC1);
+				MIDI_CC_Inc(Lr_ENC1);
 				isKeyPressed = true;
 			}else if( enc1_prev == ENC_MV3 ){
 				Key_Stat.nb.enc1 = ENC_MOVE_CCW;
-		        MIDI_CC_Dec(LrE6_ENC1);
+		        MIDI_CC_Dec(Lr_ENC1);
 				isKeyPressed = true;
 			}
 		}else if( r1 == ENC_MV2 ){ //Moved
 			if( enc1_prev == ENC_MV0 ){
 				Key_Stat.nb.enc1 = ENC_MOVE_CCW;
-		        MIDI_CC_Dec(LrE6_ENC1);
+		        MIDI_CC_Dec(Lr_ENC1);
 				isKeyPressed = true;
 			}else if( enc1_prev == ENC_MV3 ){
 				Key_Stat.nb.enc1 = ENC_MOVE_CW;
-				MIDI_CC_Inc(LrE6_ENC1);
+				MIDI_CC_Inc(Lr_ENC1);
 				isKeyPressed = true;
 			}
 		}
@@ -426,21 +426,21 @@ void EXTI4_15_IRQHandler(void)
 		}else if( r2 == ENC_MV1 ){ //Moved
 			if( enc2_prev == ENC_MV0 ){
 				Key_Stat.nb.enc2 = ENC_MOVE_CW;
-		        MIDI_CC_Inc(LrE6_ENC2);
+		        MIDI_CC_Inc(Lr_ENC2);
 				isKeyPressed = true;
 			}else if( enc2_prev == ENC_MV3 ){
 				Key_Stat.nb.enc2 = ENC_MOVE_CCW;
-				MIDI_CC_Dec(LrE6_ENC2);
+				MIDI_CC_Dec(Lr_ENC2);
 				isKeyPressed = true;
 			}
 		}else if( r2 == ENC_MV2 ){ //Moved
 			if( enc2_prev == ENC_MV0 ){
 				Key_Stat.nb.enc2 = ENC_MOVE_CCW;
-				MIDI_CC_Dec(LrE6_ENC2);
+				MIDI_CC_Dec(Lr_ENC2);
 				isKeyPressed = true;
 			}else if( enc2_prev == ENC_MV3 ){
 				Key_Stat.nb.enc2 = ENC_MOVE_CW;
-		        MIDI_CC_Inc(LrE6_ENC2);
+		        MIDI_CC_Inc(Lr_ENC2);
 				isKeyPressed = true;
 			}
 		}
@@ -463,21 +463,21 @@ void EXTI4_15_IRQHandler(void)
 		}else if( r5 == ENC_MV1 ){ //Moved
 			if( enc5_prev == ENC_MV0 ){
 				Key_Stat.nb.enc5 = ENC_MOVE_CW;
-		        MIDI_CC_Inc(LrE6_ENC5);
+		        MIDI_CC_Inc(Lr_ENC5);
 				isKeyPressed = true;
 			}else if( enc5_prev == ENC_MV3 ){
 				Key_Stat.nb.enc5 = ENC_MOVE_CCW;
-		        MIDI_CC_Dec(LrE6_ENC5);
+		        MIDI_CC_Dec(Lr_ENC5);
 				isKeyPressed = true;
 			}
 		}else if( r5 == ENC_MV2 ){ //Moved
 			if( enc5_prev == ENC_MV0 ){
 				Key_Stat.nb.enc5 = ENC_MOVE_CCW;
-		        MIDI_CC_Dec(LrE6_ENC5);
+		        MIDI_CC_Dec(Lr_ENC5);
 				isKeyPressed = true;
 			}else if( enc5_prev == ENC_MV3 ){
 				Key_Stat.nb.enc5 = ENC_MOVE_CW;
-		        MIDI_CC_Inc(LrE6_ENC5);
+		        MIDI_CC_Inc(Lr_ENC5);
 		        isKeyPressed = true;
 			}
 		}
@@ -501,21 +501,21 @@ void EXTI4_15_IRQHandler(void)
 		}else if( r3 == ENC_MV1 ){ //Moved
 			if( enc3_prev == ENC_MV0 ){
 				Key_Stat.nb.enc3 = ENC_MOVE_CW;
-		        MIDI_CC_Inc(LrE6_ENC3);
+		        MIDI_CC_Inc(Lr_ENC3);
 				isKeyPressed = true;
 			}else if( enc3_prev == ENC_MV3 ){
 				Key_Stat.nb.enc3 = ENC_MOVE_CCW;
-		        MIDI_CC_Dec(LrE6_ENC3);
+		        MIDI_CC_Dec(Lr_ENC3);
 				isKeyPressed = true;
 			}
 		}else if( r3 == ENC_MV2 ){ //Moved
 			if( enc3_prev == ENC_MV0 ){
 				Key_Stat.nb.enc3 = ENC_MOVE_CCW;
-		        MIDI_CC_Dec(LrE6_ENC3);
+		        MIDI_CC_Dec(Lr_ENC3);
 				isKeyPressed = true;
 			}else if( enc3_prev == ENC_MV3 ){
 				Key_Stat.nb.enc3 = ENC_MOVE_CW;
-		        MIDI_CC_Inc(LrE6_ENC3);
+		        MIDI_CC_Inc(Lr_ENC3);
 				isKeyPressed = true;
 			}
 		}
@@ -576,13 +576,6 @@ void TIM1_BRK_UP_TRG_COM_IRQHandler(void)
   /* USER CODE BEGIN TIM1_BRK_UP_TRG_COM_IRQn 0 */
     uint8_t r;
 
-    //OLED timer
-    if(Msg_Timer_Enable == true && (--Msg_Timer_Count) <= 0){
-    	Msg_Timer_Enable = false;
-    	Msg_Timer_Count = -1;
-        Msg_Off_Flag = true;
-    }
-
     //keyboard matrix
     switch(Key_Line){
         case L0:
@@ -635,6 +628,20 @@ void TIM1_BRK_UP_TRG_COM_IRQHandler(void)
   /* USER CODE BEGIN TIM1_BRK_UP_TRG_COM_IRQn 1 */
 
   /* USER CODE END TIM1_BRK_UP_TRG_COM_IRQn 1 */
+}
+
+/**
+  * @brief This function handles TIM7 global interrupt.
+  */
+void TIM7_IRQHandler(void)
+{
+  /* USER CODE BEGIN TIM7_IRQn 0 */
+  Msg_Timer_Update = true;
+  /* USER CODE END TIM7_IRQn 0 */
+  HAL_TIM_IRQHandler(&htim7);
+  /* USER CODE BEGIN TIM7_IRQn 1 */
+
+  /* USER CODE END TIM7_IRQn 1 */
 }
 
 /**

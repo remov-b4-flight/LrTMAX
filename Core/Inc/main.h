@@ -41,9 +41,9 @@ extern "C" {
 typedef union keyscan_t {
     uint32_t wd;
     struct ks_bit_t {
-        unsigned char n0:4;		//Switch Line0
-        unsigned char n1:4;		//Switch Line1
-        unsigned char n2:4;		//Switch Line2
+		unsigned char n0:4;		//Switch Line0
+		unsigned char n1:4;		//Switch Line1
+		unsigned char n2:4;		//Switch Line2
 		unsigned char n3:4;		//Switch Line3
 		unsigned char enc0:2;	//Rotary encoder
 		unsigned char enc1:2;	//Rotary encoder
@@ -78,9 +78,8 @@ void Error_Handler(void);
 
 /* Private defines -----------------------------------------------------------*/
 #define TIM_PRESC_1uS 47
-#define TIM_PRESC_100uS 4799
-#define TIM_PERIOD_8mS 8000
-#define TIM_PERIOD_1SEC 10000
+#define TIM_PERIOD_8mS 7999
+#define TIM_PERIOD_32mS 32768
 #define TIM_PERIOD_125uS 125
 
 #define Lr_PID 0xA380
@@ -193,12 +192,12 @@ void Error_Handler(void);
 #define	ENC_COUNT	8
 
 //! Lr**** States
-enum lre6_state_t {
-	LRE6_RESET,        //!< LRE6_RESET
-	LRE6_USB_NOLINK,   //!< LRE6_USB_NOLINK
-	LRE6_USB_LINKUP,   //!< LRE6_USB_LINKUP
-	LRE6_USB_LINKED,   //!< LRE6_USB_LINKED
-	LRE6_USB_LINK_LOST,//!< LRE6_USB_LINK_LOST
+enum lr_state_t {
+	LR_RESET,        //!< LR_RESET
+	LR_USB_NOLINK,   //!< LRE6_USB_NOLINK
+	LR_USB_LINKUP,   //!< LR_USB_LINKUP
+	LR_USB_LINKED,   //!< LR_USB_LINKED
+	LR_USB_LINK_LOST,//!< LR_USB_LINK_LOST
 };
 
 //! Key matrix lines
@@ -210,26 +209,26 @@ enum {
 };
 
 //! Scene definition in MIDI
-enum {
-	LrE6_SCENE0 = 0,
-	LrE6_SCENE1 = 1,
-	LrE6_SCENE2 = 2,
-	LrE6_SCENE3 = 3,
+enum lr_scene_t {
+	Lr_SCENE0 = 0,
+	Lr_SCENE1 = 1,
+	Lr_SCENE2 = 2,
+	Lr_SCENE3 = 3,
 };
+#define	SCENE_COUNT		4
 
 //! Encoder definitions
-enum {
-	LrE6_ENC0 = 0,
-	LrE6_ENC1,
-	LrE6_ENC2,
-	LrE6_ENC3,
-	LrE6_ENC4,
-	LrE6_ENC5,
-	LrE6_ENC6,
-	LrE6_ENC7,
+enum lr_enc_t {
+	Lr_ENC0 = 0,
+	Lr_ENC1,
+	Lr_ENC2,
+	Lr_ENC3,
+	Lr_ENC4,
+	Lr_ENC5,
+	Lr_ENC6,
+	Lr_ENC7,
 };
 
-#define SCENE_COUNT		4
 //! Define key that designated for scene change.
 #define SCENE_BIT		7
 #define KEY_PER_SCENE	(KEY_COUNT)
@@ -250,15 +249,14 @@ enum {
 #define PRMASK_R7	0x00C0
 
 // Screen timer definitions
-#define MSG_TIMER_DEFAULT	600		//4.8Sec (1 tick=8ms)
-#define MSG_TIMER_INIT		10		//80ms SSD1306 initialize time
-#define MSG_TIMER_UPDATE	200		//1.6Sec (OLED update in USB not connected)
+#define MSG_TIMER_DEFAULT	122		//4Sec (1 tick=32.7ms)
+#define MSG_TIMER_UPDATE	31		//1Sec (OLED update in USB not connected)
 
 // LED timer definitions
-#define LED_TIM_NORM		20		//640ms (1 tick=32ms)
-#define LED_TIM_HALF		10		//320ms
-#define LED_TIM_LONG		40		//1.28Sec
-#define	LED_TIM_CONNECT		100		//3.2Sec
+#define LED_TIM_NORM		32		//500ms (1 tick=16ms)
+#define LED_TIM_HALF		16		//250ms
+#define LED_TIM_LONG		64		//1Sec
+#define	LED_TIM_CONNECT		192		//3Sec
 //! LED TIM3 definitions
 #define LED_TIM_RETRY_WAIT	21		//Transfer period for I2C
 
@@ -269,13 +267,7 @@ enum {
 
 //! I2C time definitions
 #define I2C_RETRY_WAIT		2		//Transfer period for TIM3 PWM
-#if 0
-//! For temperature calculator
-#define TEMP110_CAL_ADDR ((uint16_t*) ((uint32_t) 0x1FFFF7C2))
-#define TEMP30_CAL_ADDR ((uint16_t*) ((uint32_t) 0x1FFFF7B8))
-#define VDD_CALIB ((uint16_t) (330))
-#define VDD_APPLI ((uint16_t) (300))
-#endif
+
 /* USER CODE END Private defines */
 
 #ifdef __cplusplus

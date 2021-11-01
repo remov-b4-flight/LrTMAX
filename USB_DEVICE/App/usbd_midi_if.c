@@ -36,7 +36,7 @@ static uint16_t MIDI_DataRx(uint8_t *msg, uint16_t length);
 static uint16_t MIDI_DataTx(uint8_t *msg, uint16_t length);
 
 extern uint8_t MIDI_CC_Value[SCENE_COUNT][ENC_COUNT];
-extern uint8_t LrE6Scene;
+extern uint8_t LrScene;
 
 // for Cure Series
 #if 0 //Unused for LrTMAX

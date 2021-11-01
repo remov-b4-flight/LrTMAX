@@ -36,8 +36,8 @@ enum led_color_t {
 
 //! @def Lr**** board definition
 #define LED_COUNT		8
-#define BITS_PER_LED    24  // (RGB) 3 * 8bit
-#define TOTAL_BITS      (LED_COUNT * BITS_PER_LED)
+#define BITS_PER_LED	24  // (RGB) 3 * 8bit
+#define TOTAL_BITS		(LED_COUNT * BITS_PER_LED)
 
 //! @def LED intensity definition
 #define LHIL	0xC0

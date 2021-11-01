@@ -1,7 +1,7 @@
 /**
 * @file key_define.c
-* @brief HID key definition & MIDI channel definition
-* @details This file defines 'key code' sent to PC on HID build OR MIDI Control Change(CC) / Note ON-OFF event on MIDI build.
+* @brief MIDI channel definition
+* @details This file defines MIDI Control Change(CC) / Note ON-OFF event on MIDI build.
 * LrTMAX has 8 encoder as enc0~7, and 8 individual switch(SW) as SW1~8 and SW on encoder as 'enc0~7 push'
 * In MIDI use , users can send individual CC/Note event channel per switch and encoder.
 * At switches, LrTMAX sends Note message has velocity= 127 when switch on, and sends velocity = 0 when switch off.

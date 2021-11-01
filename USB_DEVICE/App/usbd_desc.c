@@ -65,9 +65,9 @@
 
 #define USBD_VID     1155
 #define USBD_LANGID_STRING     1033
-#define USBD_MANUFACTURER_STRING     "LrE6_VENDOR"
+#define USBD_MANUFACTURER_STRING     "Lr_VENDOR"
 #define USBD_PID_FS     Lr_PID
-#define USBD_PRODUCT_STRING_FS     "LrE6_PRODUCT"
+#define USBD_PRODUCT_STRING_FS     "Lr_PRODUCT"
 #define USBD_CONFIGURATION_STRING_FS     "MIDI Config"
 #define USBD_INTERFACE_STRING_FS     "MIDI Interface"
 
@@ -81,7 +81,7 @@
 #if 1
 	#define	DEVICE_CLASS	0x02	/*bDeviceClass = CDC */
 	#define	DEVICE_SUBCLASS	0x02	/*bDeviceSubClass = ACM */
-#else //HID
+#else
 	#define	DEVICE_CLASS	0x00	/*bDeviceClass (I/F desc.)*/
 	#define	DEVICE_SUBCLASS	0x00	/*bDeviceSubClass (I/F desc.)*/
 #endif
