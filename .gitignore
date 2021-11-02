@@ -52,7 +52,6 @@ Mkfile.old
 dkms.conf
 
 #Others
-/Datasheets/
 /Documents/html/
 /Debug/
 /Release/
