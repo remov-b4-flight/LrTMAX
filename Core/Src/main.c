@@ -59,6 +59,7 @@ DMA_HandleTypeDef hdma_i2c2_tx;
 
 TIM_HandleTypeDef htim1;
 TIM_HandleTypeDef htim3;
+TIM_HandleTypeDef htim6;
 TIM_HandleTypeDef htim7;
 TIM_HandleTypeDef htim14;
 DMA_HandleTypeDef hdma_tim3_ch1_trig;
@@ -87,7 +88,7 @@ uint32_t	MaskKey[SCENE_COUNT];
 uint32_t	MaskEnc[SCENE_COUNT];
 
 // OLED variables
-//! Flas set by timer ISR, It makes 'off' OLES contents.
+//! Flag set by timer ISR, It makes 'off' OLES contents.
 bool 		Msg_Timer_Update;
 //! Timer counter ticked by TIM7.
 int32_t		Msg_Timer_Count;
@@ -139,6 +140,7 @@ static void MX_TIM1_Init(void);
 static void MX_TIM14_Init(void);
 static void MX_I2C2_Init(void);
 static void MX_TIM7_Init(void);
+static void MX_TIM6_Init(void);
 /* USER CODE BEGIN PFP */
 void EmulateKeyboard();
 /* USER CODE END PFP */
@@ -335,10 +337,13 @@ int main(void)
 #endif
   MX_I2C2_Init();
   MX_TIM7_Init();
+  MX_TIM6_Init();
   /* USER CODE BEGIN 2 */
   //Initialize Switch matrix
   HAL_GPIO_WritePin(L0_GPIO_Port, L0_Pin, GPIO_PIN_SET);	//Initialize L0-3.
+#if 0
   HAL_TIM_Base_Start_IT(&htim1);		//Start Switch matrix timer.
+#endif
   MakeMasks();
 
   //Initialize series of WS2812C
@@ -359,6 +364,7 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   uint32_t	nc_count = 0;
 
+  HAL_TIM_Base_Start_IT(&htim6);		//Start LED timer.
   HAL_TIM_Base_Start_IT(&htim7);		//Start Message timer.
   Msg_Off_Flag = false;
   Start_MsgTimer(MSG_TIMER_DEFAULT);
@@ -371,6 +377,9 @@ int main(void)
   while (1) {
 	if (LrState == LR_USB_LINKUP) {
 		//USB device configured by host
+#if 1
+		HAL_TIM_Base_Start_IT(&htim1);		//Start Switch matrix timer.
+#endif
 		LED_SetScene(LrScene);
 		SSD1306_SetScreen(ON);
 
@@ -687,6 +696,44 @@ static void MX_TIM3_Init(void)
 }
 
 /**
+  * @brief TIM6 Initialization Function
+  * @param None
+  * @retval None
+  */
+static void MX_TIM6_Init(void)
+{
+
+  /* USER CODE BEGIN TIM6_Init 0 */
+
+  /* USER CODE END TIM6_Init 0 */
+
+  TIM_MasterConfigTypeDef sMasterConfig = {0};
+
+  /* USER CODE BEGIN TIM6_Init 1 */
+
+  /* USER CODE END TIM6_Init 1 */
+  htim6.Instance = TIM6;
+  htim6.Init.Prescaler = TIM_PRESC_1uS;
+  htim6.Init.CounterMode = TIM_COUNTERMODE_UP;
+  htim6.Init.Period = TIM_PERIOD_24mS;
+  htim6.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_DISABLE;
+  if (HAL_TIM_Base_Init(&htim6) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  sMasterConfig.MasterOutputTrigger = TIM_TRGO_RESET;
+  sMasterConfig.MasterSlaveMode = TIM_MASTERSLAVEMODE_DISABLE;
+  if (HAL_TIMEx_MasterConfigSynchronization(&htim6, &sMasterConfig) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  /* USER CODE BEGIN TIM6_Init 2 */
+
+  /* USER CODE END TIM6_Init 2 */
+
+}
+
+/**
   * @brief TIM7 Initialization Function
   * @param None
   * @retval None
@@ -706,7 +753,7 @@ static void MX_TIM7_Init(void)
   htim7.Instance = TIM7;
   htim7.Init.Prescaler = TIM_PRESC_1uS;
   htim7.Init.CounterMode = TIM_COUNTERMODE_UP;
-  htim7.Init.Period = 65535;
+  htim7.Init.Period = TIM_PERIOD_32mS;
   htim7.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_DISABLE;
   if (HAL_TIM_Base_Init(&htim7) != HAL_OK)
   {

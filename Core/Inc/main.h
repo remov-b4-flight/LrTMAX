@@ -77,17 +77,17 @@ void Error_Handler(void);
 /* USER CODE END EFP */
 
 /* Private defines -----------------------------------------------------------*/
-#define TIM_PRESC_1uS 47
+#define Lr_PID 0xA380
 #define TIM_PERIOD_8mS 7999
 #define TIM_PERIOD_32mS 32768
 #define TIM_PERIOD_125uS 125
-
-#define Lr_PID 0xA380
 #define Lr_PRODUCT "LrTMAX"
+#define PWM_HI 38
 #define Lr_VENDOR "Ruffles Inc."
-#define PWM_PERIOD 59	//1.25 us
-#define PWM_HI 38 //791ns
-#define PWM_LO 15 //312ns
+#define TIM_PRESC_1uS 47
+#define PWM_LO 15
+#define PWM_PERIOD 59
+#define TIM_PERIOD_24mS 24576
 #define ENC5B_Pin GPIO_PIN_13
 #define ENC5B_GPIO_Port GPIOC
 #define ENC5B_EXTI_IRQn EXTI4_15_IRQn
@@ -253,10 +253,10 @@ enum lr_enc_t {
 #define MSG_TIMER_UPDATE	31		//1Sec (OLED update in USB not connected)
 
 // LED timer definitions
-#define LED_TIM_NORM		32		//500ms (1 tick=16ms)
-#define LED_TIM_HALF		16		//250ms
-#define LED_TIM_LONG		64		//1Sec
-#define	LED_TIM_CONNECT		192		//3Sec
+#define LED_TIM_NORM		21		//500ms (1 tick=24ms)
+#define LED_TIM_HALF		11		//250ms
+#define LED_TIM_LONG		42		//1Sec
+#define	LED_TIM_CONNECT		125		//3Sec
 //! LED TIM3 definitions
 #define LED_TIM_RETRY_WAIT	21		//Transfer period for I2C
 
