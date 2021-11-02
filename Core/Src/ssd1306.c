@@ -200,8 +200,6 @@ void SSD1306_RenderBanner(char *string, int x, int y ,uint8_t op){
 		}//Frame Buffer column Loop
 	}//String Loop
 }
-#endif
-#ifndef DEBUG
 /**
  * @brief Load bitmap image to frame buffer
  * @param bitmap SSD1306 style bitmap 8bit array.

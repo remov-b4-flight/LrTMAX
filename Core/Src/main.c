@@ -341,9 +341,6 @@ int main(void)
   /* USER CODE BEGIN 2 */
   //Initialize Switch matrix
   HAL_GPIO_WritePin(L0_GPIO_Port, L0_Pin, GPIO_PIN_SET);	//Initialize L0-3.
-#if 0
-  HAL_TIM_Base_Start_IT(&htim1);		//Start Switch matrix timer.
-#endif
   MakeMasks();
 
   //Initialize series of WS2812C
@@ -377,9 +374,7 @@ int main(void)
   while (1) {
 	if (LrState == LR_USB_LINKUP) {
 		//USB device configured by host
-#if 1
 		HAL_TIM_Base_Start_IT(&htim1);		//Start Switch matrix timer.
-#endif
 		LED_SetScene(LrScene);
 		SSD1306_SetScreen(ON);
 
@@ -391,7 +386,7 @@ int main(void)
 #else
 		SSD1306_LoadBitmap();
 		sprintf(Msg_Buffer[0], CONN_MSG, USBD_DEVICE_VER_MAJ, USBD_DEVICE_VER_MIN);
-		SSD1306_RenderBanner(Msg_Buffer[0], 88, 0, XOR);
+		SSD1306_RenderBanner(Msg_Buffer[0], 80, 16, XOR);
 		SSD1306_FlashScreen();
 #endif
 		Msg_Off_Flag = false;
