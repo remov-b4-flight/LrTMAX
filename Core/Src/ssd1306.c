@@ -13,10 +13,12 @@
 #include <string.h>
 #include "main.h"
 #include "ssd1306.h"
-char Msg_Buffer[MSG_LINES][MSG_WIDTH + 1];
+
 extern uint8_t Font8x16[];
 extern uint8_t connect_bitmap[];
 
+//! @brief string buffer to render for Frame_Buffer[].
+char Msg_Buffer[MSG_LINES][MSG_WIDTH + 1];
 //! @brief SSD1306 OLED frame buffer
 static uint8_t Frame_Buffer[SSD1306_WIDTH * (MAX_PAGE+1)];
 
@@ -108,9 +110,7 @@ void SSD1306_Initialize(void) {
  * @brief Clear all of frame buffer
  */
 void SSD1306_ClearBuffer() {
-    for(size_t i = 0; i < sizeof(Frame_Buffer); i++) {
-        Frame_Buffer[i] = SCREEN_BLANK;
-    }
+    memset(Frame_Buffer,SCREEN_BLANK,sizeof(Frame_Buffer));
 }
 
 /**
@@ -190,13 +190,17 @@ void SSD1306_RenderBanner(char *string, int x, int y ,uint8_t op){
 			uint8_t font_h = Font8x16[font_top + column];
 			uint8_t font_l = Font8x16[font_top + column + FONT_WIDTH];
 			uint16_t fb_index = fb_top + (i * FONT_WIDTH) + column;
+#if 0
 			if (op == INP){
+#endif
 				Frame_Buffer[fb_index] = font_h;
 				Frame_Buffer[fb_index + SSD1306_WIDTH] = font_l;
+#if 0
 			} else if (op == XOR){
 				Frame_Buffer[fb_index ] ^= font_h;
 				Frame_Buffer[fb_index + SSD1306_WIDTH] ^= font_l;
 			}
+#endif
 		}//Frame Buffer column Loop
 	}//String Loop
 }

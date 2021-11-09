@@ -110,7 +110,7 @@ bool		LED_Timer_Update;
 // Scene related
 extern	KEY_DEFINE keytable[SCENE_COUNT][KEY_DEFINE_COUNT];
 extern	char *scene_name[SCENE_COUNT];
-extern uint8_t	led_axis_table[KEY_DEFINE_COUNT];
+extern	uint8_t	led_axis_table[KEY_DEFINE_COUNT];
 
 extern	uint8_t	LED_Scene[SCENE_COUNT][LED_COUNT];
 extern	uint8_t	LEDColor[LED_COUNT];
@@ -149,6 +149,7 @@ void EmulateKeyboard();
 /* USER CODE BEGIN 0 */
 
 static inline void Start_MsgTimer(uint32_t tick){
+	Msg_Off_Flag = false;
 	Msg_Timer_Count = tick;
 	Msg_Timer_Enable = true;
 }
@@ -220,7 +221,6 @@ static void EmulateMIDI(){
         		strcpy(Msg_Buffer[1], msg_string);
         		Msg_Print();
 
-            	Msg_Off_Flag = false;
             	Start_MsgTimer(MSG_TIMER_DEFAULT);
             }
 
@@ -255,7 +255,6 @@ static void EmulateMIDI(){
             	strcpy(Msg_Buffer[1], msg_string);
             	Msg_Print();
 
-            	Msg_Off_Flag = false;
             	Start_MsgTimer(MSG_TIMER_DEFAULT);
             }
             LED_SetPulse(keytable[LrScene][bitpos].axis, keytable[LrScene][bitpos].color, keytable[LrScene][bitpos].period);
@@ -363,19 +362,20 @@ int main(void)
 
   HAL_TIM_Base_Start_IT(&htim6);		//Start LED timer.
   HAL_TIM_Base_Start_IT(&htim7);		//Start Message timer.
-  Msg_Off_Flag = false;
   Start_MsgTimer(MSG_TIMER_DEFAULT);
   LrState = LR_USB_NOLINK;
 
   //Initialize CC Value table
   memset(MIDI_CC_Value, MIDI_CC_INITIAL, SCENE_COUNT * ENC_COUNT);
 
+  //LED Initialize
+  LED_SetScene(LrScene);
+
   //Main loop
   while (1) {
 	if (LrState == LR_USB_LINKUP) {
 		//USB device configured by host
 		HAL_TIM_Base_Start_IT(&htim1);		//Start Switch matrix timer.
-		LED_SetScene(LrScene);
 		SSD1306_SetScreen(ON);
 
 #ifdef DEBUG
@@ -386,11 +386,11 @@ int main(void)
 #else
 		SSD1306_LoadBitmap();
 		sprintf(Msg_Buffer[0], CONN_MSG, USBD_DEVICE_VER_MAJ, USBD_DEVICE_VER_MIN);
-		SSD1306_RenderBanner(Msg_Buffer[0], 88, 16, XOR);
+		SSD1306_RenderBanner(Msg_Buffer[0], 88, 16, INP);
 		SSD1306_FlashScreen();
 #endif
-		Msg_Off_Flag = false;
 		Start_MsgTimer(MSG_TIMER_DEFAULT);
+		memcpy(LEDColor,LED_Scene[LrScene],LED_COUNT);
 		LED_SetPulse(LED_IDX_ENC0, LED_PINK, LED_TIM_CONNECT);
 		LrState = LR_USB_LINKED;
 
@@ -398,6 +398,7 @@ int main(void)
 		//Operate as MIDI Instruments.
 		EmulateMIDI();
 	} else if(LrState == LR_USB_LINK_LOST) {
+		LrScene	= Lr_SCENE0;
 		LED_TestPattern();
 		Msg_1st_timeout = false;
 		Start_MsgTimer(MSG_TIMER_DEFAULT);
@@ -416,7 +417,6 @@ int main(void)
 				Msg_Print();
 
 				//Restart OLED timer.
-				Msg_Off_Flag = false;
 				Start_MsgTimer(MSG_TIMER_UPDATE);
 
 				//Rotate LED colors
@@ -436,7 +436,7 @@ int main(void)
 	}// LrState
 
 	//LED Timer
-	if (LED_Timer_Update == true){ //4x4ms = 16ms interval
+	if (LED_Timer_Update == true){ //24ms interval
 		for (uint8_t i = 0; i < LED_COUNT; i++){
 			if (LEDTimer[i] != LED_TIMER_CONSTANT && --LEDTimer[i] == 0) {
 				LED_SetPulse(i, LED_Scene[LrScene][i], LED_TIMER_CONSTANT);

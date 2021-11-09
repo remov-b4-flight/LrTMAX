@@ -256,7 +256,7 @@ enum lr_enc_t {
 #define LED_TIM_NORM		21		//500ms (1 tick=24ms)
 #define LED_TIM_HALF		11		//250ms
 #define LED_TIM_LONG		42		//1Sec
-#define	LED_TIM_CONNECT		125		//3Sec
+#define	LED_TIM_CONNECT		83		//2Sec
 //! LED TIM3 definitions
 #define LED_TIM_RETRY_WAIT	21		//Transfer period for I2C
 
