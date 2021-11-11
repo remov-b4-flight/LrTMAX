@@ -54,6 +54,9 @@ enum enc9R5_t {
 
 #define ENC5A_MASK	0x1000
 #define ENC5B_MASK	0x2000
+
+#define ENC_TIMER_MAX	3
+
 /* USER CODE END EM */
 
 /* Exported functions prototypes ---------------------------------------------*/
@@ -69,6 +72,7 @@ void DMA1_Channel4_5_6_7_IRQHandler(void);
 void TIM1_BRK_UP_TRG_COM_IRQHandler(void);
 void TIM6_DAC_IRQHandler(void);
 void TIM7_IRQHandler(void);
+void TIM15_IRQHandler(void);
 void I2C2_IRQHandler(void);
 void USB_IRQHandler(void);
 /* USER CODE BEGIN EFP */

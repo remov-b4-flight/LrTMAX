@@ -73,6 +73,7 @@ uint32_t current_key = 0;
 //! Value of scanned from key matrix.
 KEYSCAN current_scan;
 uint8_t	enc_prev[ENC_COUNT];
+uint8_t	enc_timer[ENC_COUNT];
 
 extern uint8_t MIDI_CC_Value[SCENE_COUNT][ENC_COUNT];
 extern uint8_t LrScene;
@@ -95,6 +96,7 @@ extern DMA_HandleTypeDef hdma_tim3_ch1_trig;
 extern TIM_HandleTypeDef htim1;
 extern TIM_HandleTypeDef htim6;
 extern TIM_HandleTypeDef htim7;
+extern TIM_HandleTypeDef htim15;
 /* USER CODE BEGIN EV */
 extern TIM_HandleTypeDef htim3;
 /* USER CODE END EV */
@@ -190,21 +192,24 @@ void EXTI0_1_IRQHandler(void)
     uint32_t pr = EXTI->PR;
 
 	// Encoder 4 (EXTI[0:1] / PF[0:1])
-	if( pr & PRMASK_R4 ){
+	if( pr & PRMASK_R4 && enc_timer[Lr_ENC4] >= ENC_TIMER_MAX){
 		uint8_t	r4 = (ENC4_GPIO_Port->IDR) & ENC_MASK;
     	if ( r4 == ENC_MV0 || r4 ==ENC_MV3 ) { //Stopped
 			if( enc_prev[Lr_ENC4] == ENC_MV1 || enc_prev[Lr_ENC4] == ENC_MV2 ){
 				Key_Stat.nb.enc4 = ENC_NOT_MOVE;
+				enc_timer[Lr_ENC4] = 0;
 				isKeyPressed = true;
 			}
 		}else if( r4 == ENC_MV1 ){ //Moved
 			if( enc_prev[Lr_ENC4] == ENC_MV0 ){
 				Key_Stat.nb.enc4 = ENC_MOVE_CW;
 	          	MIDI_CC_Inc(Lr_ENC4);
+				enc_timer[Lr_ENC4] = 0;
 				isKeyPressed = true;
 			}else if( enc_prev[Lr_ENC4] == ENC_MV3 ){
 				Key_Stat.nb.enc4 = ENC_MOVE_CCW;
 	          	MIDI_CC_Dec(Lr_ENC4);
+				enc_timer[Lr_ENC4] = 0;
 				isKeyPressed = true;
 			}
 		}else if( r4 == ENC_MV2 ){ //Moved
@@ -215,6 +220,7 @@ void EXTI0_1_IRQHandler(void)
 			}else if( enc_prev[Lr_ENC4] == ENC_MV3 ){
 				Key_Stat.nb.enc4 = ENC_MOVE_CW;
 	            MIDI_CC_Inc(Lr_ENC4);
+				enc_timer[Lr_ENC4] = 0;
 				isKeyPressed = true;
 			}
 		}
@@ -238,31 +244,36 @@ void EXTI2_3_IRQHandler(void)
     uint32_t pr = EXTI->PR;
 
 	// Encoder 6 (EXTI[2:3] / PB[2:3])
-	if( pr & PRMASK_R6 ){
+	if( pr & PRMASK_R6 && enc_timer[Lr_ENC6] >= ENC_TIMER_MAX){
 		uint8_t	r6 = (ENC6_GPIO_Port->IDR >> 2) & ENC_MASK;
     	if ( r6 == ENC_MV0 || r6 ==ENC_MV3 ) { //Stopped
 			if( enc_prev[Lr_ENC6] == ENC_MV1 || enc_prev[Lr_ENC6] == ENC_MV2 ){
 				Key_Stat.nb.enc6 = ENC_NOT_MOVE;
+				enc_timer[Lr_ENC6] = 0;
 				isKeyPressed = true;
 			}
 		}else if( r6 == ENC_MV1 ){ //Moved
 			if( enc_prev[Lr_ENC6] == ENC_MV0 ){
 				Key_Stat.nb.enc6 = ENC_MOVE_CW;
 	          	MIDI_CC_Inc(Lr_ENC6);
+				enc_timer[Lr_ENC6] = 0;
 				isKeyPressed = true;
 			}else if( enc_prev[Lr_ENC6] == ENC_MV3 ){
 				Key_Stat.nb.enc6 = ENC_MOVE_CCW;
 	          	MIDI_CC_Dec(Lr_ENC6);
+				enc_timer[Lr_ENC6] = 0;
 				isKeyPressed = true;
 			}
 		}else if( r6 == ENC_MV2 ){ //Moved
 			if( enc_prev[Lr_ENC6] == ENC_MV0 ){
 				Key_Stat.nb.enc6 = ENC_MOVE_CCW;
 	          	MIDI_CC_Dec(Lr_ENC6);
+				enc_timer[Lr_ENC6] = 0;
 				isKeyPressed = true;
 			}else if( enc_prev[Lr_ENC6] == ENC_MV3 ){
 				Key_Stat.nb.enc6 = ENC_MOVE_CW;
 	            MIDI_CC_Inc(Lr_ENC6);
+				enc_timer[Lr_ENC6] = 0;
 				isKeyPressed = true;
 			}
 		}
@@ -286,11 +297,12 @@ void EXTI4_15_IRQHandler(void)
     uint32_t pr = EXTI->PR;
 
     // Encoder 0 (EXTI[4:5] / PA[4:5]
-    if(pr & PRMASK_R0){
+    if(pr & PRMASK_R0 && enc_timer[Lr_ENC0] >= ENC_TIMER_MAX){
         uint8_t	r0 = ((ENC0_GPIO_Port->IDR) >> 4 ) & ENC_MASK;
     	if ( r0 == ENC_MV0 || r0 == ENC_MV3 ) { //Stopped
 			if( enc_prev[Lr_ENC0] == ENC_MV1 || enc_prev[Lr_ENC0] == ENC_MV2 ){
 				Key_Stat.nb.enc0 = ENC_NOT_MOVE;
+				enc_timer[Lr_ENC0] = 0;
 				isKeyPressed = true;
 			}
 		}else if( r0 == ENC_MV1 ){ //Moved
@@ -301,16 +313,19 @@ void EXTI4_15_IRQHandler(void)
 			}else if( enc_prev[Lr_ENC0] == ENC_MV3 ){
 				Key_Stat.nb.enc0 = ENC_MOVE_CCW;
 		        MIDI_CC_Dec(Lr_ENC0);
+				enc_timer[Lr_ENC0] = 0;
 		        isKeyPressed = true;
 			}
 		}else if( r0 == ENC_MV2 ){ //Moved
 			if( enc_prev[Lr_ENC0] == ENC_MV0 ){
 				Key_Stat.nb.enc0 = ENC_MOVE_CCW;
 		        MIDI_CC_Dec(Lr_ENC0);
+				enc_timer[Lr_ENC0] = 0;
 				isKeyPressed = true;
 			}else if( enc_prev[Lr_ENC0] == ENC_MV3 ){
 				Key_Stat.nb.enc0 = ENC_MOVE_CW;
 		        MIDI_CC_Inc(Lr_ENC0);
+				enc_timer[Lr_ENC0] = 0;
 				isKeyPressed = true;
 			}
 		}
@@ -323,31 +338,36 @@ void EXTI4_15_IRQHandler(void)
     }
 
     // Encoder 7 (EXTI[6:7] / PB[6:7])
-    if(pr & PRMASK_R7){
+    if(pr & PRMASK_R7 && enc_timer[Lr_ENC7] >= ENC_TIMER_MAX){
         uint8_t	r7 = ((ENC7_GPIO_Port->IDR) >> 6 ) & ENC_MASK;
     	if ( r7 == ENC_MV0 || r7 == ENC_MV3 ) { //Stopped
 			if( enc_prev[Lr_ENC7] == ENC_MV1 || enc_prev[Lr_ENC7] == ENC_MV2 ){
 				Key_Stat.nb.enc7 = ENC_NOT_MOVE;
+				enc_timer[Lr_ENC7] = 0;
 				isKeyPressed = true;
 			}
 		}else if( r7 == ENC_MV1 ){ //Moved
 			if(enc_prev[Lr_ENC7] == ENC_MV0){
 				Key_Stat.nb.enc7 = ENC_MOVE_CW;
 		        MIDI_CC_Inc(Lr_ENC7);
+				enc_timer[Lr_ENC7] = 0;
 				isKeyPressed = true;
 			}else if( enc_prev[Lr_ENC7] == ENC_MV3 ){
 				Key_Stat.nb.enc7 = ENC_MOVE_CCW;
 		        MIDI_CC_Dec(Lr_ENC7);
+				enc_timer[Lr_ENC7] = 0;
 		        isKeyPressed = true;
 			}
 		}else if( r7 == ENC_MV2 ){ //Moved
 			if( enc_prev[Lr_ENC7] == ENC_MV0 ){
 				Key_Stat.nb.enc7 = ENC_MOVE_CCW;
 		        MIDI_CC_Dec(Lr_ENC7);
+				enc_timer[Lr_ENC7] = 0;
 				isKeyPressed = true;
 			}else if( enc_prev[Lr_ENC7] == ENC_MV3 ){
 				Key_Stat.nb.enc7 = ENC_MOVE_CW;
 		        MIDI_CC_Inc(Lr_ENC7);
+				enc_timer[Lr_ENC7] = 0;
 				isKeyPressed = true;
 			}
 		}
@@ -360,31 +380,36 @@ void EXTI4_15_IRQHandler(void)
     }
 
     //Encoder 1 (EXTI[8:9] / PB[8:9])
-    if(pr & PRMASK_R1){
+    if(pr & PRMASK_R1 && enc_timer[Lr_ENC1] >= ENC_TIMER_MAX){
     	uint8_t	r1 = ((ENC1_GPIO_Port->IDR) >> 8) & ENC_MASK;
     	if ( r1 == ENC_MV0 || r1 == ENC_MV3 ) { //Stopped
 			if( enc_prev[Lr_ENC1] == ENC_MV1 || enc_prev[Lr_ENC1] == ENC_MV2 ){
 				Key_Stat.nb.enc1 = ENC_NOT_MOVE;
+				enc_timer[Lr_ENC1] = 0;
 				isKeyPressed = true;
 			}
 		}else if( r1 == ENC_MV1 ){ //Moved
 			if( enc_prev[Lr_ENC1] == ENC_MV0 ){
 				Key_Stat.nb.enc1 = ENC_MOVE_CW;
 				MIDI_CC_Inc(Lr_ENC1);
+				enc_timer[Lr_ENC1] = 0;
 				isKeyPressed = true;
 			}else if( enc_prev[Lr_ENC1] == ENC_MV3 ){
 				Key_Stat.nb.enc1 = ENC_MOVE_CCW;
 		        MIDI_CC_Dec(Lr_ENC1);
+				enc_timer[Lr_ENC1] = 0;
 				isKeyPressed = true;
 			}
 		}else if( r1 == ENC_MV2 ){ //Moved
 			if( enc_prev[Lr_ENC1] == ENC_MV0 ){
 				Key_Stat.nb.enc1 = ENC_MOVE_CCW;
 		        MIDI_CC_Dec(Lr_ENC1);
+				enc_timer[Lr_ENC1] = 0;
 				isKeyPressed = true;
 			}else if( enc_prev[Lr_ENC1] == ENC_MV3 ){
 				Key_Stat.nb.enc1 = ENC_MOVE_CW;
 				MIDI_CC_Inc(Lr_ENC1);
+				enc_timer[Lr_ENC1] = 0;
 				isKeyPressed = true;
 			}
 		}
@@ -397,31 +422,36 @@ void EXTI4_15_IRQHandler(void)
     }
 
     //Encoder 2 (EXTI[10:11] / PB[10:11])
-	if( pr & PRMASK_R2 ){
+	if( pr & PRMASK_R2 && enc_timer[Lr_ENC2] >= ENC_TIMER_MAX){
 		uint8_t	r2 = (ENC2_GPIO_Port->IDR >> 10 ) & ENC_MASK;
     	if ( r2 == ENC_MV0 || r2 == ENC_MV3 ) { //Stopped
 			if( enc_prev[Lr_ENC2] == ENC_MV1 || enc_prev[Lr_ENC2] == ENC_MV2 ){
 				Key_Stat.nb.enc2 = ENC_NOT_MOVE;
+				enc_timer[Lr_ENC2] = 0;
 				isKeyPressed = true;
 			}
 		}else if( r2 == ENC_MV1 ){ //Moved
 			if( enc_prev[Lr_ENC2] == ENC_MV0 ){
 				Key_Stat.nb.enc2 = ENC_MOVE_CW;
 		        MIDI_CC_Inc(Lr_ENC2);
+				enc_timer[Lr_ENC2] = 0;
 				isKeyPressed = true;
 			}else if( enc_prev[Lr_ENC2] == ENC_MV3 ){
 				Key_Stat.nb.enc2 = ENC_MOVE_CCW;
 				MIDI_CC_Dec(Lr_ENC2);
+				enc_timer[Lr_ENC2] = 0;
 				isKeyPressed = true;
 			}
 		}else if( r2 == ENC_MV2 ){ //Moved
 			if( enc_prev[Lr_ENC2] == ENC_MV0 ){
 				Key_Stat.nb.enc2 = ENC_MOVE_CCW;
 				MIDI_CC_Dec(Lr_ENC2);
+				enc_timer[Lr_ENC2] = 0;
 				isKeyPressed = true;
 			}else if( enc_prev[Lr_ENC2] == ENC_MV3 ){
 				Key_Stat.nb.enc2 = ENC_MOVE_CW;
 		        MIDI_CC_Inc(Lr_ENC2);
+				enc_timer[Lr_ENC2] = 0;
 				isKeyPressed = true;
 			}
 		}
@@ -434,31 +464,36 @@ void EXTI4_15_IRQHandler(void)
 	}
 
     //Encoder 5 (EXTI[12:13] / PA[12],PC[13])
-    if( pr & PRMASK_R5 ){
+    if( pr & PRMASK_R5 && enc_timer[Lr_ENC2] >= ENC_TIMER_MAX){
  		uint8_t r5 = ( (ENC5A_GPIO_Port->IDR & ENC5A_MASK) | (ENC5B_GPIO_Port->IDR & ENC5B_MASK) ) >> 12;
     	if ( r5 == ENC_MV0 || r5 == ENC_MV3 ) { //Stopped
 			if( enc_prev[Lr_ENC5] == ENC_MV1 || enc_prev[Lr_ENC5] == ENC_MV2 ){
 				Key_Stat.nb.enc5 = ENC_NOT_MOVE;
+				enc_timer[Lr_ENC5] = 0;
 				isKeyPressed = true;
 			}
 		}else if( r5 == ENC_MV1 ){ //Moved
 			if( enc_prev[Lr_ENC5] == ENC_MV0 ){
 				Key_Stat.nb.enc5 = ENC_MOVE_CW;
 		        MIDI_CC_Inc(Lr_ENC5);
+				enc_timer[Lr_ENC5] = 0;
 				isKeyPressed = true;
 			}else if( enc_prev[Lr_ENC5] == ENC_MV3 ){
 				Key_Stat.nb.enc5 = ENC_MOVE_CCW;
 		        MIDI_CC_Dec(Lr_ENC5);
+				enc_timer[Lr_ENC5] = 0;
 				isKeyPressed = true;
 			}
 		}else if( r5 == ENC_MV2 ){ //Moved
 			if( enc_prev[Lr_ENC5] == ENC_MV0 ){
 				Key_Stat.nb.enc5 = ENC_MOVE_CCW;
 		        MIDI_CC_Dec(Lr_ENC5);
+				enc_timer[Lr_ENC5] = 0;
 				isKeyPressed = true;
 			}else if( enc_prev[Lr_ENC5] == ENC_MV3 ){
 				Key_Stat.nb.enc5 = ENC_MOVE_CW;
 		        MIDI_CC_Inc(Lr_ENC5);
+				enc_timer[Lr_ENC5] = 0;
 		        isKeyPressed = true;
 			}
 		}
@@ -472,11 +507,12 @@ void EXTI4_15_IRQHandler(void)
     }
 
     //Encoder 3 (EXTI[14:15] / PC[14:15])
-    if(pr & PRMASK_R3){ //EXTI14&15
+    if(pr & PRMASK_R3 && enc_timer[Lr_ENC3] >= ENC_TIMER_MAX){ //EXTI14&15
     	uint8_t	r3 = ( (ENC3_GPIO_Port->IDR) >> 14 ) & ENC_MASK;
     	if ( r3 == ENC_MV0 || r3 == ENC_MV3 ) { //Stopped
 			if(enc_prev[Lr_ENC3] == ENC_MV1 || enc_prev[Lr_ENC3] == ENC_MV2){
 				Key_Stat.nb.enc3 = ENC_NOT_MOVE;
+				enc_timer[Lr_ENC3] = 0;
 				isKeyPressed = true;
 			}
 		}else if( r3 == ENC_MV1 ){ //Moved
@@ -487,16 +523,19 @@ void EXTI4_15_IRQHandler(void)
 			}else if( enc_prev[Lr_ENC3] == ENC_MV3 ){
 				Key_Stat.nb.enc3 = ENC_MOVE_CCW;
 		        MIDI_CC_Dec(Lr_ENC3);
+				enc_timer[Lr_ENC3] = 0;
 				isKeyPressed = true;
 			}
 		}else if( r3 == ENC_MV2 ){ //Moved
 			if( enc_prev[Lr_ENC3] == ENC_MV0 ){
 				Key_Stat.nb.enc3 = ENC_MOVE_CCW;
 		        MIDI_CC_Dec(Lr_ENC3);
+				enc_timer[Lr_ENC3] = 0;
 				isKeyPressed = true;
 			}else if( enc_prev[Lr_ENC3] == ENC_MV3 ){
 				Key_Stat.nb.enc3 = ENC_MOVE_CW;
 		        MIDI_CC_Inc(Lr_ENC3);
+				enc_timer[Lr_ENC3] = 0;
 				isKeyPressed = true;
 			}
 		}
@@ -636,6 +675,22 @@ void TIM7_IRQHandler(void)
   /* USER CODE BEGIN TIM7_IRQn 1 */
 
   /* USER CODE END TIM7_IRQn 1 */
+}
+
+/**
+  * @brief This function handles TIM15 global interrupt.
+  */
+void TIM15_IRQHandler(void)
+{
+  /* USER CODE BEGIN TIM15_IRQn 0 */
+  for (uint8_t i = 0; i < ENC_COUNT; i++){
+	  if (enc_timer[i] < ENC_TIMER_MAX)	enc_timer[i]++;
+  }
+  /* USER CODE END TIM15_IRQn 0 */
+  HAL_TIM_IRQHandler(&htim15);
+  /* USER CODE BEGIN TIM15_IRQn 1 */
+
+  /* USER CODE END TIM15_IRQn 1 */
 }
 
 /**

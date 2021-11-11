@@ -77,6 +77,7 @@ void Error_Handler(void);
 /* USER CODE END EFP */
 
 /* Private defines -----------------------------------------------------------*/
+#define TIM_PERIOD_24mS 24576
 #define Lr_PID 0xA380
 #define TIM_PERIOD_8mS 7999
 #define TIM_PERIOD_32mS 32768
@@ -87,7 +88,7 @@ void Error_Handler(void);
 #define TIM_PRESC_1uS 47
 #define PWM_LO 15
 #define PWM_PERIOD 59
-#define TIM_PERIOD_24mS 24576
+#define TIM_PERIOD_100uS 99
 #define ENC5B_Pin GPIO_PIN_13
 #define ENC5B_GPIO_Port GPIOC
 #define ENC5B_EXTI_IRQn EXTI4_15_IRQn

@@ -24,9 +24,7 @@
 #include "stm32f0xx_hal.h"
 #include "usbd_def.h"
 #include "usbd_core.h"
-#if 0
-#include "usbd_hid.h"
-#endif
+
 /* USER CODE BEGIN Includes */
 #include <stdbool.h>
 /* USER CODE END Includes */
