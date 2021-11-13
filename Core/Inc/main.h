@@ -237,8 +237,6 @@ enum lr_enc_t {
 //! Key define structure
 #define KEY_DEFINE_COUNT	( KEY_COUNT + (ENC_COUNT * 2) )
 
-//
-
 // Screen timer definitions
 #define MSG_TIMER_DEFAULT	122		//4Sec (1 tick=32.7ms)
 #define MSG_TIMER_UPDATE	31		//1Sec (OLED update in USB not connected)
