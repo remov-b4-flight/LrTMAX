@@ -33,7 +33,7 @@ extern "C" {
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 #define USBD_DEVICE_VER_MAJ	0x00
-#define USBD_DEVICE_VER_MIN	0x54
+#define USBD_DEVICE_VER_MIN	0x55
 /* USER CODE END Includes */
 
 /* Exported types ------------------------------------------------------------*/
@@ -229,7 +229,6 @@ enum lr_enc_t {
 	Lr_ENC6,
 	Lr_ENC7,
 };
-
 //! Define key that designated for scene change.
 #define SCENE_BIT		7
 #define KEY_PER_SCENE	(KEY_COUNT)
@@ -238,16 +237,7 @@ enum lr_enc_t {
 //! Key define structure
 #define KEY_DEFINE_COUNT	( KEY_COUNT + (ENC_COUNT * 2) )
 
-#define LxMASK	0x0F
 //
-#define PRMASK_R0	0x0030
-#define PRMASK_R1	0x0300
-#define PRMASK_R2	0x0C00
-#define PRMASK_R3	0xC000
-#define PRMASK_R4	0x0003
-#define PRMASK_R5	0x3000
-#define PRMASK_R6	0x000C
-#define PRMASK_R7	0x00C0
 
 // Screen timer definitions
 #define MSG_TIMER_DEFAULT	122		//4Sec (1 tick=32.7ms)
@@ -260,11 +250,6 @@ enum lr_enc_t {
 #define	LED_TIM_CONNECT		83		//2Sec
 //! LED TIM3 definitions
 #define LED_TIM_RETRY_WAIT	21		//Transfer period for I2C
-
-#define ENC_NOT_MOVE        0
-#define ENC_MOVE_CW         1
-#define ENC_MOVE_CCW        2
-#define ENC_MASK			0x03
 
 //! I2C time definitions
 #define I2C_RETRY_WAIT		2		//Transfer period for TIM3 PWM

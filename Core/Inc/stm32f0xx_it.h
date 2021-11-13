@@ -44,6 +44,17 @@
 /* Exported macro ------------------------------------------------------------*/
 /* USER CODE BEGIN EM */
 
+ // Definitions for Encoders
+
+#define PRMASK_R0	0x0030
+#define PRMASK_R1	0x0300
+#define PRMASK_R2	0x0C00
+#define PRMASK_R3	0xC000
+#define PRMASK_R4	0x0003
+#define PRMASK_R5	0x3000
+#define PRMASK_R6	0x000C
+#define PRMASK_R7	0x00C0
+
 //! 9R5KQ type Encoder
 enum enc9R5_t {
 	ENC_MV3 =	3,
@@ -52,10 +63,21 @@ enum enc9R5_t {
 	ENC_MV0	=	0,
 };
 
+enum enc_move_t {
+	ENC_STOPPED = 0,
+	ENC_MOVE_CW,
+	ENC_MOVE_CCW,
+	ENC_INVALID,
+};
+
+#define ENC_MASK	0x03
 #define ENC5A_MASK	0x1000
 #define ENC5B_MASK	0x2000
 
 #define ENC_TIMER_MAX	3
+
+// Definitions for Matrix
+#define LxMASK	0x0F
 
 /* USER CODE END EM */
 

@@ -365,7 +365,7 @@ int main(void)
 
   HAL_TIM_Base_Start_IT(&htim6);		//Start LED timer.
   HAL_TIM_Base_Start_IT(&htim7);		//Start Message timer.
-  HAL_TIM_Base_Start_IT(&htim15);		//Start Message timer.
+//HAL_TIM_Base_Start_IT(&htim15);		//Start De-chatter timer.
   Start_MsgTimer(MSG_TIMER_DEFAULT);
   LrState = LR_USB_NOLINK;
 
@@ -958,7 +958,7 @@ void Error_Handler(void)
   /* User can add his own implementation to report the HAL error return state */
   __disable_irq();
     strcpy(Msg_Buffer[0], "Error");
-	Msg_Print();  
+	Msg_Print();
   /* USER CODE END Error_Handler_Debug */
 }
 
