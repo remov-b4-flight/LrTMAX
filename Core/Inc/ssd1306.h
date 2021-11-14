@@ -107,7 +107,11 @@ void SSD1306_ClearBuffer(void);
 bool SSD1306_FlashScreen(void);
 void SSD1306_SetScreen(bool on);
 void SSD1306_Render2Buffer(void);
+#if 0
 void SSD1306_RenderBanner(char *string, int x, int y ,uint8_t op);
+#else
+void SSD1306_RenderBanner(char *string, int x, int y);
+#endif
 void SSD1306_LoadBitmap();
 _END_STD_C
 

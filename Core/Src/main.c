@@ -390,7 +390,7 @@ int main(void)
 #else
 		SSD1306_LoadBitmap();
 		sprintf(Msg_Buffer[0], CONN_MSG, USBD_DEVICE_VER_MAJ, USBD_DEVICE_VER_MIN);
-		SSD1306_RenderBanner(Msg_Buffer[0], 88, 16, INP);
+		SSD1306_RenderBanner(Msg_Buffer[0], 88, 16);
 		SSD1306_FlashScreen();
 #endif
 		Start_MsgTimer(MSG_TIMER_DEFAULT);

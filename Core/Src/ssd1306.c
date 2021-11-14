@@ -170,7 +170,11 @@ void SSD1306_Render2Buffer(void){
  * @param y		y coordinate to render
  * @param op	operator with frame buffer contents
  */
+#if 0
 void SSD1306_RenderBanner(char *string, int x, int y ,uint8_t op){
+#else
+void SSD1306_RenderBanner(char *string, int x, int y){
+#endif
 	uint8_t	page = y / BITS_PER_PAGE;
 	if (page >= MAX_PAGE) {
 		page = MAX_PAGE;
