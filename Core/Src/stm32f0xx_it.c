@@ -103,7 +103,6 @@ extern DMA_HandleTypeDef hdma_tim3_ch1_trig;
 extern TIM_HandleTypeDef htim1;
 extern TIM_HandleTypeDef htim6;
 extern TIM_HandleTypeDef htim7;
-extern TIM_HandleTypeDef htim15;
 /* USER CODE BEGIN EV */
 extern TIM_HandleTypeDef htim3;
 /* USER CODE END EV */
@@ -569,22 +568,6 @@ void TIM7_IRQHandler(void)
   /* USER CODE BEGIN TIM7_IRQn 1 */
 
   /* USER CODE END TIM7_IRQn 1 */
-}
-
-/**
-  * @brief This function handles TIM15 global interrupt.
-  */
-void TIM15_IRQHandler(void)
-{
-  /* USER CODE BEGIN TIM15_IRQn 0 */
-  for (uint8_t i = 0; i < ENC_COUNT; i++){
-	  if (enc_timer[i] < ENC_TIMER_MAX)	enc_timer[i]++;
-  }
-  /* USER CODE END TIM15_IRQn 0 */
-  HAL_TIM_IRQHandler(&htim15);
-  /* USER CODE BEGIN TIM15_IRQn 1 */
-
-  /* USER CODE END TIM15_IRQn 1 */
 }
 
 /**

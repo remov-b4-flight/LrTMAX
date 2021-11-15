@@ -94,7 +94,6 @@ void DMA1_Channel4_5_6_7_IRQHandler(void);
 void TIM1_BRK_UP_TRG_COM_IRQHandler(void);
 void TIM6_DAC_IRQHandler(void);
 void TIM7_IRQHandler(void);
-void TIM15_IRQHandler(void);
 void I2C2_IRQHandler(void);
 void USB_IRQHandler(void);
 /* USER CODE BEGIN EFP */
