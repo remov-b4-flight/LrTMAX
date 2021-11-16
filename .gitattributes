@@ -2,3 +2,4 @@
 *.pdf -text
 *.png -text
 *.jpg -text
+*.bin binary
