@@ -1,5 +1,6 @@
 /LrTMAX_*.proj.zip
 *.kicad_pcb-bak
 *.sch-bak
+*.sch-bak
 *.bak
 /Gerber/
