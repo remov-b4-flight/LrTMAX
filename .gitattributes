@@ -3,3 +3,4 @@
 *.png -text
 *.jpg -text
 *.bin binary
+*.elf binary

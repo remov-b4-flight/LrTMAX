@@ -55,13 +55,16 @@ dkms.conf
 /Documents/html/
 /Debug/
 /Release/
-/.settings/
 /.code_review_properties
-*.launch
 *.bak
 *.FCStd1
 *.zip
+
+#STM32Cube
+*.launch
+.mxproject
+/.settings/
+
 #macOS related
 .DS_Store
 ._*
-.mxproject
