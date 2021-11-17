@@ -64,3 +64,4 @@ dkms.conf
 #macOS related
 .DS_Store
 ._*
+.mxproject
