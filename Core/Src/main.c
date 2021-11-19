@@ -471,9 +471,6 @@ int main(void)
 		Msg_Off_Flag = false;
 		SSD1306_SetScreen(OFF);
 		SSD1306_ClearBuffer();
-#if 0
-		HAL_PWR_EnterSLEEPMode(PWR_LOWPOWERREGULATOR_ON, PWR_SLEEPENTRY_WFI);
-#endif
 		continue;
 	}
 
@@ -491,6 +488,9 @@ int main(void)
 		}
 		continue;
 	}
+#if 1
+	HAL_PWR_EnterSLEEPMode(PWR_LOWPOWERREGULATOR_ON, PWR_SLEEPENTRY_WFI);
+#endif
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
