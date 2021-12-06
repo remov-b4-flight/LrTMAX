@@ -290,7 +290,7 @@ static void EmulateMIDI(){
 int main(void)
 {
   /* USER CODE BEGIN 1 */
-  //! Indicates 1st Msg_Timer timeout has occured from power on reset.
+  //! Indicates 1st Msg_Timer timeout has occurred from power on reset.
   bool Msg_1st_timeout = true;
   /* USER CODE END 1 */
 
@@ -488,7 +488,7 @@ int main(void)
 		}
 		continue;
 	}
-#if 1
+#ifndef DEBUG
 	HAL_PWR_EnterSLEEPMode(PWR_LOWPOWERREGULATOR_ON, PWR_SLEEPENTRY_WFI);
 #endif
     /* USER CODE END WHILE */

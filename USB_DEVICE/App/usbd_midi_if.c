@@ -180,7 +180,6 @@ static uint16_t MIDI_DataRx(uint8_t *msg, uint16_t length){
   if (code_idx_num == MIDI_CC_HEADER){
 	  MIDI_CC_Value[cc_scene][channel] = value;
   }
-
   return 0;
 }
 
