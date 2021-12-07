@@ -1,10 +1,10 @@
 /**
   ******************************************************************************
   * @file    usbd_midi.c
+  * @author modified by remov-b4-flight
+  * @copyright  original copyright below
   ******************************************************************************
-
     (CC at)2016 by D.F.Mac. @@TripArts Music
-
 */ 
 
 /* Includes ------------------------------------------------------------------*/
@@ -21,34 +21,9 @@ static uint8_t  USBD_MIDI_DataIn (USBD_HandleTypeDef *pdev, uint8_t epnum);
 static uint8_t  USBD_MIDI_DataOut (USBD_HandleTypeDef *pdev, uint8_t epnum);
 
 static uint8_t  *USBD_MIDI_GetCfgDesc (uint16_t *length);
-//uint8_t  *USBD_MIDI_GetDeviceQualifierDescriptor (uint16_t *length);
 USBD_HandleTypeDef *pInstance = NULL; 
-#if 0 //Unused for Lr****
-uint32_t APP_Rx_ptr_in  = 0;
-uint32_t APP_Rx_ptr_out = 0;
-uint32_t APP_Rx_length  = 0;
-uint8_t  USB_Tx_State = 0;
-__ALIGN_BEGIN uint8_t APP_Rx_Buffer[APP_RX_DATA_SIZE] __ALIGN_END ;
-#endif
 
 __ALIGN_BEGIN uint8_t USB_Rx_Buffer[MIDI_DATA_OUT_PACKET_SIZE] __ALIGN_END ;
-
-/* USB Standard Device Descriptor */
-/*
-__ALIGN_BEGIN static uint8_t USBD_MIDI_DeviceQualifierDesc[USB_LEN_DEV_QUALIFIER_DESC] __ALIGN_END =
-{
-  USB_LEN_DEV_QUALIFIER_DESC,
-  USB_DESC_TYPE_DEVICE_QUALIFIER,
-  0x00,
-  0x02,
-  0x00,
-  0x00,
-  0x00,
-  0x40,
-  0x01,
-  0x00,
-};
-*/
 
 /* USB MIDI interface class callbacks structure */
 USBD_ClassTypeDef  USBD_MIDI = 
@@ -110,11 +85,7 @@ static uint8_t USBD_MIDI_DeInit (USBD_HandleTypeDef *pdev, uint8_t cfgidx){
 }
 
 static uint8_t USBD_MIDI_DataIn (USBD_HandleTypeDef *pdev, uint8_t epnum){
-#if 0 //Unused for Lr****
-  if (USB_Tx_State == 1){
-    USB_Tx_State = 0;
-  }
-#endif
+//Unused for Lr****
   return USBD_OK;
 }
 
@@ -132,52 +103,11 @@ static uint8_t  USBD_MIDI_DataOut (USBD_HandleTypeDef *pdev, uint8_t epnum)
   USBD_LL_PrepareReceive(pdev,MIDI_OUT_EP,(uint8_t*)(USB_Rx_Buffer),MIDI_DATA_OUT_PACKET_SIZE);
   return USBD_OK;
 }
-#if 0 //Unused for Lr****
-void USBD_MIDI_SendPacket (){
-  uint16_t USB_Tx_ptr;
-  uint16_t USB_Tx_length;
 
-  if(USB_Tx_State != 1){
-    if (APP_Rx_ptr_out == APP_RX_DATA_SIZE){
-      APP_Rx_ptr_out = 0;
-    }
-
-    if(APP_Rx_ptr_out == APP_Rx_ptr_in){
-      USB_Tx_State = 0;
-      return;
-    }
-
-    if(APP_Rx_ptr_out > APP_Rx_ptr_in){
-      APP_Rx_length = APP_RX_DATA_SIZE - APP_Rx_ptr_out;
-    }else{
-      APP_Rx_length = APP_Rx_ptr_in - APP_Rx_ptr_out;
-    }
-
-    if (APP_Rx_length > MIDI_DATA_IN_PACKET_SIZE){
-      USB_Tx_ptr = APP_Rx_ptr_out;
-      USB_Tx_length = MIDI_DATA_IN_PACKET_SIZE;
-      APP_Rx_ptr_out += MIDI_DATA_IN_PACKET_SIZE;
-      APP_Rx_length -= MIDI_DATA_IN_PACKET_SIZE;
-    }else{
-      USB_Tx_ptr = APP_Rx_ptr_out;
-      USB_Tx_length = APP_Rx_length;
-      APP_Rx_ptr_out += APP_Rx_length;
-      APP_Rx_length = 0;
-    }
-    USB_Tx_State = 1;
-    USBD_LL_Transmit (pInstance, MIDI_IN_EP,(uint8_t*)&APP_Rx_Buffer[USB_Tx_ptr],USB_Tx_length);
-  }
-}
-#endif
 static uint8_t *USBD_MIDI_GetCfgDesc (uint16_t *length){
   *length = sizeof (USBD_MIDI_CfgDesc);
   return USBD_MIDI_CfgDesc;
 }
-
-//uint8_t *USBD_MIDI_GetDeviceQualifierDescriptor (uint16_t *length){
-//  *length = sizeof (USBD_MIDI_DeviceQualifierDesc);
-//  return USBD_MIDI_DeviceQualifierDesc;
-//}
 
 uint8_t USBD_MIDI_RegisterInterface(USBD_HandleTypeDef *pdev, USBD_MIDI_ItfTypeDef *fops)
 {

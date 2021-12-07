@@ -26,12 +26,8 @@
 #include "usbd_desc.h"
 
 /* USER CODE BEGIN Includes */
-#if 0
-#include "usbd_hid.h"
-#else
 #include "usbd_midi.h"
 #include "usbd_midi_if.h"
-#endif
 /* USER CODE END Includes */
 
 /* USER CODE BEGIN PV */
@@ -86,9 +82,9 @@ void MX_USB_MIDI_INIT(void)
 void MX_USB_DEVICE_Init(void)
 {
   /* USER CODE BEGIN USB_DEVICE_Init_PreTreatment */
-#if 0
-  /* USER CODE END USB_DEVICE_Init_PreTreatment */
 
+  /* USER CODE END USB_DEVICE_Init_PreTreatment */
+#if 0
   /* Init Device Library, add supported class and start the library. */
   if (USBD_Init(&hUsbDeviceFS, &FS_Desc, DEVICE_FS) != USBD_OK)
   {
@@ -102,9 +98,9 @@ void MX_USB_DEVICE_Init(void)
   {
     Error_Handler();
   }
-
-  /* USER CODE BEGIN USB_DEVICE_Init_PostTreatment */
 #endif
+  /* USER CODE BEGIN USB_DEVICE_Init_PostTreatment */
+
   /* USER CODE END USB_DEVICE_Init_PostTreatment */
 }
 
