@@ -5,7 +5,7 @@
   * @copyright  original copyright below
   ******************************************************************************
     (CC at)2016 by D.F.Mac. @@TripArts Music
-*/ 
+*/
 
 /* Includes ------------------------------------------------------------------*/
 #include <midi.h>
@@ -21,12 +21,12 @@ static uint8_t  USBD_MIDI_DataIn (USBD_HandleTypeDef *pdev, uint8_t epnum);
 static uint8_t  USBD_MIDI_DataOut (USBD_HandleTypeDef *pdev, uint8_t epnum);
 
 static uint8_t  *USBD_MIDI_GetCfgDesc (uint16_t *length);
-USBD_HandleTypeDef *pInstance = NULL; 
+USBD_HandleTypeDef *pInstance = NULL;
 
 __ALIGN_BEGIN uint8_t USB_Rx_Buffer[MIDI_DATA_OUT_PACKET_SIZE] __ALIGN_END ;
 
 /* USB MIDI interface class callbacks structure */
-USBD_ClassTypeDef  USBD_MIDI = 
+USBD_ClassTypeDef  USBD_MIDI =
 {
   USBD_MIDI_Init,
   USBD_MIDI_DeInit,
@@ -85,12 +85,14 @@ static uint8_t USBD_MIDI_DeInit (USBD_HandleTypeDef *pdev, uint8_t cfgidx){
 }
 
 static uint8_t USBD_MIDI_DataIn (USBD_HandleTypeDef *pdev, uint8_t epnum){
-//Unused for Lr****
+#if 0 //Unused for Lr****
+	  pmidi->pIf_MidiTx((uint8_t *)&USB_Tx_Buffer, USB_Tx_Cnt);	//call MIDI_DataTx()
+#endif
   return USBD_OK;
 }
 
 static uint8_t  USBD_MIDI_DataOut (USBD_HandleTypeDef *pdev, uint8_t epnum)
-{      
+{
   uint16_t USB_Rx_Cnt;
 
   USBD_MIDI_ItfTypeDef *pmidi;
@@ -112,11 +114,11 @@ static uint8_t *USBD_MIDI_GetCfgDesc (uint16_t *length){
 uint8_t USBD_MIDI_RegisterInterface(USBD_HandleTypeDef *pdev, USBD_MIDI_ItfTypeDef *fops)
 {
   uint8_t ret = USBD_FAIL;
-  
+
   if(fops != NULL){
     pdev->pUserData= fops;
-    ret = USBD_OK;    
+    ret = USBD_OK;
   }
-  
+
   return ret;
 }

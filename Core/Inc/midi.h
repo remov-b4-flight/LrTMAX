@@ -2,7 +2,7 @@
  * @file	midi.h
  * @brief	header file for USB MIDI function.
  * @author	remov-b4-flight
- * @copyright	3-Clause BSD Licence 
+ * @copyright	3-Clause BSD License
  */
 
 #ifndef INC_MIDI_NOTE_H_
@@ -29,7 +29,7 @@ enum midi_event_index {
 //! Configuration descriptor
 #define CONFIG1			0x01
 #define BUSPOWERED		0x80
-#define MIDI_POWER		0x60 //=192mA
+#define MIDI_POWER		0x64 //=192mA
 
 //! Interface descriptor
 #define INTF0			0x00
