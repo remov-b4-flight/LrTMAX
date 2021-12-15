@@ -76,10 +76,10 @@ const KEY_DEFINE keytable[SCENE_COUNT][KEY_DEFINE_COUNT] = {
 		{.type = TYPE_SWITCH,	.axis = 4,	.color =LED_MAGENTA,.period = LED_TIM_HALF,	.message = "Scroll " UPA},		//enc4 CCW
 		{.type = TYPE_ROTARY,	.axis = 5,	.color = LED_ORANGE,.period = LED_TIM_HALF,	.message = "Zoom In"},			//enc5 CW
 /*N27*/	{.type = TYPE_ROTARY,	.axis = 5,	.color = LED_ORANGE,.period = LED_TIM_HALF,	.message = "Zoom Out"},			//enc5 CCW
-/*C06*/	{.type = TYPE_ROTARY,	.axis = 6,	.color = LED_OFF,	.period = LED_TIM_NORM,	.message = "A6" RIGHTA},		//enc6 CW
-		{.type = TYPE_ROTARY,	.axis = 6,	.color = LED_OFF,	.period = LED_TIM_NORM,	.message = "A6" LEFTA},			//enc6 CCW
-/*C07*/	{.type = TYPE_ROTARY,	.axis = 7,	.color = LED_OFF,	.period = LED_TIM_NORM,	.message = "A7" RIGHTA},		//enc7 CW
-		{.type = TYPE_ROTARY,	.axis = 7,	.color = LED_OFF,	.period = LED_TIM_NORM,	.message = "A7" LEFTA},			//enc7 CCW
+/*C06*/	{.type = TYPE_ROTARY,	.axis = 6,	.color = LED_WHITE,	.period = LED_TIM_NORM,	.message = "Quick Expo. " UPA},	//enc6 CW
+		{.type = TYPE_ROTARY,	.axis = 6,	.color = LED_DARK,	.period = LED_TIM_NORM,	.message = "Quick Expo. " DOWNA},	//enc6 CCW
+/*C07*/	{.type = TYPE_ROTARY,	.axis = 7,	.color = LED_YELLOW,.period = LED_TIM_NORM,	.message = "Quick C-Temp. " RIGHTA},//enc7 CW
+		{.type = TYPE_ROTARY,	.axis = 7,	.color = LED_BLUE,	.period = LED_TIM_NORM,	.message = "Quick C-Temp. " LEFTA},	//enc7 CCW
 	},{	//Scene1 Button	(Basic Edits)																0123456789ABCDEF
 /*N32*/	{.type = TYPE_SWITCH,	.axis = 0,	.color = LED_WHITE,	.period = LED_TIM_NORM,	.message = "Undo"},				//L0M0	SW1
 /*N33*/	{.type = TYPE_SWITCH,	.axis = 0,	.color = LED_RED,	.period = LED_TIM_NORM,	.message = "Auto Tone"},		//L0M1	SW2

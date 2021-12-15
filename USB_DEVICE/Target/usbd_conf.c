@@ -111,6 +111,9 @@ static void PCD_SetupStageCallback(PCD_HandleTypeDef *hpcd)
 void HAL_PCD_SetupStageCallback(PCD_HandleTypeDef *hpcd)
 #endif /* USE_HAL_PCD_REGISTER_CALLBACKS */
 {
+  /* USER CODE BEGIN 0 */
+  LrState = LR_USB_LINKUP;
+  /* USER CODE END 0 */
   USBD_LL_SetupStage((USBD_HandleTypeDef*)hpcd->pData, (uint8_t *)hpcd->Setup);
 }
 
@@ -270,9 +273,6 @@ static void PCD_ConnectCallback(PCD_HandleTypeDef *hpcd)
 void HAL_PCD_ConnectCallback(PCD_HandleTypeDef *hpcd)
 #endif /* USE_HAL_PCD_REGISTER_CALLBACKS */
 {
-  /* USER CODE BEGIN 0 */
-  LrState = LR_USB_LINKUP;
-  /* USER CODE END 0 */
   USBD_LL_DevConnected((USBD_HandleTypeDef*)hpcd->pData);
 }
 

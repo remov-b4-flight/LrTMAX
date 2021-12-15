@@ -1,7 +1,7 @@
 Item,Qty,Reference(s),Value,LibPart,Footprint,Purchase URL
 2,28,"C10, C11, C12, C13, C14, C15, C16, C17, C18, C19, C20, C21, C22, C23, C24, C25, C30, C31, C32, C33, C34, C35, C36, C37, C38, C40, C41, C55",100n,LrE-6-rescue:C-Device,Capacitor_SMD:C_0805_2012Metric,
 4,4,"C42, C46, C51, C52",4.7u,LrE-6-rescue:C-Device,Capacitor_SMD:C_0805_2012Metric,
-5,3,"C43, C44, C45",0.1u,LrE-6-rescue:C-Device,Capacitor_SMD:C_0603_1608Metric,
+5,3,"C43, C44, C45",100n,LrE-6-rescue:C-Device,Capacitor_SMD:C_0603_1608Metric,
 6,7,"C47, C48, C49, C50, C53, C54, C56",1u,LrE-6-rescue:C-Device,Capacitor_SMD:C_0805_2012Metric,
 8,16,"D1, D2, D3, D4, D5, D6, D7, D8, D10, D11, D12, D13, D14, D15, D16, D17",1N4148W,LrE-6-rescue:1N4148W-Diode,LrE-6:D_SOD-123,https://www.aliexpress.com/item/32829336693.html
 9,1,D18,LED0603_BL,LrE-6-rescue:LED-Device,LED_SMD:LED_0603_1608Metric,https://www.aliexpress.com/item/32888575577.html
