@@ -1,23 +1,23 @@
 Item,Qty,Reference(s),Value,LibPart,Footprint,Purchase URL
+1,3,"C43, C44, C45",100n,LrE-6-rescue:C-Device,Capacitor_SMD:C_0603_1608Metric,
 2,28,"C10, C11, C12, C13, C14, C15, C16, C17, C18, C19, C20, C21, C22, C23, C24, C25, C30, C31, C32, C33, C34, C35, C36, C37, C38, C40, C41, C55",100n,LrE-6-rescue:C-Device,Capacitor_SMD:C_0805_2012Metric,
-4,4,"C42, C46, C51, C52",4.7u,LrE-6-rescue:C-Device,Capacitor_SMD:C_0805_2012Metric,
-5,3,"C43, C44, C45",100n,LrE-6-rescue:C-Device,Capacitor_SMD:C_0603_1608Metric,
-6,7,"C47, C48, C49, C50, C53, C54, C56",1u,LrE-6-rescue:C-Device,Capacitor_SMD:C_0805_2012Metric,
-8,16,"D1, D2, D3, D4, D5, D6, D7, D8, D10, D11, D12, D13, D14, D15, D16, D17",1N4148W,LrE-6-rescue:1N4148W-Diode,LrE-6:D_SOD-123,https://www.aliexpress.com/item/32829336693.html
-9,1,D18,LED0603_BL,LrE-6-rescue:LED-Device,LED_SMD:LED_0603_1608Metric,https://www.aliexpress.com/item/32888575577.html
-10,8,"D31, D32, D33, D34, D35, D36, D37, D38",WS2812B-2020,LrE-6:WS2812B-2020,LrE-6:LED_WS2812B-2020,https://www.aliexpress.com/item/32995819792.html
-11,4,"H1, H2, H3, H4",MountingHole,LrE-6-rescue:MountingHole-Mechanical,MountingHole:MountingHole_3.2mm_M3,
-12,1,J1,USB_C_Receptacle_USB2.0,LrE-6:USB_C_Receptacle_USB2.0,Connector_USB:USB_C_Receptacle_HRO_TYPE-C-31-M-12,https://ja.aliexpress.com/item/1005002157048896.html
-13,1,J2,SM06B-SRSS-TB,LrE-6-rescue:Conn_01x06-Connector_Generic,Connector_JST:JST_SH_SM06B-SRSS-TB_1x06-1MP_P1.00mm_Horizontal,https://www.aliexpress.com/item/32831122807.html
-14,1,Q1,2N7002,LrE-6-rescue:2N7002-Transistor_FET,Package_TO_SOT_SMD:SOT-23,https://www.aliexpress.com/item/32843479156.html
-15,5,"R1, R2, R3, R4, R48",1K,LrE-6-rescue:R-Device,Resistor_SMD:R_0805_2012Metric,
-16,19,"R10, R11, R12, R13, R14, R15, R16, R17, R18, R19, R20, R21, R22, R23, R24, R25, R40, R41, R47",10K,LrE-6-rescue:R-Device,Resistor_SMD:R_0805_2012Metric,
-17,1,R42,1K,LrE-6-rescue:R-Device,Resistor_SMD:R_0805_2012Metric,
-18,1,R44,100,LrE-6-rescue:R-Device,Resistor_SMD:R_0805_2012Metric,
-19,1,R45,62,LrE-6-rescue:R-Device,Resistor_SMD:R_0805_2012Metric,
-20,1,R46,1.2K,LrE-6-rescue:R-Device,Resistor_SMD:R_0805_2012Metric,
-21,8,"SW1, SW2, SW3, SW4, SW5, SW6, SW7, SW8",Tact_SW_8mm,LrE-6-rescue:SW_Push_45deg-Switch,Button_Switch_THT:SW_PUSH_6mm_H9.5mm,https://www.aliexpress.com/item/1058764733.html
-22,8,"SW10, SW11, SW12, SW13, SW14, SW15, SW16, SW17",EC11_SMD,LrE-6-rescue:Rotary_Encoder_Switch-Device,Rotary_Encoder:RotaryEncoder_Alps_EC11E-Switch_Vertical_H20mm,https://www.aliexpress.com/item/33051669996.html
-23,1,U1,STM32F072C8Tx,LrE-6-rescue:STM32F072C8Tx-MCU_ST_STM32F0,Package_QFP:LQFP-48_7x7mm_P0.5mm,https://www.aliexpress.com/item/1005001604196690.html
-24,1,U3,SSD1306_OLED_0.91,LrE-6:OLED-0.91,LrE-6:OLED-9.1,https://www.aliexpress.com/item/32787123531.html
-25,1,U4,SPX3819M5-L3-3TR,LrE-6-rescue:LDK130-08_SOT23_SOT353-Regulator_Linear,Package_TO_SOT_SMD:SOT-23-5,https://www.aliexpress.com/item/32703161484.html
+3,4,"C42, C46, C51, C52",4.7u,LrE-6-rescue:C-Device,Capacitor_SMD:C_0805_2012Metric,
+4,7,"C47, C48, C49, C50, C53, C54, C56",1u,LrE-6-rescue:C-Device,Capacitor_SMD:C_0805_2012Metric,
+5,16,"D1, D2, D3, D4, D5, D6, D7, D8, D10, D11, D12, D13, D14, D15, D16, D17",1N4148W,LrE-6-rescue:1N4148W-Diode,LrE-6:D_SOD-123,https://www.aliexpress.com/item/32829336693.html
+6,1,D18,LED0603_BL,LrE-6-rescue:LED-Device,LED_SMD:LED_0603_1608Metric,https://www.aliexpress.com/item/32888575577.html
+7,8,"D31, D32, D33, D34, D35, D36, D37, D38",WS2812B-2020,LrE-6:WS2812B-2020,LrE-6:LED_WS2812B-2020,https://www.aliexpress.com/item/32995819792.html
+8,4,"H1, H2, H3, H4",MountingHole,LrE-6-rescue:MountingHole-Mechanical,MountingHole:MountingHole_3.2mm_M3,
+9,1,J1,USB_C_Receptacle_USB2.0,LrE-6:USB_C_Receptacle_USB2.0,Connector_USB:USB_C_Receptacle_HRO_TYPE-C-31-M-12,https://ja.aliexpress.com/item/1005002157048896.html
+10,1,J2,SM06B-SRSS-TB,LrE-6-rescue:Conn_01x06-Connector_Generic,Connector_JST:JST_SH_SM06B-SRSS-TB_1x06-1MP_P1.00mm_Horizontal,https://www.aliexpress.com/item/32831122807.html
+11,1,Q1,2N7002,LrE-6-rescue:2N7002-Transistor_FET,Package_TO_SOT_SMD:SOT-23,https://www.aliexpress.com/item/32843479156.html
+12,5,"R1, R2, R3, R4, R48",1K,LrE-6-rescue:R-Device,Resistor_SMD:R_0805_2012Metric,
+13,19,"R10, R11, R12, R13, R14, R15, R16, R17, R18, R19, R20, R21, R22, R23, R24, R25, R40, R41, R47",10K,LrE-6-rescue:R-Device,Resistor_SMD:R_0805_2012Metric,
+14,1,R42,1K,LrE-6-rescue:R-Device,Resistor_SMD:R_0805_2012Metric,
+15,1,R44,100,LrE-6-rescue:R-Device,Resistor_SMD:R_0805_2012Metric,
+16,1,R45,62,LrE-6-rescue:R-Device,Resistor_SMD:R_0805_2012Metric,
+17,1,R46,1.2K,LrE-6-rescue:R-Device,Resistor_SMD:R_0805_2012Metric,
+18,8,"SW1, SW2, SW3, SW4, SW5, SW6, SW7, SW8",Tact_SW_8mm,LrE-6-rescue:SW_Push_45deg-Switch,Button_Switch_THT:SW_PUSH_6mm_H9.5mm,https://www.aliexpress.com/item/1058764733.html
+19,8,"SW10, SW11, SW12, SW13, SW14, SW15, SW16, SW17",EC11_SMD,LrE-6-rescue:Rotary_Encoder_Switch-Device,Rotary_Encoder:RotaryEncoder_Alps_EC11E-Switch_Vertical_H20mm,https://www.aliexpress.com/item/33051669996.html
+20,1,U1,STM32F072C8Tx,LrE-6-rescue:STM32F072C8Tx-MCU_ST_STM32F0,Package_QFP:LQFP-48_7x7mm_P0.5mm,https://www.aliexpress.com/item/1005001604196690.html
+21,1,U3,SSD1306_OLED_0.91,LrE-6:OLED-0.91,LrE-6:OLED-9.1,https://www.aliexpress.com/item/32787123531.html
+22,1,U4,SPX3819M5-L3-3TR,LrE-6-rescue:LDK130-08_SOT23_SOT353-Regulator_Linear,Package_TO_SOT_SMD:SOT-23-5,https://www.aliexpress.com/item/32703161484.html

@@ -82,9 +82,9 @@ void MX_USB_MIDI_INIT(void)
 void MX_USB_DEVICE_Init(void)
 {
   /* USER CODE BEGIN USB_DEVICE_Init_PreTreatment */
-
-  /* USER CODE END USB_DEVICE_Init_PreTreatment */
 #if 0
+  /* USER CODE END USB_DEVICE_Init_PreTreatment */
+
   /* Init Device Library, add supported class and start the library. */
   if (USBD_Init(&hUsbDeviceFS, &FS_Desc, DEVICE_FS) != USBD_OK)
   {
@@ -98,9 +98,8 @@ void MX_USB_DEVICE_Init(void)
   {
     Error_Handler();
   }
-#endif
   /* USER CODE BEGIN USB_DEVICE_Init_PostTreatment */
-
+#endif
   /* USER CODE END USB_DEVICE_Init_PostTreatment */
 }
 
