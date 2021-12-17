@@ -24,6 +24,9 @@
 .mxproject
 /.settings/
 
+#un-needed HID class
+/Middlewares/ST/STM32_USB_Device_Library/Class/HID/
+
 #macOS related
 .DS_Store
 ._*

@@ -27,7 +27,6 @@
 /* USER CODE BEGIN Includes */
 #include <stdbool.h>
 #include "midi.h"
-#include "usbd_hid.h"
 #include "led.h"
 #include "bitcount.h"
 #include "key_define.h"
