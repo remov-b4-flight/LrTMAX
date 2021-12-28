@@ -37,7 +37,7 @@
 /* Private typedef -----------------------------------------------------------*/
 /* USER CODE BEGIN PTD */
 #ifdef DEBUG
-#define CONN_MSG	"%s %2x.%02xD"
+#define CONN_MSG_D	"%s %2x.%02xD"
 #else
 #define CONN_MSG	"%2x.%02x"
 #endif
@@ -379,7 +379,7 @@ int main(void)
 
 #ifdef DEBUG
 		int ch = ' ';
-		sprintf(Msg_Buffer[0], CONN_MSG, Lr_PRODUCT, USBD_DEVICE_VER_MAJ, USBD_DEVICE_VER_MIN);
+		sprintf(Msg_Buffer[0], CONN_MSG_D, Lr_PRODUCT, USBD_DEVICE_VER_MAJ, USBD_DEVICE_VER_MIN);
 		memset(Msg_Buffer[1], ch, MSG_WIDTH );
 		Msg_Print();
 #else

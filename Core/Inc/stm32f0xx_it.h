@@ -57,7 +57,7 @@
 
 //! 9R5KQ type Encoder
 enum enc9R5_t {
-	ENC_MV3 =	3,
+	ENC_MV3	=	3,
 	ENC_MV2	=	2,
 	ENC_MV1	=	1,
 	ENC_MV0	=	0,
@@ -73,8 +73,6 @@ enum enc_move_t {
 #define ENC_MASK	0x03
 #define ENC5A_MASK	0x1000
 #define ENC5B_MASK	0x2000
-
-#define ENC_TIMER_MAX	3
 
 // Definitions for Matrix
 #define LxMASK	0x0F
