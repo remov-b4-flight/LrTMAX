@@ -232,8 +232,8 @@ enum lr_enc_t {
 //! Define key that designated for scene change.
 #define SCENE_BIT		7
 #define KEY_PER_SCENE	(KEY_COUNT)
-#define CC_CH_OFFSET		40
-#define CC_CH_PER_SCENE	10
+#define CC_CH_OFFSET	40
+#define CC_CH_PER_SCENE	8
 #define NOTES_PER_SCENE	32
 //! Key define structure
 #define KEY_DEFINE_COUNT	( KEY_COUNT + (ENC_COUNT * 2) )
