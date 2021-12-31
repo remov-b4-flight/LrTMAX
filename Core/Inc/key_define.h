@@ -10,7 +10,7 @@ enum define_type_t {
 };
 
 /**
- * @brief define key definiton structure.
+ * @brief key definition structure.
  */
 typedef struct key_define_t {
 	uint8_t	type;
