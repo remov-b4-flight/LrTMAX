@@ -33,7 +33,7 @@ extern "C" {
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 #define USBD_DEVICE_VER_MAJ	0x00
-#define USBD_DEVICE_VER_MIN	0x56
+#define USBD_DEVICE_VER_MIN	0x57
 /* USER CODE END Includes */
 
 /* Exported types ------------------------------------------------------------*/
