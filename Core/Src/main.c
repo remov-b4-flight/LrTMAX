@@ -228,7 +228,7 @@ static void EmulateMIDI(){
 				USBMIDI_Event[MIDI_EV_IDX_HEADER] = MIDI_NT_ON;
 				USBMIDI_Event[MIDI_EV_IDX_STATUS] = MIDI_NT_ON_S;
 				USBMIDI_Event[MIDI_EV_IDX_CHANNEL] = note;
-				USBMIDI_Event[MIDI_EV_IDX_VALUE] = MIDI_VELOCITY;
+				USBMIDI_Event[MIDI_EV_IDX_VALUE] = MIDI_NT_ON_VELOCITY;
 
 				prev_note = note;
 				isPrev_sw = true;
@@ -237,7 +237,7 @@ static void EmulateMIDI(){
         	//Send CC Event from encoder
         	uint8_t axis = (bitpos - KEY_COUNT) / 2;
         	uint8_t val = MIDI_CC_Value[LrScene][axis];
-        	uint8_t channel = (LrScene * CC_CH_PER_SCENE) + axis;
+        	uint8_t channel = CC_CH_OFFSET + (LrScene * CC_CH_PER_SCENE) + axis;
 
             USBMIDI_Event[MIDI_EV_IDX_HEADER] = MIDI_CC_HEADER;
             USBMIDI_Event[MIDI_EV_IDX_STATUS] = MIDI_CC_STATUS;
@@ -264,7 +264,7 @@ static void EmulateMIDI(){
 			USBMIDI_Event[MIDI_EV_IDX_HEADER] = MIDI_NT_OFF;
 			USBMIDI_Event[MIDI_EV_IDX_STATUS] = MIDI_NT_OFF_S;
 			USBMIDI_Event[MIDI_EV_IDX_CHANNEL] = prev_note;
-			USBMIDI_Event[MIDI_EV_IDX_VALUE] = 0;
+			USBMIDI_Event[MIDI_EV_IDX_VALUE] = MIDI_NT_OFF_VELOCITY;
 
 			isKeyReport = true;
 			isPrev_sw = false;

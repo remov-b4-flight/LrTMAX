@@ -190,7 +190,7 @@ void Error_Handler(void);
 
 //! Lr**** Hardware definition
 #define KEY_COUNT	16
-#define	ENC_COUNT	8
+#define ENC_COUNT	8
 
 //! Lr**** States
 enum lr_state_t {
@@ -232,12 +232,13 @@ enum lr_enc_t {
 //! Define key that designated for scene change.
 #define SCENE_BIT		7
 #define KEY_PER_SCENE	(KEY_COUNT)
-#define	CC_CH_PER_SCENE	16
+#define CC_CH_OFFSET		40
+#define CC_CH_PER_SCENE	10
 #define NOTES_PER_SCENE	32
 //! Key define structure
 #define KEY_DEFINE_COUNT	( KEY_COUNT + (ENC_COUNT * 2) )
 
-// Screen timer definitions
+// Screen timer definitions16
 #define MSG_TIMER_DEFAULT	122		//4Sec (1 tick=32.7ms)
 #define MSG_TIMER_UPDATE	31		//1Sec (OLED update in USB not connected)
 
@@ -245,7 +246,7 @@ enum lr_enc_t {
 #define LED_TIM_NORM		21		//500ms (1 tick=24ms)
 #define LED_TIM_HALF		11		//250ms
 #define LED_TIM_LONG		42		//1Sec
-#define	LED_TIM_CONNECT		83		//2Sec
+#define LED_TIM_CONNECT	83		//2Sec
 //! LED TIM3 definitions
 #define LED_TIM_RETRY_WAIT	21		//Transfer period for I2C
 
