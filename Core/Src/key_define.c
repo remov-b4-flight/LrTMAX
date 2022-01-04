@@ -74,8 +74,8 @@ const KEY_DEFINE keytable[SCENE_COUNT][KEY_DEFINE_COUNT] = {
 		{.type = TYPE_SWITCH,	.axis = 3,	.color = LED_YELLOW,.period = LED_TIM_HALF,	.message = "Rotate " LEFTA},	//enc3 CCW
 		{.type = TYPE_SWITCH,	.axis = 4,	.color =LED_MAGENTA,.period = LED_TIM_HALF,	.message = "Scroll " DOWNA},	//enc4 CW
 		{.type = TYPE_SWITCH,	.axis = 4,	.color =LED_MAGENTA,.period = LED_TIM_HALF,	.message = "Scroll " UPA},		//enc4 CCW
-		{.type = TYPE_ROTARY,	.axis = 5,	.color = LED_ORANGE,.period = LED_TIM_HALF,	.message = "Zoom In"},			//enc5 CW
-/*N27*/	{.type = TYPE_ROTARY,	.axis = 5,	.color = LED_ORANGE,.period = LED_TIM_HALF,	.message = "Zoom Out"},			//enc5 CCW
+		{.type = TYPE_SWITCH,	.axis = 5,	.color = LED_ORANGE,.period = LED_TIM_HALF,	.message = "Zoom In"},			//enc5 CW
+/*N27*/	{.type = TYPE_SWITCH,	.axis = 5,	.color = LED_ORANGE,.period = LED_TIM_HALF,	.message = "Zoom Out"},			//enc5 CCW
 /*C06*/	{.type = TYPE_ROTARY,	.axis = 6,	.color = LED_WHITE,	.period = LED_TIM_NORM,	.message = "Quick Expo. " UPA},	//enc6 CW
 		{.type = TYPE_ROTARY,	.axis = 6,	.color = LED_DARK,	.period = LED_TIM_NORM,	.message = "Quick Expo. " DOWNA},	//enc6 CCW
 /*C07*/	{.type = TYPE_ROTARY,	.axis = 7,	.color = LED_YELLOW,.period = LED_TIM_NORM,	.message = "Quick C-Temp. " RIGHTA},//enc7 CW

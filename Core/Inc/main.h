@@ -230,11 +230,11 @@ enum lr_enc_t {
 	Lr_ENC7,
 };
 //! Define key that designated for scene change.
-#define SCENE_BIT		7
-#define KEY_PER_SCENE	(KEY_COUNT)
-#define CC_CH_OFFSET	40
-#define CC_CH_PER_SCENE	8
-#define NOTES_PER_SCENE	32
+#define SCENE_BIT			7
+#define KEY_PER_SCENE		(KEY_COUNT)
+#define CC_CH_OFFSET		64
+#define CC_CH_PER_SCENE		8
+#define NOTES_PER_SCENE		32
 //! Key define structure
 #define KEY_DEFINE_COUNT	( KEY_COUNT + (ENC_COUNT * 2) )
 
@@ -246,7 +246,7 @@ enum lr_enc_t {
 #define LED_TIM_NORM		21		//500ms (1 tick=24ms)
 #define LED_TIM_HALF		11		//250ms
 #define LED_TIM_LONG		42		//1Sec
-#define LED_TIM_CONNECT	83		//2Sec
+#define LED_TIM_CONNECT		83		//2Sec
 //! LED TIM3 definitions
 #define LED_TIM_RETRY_WAIT	21		//Transfer period for I2C
 

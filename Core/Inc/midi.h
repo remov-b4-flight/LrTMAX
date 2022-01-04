@@ -20,7 +20,7 @@ enum midi_event_index {
 #define MIDI_UNUSED		0x00
 #define MIDI_EVENT_LENGTH	4
 //! Descriptor types
-#define CONFIG		0x02
+#define CONFIG			0x02
 #define INTERFACE		0x04
 #define CS_INTERFACE	0x24
 #define ENDPOINT		0x05
@@ -52,10 +52,10 @@ enum midi_event_index {
 #define MIDI_CC_HEADER	0x0B
 #define MIDI_CC_STATUS	0xB0
 
-#define MIDI_CC_ON	0x7F
-#define MIDI_CC_OFF	0x00
+#define MIDI_CC_ON		0x7F
+#define MIDI_CC_OFF		0x00
 
-#define MIDI_NT_ON	0x09
+#define MIDI_NT_ON		0x09
 #define MIDI_NT_ON_S	0x90
 
 #define MIDI_NT_OFF		0x08
@@ -65,8 +65,8 @@ enum midi_event_index {
 #define MIDI_CC_MIN		0x00
 #define MIDI_CC_INITIAL	0x40
 
-#define MIDI_NT_ON_VELOCITY		0x7F
-#define MIDI_NT_OFF_VELOCITY	0x00
+//! LrTMAX does not use keyboard velocity
+#define MIDI_NT_VELOCITY	0x40
 
 //! Others
 
