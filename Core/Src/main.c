@@ -198,10 +198,9 @@ static void EmulateMIDI(){
 
         if ( Key_Stat.wd & MaskKey[LrScene] ) { //Matrix switches
         	uint8_t	note = (LrScene * NOTES_PER_SCENE) + bitpos;
-        	if (bitpos == SCENE_BIT) { //[SCENE] switch?
+        	if (bitpos == SCENE_BIT) { //is [SCENE] switch pressed?
                	//Move to next Scene.
-            	LrScene++;
-            	if(LrScene >= SCENE_COUNT){
+            	if((++LrScene) >= SCENE_COUNT){
             		LrScene = Lr_SCENE0;
             	}
         		LED_SetScene(LrScene);

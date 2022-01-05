@@ -168,13 +168,8 @@ void SSD1306_Render2Buffer(void){
  * @param string	Message to screen
  * @param x		x coordinate to render
  * @param y		y coordinate to render
- * @param op	operator with frame buffer contents
  */
-#if 0
-void SSD1306_RenderBanner(char *string, int x, int y ,uint8_t op){
-#else
 void SSD1306_RenderBanner(char *string, int x, int y){
-#endif
 	uint8_t	page = y / BITS_PER_PAGE;
 	if (page >= MAX_PAGE) {
 		page = MAX_PAGE;
@@ -194,17 +189,8 @@ void SSD1306_RenderBanner(char *string, int x, int y){
 			uint8_t font_h = Font8x16[font_top + column];
 			uint8_t font_l = Font8x16[font_top + column + FONT_WIDTH];
 			uint16_t fb_index = fb_top + (i * FONT_WIDTH) + column;
-#if 0
-			if (op == INP){
-#endif
-				Frame_Buffer[fb_index] = font_h;
-				Frame_Buffer[fb_index + SSD1306_WIDTH] = font_l;
-#if 0
-			} else if (op == XOR){
-				Frame_Buffer[fb_index ] ^= font_h;
-				Frame_Buffer[fb_index + SSD1306_WIDTH] ^= font_l;
-			}
-#endif
+			Frame_Buffer[fb_index] = font_h;
+			Frame_Buffer[fb_index + SSD1306_WIDTH] = font_l;
 		}//Frame Buffer column Loop
 	}//String Loop
 }
