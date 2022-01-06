@@ -147,6 +147,23 @@ void EmulateKeyboard();
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
 
+/**
+ *	@brief	Mask all EXTI lines of encoders
+ */
+static void Stop_All_Encoders(){
+	uint32_t temp = EXTI->IMR;
+	temp &= 0xffff0000;
+	EXTI->IMR = temp;
+}
+/**
+ * @brief	Release all EXTI lines masked by StopAllEncoders()
+ */
+static void Start_All_Encoders(){
+	uint32_t temp = EXTI->IMR;
+	temp |= 0x0000ffff;
+	EXTI->IMR = temp;
+}
+
 static inline void Start_MsgTimer(uint32_t tick){
 	Msg_Off_Flag = false;
 	Msg_Timer_Count = tick;
@@ -336,6 +353,8 @@ int main(void)
   MX_TIM7_Init();
   MX_TIM6_Init();
   /* USER CODE BEGIN 2 */
+  //Stop All Encoders until USB link up
+  Stop_All_Encoders();
   //Initialize Switch matrix
   HAL_GPIO_WritePin(L0_GPIO_Port, L0_Pin, GPIO_PIN_SET);	//Initialize L0-3.
   MakeMasks();
@@ -374,6 +393,7 @@ int main(void)
 	if (LrState == LR_USB_LINKUP) {
 		//USB device configured by host
 		HAL_TIM_Base_Start_IT(&htim1);		//Start Switch matrix timer.
+		Start_All_Encoders();
 		SSD1306_SetScreen(ON);
 
 #ifdef DEBUG
@@ -397,6 +417,9 @@ int main(void)
 		EmulateMIDI();
 	} else if(LrState == LR_USB_LINK_LOST) {
 		LrScene	= Lr_SCENE0;
+		Stop_All_Encoders();
+		HAL_TIM_Base_Stop(&htim1);
+
 		LED_TestPattern();
 		Msg_1st_timeout = false;
 		Start_MsgTimer(MSG_TIMER_DEFAULT);
