@@ -323,7 +323,7 @@ int main(void)
   isRender = true;
 
   LrState = LR_RESET;
-  LrScene	= Lr_SCENE0;
+  LrScene = Lr_SCENE0;
 
   isPrev_sw = false;
   isLEDsendpulse = false;
@@ -392,9 +392,9 @@ int main(void)
   while (1) {
 	if (LrState == LR_USB_LINKUP) {
 		//USB device configured by host
-		HAL_TIM_Base_Start_IT(&htim1);		//Start Switch matrix timer.
-		Start_All_Encoders();
 		SSD1306_SetScreen(ON);
+		HAL_TIM_Base_Start_IT(&htim1);		//Start Switch matrix timer.
+		Start_All_Encoders();				//Start rotary encoder.
 
 #ifdef DEBUG
 		int ch = ' ';

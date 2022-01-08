@@ -51,9 +51,9 @@ USBD_MIDI_ItfTypeDef USBD_Interface_fops_FS =
  *	@param	length	Length of received data.
  */
 static uint16_t MIDI_DataRx(uint8_t *msg, uint16_t length){
-
+#if 0
   uint8_t code_idx_num = msg[MIDI_EV_IDX_HEADER] & 0x0F;
-  uint8_t cc_channel = msg[MIDI_EV_IDX_CHANNEL];
+  uint8_t cc_channel = msg[MIDI_EV_IDX_CHANNEL] - CC_CH_OFFSET;
   uint8_t value = msg[MIDI_EV_IDX_VALUE];
   uint8_t cc_scene = cc_channel / CC_CH_PER_SCENE;
   uint8_t channel = cc_channel % CC_CH_PER_SCENE;
@@ -64,6 +64,7 @@ static uint16_t MIDI_DataRx(uint8_t *msg, uint16_t length){
   if (code_idx_num == MIDI_CC_HEADER){
 	  MIDI_CC_Value[cc_scene][channel] = value;
   }
+#endif
   return 0;
 }
 
