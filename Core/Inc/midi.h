@@ -20,7 +20,7 @@ enum midi_event_index {
 #define MIDI_UNUSED		0x00
 #define MIDI_EVENT_LENGTH	4
 //! Descriptor types
-#define CONFIG			0x02
+#define CONFIG		0x02
 #define INTERFACE		0x04
 #define CS_INTERFACE	0x24
 #define ENDPOINT		0x05
@@ -38,14 +38,20 @@ enum midi_event_index {
 #define AUDIO_CONTROL	0x01
 #define MIDI_STREAM		0x03
 
+#define ALTER			0x00
+
+
 //! CS Interface descriptor
 #define HEADER			0x01
 
 //! defining Jacks
-#define MIDI_IN_JACK	0x02
+#define MIDI_IN_JACK		0x02
 #define MIDI_OUT_JACK	0x03
 #define MIDI_JACK_ENB	0x01
 #define MIDI_JACK_EXT	0x02
+
+#define MIDI_IN_JACK_NO	0x01
+#define MIDI_OUT_JACK_NO	0x02
 
 #define MS_GENERAL		0x01
 #define REFRESH			0x01
