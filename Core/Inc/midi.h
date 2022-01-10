@@ -48,6 +48,8 @@ enum midi_event_index {
 
 #define MS_GENERAL		0x01
 #define REFRESH			0x01
+#define BULK				0x02
+#define INTERVAL			0x00
 
 #define MIDI_CC_HEADER	0x0B
 #define MIDI_CC_STATUS	0xB0
@@ -56,7 +58,7 @@ enum midi_event_index {
 #define MIDI_CC_OFF		0x00
 
 #define MIDI_NT_ON		0x09
-#define MIDI_NT_ON_S	0x90
+#define MIDI_NT_ON_S		0x90
 
 #define MIDI_NT_OFF		0x08
 #define MIDI_NT_OFF_S	0x80
