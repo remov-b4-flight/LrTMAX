@@ -65,7 +65,7 @@ static uint16_t MIDI_DataRx(uint8_t *msg, uint16_t length){
 	  MIDI_CC_Value[cc_scene][channel] = value;
   }
 #endif
-  return 0;
+  return USBD_OK;
 }
 
 /**
