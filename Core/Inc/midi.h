@@ -33,6 +33,7 @@ enum midi_event_index {
 
 //! Interface descriptor
 #define INTF0			0x00
+#define INTF1			0x01
 #define AUDIO			0x01
 #define AUDIO_CONTROL	0x01
 #define MIDI_STREAM		0x03
