@@ -17,8 +17,8 @@
 
 /**
 *	@note This file is modified by remov-b4-flight for use with LrTMAX.
-*	Original headers are up.
-*	Unneeded parts of original source are excluded by #if 0
+*	Original headers are above.
+*	Un-needed parts of original source are removed.
 *	@author modified by remov-b4-flight
 *	@copyright CC BY 4.0
 */
@@ -51,7 +51,7 @@ USBD_MIDI_ItfTypeDef USBD_Interface_fops_FS =
  *	@param	length	Length of received data.
  */
 static uint16_t MIDI_DataRx(uint8_t *msg, uint16_t length){
-#if 0
+
   uint8_t code_idx_num = msg[MIDI_EV_IDX_HEADER] & 0x0F;
   uint8_t cc_channel = msg[MIDI_EV_IDX_CHANNEL] - CC_CH_OFFSET;
   uint8_t value = msg[MIDI_EV_IDX_VALUE];
@@ -64,7 +64,7 @@ static uint16_t MIDI_DataRx(uint8_t *msg, uint16_t length){
   if (code_idx_num == MIDI_CC_HEADER){
 	  MIDI_CC_Value[cc_scene][channel] = value;
   }
-#endif
+
   return USBD_OK;
 }
 

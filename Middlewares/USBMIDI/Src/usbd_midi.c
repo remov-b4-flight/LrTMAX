@@ -47,25 +47,25 @@ USBD_ClassTypeDef  USBD_MIDI =
 /* USB MIDI device Configuration Descriptor */
 __ALIGN_BEGIN uint8_t USBD_MIDI_CfgDesc[USB_MIDI_CONFIG_DESC_SIZ] __ALIGN_END =
 {
-  // configuration descriptor
-  0x09, CONFIG, 86, 0x00, 0x02, CONFIG1, 0x00, BUSPOWERED, MIDI_POWER,
+  // Configuration descriptor
+  0x09, CONFIG, 86, 0, NUM_INTF, CONFIG1, NO_STRING_IDX, BUSPOWERED, MIDI_POWER,
 
   // Audio control interface
-  0x09, INTERFACE, INTF0, ALTER, 0x00, AUDIO, AUDIO_CONTROL, 0x00, 0x00,
-  0x09, CS_INTERFACE, HEADER, 0x00, 0x01, 9, 0x00, 0x01, 0x01,
+  0x09, INTERFACE, INTF0, ALTER0, NO_EP, AUDIO, AUDIO_CONTROL, MIDI_UNUSED, MIDI_UNUSED,
+  0x09, CS_INTERFACE, HEADER, 0x00, 0x01, 9, 0, 0x01, 0x01,
   // MIDI stream interface
-  0x09, INTERFACE, INTF1, ALTER, 0x02, AUDIO, MIDI_STREAM, MIDI_UNUSED, MIDI_UNUSED,	// MIDIStreaming Interface Descriptors
-  0x07, CS_INTERFACE, HEADER, 0x00, 0x01, 50, 0x00,   								// Class-Specific MS Interface Header Descriptor
+  0x09, INTERFACE, INTF1, ALTER0, MS_NUM_EP, AUDIO, MIDI_STREAM, MIDI_UNUSED, MIDI_UNUSED,	// MIDIStreaming Interface Descriptors
+  0x07, CS_INTERFACE, HEADER, 0x00, 0x01, 50, 0,   											// Class-Specific MS Interface Header Descriptor
 
   // MIDI IN JACKS
   0x06, CS_INTERFACE, MIDI_IN_JACK, MIDI_JACK_ENB, MIDI_IN_JACK_NO, NO_STRING_IDX,
   // MIDI OUT JACKS
   0x09, CS_INTERFACE, MIDI_OUT_JACK, MIDI_JACK_ENB, MIDI_OUT_JACK_NO, 0x01, 0x01, 0x01, NO_STRING_IDX,
   // IN endpoint descriptor
-  0x09, ENDPOINT, MIDI_IN_EP, BULK, 0x40, 0x00, INTERVAL, MIDI_UNUSED, MIDI_UNUSED,
+  0x09, ENDPOINT, MIDI_IN_EP, BULK, 64, 0, INTERVAL, MIDI_UNUSED, MIDI_UNUSED,
   0x05, CS_ENDPOINT, MS_GENERAL, 0x01, MIDI_IN_JACK_NO,
   // OUT endpoint descriptor
-  0x09, ENDPOINT, MIDI_OUT_EP, BULK, 0x40, 0x00, INTERVAL, MIDI_UNUSED, MIDI_UNUSED,
+  0x09, ENDPOINT, MIDI_OUT_EP, BULK, 64, 0, INTERVAL, MIDI_UNUSED, MIDI_UNUSED,
   0x05, CS_ENDPOINT, MS_GENERAL, 0x01, MIDI_OUT_JACK_NO,
 };
 
@@ -93,16 +93,12 @@ static uint8_t USBD_MIDI_DataIn (USBD_HandleTypeDef *pdev, uint8_t epnum){
 
 static uint8_t  USBD_MIDI_DataOut (USBD_HandleTypeDef *pdev, uint8_t epnum)
 {
-#if 0
-  uint16_t USB_Rx_Cnt;
 
-  USBD_MIDI_ItfTypeDef *pmidi;
-  pmidi = (USBD_MIDI_ItfTypeDef *)(pdev->pUserData);
-
-  USB_Rx_Cnt = ((PCD_HandleTypeDef*)pdev->pData)->OUT_ep[epnum].xfer_count;
+  USBD_MIDI_ItfTypeDef *pmidi = (USBD_MIDI_ItfTypeDef *)(pdev->pUserData);
+  uint16_t USB_Rx_Cnt = ((PCD_HandleTypeDef*)pdev->pData)->OUT_ep[epnum].xfer_count;
 
   pmidi->pIf_MidiRx((uint8_t *)&USB_Rx_Buffer, USB_Rx_Cnt);	//call MIDI_DataRx()
-#endif
+
   USBD_LL_PrepareReceive(pdev,MIDI_OUT_EP,(uint8_t*)(USB_Rx_Buffer),MIDI_DATA_OUT_PACKET_SIZE);
   return USBD_OK;
 }
