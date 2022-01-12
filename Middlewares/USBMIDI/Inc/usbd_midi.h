@@ -5,8 +5,8 @@
   * @copyright  original copyright below
   ******************************************************************************
   (CC at)2016 by D.F.Mac. @@TripArts Music
-*/ 
- 
+*/
+
 /* Define to prevent recursive inclusion -------------------------------------*/
 #ifndef __USB_MIDI_H
 #define __USB_MIDI_H
@@ -18,34 +18,27 @@
 /* Includes ------------------------------------------------------------------*/
 #include  "usbd_ioreq.h"
 
-#define MIDI_IN_EP                                   0x82  /* EP1 for data IN */
-#define MIDI_OUT_EP                                  0x01  /* EP1 for data OUT */
+#define MIDI_IN_EP									0x82  /* EP1 for data IN */
+#define MIDI_OUT_EP									0x01  /* EP1 for data OUT */
 
-#define MIDI_DATA_FS_MAX_PACKET_SIZE                 64 /* Endpoint IN & OUT Packet size */
-#define MIDI_CMD_PACKET_SIZE                         8  /* Control Endpoint Packet size */ 
+#define MIDI_DATA_FS_MAX_PACKET_SIZE				64 /* Endpoint IN & OUT Packet size */
+#define MIDI_CMD_PACKET_SIZE						8  /* Control Endpoint Packet size */
 
-#define USB_MIDI_CONFIG_DESC_SIZ                    133	//default is 101
-#define MIDI_DATA_IN_PACKET_SIZE                    MIDI_DATA_FS_MAX_PACKET_SIZE
-#define MIDI_DATA_OUT_PACKET_SIZE                   MIDI_DATA_FS_MAX_PACKET_SIZE
-#if 0
-#define APP_RX_DATA_SIZE               				((MIDI_DATA_FS_MAX_PACKET_SIZE) * 4) //2048->256
-#endif
-#define MIDI_IN_FRAME_INTERVAL		1
-
-#define MIDI_OUT_JACK_NUM (2)
-#define MIDI_IN_JACK_NUM (2)
+#define USB_MIDI_CONFIG_DESC_SIZ					86
+#define MIDI_DATA_IN_PACKET_SIZE					MIDI_DATA_FS_MAX_PACKET_SIZE
+#define MIDI_DATA_OUT_PACKET_SIZE					MIDI_DATA_FS_MAX_PACKET_SIZE
 
 typedef struct _USBD_MIDI_ItfTypeDef{
   uint16_t (*pIf_MidiRx)    (uint8_t *msg, uint16_t length);
   uint16_t (*pIf_MidiTx)    (uint8_t *msg, uint16_t length);
 }USBD_MIDI_ItfTypeDef;
 
-extern USBD_ClassTypeDef  USBD_MIDI;
-#define USBD_MIDI_CLASS    &USBD_MIDI
+extern USBD_ClassTypeDef	USBD_MIDI;
+#define USBD_MIDI_CLASS		&USBD_MIDI
 
 #define NO_STRING_IDX	0
 
-uint8_t  USBD_MIDI_RegisterInterface  (USBD_HandleTypeDef   *pdev, 
+uint8_t  USBD_MIDI_RegisterInterface  (USBD_HandleTypeDef   *pdev,
                                       USBD_MIDI_ItfTypeDef *fops);
 
 #ifdef __cplusplus
