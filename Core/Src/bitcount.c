@@ -2,7 +2,7 @@
  *	@file	bitcount.c
  *	@brief 'bit count' functions
  *	@author	remov-b4-flight
- *	@copyright	3-Clause BSD Licence
+ *	@copyright	3-Clause BSD License
  *
  */
 /* Includes ------------------------------------------------------------------*/
@@ -15,9 +15,9 @@
  * @return	count of bit '1'
  */
 uint8_t bitcount8(uint8_t b8){
-	uint8_t count = ( ((b8 & 0xAA) >> 1) + (b8 & 0x55) );
-	count = ( ((count & 0xCC) >> 2) + (count & 0x33) );
-	return ( ((count & 0xF0) >> 4) + (count & 0x0F) );
+	uint8_t count = ( ((b8 & 0xaa) >> 1) + (b8 & 0x55) );
+	count = ( ((count & 0xcc) >> 2) + (count & 0x33) );
+	return ( ((count & 0xf0) >> 4) + (count & 0x0f) );
 }
 
 /**

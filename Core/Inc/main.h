@@ -231,12 +231,11 @@ enum lr_enc_t {
 };
 //! Define key that designated for scene change.
 #define SCENE_BIT			7
-#define KEY_PER_SCENE		(KEY_COUNT)
 #define CC_CH_OFFSET		64
 #define CC_CH_PER_SCENE		8
 #define NOTES_PER_SCENE		32
 //! Key define structure
-#define KEY_DEFINE_COUNT	( KEY_COUNT + (ENC_COUNT * 2) )
+#define DEFINES_PER_SCENE	( KEY_COUNT + (ENC_COUNT * 2) )
 
 // Screen timer definitions16
 #define MSG_TIMER_DEFAULT	122		//4Sec (1 tick=32.7ms)

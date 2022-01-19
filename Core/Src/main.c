@@ -107,9 +107,9 @@ bool		isLEDsendpulse;
 bool		LED_Timer_Update;
 
 // Scene related
-extern	KEY_DEFINE keytable[SCENE_COUNT][KEY_DEFINE_COUNT];
+extern	KEY_DEFINE keytable[SCENE_COUNT][DEFINES_PER_SCENE];
 extern	char *scene_name[SCENE_COUNT];
-extern	uint8_t	led_axis_table[KEY_DEFINE_COUNT];
+extern	uint8_t	led_axis_table[DEFINES_PER_SCENE];
 
 extern	uint8_t	LED_Scene[SCENE_COUNT][LED_COUNT];
 extern	uint8_t	LEDColor[LED_COUNT];
@@ -186,16 +186,14 @@ static void LED_SetScene(uint8_t scene){
  * @brief Make MaskKey[],MaskRot[] from keytable[](in key_define.c)
  * @return false : there is some configuration error.
  */
-static bool	MakeMasks(){
-	bool ret = true;
+static void	MakeMasks(){
 	for(uint8_t scn = 0; scn < SCENE_COUNT; scn++){
-		for(uint8_t bit = 0; bit < KEY_DEFINE_COUNT; bit++){
+		for(uint8_t bit = 0; bit < DEFINES_PER_SCENE; bit++){
 			uint32_t	or_bit = (1 << bit);
 			MaskKey[scn] |= (keytable[scn][bit].type == TYPE_SWITCH)?	or_bit : 0;
 			MaskEnc[scn] |= (keytable[scn][bit].type == TYPE_ROTARY)?	or_bit : 0;
 		}
 	}
-	return ret;
 }
 
 /**
