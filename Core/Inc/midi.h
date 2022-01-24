@@ -30,6 +30,7 @@ enum midi_event_index {
 //! Configuration descriptor
 #define CONFIG1				0x01
 #define BUSPOWERED			0x80
+#define REMOTE_WAKEUP		0x20
 #define MIDI_POWER			0x64 //=200mA
 #define NUM_INTF			0x02
 
