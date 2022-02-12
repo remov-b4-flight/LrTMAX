@@ -174,20 +174,6 @@ void Error_Handler(void);
 #define Lr_PRODUCT "LrTMAX"
 #define Lr_VENDOR "Ruffles Inc."
 
-//! LrTMAX Ports on Board
-#define Mx_GPIO_Port GPIOA
-#define ENC0_GPIO_Port GPIOA
-#define ENC1_GPIO_Port GPIOB
-#define ENC2_GPIO_Port GPIOB
-#define ENC3_GPIO_Port GPIOC
-#define ENC4_GPIO_Port GPIOF
-
-#define ENC5A_GPIO_Port GPIOB
-#define ENC5B_GPIO_Port GPIOC
-
-#define ENC6_GPIO_Port GPIOB
-#define ENC7_GPIO_Port GPIOB
-
 //! Lr**** Hardware definition
 #define KEY_COUNT	16
 #define ENC_COUNT	8
@@ -237,7 +223,7 @@ enum lr_enc_t {
 //! Key define structure
 #define DEFINES_PER_SCENE	( KEY_COUNT + (ENC_COUNT * 2) )
 
-// Screen timer definitions16
+// Screen timer definitions
 #define MSG_TIMER_DEFAULT	122		//4Sec (1 tick=32.7ms)
 #define MSG_TIMER_UPDATE	31		//1Sec (OLED update in USB not connected)
 

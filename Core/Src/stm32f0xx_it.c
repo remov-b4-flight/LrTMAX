@@ -198,7 +198,7 @@ void EXTI0_1_IRQHandler(void)
     uint32_t pr = EXTI->PR;
 
 	// Encoder 4 (EXTI[0:1] / PF[0:1])
-	if( pr & PRMASK_R4 ){
+	if( pr & PRMASK_E4 ){
 		uint8_t	r4 = (ENC4_GPIO_Port->IDR) & ENC_MASK;
     	uint8_t op = enc_table[enc_prev[Lr_ENC4]][r4];
 		enc_prev[Lr_ENC4] = r4;
@@ -237,7 +237,7 @@ void EXTI2_3_IRQHandler(void)
     uint32_t pr = EXTI->PR;
 
 	// Encoder 6 (EXTI[2:3] / PB[2:3])
-	if( pr & PRMASK_R6 ){
+	if( pr & PRMASK_E6 ){
 		uint8_t	r6 = (ENC6_GPIO_Port->IDR >> 2) & ENC_MASK;
     	uint8_t op = enc_table[enc_prev[Lr_ENC6]][r6];
 		enc_prev[Lr_ENC6] = r6;
@@ -276,7 +276,7 @@ void EXTI4_15_IRQHandler(void)
     uint32_t pr = EXTI->PR;
 
     // Encoder 0 (EXTI[4:5] / PA[4:5]
-    if(pr & PRMASK_R0){
+    if(pr & PRMASK_E0){
         uint8_t	r0 = ((ENC0_GPIO_Port->IDR) >> 4 ) & ENC_MASK;
     	uint8_t op = enc_table[enc_prev[Lr_ENC0]][r0];
 		enc_prev[Lr_ENC0] = r0;
@@ -304,7 +304,7 @@ void EXTI4_15_IRQHandler(void)
     }
 
     // Encoder 7 (EXTI[6:7] / PB[6:7])
-    if(pr & PRMASK_R7){
+    if(pr & PRMASK_E7){
         uint8_t	r7 = ((ENC7_GPIO_Port->IDR) >> 6 ) & ENC_MASK;
     	uint8_t op = enc_table[enc_prev[Lr_ENC7]][r7];
 		enc_prev[Lr_ENC7] = r7;
@@ -332,7 +332,7 @@ void EXTI4_15_IRQHandler(void)
     }
 
     //Encoder 1 (EXTI[8:9] / PB[8:9])
-    if(pr & PRMASK_R1){
+    if(pr & PRMASK_E1){
     	uint8_t	r1 = ((ENC1_GPIO_Port->IDR) >> 8) & ENC_MASK;
     	uint8_t op = enc_table[enc_prev[Lr_ENC1]][r1];
 		enc_prev[Lr_ENC1] = r1;
@@ -360,7 +360,7 @@ void EXTI4_15_IRQHandler(void)
     }
 
     //Encoder 2 (EXTI[10:11] / PB[10:11])
-	if( pr & PRMASK_R2 ){
+	if( pr & PRMASK_E2 ){
 		uint8_t	r2 = (ENC2_GPIO_Port->IDR >> 10 ) & ENC_MASK;
     	uint8_t op = enc_table[enc_prev[Lr_ENC2]][r2];
 		enc_prev[Lr_ENC2] = r2;
@@ -388,7 +388,7 @@ void EXTI4_15_IRQHandler(void)
 	}
 
     //Encoder 5 (EXTI[12:13] / PA[12],PC[13])
-    if( pr & PRMASK_R5 ){
+    if( pr & PRMASK_E5 ){
  		uint8_t r5 = ( (ENC5A_GPIO_Port->IDR & ENC5A_MASK) | (ENC5B_GPIO_Port->IDR & ENC5B_MASK) ) >> 12;
     	uint8_t op = enc_table[enc_prev[Lr_ENC5]][r5];
 		enc_prev[Lr_ENC5] = r5;
@@ -416,7 +416,7 @@ void EXTI4_15_IRQHandler(void)
     }
 
     //Encoder 3 (EXTI[14:15] / PC[14:15])
-    if(pr & PRMASK_R3){ //EXTI14&15
+    if(pr & PRMASK_E3){ //EXTI14&15
     	uint8_t	r3 = ( (ENC3_GPIO_Port->IDR) >> 14 ) & ENC_MASK;
     	uint8_t op = enc_table[enc_prev[Lr_ENC3]][r3];
 	    enc_prev[Lr_ENC3] = r3;

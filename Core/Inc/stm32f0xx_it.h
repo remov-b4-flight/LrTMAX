@@ -44,24 +44,29 @@
 /* Exported macro ------------------------------------------------------------*/
 /* USER CODE BEGIN EM */
 
- // Definitions for Encoders
+ //! LrTMAX Ports on Board
+#define Mx_GPIO_Port GPIOA
+#define ENC0_GPIO_Port GPIOA
+#define ENC1_GPIO_Port GPIOB
+#define ENC2_GPIO_Port GPIOB
+#define ENC3_GPIO_Port GPIOC
+#define ENC4_GPIO_Port GPIOF
 
-#define PRMASK_R0	0x0030
-#define PRMASK_R1	0x0300
-#define PRMASK_R2	0x0C00
-#define PRMASK_R3	0xC000
-#define PRMASK_R4	0x0003
-#define PRMASK_R5	0x3000
-#define PRMASK_R6	0x000C
-#define PRMASK_R7	0x00C0
+#define ENC5A_GPIO_Port GPIOB
+#define ENC5B_GPIO_Port GPIOC
 
-//! 9R5KQ type Encoder
-enum enc9R5_t {
-	ENC_MV3	=	3,
-	ENC_MV2	=	2,
-	ENC_MV1	=	1,
-	ENC_MV0	=	0,
-};
+#define ENC6_GPIO_Port GPIOB
+#define ENC7_GPIO_Port GPIOB
+
+// Definitions for Encoders
+#define PRMASK_E0	0x0030
+#define PRMASK_E1	0x0300
+#define PRMASK_E2	0x0C00
+#define PRMASK_E3	0xC000
+#define PRMASK_E4	0x0003
+#define PRMASK_E5	0x3000
+#define PRMASK_E6	0x000C
+#define PRMASK_E7	0x00C0
 
 enum enc_move_t {
 	ENC_STOPPED = 0,
