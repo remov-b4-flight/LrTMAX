@@ -30,8 +30,10 @@
 
 extern USBD_MIDI_ItfTypeDef  USBD_Interface_fops_FS;
 
+#define CC_INDEX_MAX	(32-1)
+
 #ifdef __cplusplus
 }
 #endif
-  
+
 #endif /* __USBD_MIDI_IF_H */
