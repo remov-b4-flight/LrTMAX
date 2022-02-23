@@ -8,14 +8,6 @@
 #ifndef INC_MIDI_NOTE_H_
 #define INC_MIDI_NOTE_H_
 
-//! USB MIDI event offsets
-enum midi_event_index {
-	MIDI_EV_IDX_HEADER = 0,
-	MIDI_EV_IDX_STATUS = 1,
-	MIDI_EV_IDX_CHANNEL = 2,
-	MIDI_EV_IDX_VALUE = 3,
-};
-
 //! Commonly used
 #define MIDI_UNUSED			0x00
 #define MIDI_EVENT_LENGTH	4
