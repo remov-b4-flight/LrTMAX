@@ -8,7 +8,7 @@
 #ifndef INC_MIDI_NOTE_H_
 #define INC_MIDI_NOTE_H_
 
-//! MIDI event offsets
+//! USB MIDI event offsets
 enum midi_event_index {
 	MIDI_EV_IDX_HEADER = 0,
 	MIDI_EV_IDX_STATUS = 1,

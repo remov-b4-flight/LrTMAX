@@ -32,6 +32,13 @@ extern USBD_MIDI_ItfTypeDef  USBD_Interface_fops_FS;
 
 #define CC_INDEX_MAX	(32-1)
 
+typedef struct midi_event_t {
+	uint8_t	header;
+	uint8_t	status;
+	uint8_t	channel;
+	uint8_t	value;
+} MIDI_EVENT;
+
 #ifdef __cplusplus
 }
 #endif
