@@ -124,7 +124,11 @@ uint8_t MIDI_CC_Value[SCENE_COUNT][ENC_COUNT];
 //! keep previous sent 'Key On' note/channel for release message.
 uint8_t prev_note;
 //! USB MIDI message buffer
+#if 0
 uint8_t	USBMIDI_Event[4];
+#else
+MIDI_EVENT	USBMIDI_Event;
+#endif
 //! Instance Handle of USB interface
 extern USBD_HandleTypeDef *pInstance;
 
@@ -239,11 +243,17 @@ static void EmulateMIDI(){
 
             if (isKeyReport == true) {
 				//Set 'Note ON
+#if 0
 				USBMIDI_Event[MIDI_EV_IDX_HEADER] = MIDI_NT_ON;
 				USBMIDI_Event[MIDI_EV_IDX_STATUS] = MIDI_NT_ON_S;
 				USBMIDI_Event[MIDI_EV_IDX_CHANNEL] = note;
 				USBMIDI_Event[MIDI_EV_IDX_VALUE] = MIDI_NT_VELOCITY;
-
+#else
+				USBMIDI_Event.header = MIDI_NT_ON;
+				USBMIDI_Event.status = MIDI_NT_ON_S;
+				USBMIDI_Event.channel = note;
+				USBMIDI_Event.value = MIDI_NT_VELOCITY;
+#endif
 				prev_note = note;
 				isPrev_sw = true;
             }
@@ -252,11 +262,17 @@ static void EmulateMIDI(){
         	uint8_t axis = (bitpos - KEY_COUNT) / 2;
         	uint8_t val = MIDI_CC_Value[LrScene][axis];
         	uint8_t channel = CC_CH_OFFSET + (LrScene * CC_CH_PER_SCENE) + axis;
-
+#if 0
             USBMIDI_Event[MIDI_EV_IDX_HEADER] = MIDI_CC_HEADER;
             USBMIDI_Event[MIDI_EV_IDX_STATUS] = MIDI_CC_STATUS;
             USBMIDI_Event[MIDI_EV_IDX_CHANNEL] = channel;
             USBMIDI_Event[MIDI_EV_IDX_VALUE] = val;
+#else
+            USBMIDI_Event.header = MIDI_CC_HEADER;
+            USBMIDI_Event.status = MIDI_CC_STATUS;
+            USBMIDI_Event.channel = channel;
+            USBMIDI_Event.value = val;
+#endif
             isPrev_sw = false;
 
             //Print Message to OLED & LED
@@ -275,18 +291,24 @@ static void EmulateMIDI(){
 
         }else if(isPrev_sw == true && rkey == 0) {// Switch is released
 			//Send 'Note Off' Event
+#if 0
 			USBMIDI_Event[MIDI_EV_IDX_HEADER] = MIDI_NT_OFF;
 			USBMIDI_Event[MIDI_EV_IDX_STATUS] = MIDI_NT_OFF_S;
 			USBMIDI_Event[MIDI_EV_IDX_CHANNEL] = prev_note;
 			USBMIDI_Event[MIDI_EV_IDX_VALUE] = MIDI_NT_VELOCITY;
-
+#else
+			USBMIDI_Event.header = MIDI_NT_OFF;
+			USBMIDI_Event.status = MIDI_NT_OFF_S;
+			USBMIDI_Event.channel = prev_note;
+			USBMIDI_Event.value = MIDI_NT_VELOCITY;
+#endif
 			isKeyReport = true;
 			isPrev_sw = false;
         }
 
         if(isKeyReport == true){
 			//Send MIDI event via USB
-		    USBD_LL_Transmit (pInstance, MIDI_IN_EP, USBMIDI_Event, MIDI_EVENT_LENGTH);
+		    USBD_LL_Transmit (pInstance, MIDI_IN_EP, (uint8_t *)&USBMIDI_Event, MIDI_EVENT_LENGTH);
 			isKeyReport = false;
         }
 
