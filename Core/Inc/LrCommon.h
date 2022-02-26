@@ -1,9 +1,9 @@
 /*
- * @file LrCommon.h
- * @brief Common definitions on Lr****
- *  Created on: 2022/02/26
- *      Author: jenoki
- */
+ * @file	LrCommon.h
+ * @brief	Common definitions on Lr****
+ * @author	remov-b4-flight
+ * @copyright	3-Clause BSD License
+*/
 
 #ifndef INC_LRCOMMON_H_
 #define INC_LRCOMMON_H_
@@ -74,7 +74,8 @@ enum lr_scene_t {
 #define NOTES_PER_SCENE		32
 //! Define key that designated for scene change.
 #define SCENE_BIT			7
-
+//! number of cc channels that Lr**** controls.
+#define CC_COUNT			(ENC_COUNT * SCENE_COUNT)
 // LED timer definitions
 #define LED_TIM_NORM		21		//500ms (1 tick=24ms)
 #define LED_TIM_HALF		11		//250ms

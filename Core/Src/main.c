@@ -384,7 +384,7 @@ int main(void)
   LrState = LR_USB_NOLINK;
 
   //Initialize CC Value table
-  memset(MIDI_CC_Value, MIDI_CC_INITIAL, SCENE_COUNT * ENC_COUNT);
+  memset(MIDI_CC_Value, MIDI_CC_INITIAL, CC_COUNT);
 
   //LED Initialize
   LED_SetScene(LrScene);

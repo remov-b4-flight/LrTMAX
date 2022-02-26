@@ -24,15 +24,16 @@
  extern "C" {
 #endif
 
+#include <stdbool.h>
+#include "LrCommon.h"
 #include "usbd_midi.h"
 #include "usbd_desc.h"
-#include <stdbool.h>
 
 extern USBD_MIDI_ItfTypeDef  USBD_Interface_fops_FS;
 
-#define CC_CH_OFFSET		64
-#define CC_CH_PER_SCENE		8
-#define CC_INDEX_MAX	( (ENC_COUNT * SCENE_COUNT) - 1 )
+#define CC_CH_OFFSET	64
+#define CC_CH_PER_SCENE	8
+#define CC_INDEX_MAX	( CC_COUNT - 1 )
 
 typedef struct midi_event_t {
 	uint8_t	header;
