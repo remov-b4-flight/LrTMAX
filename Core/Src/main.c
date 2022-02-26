@@ -143,7 +143,7 @@ static void MX_I2C2_Init(void);
 static void MX_TIM7_Init(void);
 static void MX_TIM6_Init(void);
 /* USER CODE BEGIN PFP */
-void EmulateKeyboard();
+
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
