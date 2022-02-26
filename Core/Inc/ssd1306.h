@@ -94,11 +94,6 @@ enum screen_stat {
 	ON = true,  //!< ON
 };
 
-enum render_operator {
-	INP,	//!< render content may overwritten.
-	XOR,	//!< render content are 'xor'ed with frame buffer
-};
-
 /*
  * Function prototype definitions
  */

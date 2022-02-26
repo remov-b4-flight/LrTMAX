@@ -38,23 +38,7 @@ extern "C" {
 
 /* Exported types ------------------------------------------------------------*/
 /* USER CODE BEGIN ET */
-typedef union keyscan_t {
-    uint32_t wd;
-    struct ks_bit_t {
-		unsigned char n0:4;		//Switch Line0
-		unsigned char n1:4;		//Switch Line1
-		unsigned char n2:4;		//Switch Line2
-		unsigned char n3:4;		//Switch Line3
-		unsigned char enc0:2;	//Rotary encoder
-		unsigned char enc1:2;	//Rotary encoder
-		unsigned char enc2:2;	//Rotary encoder
-		unsigned char enc3:2;	//Rotary encoder
-		unsigned char enc4:2;	//Rotary encoder
-		unsigned char enc5:2;	//Rotary encoder
-        unsigned char enc6:2;	//Rotary encoder
-        unsigned char enc7:2;	//Rotary encoder
-    } nb;
-} KEYSCAN;
+
 /* USER CODE END ET */
 
 /* Exported constants --------------------------------------------------------*/
@@ -77,18 +61,18 @@ void Error_Handler(void);
 /* USER CODE END EFP */
 
 /* Private defines -----------------------------------------------------------*/
-#define TIM_PERIOD_24mS 24576
 #define Lr_PID 0xA380
-#define TIM_PERIOD_8mS 7999
-#define TIM_PERIOD_32mS 32768
-#define TIM_PERIOD_125uS 125
-#define Lr_PRODUCT "LrTMAX"
-#define PWM_HI 38
 #define Lr_VENDOR "Ruffles Inc."
+#define Lr_PRODUCT "LrTMAX"
 #define TIM_PRESC_1uS 47
+#define TIM_PERIOD_100uS 99
+#define TIM_PERIOD_125uS 125
+#define TIM_PERIOD_8mS 7999
+#define TIM_PERIOD_24mS 24576
+#define TIM_PERIOD_32mS 32768
+#define PWM_HI 38
 #define PWM_LO 15
 #define PWM_PERIOD 59
-#define TIM_PERIOD_100uS 99
 #define ENC5B_Pin GPIO_PIN_13
 #define ENC5B_GPIO_Port GPIOC
 #define ENC5B_EXTI_IRQn EXTI4_15_IRQn
@@ -168,73 +152,9 @@ void Error_Handler(void);
 #define ENC1B_GPIO_Port GPIOB
 #define ENC1B_EXTI_IRQn EXTI4_15_IRQn
 /* USER CODE BEGIN Private defines */
-#undef	Lr_PID
-#undef	Lr_PRODUCT
-#define Lr_PID 0xA380
-#define Lr_PRODUCT "LrTMAX"
-#define Lr_VENDOR "Ruffles Inc."
 
-//! Lr**** Hardware definition
-#define KEY_COUNT	16
-#define ENC_COUNT	8
-
-//! Lr**** States
-enum lr_state_t {
-	LR_RESET,        //!< LR_RESET
-	LR_USB_NOLINK,   //!< LRE6_USB_NOLINK
-	LR_USB_LINKUP,   //!< LR_USB_LINKUP
-	LR_USB_LINKED,   //!< LR_USB_LINKED
-	LR_USB_LINK_LOST,//!< LR_USB_LINK_LOST
-};
-
-//! Key matrix lines
-enum {
-	L0 = 0,
-	L1,
-	L2,
-	L3
-};
-
-//! Scene definition in MIDI
-enum lr_scene_t {
-	Lr_SCENE0 = 0,
-	Lr_SCENE1 = 1,
-	Lr_SCENE2 = 2,
-	Lr_SCENE3 = 3,
-};
-#define	SCENE_COUNT		4
-
-//! Encoder definitions
-enum lr_enc_t {
-	Lr_ENC0 = 0,
-	Lr_ENC1,
-	Lr_ENC2,
-	Lr_ENC3,
-	Lr_ENC4,
-	Lr_ENC5,
-	Lr_ENC6,
-	Lr_ENC7,
-};
-//! Define key that designated for scene change.
-#define SCENE_BIT			7
-#define CC_CH_OFFSET		64
-#define CC_CH_PER_SCENE		8
-#define NOTES_PER_SCENE		32
-//! Key define structure
-#define DEFINES_PER_SCENE	( KEY_COUNT + (ENC_COUNT * 2) )
-
-// Screen timer definitions
-#define MSG_TIMER_DEFAULT	122		//4Sec (1 tick=32.7ms)
-#define MSG_TIMER_UPDATE	31		//1Sec (OLED update in USB not connected)
-
-// LED timer definitions
-#define LED_TIM_NORM		21		//500ms (1 tick=24ms)
-#define LED_TIM_HALF		11		//250ms
-#define LED_TIM_LONG		42		//1Sec
-#define LED_TIM_CONNECT		83		//2Sec
 //! LED TIM3 definitions
 #define LED_TIM_RETRY_WAIT	21		//Transfer period for I2C
-
 //! I2C time definitions
 #define I2C_RETRY_WAIT		2		//Transfer period for TIM3 PWM
 

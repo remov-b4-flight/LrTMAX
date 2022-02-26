@@ -27,6 +27,7 @@
 /* USER CODE BEGIN Includes */
 #include <stdbool.h>
 #include "midi.h"
+#include "LrCommon.h"
 #include "led.h"
 #include "bitcount.h"
 #include "key_define.h"
@@ -438,7 +439,7 @@ int main(void)
 				Msg_Print();
 
 				//Restart OLED timer.
-				Start_MsgTimer(MSG_TIMER_UPDATE);
+				Start_MsgTimer(MSG_TIMER_NOLINK);
 
 				//Rotate LED colors
 				uint8_t	tempcolor = LEDColor[7];

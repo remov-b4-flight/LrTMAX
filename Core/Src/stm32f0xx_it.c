@@ -25,6 +25,7 @@
 /* USER CODE BEGIN Includes */
 #include <stdbool.h>
 #include <string.h>
+#include "LrCommon.h"
 #include "midi.h"
 #include "stm32f0xx_hal_tim.h"
 #include "ssd1306.h"

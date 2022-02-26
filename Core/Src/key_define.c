@@ -23,6 +23,7 @@
 
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
+#include "LrCommon.h"
 #include "key_define.h"
 #include "led.h"
 

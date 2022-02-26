@@ -25,6 +25,7 @@
 
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
+#include "LrCommon.h"
 #include "usbd_midi_if.h"
 #include "stm32f0xx_hal.h"
 #include "midi.h"
@@ -34,7 +35,6 @@ static uint16_t MIDI_DataRx(uint8_t *msg, uint16_t length);
 static uint16_t MIDI_DataTx(uint8_t *msg, uint16_t length);
 
 extern uint8_t MIDI_CC_Value[SCENE_COUNT][ENC_COUNT];
-extern uint8_t LrScene;
 
 /**
  *	@brief	Array of callback function pointer with MIDI.

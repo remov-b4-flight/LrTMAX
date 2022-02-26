@@ -27,6 +27,7 @@
 
 /* USER CODE BEGIN Includes */
 #include <stdbool.h>
+#include <LrCommon.h>
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
