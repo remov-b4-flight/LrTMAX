@@ -65,8 +65,7 @@ void Error_Handler(void);
 #define Lr_VENDOR "Ruffles Inc."
 #define Lr_PRODUCT "LrTMAX"
 #define TIM_PRESC_1uS 47
-#define TIM_PERIOD_100uS 99
-#define TIM_PERIOD_125uS 125
+#define TIM_PERIOD_125uS 124
 #define TIM_PERIOD_8mS 7999
 #define TIM_PERIOD_24mS 24576
 #define TIM_PERIOD_32mS 32768

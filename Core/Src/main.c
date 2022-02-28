@@ -26,8 +26,8 @@
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 #include <stdbool.h>
-#include "midi.h"
 #include "LrCommon.h"
+#include "midi.h"
 #include "led.h"
 #include "bitcount.h"
 #include "key_define.h"
