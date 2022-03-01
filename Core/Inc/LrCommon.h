@@ -16,18 +16,18 @@
 typedef union keyscan_t {
     uint32_t wd;
     struct ks_bit_t {
-		unsigned char n0:4;		//Switch Line0
-		unsigned char n1:4;		//Switch Line1
-		unsigned char n2:4;		//Switch Line2
-		unsigned char n3:4;		//Switch Line3
-		unsigned char enc0:2;	//Rotary encoder
-		unsigned char enc1:2;	//Rotary encoder
-		unsigned char enc2:2;	//Rotary encoder
-		unsigned char enc3:2;	//Rotary encoder
-		unsigned char enc4:2;	//Rotary encoder
-		unsigned char enc5:2;	//Rotary encoder
-        unsigned char enc6:2;	//Rotary encoder
-        unsigned char enc7:2;	//Rotary encoder
+		uint8_t n0:4;	//Switch Line0
+		uint8_t n1:4;	//Switch Line1
+		uint8_t n2:4;	//Switch Line2
+		uint8_t n3:4;	//Switch Line3
+		uint8_t enc0:2;	//Rotary encoder
+		uint8_t enc1:2;	//Rotary encoder
+		uint8_t enc2:2;	//Rotary encoder
+		uint8_t enc3:2;	//Rotary encoder
+		uint8_t enc4:2;	//Rotary encoder
+		uint8_t enc5:2;	//Rotary encoder
+        uint8_t enc6:2;	//Rotary encoder
+        uint8_t enc7:2;	//Rotary encoder
     } nb;
 } KEYSCAN;
 
