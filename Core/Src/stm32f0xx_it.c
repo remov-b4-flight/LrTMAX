@@ -78,7 +78,7 @@ KEYSCAN current_scan;
 uint8_t	enc_prev[ENC_COUNT];
 uint8_t	enc_timer[ENC_COUNT];
 
-uint8_t enc_table[4][4] = {
+const uint8_t enc_table[4][4] = {
 //now =	0			1				2				3
 	{ENC_INVALID,	ENC_MOVE_CW,	ENC_MOVE_CCW,	ENC_INVALID,	},//prev = 0
 	{ENC_STOPPED,	ENC_INVALID,	ENC_INVALID,	ENC_STOPPED,	},//prev = 1
