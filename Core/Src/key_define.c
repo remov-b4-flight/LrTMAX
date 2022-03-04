@@ -1,6 +1,6 @@
 /**
 * @file key_define.c
-* @brief MIDI channel definition
+* @brief MIDI channel/note definition
 * @details This file defines MIDI Control Change(CC) / Note ON-OFF event on MIDI build.
 * LrTMAX has 8 encoder as enc0~7, and 8 individual switch(SW) as SW1~8 and SW on encoder as 'enc0~7 push'
 * In MIDI use , users can send individual CC/Note event channel per switch and encoder.
@@ -10,15 +10,16 @@
 * Users can use up to 4 Scenes. SW10 is fixed for Scene function.
 *
 * Scene / CC event channel definition (by Encoders)
-* ch. 64~71		Scene0
-* ch. 72~79		Scene1
-* ch. 80~87		Scene2
-* ch. 88~95		Scene3
+* Scene0	ch. 64~71
+* Scene1	ch. 72~79
+* Scene2	ch. 80~87
+* Scene3	ch. 88~95
+*
 * Scene / Note definition (by SWs)
-* Note	0~15	Scene0
-* Note	16~31	Scene1
-* Note	32~47	Scene2
-* Note	48~63	Scene3
+* Scene0	Note 0~15
+* Scene1	Note 16~31
+* Scene2	Note 32~47
+* Scene3	Note 48~63
 */
 
 /* Includes ------------------------------------------------------------------*/
@@ -28,7 +29,7 @@
 #include "led.h"
 
 /* Variables ----------------------------------------------------------------*/
-//! User-friendly scene names appears on OLED.
+//! User-friendly scene names appears on OLED display.
 const char *scene_name[SCENE_COUNT] = {
 /*		 0123456789ABCDEF */
 		"Library",
@@ -47,7 +48,7 @@ const uint8_t LED_Scene[SCENE_COUNT][LED_COUNT] = {
 
 //! @union Key/encoder configuration table
 const KEY_DEFINE keytable[SCENE_COUNT][DEFINES_PER_SCENE] = {
-	{	//Scene0 Buttons (Library Tab)																0123456789ABCDEF
+	{	//Scene0 Switches	(Library Tab)															0123456789ABCDEF
 /*N00*/	{.type = TYPE_SWITCH,	.axis = 0,	.color = LED_YELLOW,.period = LED_TIM_NORM,	.message = "Undo"},				//L0M0	SW1
 /*N01*/	{.type = TYPE_SWITCH,	.axis = 0,	.color = LED_YELLOW,.period = LED_TIM_NORM,	.message = "Rate 1"},			//L0M1	SW2
 /*N02*/	{.type = TYPE_SWITCH,	.axis = 0,	.color = LED_YELLOW,.period = LED_TIM_NORM,	.message = "Rate 2"},			//L0M2	SW3
@@ -81,7 +82,7 @@ const KEY_DEFINE keytable[SCENE_COUNT][DEFINES_PER_SCENE] = {
 		{.type = TYPE_ROTARY,	.axis = 6,	.color = LED_DARK,	.period = LED_TIM_NORM,	.message = "Quick Expo. " DOWNA},	//enc6 CCW
 /*C71*/	{.type = TYPE_ROTARY,	.axis = 7,	.color = LED_YELLOW,.period = LED_TIM_NORM,	.message = "Quick C-Temp. " RIGHTA},//enc7 CW
 		{.type = TYPE_ROTARY,	.axis = 7,	.color = LED_BLUE,	.period = LED_TIM_NORM,	.message = "Quick C-Temp. " LEFTA},	//enc7 CCW
-	},{	//Scene1 Buttons	(Basic Edits)																0123456789ABCDEF
+	},{	//Scene1 Switches	(Basic Edits)															0123456789ABCDEF
 /*N32*/	{.type = TYPE_SWITCH,	.axis = 0,	.color = LED_WHITE,	.period = LED_TIM_NORM,	.message = "Undo"},				//L0M0	SW1
 /*N33*/	{.type = TYPE_SWITCH,	.axis = 0,	.color = LED_RED,	.period = LED_TIM_NORM,	.message = "Auto Tone"},		//L0M1	SW2
 		{.type = TYPE_SWITCH,	.axis = 0,	.color = LED_ORANGE,.period = LED_TIM_NORM,	.message = "DayLight"},			//L0M2	SW3
@@ -115,7 +116,7 @@ const KEY_DEFINE keytable[SCENE_COUNT][DEFINES_PER_SCENE] = {
 		{.type = TYPE_ROTARY,	.axis = 6,	.color = LED_ORANGE,.period = LED_TIM_NORM,	.message = "Natural Vibra." LEFTA},		//enc6 CCW
 /*C79*/	{.type = TYPE_ROTARY,	.axis = 7,	.color = LED_OFF,	.period = LED_TIM_NORM,	.message = "A7" RIGHTA},		//enc7 CW
 		{.type = TYPE_ROTARY,	.axis = 7,	.color = LED_OFF,	.period = LED_TIM_NORM,	.message = "A7" LEFTA},			//enc7 CCW
-	},{	//Scene2 Buttons	(Tone Curve)																	0123456789ABCDEF
+	},{	//Scene2 Switches	(Tone Curve)															0123456789ABCDEF
 /*N64*/	{.type = TYPE_SWITCH,	.axis = 0,	.color = LED_WHITE,	.period = LED_TIM_NORM,	.message = "Undo"},				//L0M0	SW1
 		{.type = TYPE_SWITCH,	.axis = 0,	.color = LED_DARK,	.period = LED_TIM_NORM,	.message = "Keyword1"},			//L0M1	SW2
 		{.type = TYPE_SWITCH,	.axis = 0,	.color = LED_DARK,	.period = LED_TIM_NORM,	.message = "Keyword2"},			//L0M2	SW3
@@ -149,7 +150,7 @@ const KEY_DEFINE keytable[SCENE_COUNT][DEFINES_PER_SCENE] = {
 		{.type = TYPE_ROTARY,	.axis = 6,	.color = LED_OFF,	.period = LED_TIM_NORM,	.message = "A6" LEFTA},			//enc6 CCW
 /*C87*/	{.type = TYPE_ROTARY,	.axis = 7,	.color = LED_OFF,	.period = LED_TIM_NORM,	.message = "A7" RIGHTA},		//enc7 CW
 		{.type = TYPE_ROTARY,	.axis = 7,	.color = LED_OFF,	.period = LED_TIM_NORM,	.message = "A7" LEFTA},			//enc7 CCW
-	},{	//Scene3 Buttons	(Color Balance)																0123456789ABCDEF
+	},{	//Scene3 Switches	(Color Balance)															0123456789ABCDEF
 /*N96*/	{.type = TYPE_SWITCH,	.axis = 0,	.color = LED_WHITE,	.period = LED_TIM_NORM,	.message = "Undo"},				//L0M0	SW1
 		{.type = TYPE_SWITCH,	.axis = 0,	.color = LED_DARK,	.period = LED_TIM_NORM,	.message = "RedEye"},			//L0M1	SW2
 		{.type = TYPE_SWITCH,	.axis = 0,	.color = LED_DARK,	.period = LED_TIM_NORM,	.message = "Lens Colle."},		//L0M2	SW3

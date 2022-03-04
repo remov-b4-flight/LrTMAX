@@ -36,7 +36,7 @@ typedef struct _USBD_MIDI_ItfTypeDef{
 extern USBD_ClassTypeDef	USBD_MIDI;
 #define USBD_MIDI_CLASS		&USBD_MIDI
 
-#define NO_STRING_IDX	0
+#define UNUSED_DESC_IDX	0
 
 uint8_t  USBD_MIDI_RegisterInterface  (USBD_HandleTypeDef   *pdev,
                                       USBD_MIDI_ItfTypeDef *fops);

@@ -46,6 +46,7 @@
 
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
+
 /* USER CODE END PD */
 
 /* Private macro -------------------------------------------------------------*/
@@ -124,9 +125,6 @@ extern char Msg_Buffer[MSG_LINES][MSG_WIDTH + 1];
 uint8_t MIDI_CC_Value[SCENE_COUNT][ENC_COUNT];
 //! keep previous sent 'Key On' note/channel for release message.
 uint8_t prev_note;
-//! USB MIDI message structure for send
-MIDI_EVENT	USBMIDI_Event;
-
 //! Instance Handle of USB interface
 extern USBD_HandleTypeDef *pInstance;
 
@@ -157,6 +155,7 @@ static void Stop_All_Encoders(){
 	temp &= 0xffff0000;
 	EXTI->IMR = temp;
 }
+
 /**
  * @brief	Release all EXTI lines masked by StopAllEncoders()
  */
@@ -205,15 +204,17 @@ static void	MakeMasks(){
  *	@pre	Key_Stat		current key status
  */
 static void EmulateMIDI(){
-	char msg_string[MSG_WIDTH];
+	//! USB MIDI message structure for send
+	MIDI_EVENT	USBMIDI_TxEvent;
 
 	if (isKeyPressed) {
-    	//Send 'Note On' Event from key matrix
+		char 		msg_string[MSG_WIDTH + 1];
         uint8_t		bitpos = ntz32(Key_Stat.wd);
         uint32_t	rkey = (Key_Stat.wd);
         bool 		isKeyReport = false;
 
-        if ( Key_Stat.wd & MaskKey[LrScene] ) { //Matrix switches
+        if ( Key_Stat.wd & MaskKey[LrScene] ) { //Check Matrix switches
+        	//Send 'Note On' Event from key matrix
         	uint8_t	note = (LrScene * NOTES_PER_SCENE) + bitpos;
         	if (bitpos == SCENE_BIT) { //is [SCENE] switch pressed?
                	//Move to next Scene.
@@ -241,24 +242,24 @@ static void EmulateMIDI(){
 
             if (isKeyReport == true) {
 				//Set 'Note ON
-				USBMIDI_Event.header = MIDI_NT_ON;
-				USBMIDI_Event.status = MIDI_NT_ON_S;
-				USBMIDI_Event.channel = note;
-				USBMIDI_Event.value = MIDI_NT_VELOCITY;
+				USBMIDI_TxEvent.header = MIDI_NT_ON;
+				USBMIDI_TxEvent.status = MIDI_NT_ON_S;
+				USBMIDI_TxEvent.channel = note;
+				USBMIDI_TxEvent.value = MIDI_NT_VELOCITY;
 
 				prev_note = note;
 				isPrev_sw = true;
             }
-        }else if( Key_Stat.wd & MaskEnc[LrScene] ) {
+        }else if( Key_Stat.wd & MaskEnc[LrScene] ) { //Check encoder's move
         	//Send CC Event from encoder
         	uint8_t axis = (bitpos - KEY_COUNT) / 2;
         	uint8_t val = MIDI_CC_Value[LrScene][axis];
         	uint8_t channel = CC_CH_OFFSET + (LrScene * CC_CH_PER_SCENE) + axis;
 
-            USBMIDI_Event.header = MIDI_CC_HEADER;
-            USBMIDI_Event.status = MIDI_CC_STATUS;
-            USBMIDI_Event.channel = channel;
-            USBMIDI_Event.value = val;
+            USBMIDI_TxEvent.header = MIDI_CC_HEADER;
+            USBMIDI_TxEvent.status = MIDI_CC_STATUS;
+            USBMIDI_TxEvent.channel = channel;
+            USBMIDI_TxEvent.value = val;
 
             isPrev_sw = false;
 
@@ -278,10 +279,10 @@ static void EmulateMIDI(){
 
         }else if(isPrev_sw == true && rkey == 0) {// Switch is released
 			//Send 'Note Off' Event
-			USBMIDI_Event.header = MIDI_NT_OFF;
-			USBMIDI_Event.status = MIDI_NT_OFF_S;
-			USBMIDI_Event.channel = prev_note;
-			USBMIDI_Event.value = MIDI_NT_VELOCITY;
+			USBMIDI_TxEvent.header = MIDI_NT_OFF;
+			USBMIDI_TxEvent.status = MIDI_NT_OFF_S;
+			USBMIDI_TxEvent.channel = prev_note;
+			USBMIDI_TxEvent.value = MIDI_NT_VELOCITY;
 
 			isKeyReport = true;
 			isPrev_sw = false;
@@ -289,7 +290,7 @@ static void EmulateMIDI(){
 
         if(isKeyReport == true){
 			//Send MIDI event via USB
-		    USBD_LL_Transmit (pInstance, MIDI_IN_EP, (uint8_t *)&USBMIDI_Event, MIDI_EVENT_LENGTH);
+		    USBD_LL_Transmit (pInstance, MIDI_IN_EP, (uint8_t *)&USBMIDI_TxEvent, MIDI_EVENT_LENGTH);
 			isKeyReport = false;
         }
 
@@ -479,7 +480,7 @@ int main(void)
 	}
 
 	//OLED timer
-	if (Msg_Timer_Update == true){
+	if (Msg_Timer_Update == true){	//32.7ms interval
 		if(Msg_Timer_Enable == true && (--Msg_Timer_Count) <= 0){
 			Msg_Timer_Enable = false;
 			Msg_Off_Flag = true;

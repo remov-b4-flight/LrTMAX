@@ -52,18 +52,18 @@ USBD_MIDI_ItfTypeDef USBD_Interface_fops_FS =
  */
 static uint16_t MIDI_DataRx(uint8_t *msg, uint16_t length){
   uint8_t	event_count = length / MIDI_EVENT_LENGTH;
-  MIDI_EVENT *event = (MIDI_EVENT *)msg;
+  MIDI_EVENT *rx_event = (MIDI_EVENT *)msg;
 
-  for (uint8_t i = 0; i < event_count; i++,event++){
-	  uint8_t cc_channel = event->channel - CC_CH_OFFSET;
+  for (uint8_t i = 0; i < event_count; i++,rx_event++){
+	  uint8_t cc_channel = rx_event->channel - CC_CH_OFFSET;
 	  if (cc_channel > (CC_INDEX_MAX) ){
 		  continue;
 	  }
 
 	  uint8_t cc_scene = cc_channel / CC_CH_PER_SCENE;
 	  uint8_t channel = cc_channel % CC_CH_PER_SCENE;
-	  if ( (event->header & 0x0F) == MIDI_CC_HEADER){
-		  MIDI_CC_Value[cc_scene][channel] = event->value;
+	  if ( (rx_event->header & 0x0F) == MIDI_CC_HEADER){
+		  MIDI_CC_Value[cc_scene][channel] = rx_event->value;
 	  }
   }
   return USBD_OK;
