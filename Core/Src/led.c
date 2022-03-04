@@ -7,11 +7,14 @@
 
 #include <string.h>
 #include "main.h"
+#include "LrCommon.h"
 #include "led.h"
 
 extern TIM_HandleTypeDef htim3;
 extern TIM_HandleTypeDef htim14;
 extern bool	isLEDsendpulse;
+extern uint8_t	LED_Scene[SCENE_COUNT][LED_COUNT];
+
 uint8_t		LEDColor[LED_COUNT];		// coded LED color value
 uint16_t	LEDPulse[TOTAL_BITS + 1];	// Data formed PWM width send to LED
 uint8_t		LEDTimer[LED_COUNT];		// Individual LED Timer Counter
@@ -62,6 +65,15 @@ static void LED_Delay_us(uint32_t microsec){
 }
 
 /**
+ * @brief alter LED contents by scene
+ * @param scene	Scene No
+ */
+void LED_SetScene(uint8_t scene){
+	memcpy(LEDColor, LED_Scene[scene], LED_COUNT);
+	LED_SendPulse();
+}
+
+/**
  *	@brief	Sets decorative color pattern to LEDs.
  */
 void LED_TestPattern(){
@@ -76,6 +88,7 @@ void LED_TestPattern(){
 
 	LED_SendPulse();
 }
+
 /**
  *	@brief	Make LED flashing by setting LEDTimer[]
  *	@param	index	index of LEDs.

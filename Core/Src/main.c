@@ -176,14 +176,6 @@ static inline void Msg_Print(){
 }
 
 /**
- * @brief alter LED contents by scene
- * @param scene	Scene No
- */
-static void LED_SetScene(uint8_t scene){
-	memcpy(LEDColor, LED_Scene[scene], LED_COUNT);
-	LED_SendPulse();
-}
-/**
  * @brief Make MaskKey[],MaskRot[] from keytable[](in key_define.c)
  * @return false : there is some configuration error.
  */
