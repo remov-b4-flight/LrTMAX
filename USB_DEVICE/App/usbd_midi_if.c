@@ -1,18 +1,18 @@
 /**
-  ******************************************************************************
-  * @file	usbd_midi_if.c
-  * @brief	USB MIDI class implement functions.
-  ******************************************************************************
-    (CC at)2016 by D.F.Mac. @@TripArts Music
-  ******************************************************************************
+	******************************************************************************
+	* @file	usbd_midi_if.c
+	* @brief	USB MIDI class implement functions.
+	******************************************************************************
+		(CC at)2016 by D.F.Mac. @@TripArts Music
+	******************************************************************************
 
-    Modified by keshikan (www.keshikan.net) 2018
-    The license is (CC BY 4.0), and takes over from original usbd_midi_if.h/c.
+		Modified by keshikan (www.keshikan.net) 2018
+		The license is (CC BY 4.0), and takes over from original usbd_midi_if.h/c.
 
-    See also original source code page.
-    https://github.com/mimuz/mimuz-tuch/blob/master/STM32/
+		See also original source code page.
+		https://github.com/mimuz/mimuz-tuch/blob/master/STM32/
 
-  ******************************************************************************
+	******************************************************************************
  */
 
 /**
@@ -41,8 +41,8 @@ extern uint8_t MIDI_CC_Value[SCENE_COUNT][ENC_COUNT];
  */
 USBD_MIDI_ItfTypeDef USBD_Interface_fops_FS =
 {
-  MIDI_DataRx,
-  MIDI_DataTx	//Unused
+	MIDI_DataRx,
+	MIDI_DataTx	//Unused
 };
 
 /**
@@ -51,28 +51,28 @@ USBD_MIDI_ItfTypeDef USBD_Interface_fops_FS =
  *	@param	length	Length of received data.
  */
 static uint16_t MIDI_DataRx(uint8_t *msg, uint16_t length){
-  uint8_t	event_count = length / MIDI_EVENT_LENGTH;
-  MIDI_EVENT *rx_event = (MIDI_EVENT *)msg;
+	uint8_t	event_count = length / MIDI_EVENT_LENGTH;
+	MIDI_EVENT *rx_event = (MIDI_EVENT *)msg;
 
-  for (uint8_t i = 0; i < event_count; i++,rx_event++){
-	  uint8_t cc_channel = rx_event->channel - CC_CH_OFFSET;
-	  if (cc_channel > (CC_INDEX_MAX) ){
-		  continue;
-	  }
+	for (uint8_t i = 0; i < event_count; i++,rx_event++){
+		uint8_t cc_channel = rx_event->channel - CC_CH_OFFSET;
+		if (cc_channel > (CC_INDEX_MAX) ){
+			continue;
+		}
 
-	  uint8_t cc_scene = cc_channel / CC_CH_PER_SCENE;
-	  uint8_t channel = cc_channel % CC_CH_PER_SCENE;
-	  if ( (rx_event->header & 0x0F) == MIDI_CC_HEADER){
-		  MIDI_CC_Value[cc_scene][channel] = rx_event->value;
-	  }
-  }
-  return USBD_OK;
+		uint8_t cc_scene = cc_channel / CC_CH_PER_SCENE;
+		uint8_t channel = cc_channel % CC_CH_PER_SCENE;
+		if ( (rx_event->header & 0x0F) == MIDI_CC_HEADER){
+			MIDI_CC_Value[cc_scene][channel] = rx_event->value;
+		}
+	}
+	return USBD_OK;
 }
 
 /**
  * @brief Unused callback function
  */
 static uint16_t MIDI_DataTx(uint8_t *msg, uint16_t length){
-  return USBD_OK;
+	return USBD_OK;
 }
 

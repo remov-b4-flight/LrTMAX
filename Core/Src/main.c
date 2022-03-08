@@ -403,7 +403,7 @@ int main(void)
 #endif
 		Start_MsgTimer(MSG_TIMER_DEFAULT);
 		memcpy(LEDColor,LED_Scene[LrScene],LED_COUNT);
-		LED_SetPulse(LED_IDX_ENC0, LED_PINK, LED_TIM_CONNECT);
+		LED_SetPulse(LED_IDX_ENC0, LED_MINT, LED_TIM_CONNECT);
 		LrState = LR_USB_LINKED;
 
 	} else if (LrState == LR_USB_LINKED) {

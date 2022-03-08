@@ -19,20 +19,21 @@ extern "C" {
  */
 enum led_color_t {
 	LED_OFF = 0,//!< LED_COLOR_OFF
-	LED_RED,    //!< LED_COLOR_RED
-	LED_BLUE,   //!< LED_COLOR_BLUE
-	LED_GREEN,  //!< LED_COLOR_GREEN
-	LED_WHITE,  //!< LED_COLOR_WHITE
-	LED_YELLOW, //!< LED_COLOR_YELLOW
+	LED_RED,	//!< LED_COLOR_RED
+	LED_BLUE,	//!< LED_COLOR_BLUE
+	LED_GREEN,	//!< LED_COLOR_GREEN
+	LED_WHITE,	//!< LED_COLOR_WHITE
+	LED_YELLOW,	//!< LED_COLOR_YELLOW
 	LED_MAGENTA,//!< LED_COLOR_MAGENTA
-	LED_CYAN,   //!< LED_COLOR_CYAN
-	LED_ORANGE, //!< LED_COLOR_ORANGE
-	LED_GLAY,   //!< LED_COLOR_GLAY
-	LED_DARK,   //!< LED_COLOR_DARK
+	LED_CYAN,	//!< LED_COLOR_CYAN
+	LED_ORANGE,	//!< LED_COLOR_ORANGE
+	LED_GLAY,	//!< LED_COLOR_GLAY
+	LED_DARK,	//!< LED_COLOR_DARK
 	LED_HILIGHT,//!< LED_COLOR_HILIGHT
 	LED_PINK,
+	LED_MINT,
 };
-#define COLOR_MAX 13
+#define COLOR_MAX 14
 
 //! @def Lr**** board definition
 #define LED_COUNT		8
@@ -70,12 +71,12 @@ typedef union leddata_t {
 } LEDDATA;
 
 /* Exported functions prototypes ---------------------------------------------*/
-    void LED_Initialize();
-    void LED_TestPattern();
-    void LED_SetPulse(uint8_t index, uint8_t color,uint8_t pulse);
-    bool LED_SendPulse();
-    void LED_SetScene(uint8_t scene);
-    /* Provide C++ Compatibility */
+	void LED_Initialize();
+	void LED_TestPattern();
+	void LED_SetPulse(uint8_t index, uint8_t color,uint8_t pulse);
+	bool LED_SendPulse();
+	void LED_SetScene(uint8_t scene);
+	/* Provide C++ Compatibility */
 #ifdef __cplusplus
 }
 #endif
