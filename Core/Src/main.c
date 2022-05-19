@@ -244,7 +244,7 @@ static void EmulateMIDI(){
             }
         }else if( Key_Stat.wd & MaskEnc[LrScene] ) { //Check encoder's move
         	//Send CC Event from encoder
-        	uint8_t axis = (bitpos - KEY_COUNT) / 2;
+        	uint8_t axis = ((bitpos - KEY_COUNT) / 2) % 8;
         	uint8_t val = MIDI_CC_Value[LrScene][axis];
         	uint8_t channel = CC_CH_OFFSET + (LrScene * CC_CH_PER_SCENE) + axis;
 
