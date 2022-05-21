@@ -26,18 +26,18 @@ typedef union keyscan_t {
 		uint8_t enc3:2;	//Rotary encoder
 		uint8_t enc4:2;	//Rotary encoder
 		uint8_t enc5:2;	//Rotary encoder
-        uint8_t enc6:2;	//Rotary encoder
-        uint8_t enc7:2;	//Rotary encoder
+		uint8_t enc6:2;	//Rotary encoder
+		uint8_t enc7:2;	//Rotary encoder
     } nb;
 } KEYSCAN;
 
 //! Lr**** State definition
 enum lr_state_t {
-	LR_RESET,        //!< LR_RESET
-	LR_USB_NOLINK,   //!< LRE6_USB_NOLINK
-	LR_USB_LINKUP,   //!< LR_USB_LINKUP
-	LR_USB_LINKED,   //!< LR_USB_LINKED
-	LR_USB_LINK_LOST,//!< LR_USB_LINK_LOST
+	LR_RESET,			//!< LR_RESET
+	LR_USB_NOLINK,		//!< LRE6_USB_NOLINK
+	LR_USB_LINKUP,		//!< LR_USB_LINKUP
+	LR_USB_LINKED,		//!< LR_USB_LINKED
+	LR_USB_LINK_LOST,	//!< LR_USB_LINK_LOST
 };
 
 //! Key matrix lines

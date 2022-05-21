@@ -201,38 +201,38 @@ static void EmulateMIDI(){
 
 	if (isKeyPressed) {
 		char 		msg_string[MSG_WIDTH + 1];
-        uint8_t		bitpos = ntz32(Key_Stat.wd);
-        uint32_t	rkey = (Key_Stat.wd);
-        bool 		isKeyReport = false;
+		uint8_t		bitpos = ntz32(Key_Stat.wd);
+		uint32_t	rkey = (Key_Stat.wd);
+		bool 		isKeyReport = false;
 
-        if ( Key_Stat.wd & MaskKey[LrScene] ) { //Check Matrix switches
-        	//Send 'Note On' Event from key matrix
-        	uint8_t	note = (LrScene * NOTES_PER_SCENE) + bitpos;
-        	if (bitpos == SCENE_BIT) { //is [SCENE] switch pressed?
-               	//Move to next Scene.
-            	if((++LrScene) >= SCENE_COUNT){
-            		LrScene = Lr_SCENE0;
-            	}
-        		LED_SetScene(LrScene);
-        		strcpy(msg_string, scene_name[LrScene]);
-            }else{
-                LED_SetPulse(keytable[LrScene][bitpos].axis, keytable[LrScene][bitpos].color, keytable[LrScene][bitpos].period);
-            	sprintf(msg_string, "Note: %3d    S%1d", note, (LrScene % SCENE_COUNT) );
-            }
-        	isKeyReport = true;
+		if ( Key_Stat.wd & MaskKey[LrScene] ) { //Check Matrix switches
+			//Send 'Note On' Event from key matrix
+			uint8_t	note = (LrScene * NOTES_PER_SCENE) + bitpos;
+			if (bitpos == SCENE_BIT) { //is [SCENE] switch pressed?
+			   	//Move to next Scene.
+				if((++LrScene) >= SCENE_COUNT){
+					LrScene = Lr_SCENE0;
+				}
+				LED_SetScene(LrScene);
+				strcpy(msg_string, scene_name[LrScene]);
+			}else{
+				LED_SetPulse(keytable[LrScene][bitpos].axis, keytable[LrScene][bitpos].color, keytable[LrScene][bitpos].period);
+				sprintf(msg_string, "Note: %3d    S%1d", note, (LrScene % SCENE_COUNT) );
+			}
+			isKeyReport = true;
 
-            //Print Message to OLED & LED
-            if (keytable[LrScene][bitpos].message != NULL) {
-            	SSD1306_SetScreen(ON);
+			//Print Message to OLED & LED
+			if (keytable[LrScene][bitpos].message != NULL) {
+				SSD1306_SetScreen(ON);
 
-        		strcpy(Msg_Buffer[0], keytable[LrScene][bitpos].message);
-        		strcpy(Msg_Buffer[1], msg_string);
-        		Msg_Print();
+				strcpy(Msg_Buffer[0], keytable[LrScene][bitpos].message);
+				strcpy(Msg_Buffer[1], msg_string);
+				Msg_Print();
 
-            	Start_MsgTimer(MSG_TIMER_DEFAULT);
-            }
+				Start_MsgTimer(MSG_TIMER_DEFAULT);
+			}
 
-            if (isKeyReport == true) {
+			if (isKeyReport == true) {
 				//Set 'Note ON
 				USBMIDI_TxEvent.header = MIDI_NT_ON;
 				USBMIDI_TxEvent.status = MIDI_NT_ON_S;
@@ -241,35 +241,35 @@ static void EmulateMIDI(){
 
 				prev_note = note;
 				isPrev_sw = true;
-            }
-        }else if( Key_Stat.wd & MaskEnc[LrScene] ) { //Check encoder's move
-        	//Send CC Event from encoder
-        	uint8_t axis = ((bitpos - KEY_COUNT) / 2) % ENC_COUNT;
-        	uint8_t val = MIDI_CC_Value[LrScene][axis];
-        	uint8_t channel = CC_CH_OFFSET + (LrScene * CC_CH_PER_SCENE) + axis;
+			}
+		}else if( Key_Stat.wd & MaskEnc[LrScene] ) { //Check encoder's move
+			//Send CC Event from encoder
+			uint8_t axis = ((bitpos - KEY_COUNT) / 2) % ENC_COUNT;
+			uint8_t val = MIDI_CC_Value[LrScene][axis];
+			uint8_t channel = CC_CH_OFFSET + (LrScene * CC_CH_PER_SCENE) + axis;
 
-            USBMIDI_TxEvent.header = MIDI_CC_HEADER;
-            USBMIDI_TxEvent.status = MIDI_CC_STATUS;
-            USBMIDI_TxEvent.channel = channel;
-            USBMIDI_TxEvent.value = val;
+			USBMIDI_TxEvent.header = MIDI_CC_HEADER;
+			USBMIDI_TxEvent.status = MIDI_CC_STATUS;
+			USBMIDI_TxEvent.channel = channel;
+			USBMIDI_TxEvent.value = val;
 
-            isPrev_sw = false;
+			isPrev_sw = false;
 
-            //Print Message to OLED & LED
-            if (keytable[LrScene][bitpos].message != NULL) {
-            	SSD1306_SetScreen(ON);
-                sprintf(msg_string,
-                	((channel > 99)? "C%3d = %3d    S%1d" : "Ch%1d = %3d    S%1d"), channel, val, LrScene);
-                strcpy(Msg_Buffer[0], keytable[LrScene][bitpos].message);
-            	strcpy(Msg_Buffer[1], msg_string);
-            	Msg_Print();
+			//Print Message to OLED & LED
+			if (keytable[LrScene][bitpos].message != NULL) {
+				SSD1306_SetScreen(ON);
+				sprintf(msg_string,
+					((channel > 99)? "C%3d = %3d    S%1d" : "Ch%1d = %3d    S%1d"), channel, val, LrScene);
+				strcpy(Msg_Buffer[0], keytable[LrScene][bitpos].message);
+				strcpy(Msg_Buffer[1], msg_string);
+				Msg_Print();
 
-            	Start_MsgTimer(MSG_TIMER_DEFAULT);
-            }
-            LED_SetPulse(keytable[LrScene][bitpos].axis, keytable[LrScene][bitpos].color, keytable[LrScene][bitpos].period);
-            isKeyReport = true;
+				Start_MsgTimer(MSG_TIMER_DEFAULT);
+			}
+			LED_SetPulse(keytable[LrScene][bitpos].axis, keytable[LrScene][bitpos].color, keytable[LrScene][bitpos].period);
+			isKeyReport = true;
 
-        }else if(isPrev_sw == true && rkey == 0) {// Switch is released
+		}else if(isPrev_sw == true && rkey == 0) {// Switch is released
 			//Send 'Note Off' Event
 			USBMIDI_TxEvent.header = MIDI_NT_OFF;
 			USBMIDI_TxEvent.status = MIDI_NT_OFF_S;
@@ -278,17 +278,17 @@ static void EmulateMIDI(){
 
 			isKeyReport = true;
 			isPrev_sw = false;
-        }
+		}
 
-        if(isKeyReport == true){
+		if(isKeyReport == true){
 			//Send MIDI event via USB
-		    USBD_LL_Transmit (pInstance, MIDI_IN_EP, (uint8_t *)&USBMIDI_TxEvent, MIDI_EVENT_LENGTH);
+			USBD_LL_Transmit (pInstance, MIDI_IN_EP, (uint8_t *)&USBMIDI_TxEvent, MIDI_EVENT_LENGTH);
 			isKeyReport = false;
-        }
+		}
 
-        /* Clear the switch pressed flag */
-        isKeyPressed = false;
-    }
+		/* Clear the switch pressed flag */
+		isKeyPressed = false;
+	}
 }
 /* USER CODE END 0 */
 
@@ -455,7 +455,7 @@ int main(void)
 		for (uint8_t i = 0; i < LED_COUNT; i++){
 			if (LEDTimer[i] != LED_TIMER_CONSTANT && --LEDTimer[i] == 0) {
 				LED_SetPulse(i, LED_Scene[LrScene][i], LED_TIMER_CONSTANT);
-		 	}
+			}
 		}
 		LED_Timer_Update = false;
 		continue;
@@ -506,9 +506,9 @@ int main(void)
 #ifndef DEBUG
 	HAL_PWR_EnterSLEEPMode(PWR_LOWPOWERREGULATOR_ON, PWR_SLEEPENTRY_WFI);
 #endif
-    /* USER CODE END WHILE */
+	/* USER CODE END WHILE */
 
-    /* USER CODE BEGIN 3 */
+	/* USER CODE BEGIN 3 */
   }
   /* USER CODE END 3 */
 }
