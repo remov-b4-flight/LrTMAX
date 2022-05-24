@@ -37,16 +37,19 @@
 
 /* Private typedef -----------------------------------------------------------*/
 /* USER CODE BEGIN PTD */
+
+/* USER CODE END PTD */
+
+/* Private define ------------------------------------------------------------*/
+/* USER CODE BEGIN PD */
 #ifdef DEBUG
 #define CONN_MSG_D	"%s %2x.%02xD"
 #else
 #define CONN_MSG	"%2x.%02x"
 #endif
-/* USER CODE END PTD */
 
-/* Private define ------------------------------------------------------------*/
-/* USER CODE BEGIN PD */
-
+#define CC_MSG_3DG	"C%3d = %3d    S%1d"
+#define CC_MSG_2DG	"Ch%1d = %3d    S%1d"
 /* USER CODE END PD */
 
 /* Private macro -------------------------------------------------------------*/
@@ -244,7 +247,7 @@ static void EmulateMIDI(){
 			}
 		}else if( Key_Stat.wd & MaskEnc[LrScene] ) { //Check encoder's move
 			//Send CC Event from encoder
-			uint8_t axis = ((bitpos - KEY_COUNT) / 2) % ENC_COUNT;
+			uint8_t axis = (bitpos - KEY_COUNT) / 2;
 			uint8_t val = MIDI_CC_Value[LrScene][axis];
 			uint8_t channel = CC_CH_OFFSET + (LrScene * CC_CH_PER_SCENE) + axis;
 
@@ -259,7 +262,7 @@ static void EmulateMIDI(){
 			if (keytable[LrScene][bitpos].message != NULL) {
 				SSD1306_SetScreen(ON);
 				sprintf(msg_string,
-					((channel > 99)? "C%3d = %3d    S%1d" : "Ch%1d = %3d    S%1d"), channel, val, LrScene);
+					((channel > 99)? CC_MSG_3DG : CC_MSG_2DG), channel, val, LrScene);
 				strcpy(Msg_Buffer[0], keytable[LrScene][bitpos].message);
 				strcpy(Msg_Buffer[1], msg_string);
 				Msg_Print();
