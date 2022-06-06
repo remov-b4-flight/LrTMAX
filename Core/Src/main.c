@@ -50,6 +50,7 @@
 
 #define CC_MSG_3DG	"C%3d = %3d    S%1d"
 #define CC_MSG_2DG	"Ch%1d = %3d    S%1d"
+#define SPACE_CHAR  ' '
 /* USER CODE END PD */
 
 /* Private macro -------------------------------------------------------------*/
@@ -302,8 +303,8 @@ static void EmulateMIDI(){
 int main(void)
 {
   /* USER CODE BEGIN 1 */
-  //! Indicates 1st Msg_Timer timeout has occurred from power on reset.
-  bool Msg_1st_timeout = true;
+	//! Indicates 1st Msg_Timer timeout has occurred from power on reset.
+	bool Msg_1st_timeout = true;
   /* USER CODE END 1 */
 
   /* MCU Configuration--------------------------------------------------------*/
@@ -312,20 +313,20 @@ int main(void)
   HAL_Init();
 
   /* USER CODE BEGIN Init */
-  Key_Line = L0;
-  Msg_Off_Flag = false;
-  Msg_Timer_Enable = false;
-  Msg_Timer_Count = MSG_TIMER_DEFAULT;
-  isMsgFlash = false;
-  isRender = true;
+	Key_Line = L0;
+	Msg_Off_Flag = false;
+	Msg_Timer_Enable = false;
+	Msg_Timer_Count = MSG_TIMER_DEFAULT;
+	isMsgFlash = false;
+	isRender = true;
 
-  LrState = LR_RESET;
-  LrScene = Lr_SCENE0;
+	LrState = LR_RESET;
+	LrScene = Lr_SCENE0;
 
-  isPrev_sw = false;
-  isLEDsendpulse = false;
-  Msg_Timer_Update = false;
-  LED_Timer_Update = false;
+	isPrev_sw = false;
+	isLEDsendpulse = false;
+	Msg_Timer_Update = false;
+	LED_Timer_Update = false;
   /* USER CODE END Init */
 
   /* Configure the system clock */
@@ -350,43 +351,43 @@ int main(void)
   MX_TIM7_Init();
   MX_TIM6_Init();
   /* USER CODE BEGIN 2 */
-  //Stop All Encoders until USB link up
-  Stop_All_Encoders();
-  //Initialize Switch matrix
-  HAL_GPIO_WritePin(L0_GPIO_Port, L0_Pin, GPIO_PIN_SET);	//Initialize L0-3.
-  MakeMasks();
+	//Stop All Encoders until USB link up
+	Stop_All_Encoders();
+	//Initialize Switch matrix
+	HAL_GPIO_WritePin(L0_GPIO_Port, L0_Pin, GPIO_PIN_SET);	//Initialize L0-3.
+	MakeMasks();
 
-  //Initialize series of WS2812C
-  GPIOA->PUPDR |= GPIO_PUPDR_PUPDR6_0;	//Pull up PA6 (WS2812C-2020 workaround)
-  GPIOA->ODR |= GPIO_PIN_6;				//'RESET' state
-  //AF -> GPIO
-  GPIOA->MODER &= ~(GPIO_MODER_MODER6_1);
-  GPIOA->MODER |=	GPIO_MODER_MODER6_0;
+	//Initialize series of WS2812C
+	GPIOA->PUPDR |= GPIO_PUPDR_PUPDR6_0;	//Pull up PA6 (WS2812C-2020 workaround)
+	GPIOA->ODR |= GPIO_PIN_6;				//'RESET' state
+	//AF -> GPIO
+	GPIOA->MODER &= ~(GPIO_MODER_MODER6_1);
+	GPIOA->MODER |=	GPIO_MODER_MODER6_0;
 
-  LED_Initialize();						//Set all LEDs to 'OFF'
+	LED_Initialize();						//Set all LEDs to 'OFF'
 
-  //Initialize SSD1306 OLED
-  HAL_Delay(SSD1306_PWRUP_WAIT);		//Wait for OLED module power up.
-  SSD1306_Initialize();
+	//Initialize SSD1306 OLED
+	HAL_Delay(SSD1306_PWRUP_WAIT);		//Wait for OLED module power up.
+	SSD1306_Initialize();
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
-  uint32_t	nc_count = 0;
+	uint32_t	nc_count = 0;
 
-  HAL_TIM_Base_Start_IT(&htim6);		//Start LED timer.
-  HAL_TIM_Base_Start_IT(&htim7);		//Start Message timer.
-  Start_MsgTimer(MSG_TIMER_DEFAULT);
-  LrState = LR_USB_NOLINK;
+	HAL_TIM_Base_Start_IT(&htim6);		//Start LED timer.
+	HAL_TIM_Base_Start_IT(&htim7);		//Start Message timer.
+	Start_MsgTimer(MSG_TIMER_DEFAULT);
+	LrState = LR_USB_NOLINK;
 
-  //Initialize CC Value table
-  memset(MIDI_CC_Value, MIDI_CC_INITIAL, CC_COUNT);
+	//Initialize CC Value table
+	memset(MIDI_CC_Value, MIDI_CC_INITIAL, CC_COUNT);
 
-  //LED Initialize
-  LED_SetScene(LrScene);
+	//LED Initialize
+	LED_SetScene(LrScene);
 
-  //Main loop
-  while (1) {
+	//Main loop
+	while (1) {
 	if (LrState == LR_USB_LINKUP) {
 		//USB device configured by host
 		SSD1306_SetScreen(ON);
@@ -394,9 +395,8 @@ int main(void)
 		Start_All_Encoders();				//Start rotary encoder.
 
 #ifdef DEBUG
-		int ch = ' ';
 		sprintf(Msg_Buffer[0], CONN_MSG_D, Lr_PRODUCT, USBD_DEVICE_VER_MAJ, USBD_DEVICE_VER_MIN);
-		memset(Msg_Buffer[1], ch, MSG_WIDTH );
+		memset(Msg_Buffer[1], (int)SPACE_CHAR, MSG_WIDTH );
 		Msg_Print();
 #else
 		SSD1306_LoadBitmap();
@@ -509,9 +509,9 @@ int main(void)
 #ifndef DEBUG
 	HAL_PWR_EnterSLEEPMode(PWR_LOWPOWERREGULATOR_ON, PWR_SLEEPENTRY_WFI);
 #endif
-	/* USER CODE END WHILE */
+  /* USER CODE END WHILE */
 
-	/* USER CODE BEGIN 3 */
+  /* USER CODE BEGIN 3 */
   }
   /* USER CODE END 3 */
 }
@@ -702,7 +702,7 @@ static void MX_TIM3_Init(void)
     Error_Handler();
   }
   /* USER CODE BEGIN TIM3_Init 2 */
-  hdma_tim3_ch1_trig.Instance->CCR &= ~(DMA_CCR_HTIE | DMA_CCR_TEIE);		//Disable DMA1 half or error transfer interrupt(for LEDs).
+	hdma_tim3_ch1_trig.Instance->CCR &= ~(DMA_CCR_HTIE | DMA_CCR_TEIE);		//Disable DMA1 half or error transfer interrupt(for LEDs).
   /* USER CODE END TIM3_Init 2 */
   HAL_TIM_MspPostInit(&htim3);
 
@@ -923,9 +923,9 @@ static void MX_GPIO_Init(void)
 void Error_Handler(void)
 {
   /* USER CODE BEGIN Error_Handler_Debug */
-  /* User can add his own implementation to report the HAL error return state */
-  __disable_irq();
-    strcpy(Msg_Buffer[0], "Error");
+	/* User can add his own implementation to report the HAL error return state */
+	__disable_irq();
+	strcpy(Msg_Buffer[0], "Error");
 	Msg_Print();
   /* USER CODE END Error_Handler_Debug */
 }
