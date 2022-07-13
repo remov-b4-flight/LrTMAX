@@ -33,7 +33,7 @@ extern "C" {
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 #define USBD_DEVICE_VER_MAJ	0x00
-#define USBD_DEVICE_VER_MIN	0x59
+#define USBD_DEVICE_VER_MIN	0x60
 /* USER CODE END Includes */
 
 /* Exported types ------------------------------------------------------------*/
@@ -61,15 +61,15 @@ void Error_Handler(void);
 /* USER CODE END EFP */
 
 /* Private defines -----------------------------------------------------------*/
-#define Lr_PID 0xA380
-#define Lr_VENDOR "Ruffles Inc."
-#define Lr_PRODUCT "LrTMAX"
-#define TIM_PRESC_1uS 47
-#define TIM_PERIOD_125uS 124
-#define TIM_PERIOD_8mS 7999
 #define TIM_PERIOD_24mS 24576
-#define TIM_PERIOD_32mS 32768
+#define Lr_PID 0xA380
+#define TIM_PERIOD_8mS 7999
+#define TIM_PERIOD_32mS 32767
+#define TIM_PERIOD_125uS 124
+#define Lr_PRODUCT "LrTMAX"
 #define PWM_HI 38
+#define Lr_VENDOR "Ruffles Inc."
+#define TIM_PRESC_1uS 47
 #define PWM_LO 15
 #define PWM_PERIOD 59
 #define ENC5B_Pin GPIO_PIN_13
@@ -164,5 +164,3 @@ void Error_Handler(void);
 #endif
 
 #endif /* __MAIN_H */
-
-/************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/
