@@ -72,6 +72,7 @@ void Error_Handler(void);
 #define TIM_PRESC_1uS 47
 #define PWM_LO 15
 #define PWM_PERIOD 59
+#define TIM_PERIOD_1mS 999
 #define ENC5B_Pin GPIO_PIN_13
 #define ENC5B_GPIO_Port GPIOC
 #define ENC5B_EXTI_IRQn EXTI4_15_IRQn
