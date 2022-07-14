@@ -78,6 +78,7 @@ enum lr_scene_t {
 #define CC_COUNT			(ENC_COUNT * SCENE_COUNT)
 // LED timer definitions
 #define LED_TIM_NORM		21		//500ms (1 tick=24ms)
+#define	LED_TIM_SHORT		4		//100ms
 #define LED_TIM_HALF		11		//250ms
 #define LED_TIM_LONG		42		//1Sec
 #define LED_TIM_CONNECT		83		//2Sec

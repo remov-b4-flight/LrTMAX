@@ -66,8 +66,8 @@ const KEY_DEFINE keytable[SCENE_COUNT][DEFINES_PER_SCENE] = {
 		{.type = TYPE_SWITCH,	.axis = 6,	.color = LED_OFF,	.period = LED_TIM_NORM,	.message = "A6p"},				//L3M2	enc6 push
 /*N15*/	{.type = TYPE_SWITCH,	.axis = 7,	.color = LED_OFF,	.period = LED_TIM_NORM,	.message = "A7p"},				//L3M3	enc7 push
 		//Scence0 Encoders																			0123456789ABCDEF
-/*N16*/	{.type = TYPE_SWITCH,	.axis = 0,	.color = LED_RED,	.period = LED_TIM_NORM,	.message = "Next " RIGHTA},		//enc0 CW cursor right
-/*N17*/	{.type = TYPE_SWITCH,	.axis = 0,	.color = LED_RED,	.period = LED_TIM_NORM,	.message = "Prev. " LEFTA},		//enc0 CCW cursor left
+/*N16*/	{.type = TYPE_SWITCH,	.axis = 0,	.color = LED_RED,	.period = LED_TIM_SHORT,.message = "Next " RIGHTA},		//enc0 CW cursor right
+/*N17*/	{.type = TYPE_SWITCH,	.axis = 0,	.color = LED_RED,	.period = LED_TIM_SHORT,.message = "Prev. " LEFTA},		//enc0 CCW cursor left
 		{.type = TYPE_SWITCH,	.axis = 1,	.color = LED_BLUE,	.period = LED_TIM_HALF,	.message = "Rate " UPA},		//enc1 CW
 		{.type = TYPE_SWITCH,	.axis = 1,	.color = LED_BLUE,	.period = LED_TIM_HALF,	.message = "Rate " DOWNA},		//enc1 CCW
 		{.type = TYPE_SWITCH,	.axis = 2,	.color = LED_GREEN,	.period = LED_TIM_HALF,	.message = "Flag " UPA},		//enc2 CW
