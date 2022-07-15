@@ -54,9 +54,9 @@ void LED_Initialize(){
 
 /**
  * @brief Delay process in us unit.
- * @param microsec : duration to wait.
+ * @note Delay period defined as TIM_PERIOD_NPIX
  */
-static void LED_Delay_us(uint32_t microsec){
+static void LED_Delay_us(){
 	HAL_TIM_Base_Start(&htim14);
 	htim14.Instance->SR = 0;
 

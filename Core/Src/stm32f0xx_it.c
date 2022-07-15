@@ -69,6 +69,7 @@ extern bool		LED_Timer_Update;
 extern bool		Msg_Timer_Update;
 extern uint8_t	MIDI_CC_Value[SCENE_COUNT][ENC_COUNT];
 extern uint8_t	LrScene;
+extern TIM_HandleTypeDef htim15;
 
 uint32_t previous_scan = 0;
 uint32_t previous_key = 0;
@@ -92,6 +93,12 @@ static inline void MIDI_CC_Inc(uint8_t enc){
 
 static inline void MIDI_CC_Dec(uint8_t enc){
 	if (MIDI_CC_Value[LrScene][enc] >= (MIDI_CC_MIN + 1) ) MIDI_CC_Value[LrScene][enc]--;
+}
+
+static inline void TIM15_Restart(){
+	htim15.Instance->CNT = 0;
+	htim15.Instance->SR &= ~TIM_SR_UIF;
+	htim15.Instance->CR1 |= TIM_CR1_CEN;
 }
 
 /* USER CODE END 0 */
@@ -205,13 +212,19 @@ void EXTI0_1_IRQHandler(void)
 		enc_prev[Lr_ENC4] = r4;
 
 		if (op == ENC_MOVE_CW) {
-			Key_Stat.nb.enc4 = ENC_MOVE_CW;
-			MIDI_CC_Inc(Lr_ENC4);
-			isKeyPressed = true;
+			if ( htim15.Instance->SR & TIM_SR_UIF) {
+				Key_Stat.nb.enc4 = ENC_MOVE_CW;
+				MIDI_CC_Inc(Lr_ENC4);
+				isKeyPressed = true;
+				TIM15_Restart();
+			}
 		}else if(op == ENC_MOVE_CCW){
-			Key_Stat.nb.enc4 = ENC_MOVE_CCW;
-			MIDI_CC_Dec(Lr_ENC4);
-			isKeyPressed = true;
+			if ( htim15.Instance->SR & TIM_SR_UIF) {
+				Key_Stat.nb.enc4 = ENC_MOVE_CCW;
+				MIDI_CC_Dec(Lr_ENC4);
+				isKeyPressed = true;
+				TIM15_Restart();
+			}
 		}else if(op == ENC_STOPPED){
 			Key_Stat.nb.enc4 = ENC_STOPPED;
 			isKeyPressed = true;
@@ -244,13 +257,19 @@ void EXTI2_3_IRQHandler(void)
 		enc_prev[Lr_ENC6] = r6;
 
 		if (op == ENC_MOVE_CW) {
-			Key_Stat.nb.enc6 = ENC_MOVE_CW;
-			MIDI_CC_Inc(Lr_ENC6);
-			isKeyPressed = true;
+			if ( htim15.Instance->SR & TIM_SR_UIF) {
+				Key_Stat.nb.enc6 = ENC_MOVE_CW;
+				MIDI_CC_Inc(Lr_ENC6);
+				isKeyPressed = true;
+				TIM15_Restart();
+			}
 		}else if(op == ENC_MOVE_CCW){
-			Key_Stat.nb.enc6 = ENC_MOVE_CCW;
-			MIDI_CC_Dec(Lr_ENC6);
-			isKeyPressed = true;
+			if ( htim15.Instance->SR & TIM_SR_UIF) {
+				Key_Stat.nb.enc6 = ENC_MOVE_CCW;
+				MIDI_CC_Dec(Lr_ENC6);
+				isKeyPressed = true;
+				TIM15_Restart();
+			}
 		}else if(op == ENC_STOPPED){
 			Key_Stat.nb.enc6 = ENC_STOPPED;
 			isKeyPressed = true;
@@ -285,15 +304,21 @@ void EXTI4_15_IRQHandler(void)
 		HAL_GPIO_EXTI_IRQHandler(GPIO_PIN_5);
 
 		if (op == ENC_MOVE_CW) {
-			Key_Stat.nb.enc0 = ENC_MOVE_CW;
-			MIDI_CC_Inc(Lr_ENC0);
-			isKeyPressed = true;
-			return;
+			if ( htim15.Instance->SR & TIM_SR_UIF) {
+				Key_Stat.nb.enc0 = ENC_MOVE_CW;
+				MIDI_CC_Inc(Lr_ENC0);
+				isKeyPressed = true;
+				TIM15_Restart();
+				return;
+			}
 		}else if(op == ENC_MOVE_CCW){
-			Key_Stat.nb.enc0 = ENC_MOVE_CCW;
-			MIDI_CC_Dec(Lr_ENC0);
-			isKeyPressed = true;
-			return;
+			if ( htim15.Instance->SR & TIM_SR_UIF) {
+				Key_Stat.nb.enc0 = ENC_MOVE_CCW;
+				MIDI_CC_Dec(Lr_ENC0);
+				isKeyPressed = true;
+				TIM15_Restart();
+				return;
+			}
 		}else if(op == ENC_STOPPED){
 			Key_Stat.nb.enc0 = ENC_STOPPED;
 			isKeyPressed = true;
@@ -313,15 +338,21 @@ void EXTI4_15_IRQHandler(void)
 		HAL_GPIO_EXTI_IRQHandler(GPIO_PIN_7);
 
 		if (op == ENC_MOVE_CW) {
-			Key_Stat.nb.enc7 = ENC_MOVE_CW;
-			MIDI_CC_Inc(Lr_ENC7);
-			isKeyPressed = true;
-			return;
+			if ( htim15.Instance->SR & TIM_SR_UIF) {
+				Key_Stat.nb.enc7 = ENC_MOVE_CW;
+				MIDI_CC_Inc(Lr_ENC7);
+				isKeyPressed = true;
+				TIM15_Restart();
+				return;
+			}
 		}else if(op == ENC_MOVE_CCW){
-			Key_Stat.nb.enc7 = ENC_MOVE_CCW;
-			MIDI_CC_Dec(Lr_ENC7);
-			isKeyPressed = true;
-			return;
+			if ( htim15.Instance->SR & TIM_SR_UIF) {
+				Key_Stat.nb.enc7 = ENC_MOVE_CCW;
+				MIDI_CC_Dec(Lr_ENC7);
+				isKeyPressed = true;
+				TIM15_Restart();
+				return;
+			}
 		}else if(op == ENC_STOPPED){
 			Key_Stat.nb.enc7 = ENC_STOPPED;
 			isKeyPressed = true;
@@ -341,15 +372,21 @@ void EXTI4_15_IRQHandler(void)
 		HAL_GPIO_EXTI_IRQHandler(GPIO_PIN_9);
 
 		if (op == ENC_MOVE_CW) {
-			Key_Stat.nb.enc1 = ENC_MOVE_CW;
-			MIDI_CC_Inc(Lr_ENC1);
-			isKeyPressed = true;
-			return;
+			if ( htim15.Instance->SR & TIM_SR_UIF) {
+				Key_Stat.nb.enc1 = ENC_MOVE_CW;
+				MIDI_CC_Inc(Lr_ENC1);
+				isKeyPressed = true;
+				TIM15_Restart();
+				return;
+			}
 		}else if(op == ENC_MOVE_CCW){
-			Key_Stat.nb.enc1 = ENC_MOVE_CCW;
-			MIDI_CC_Dec(Lr_ENC1);
-			isKeyPressed = true;
-			return;
+			if ( htim15.Instance->SR & TIM_SR_UIF) {
+				Key_Stat.nb.enc1 = ENC_MOVE_CCW;
+				MIDI_CC_Dec(Lr_ENC1);
+				isKeyPressed = true;
+				TIM15_Restart();
+				return;
+			}
 		}else if(op == ENC_STOPPED){
 			Key_Stat.nb.enc1 = ENC_STOPPED;
 			isKeyPressed = true;
@@ -369,15 +406,21 @@ void EXTI4_15_IRQHandler(void)
 		HAL_GPIO_EXTI_IRQHandler(GPIO_PIN_11);
 
 		if (op == ENC_MOVE_CW) {
-			Key_Stat.nb.enc2 = ENC_MOVE_CW;
-			MIDI_CC_Inc(Lr_ENC2);
-			isKeyPressed = true;
-			return;
+			if ( htim15.Instance->SR & TIM_SR_UIF) {
+				Key_Stat.nb.enc2 = ENC_MOVE_CW;
+				MIDI_CC_Inc(Lr_ENC2);
+				isKeyPressed = true;
+				TIM15_Restart();
+				return;
+			}
 		}else if(op == ENC_MOVE_CCW){
-			Key_Stat.nb.enc2 = ENC_MOVE_CCW;
-			MIDI_CC_Dec(Lr_ENC2);
-			isKeyPressed = true;
-			return;
+			if ( htim15.Instance->SR & TIM_SR_UIF) {
+				Key_Stat.nb.enc2 = ENC_MOVE_CCW;
+				MIDI_CC_Dec(Lr_ENC2);
+				isKeyPressed = true;
+				TIM15_Restart();
+				return;
+			}
 		}else if(op == ENC_STOPPED){
 			Key_Stat.nb.enc2 = ENC_STOPPED;
 			isKeyPressed = true;
@@ -397,15 +440,21 @@ void EXTI4_15_IRQHandler(void)
 		HAL_GPIO_EXTI_IRQHandler(GPIO_PIN_13);
 
 		if (op == ENC_MOVE_CW) {
-			Key_Stat.nb.enc5 = ENC_MOVE_CW;
-			MIDI_CC_Inc(Lr_ENC5);
-			isKeyPressed = true;
-			return;
+			if ( htim15.Instance->SR & TIM_SR_UIF) {
+				Key_Stat.nb.enc5 = ENC_MOVE_CW;
+				MIDI_CC_Inc(Lr_ENC5);
+				isKeyPressed = true;
+				TIM15_Restart();
+				return;
+			}
 		}else if(op == ENC_MOVE_CCW){
-			Key_Stat.nb.enc5 = ENC_MOVE_CCW;
-			MIDI_CC_Dec(Lr_ENC5);
-			isKeyPressed = true;
-			return;
+			if ( htim15.Instance->SR & TIM_SR_UIF) {
+				Key_Stat.nb.enc5 = ENC_MOVE_CCW;
+				MIDI_CC_Dec(Lr_ENC5);
+				isKeyPressed = true;
+				TIM15_Restart();
+				return;
+			}
 		}else if(op == ENC_STOPPED){
 			Key_Stat.nb.enc5 = ENC_STOPPED;
 			isKeyPressed = true;
@@ -425,15 +474,21 @@ void EXTI4_15_IRQHandler(void)
 		HAL_GPIO_EXTI_IRQHandler(GPIO_PIN_15);
 
 		if (op == ENC_MOVE_CW) {
-			Key_Stat.nb.enc3 = ENC_MOVE_CW;
-			MIDI_CC_Inc(Lr_ENC3);
-			isKeyPressed = true;
-			return;
+			if ( htim15.Instance->SR & TIM_SR_UIF) {
+				Key_Stat.nb.enc3 = ENC_MOVE_CW;
+				MIDI_CC_Inc(Lr_ENC3);
+				isKeyPressed = true;
+				TIM15_Restart();
+				return;
+			}
 		}else if(op == ENC_MOVE_CCW){
-			Key_Stat.nb.enc3 = ENC_MOVE_CCW;
-			MIDI_CC_Dec(Lr_ENC3);
-			isKeyPressed = true;
-			return;
+			if ( htim15.Instance->SR & TIM_SR_UIF) {
+				Key_Stat.nb.enc3 = ENC_MOVE_CCW;
+				MIDI_CC_Dec(Lr_ENC3);
+				isKeyPressed = true;
+				TIM15_Restart();
+				return;
+			}
 		}else if(op == ENC_STOPPED){
 			Key_Stat.nb.enc3 = ENC_STOPPED;
 			isKeyPressed = true;

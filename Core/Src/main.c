@@ -395,6 +395,8 @@ int main(void)
 		//USB device configured by host
 		SSD1306_SetScreen(ON);
 		HAL_TIM_Base_Start_IT(&htim1);		//Start Switch matrix timer.
+    htim15.Instance->CNT = TIM_PERIOD_DCHAT;
+    HAL_TIM_Base_Start(&htim15);      //Start De-chatter timer.
 		Start_All_Encoders();				//Start rotary encoder.
 
 #ifdef DEBUG
@@ -627,7 +629,7 @@ static void MX_TIM1_Init(void)
   htim1.Instance = TIM1;
   htim1.Init.Prescaler = TIM_PRESC_1uS;
   htim1.Init.CounterMode = TIM_COUNTERMODE_UP;
-  htim1.Init.Period = TIM_PERIOD_8mS;
+  htim1.Init.Period = TIM_PERIOD_KEY_MTRX;
   htim1.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
   htim1.Init.RepetitionCounter = 0;
   htim1.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_DISABLE;
@@ -805,7 +807,7 @@ static void MX_TIM14_Init(void)
   htim14.Instance = TIM14;
   htim14.Init.Prescaler = TIM_PRESC_1uS;
   htim14.Init.CounterMode = TIM_COUNTERMODE_UP;
-  htim14.Init.Period = TIM_PERIOD_125uS;
+  htim14.Init.Period = TIM_PERIOD_NPIX;
   htim14.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
   htim14.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_DISABLE;
   if (HAL_TIM_Base_Init(&htim14) != HAL_OK)
@@ -813,7 +815,7 @@ static void MX_TIM14_Init(void)
     Error_Handler();
   }
   /* USER CODE BEGIN TIM14_Init 2 */
-
+  htim14.Instance->CR1 |= TIM_CR1_OPM;
   /* USER CODE END TIM14_Init 2 */
 
 }
@@ -839,7 +841,7 @@ static void MX_TIM15_Init(void)
   htim15.Instance = TIM15;
   htim15.Init.Prescaler = TIM_PRESC_1uS;
   htim15.Init.CounterMode = TIM_COUNTERMODE_UP;
-  htim15.Init.Period = TIM_PERIOD_125uS;
+  htim15.Init.Period = TIM_PERIOD_DCHAT;
   htim15.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
   htim15.Init.RepetitionCounter = 0;
   htim15.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_DISABLE;
@@ -859,7 +861,7 @@ static void MX_TIM15_Init(void)
     Error_Handler();
   }
   /* USER CODE BEGIN TIM15_Init 2 */
-
+  htim15.Instance->CR1 |= TIM_CR1_OPM;
   /* USER CODE END TIM15_Init 2 */
 
 }

@@ -63,16 +63,16 @@ void Error_Handler(void);
 /* Private defines -----------------------------------------------------------*/
 #define TIM_PERIOD_24mS 24576
 #define Lr_PID 0xA380
-#define TIM_PERIOD_8mS 7999
+#define TIM_PERIOD_KEY_MTRX 7999
 #define TIM_PERIOD_32mS 32767
-#define TIM_PERIOD_125uS 124
+#define TIM_PERIOD_NPIX 279
 #define Lr_PRODUCT "LrTMAX"
 #define PWM_HI 38
 #define Lr_VENDOR "Ruffles Inc."
 #define TIM_PRESC_1uS 47
 #define PWM_LO 15
 #define PWM_PERIOD 59
-#define TIM_PERIOD_1mS 999
+#define TIM_PERIOD_DCHAT 999
 #define ENC5B_Pin GPIO_PIN_13
 #define ENC5B_GPIO_Port GPIOC
 #define ENC5B_EXTI_IRQn EXTI4_15_IRQn
