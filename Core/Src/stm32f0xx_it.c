@@ -645,14 +645,23 @@ void USB_IRQHandler(void)
 }
 
 /* USER CODE BEGIN 1 */
+/**
+ * @brief	Rise CC message value
+ * @param	enc Encoder axis
+ */
 static inline void MIDI_CC_Inc(uint8_t enc){
 	if (MIDI_CC_Value[LrScene][enc] < MIDI_CC_MAX ) MIDI_CC_Value[LrScene][enc]++;
 }
-
+/**
+ * @brief	Fall CC message value
+ * @param	enc Encoder axis
+ */
 static inline void MIDI_CC_Dec(uint8_t enc){
 	if (MIDI_CC_Value[LrScene][enc] >= (MIDI_CC_MIN + 1) ) MIDI_CC_Value[LrScene][enc]--;
 }
-
+/**
+ * @brief	Restart TIM15 value 0 on 'one pulse mode'
+ */
 static inline void TIM15_Restart(){
 	htim15.Instance->CNT = 0;
 	htim15.Instance->SR &= ~TIM_SR_UIF;
