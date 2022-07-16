@@ -54,22 +54,13 @@
 
 /* Private function prototypes -----------------------------------------------*/
 /* USER CODE BEGIN PFP */
-
+static inline void MIDI_CC_Inc(uint8_t enc);
+static inline void MIDI_CC_Dec(uint8_t enc);
+static inline void TIM15_Restart();
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
-
-extern uint8_t	Key_Line;
-extern bool		isKeyPressed;
-extern KEYSCAN	Key_Stat;
-extern char		*Msg_Buffer[];
-
-extern bool		LED_Timer_Update;
-extern bool		Msg_Timer_Update;
-extern uint8_t	MIDI_CC_Value[SCENE_COUNT][ENC_COUNT];
-extern uint8_t	LrScene;
-extern TIM_HandleTypeDef htim15;
 
 uint32_t previous_scan = 0;
 uint32_t previous_key = 0;
@@ -87,20 +78,6 @@ const uint8_t enc_table[4][4] = {
 	{ENC_INVALID,	ENC_MOVE_CCW,	ENC_MOVE_CW,	ENC_INVALID,	},//prev = 3
 };
 
-static inline void MIDI_CC_Inc(uint8_t enc){
-	if (MIDI_CC_Value[LrScene][enc] < MIDI_CC_MAX ) MIDI_CC_Value[LrScene][enc]++;
-}
-
-static inline void MIDI_CC_Dec(uint8_t enc){
-	if (MIDI_CC_Value[LrScene][enc] >= (MIDI_CC_MIN + 1) ) MIDI_CC_Value[LrScene][enc]--;
-}
-
-static inline void TIM15_Restart(){
-	htim15.Instance->CNT = 0;
-	htim15.Instance->SR &= ~TIM_SR_UIF;
-	htim15.Instance->CR1 |= TIM_CR1_CEN;
-}
-
 /* USER CODE END 0 */
 
 /* External variables --------------------------------------------------------*/
@@ -113,6 +90,15 @@ extern TIM_HandleTypeDef htim6;
 extern TIM_HandleTypeDef htim7;
 /* USER CODE BEGIN EV */
 extern TIM_HandleTypeDef htim3;
+extern TIM_HandleTypeDef htim15;
+extern uint8_t	Key_Line;
+extern bool		isKeyPressed;
+extern KEYSCAN	Key_Stat;
+extern char		*Msg_Buffer[];
+extern bool		LED_Timer_Update;
+extern bool		Msg_Timer_Update;
+extern uint8_t	MIDI_CC_Value[SCENE_COUNT][ENC_COUNT];
+extern uint8_t	LrScene;
 /* USER CODE END EV */
 
 /******************************************************************************/
@@ -659,5 +645,17 @@ void USB_IRQHandler(void)
 }
 
 /* USER CODE BEGIN 1 */
+static inline void MIDI_CC_Inc(uint8_t enc){
+	if (MIDI_CC_Value[LrScene][enc] < MIDI_CC_MAX ) MIDI_CC_Value[LrScene][enc]++;
+}
 
+static inline void MIDI_CC_Dec(uint8_t enc){
+	if (MIDI_CC_Value[LrScene][enc] >= (MIDI_CC_MIN + 1) ) MIDI_CC_Value[LrScene][enc]--;
+}
+
+static inline void TIM15_Restart(){
+	htim15.Instance->CNT = 0;
+	htim15.Instance->SR &= ~TIM_SR_UIF;
+	htim15.Instance->CR1 |= TIM_CR1_CEN;
+}
 /* USER CODE END 1 */

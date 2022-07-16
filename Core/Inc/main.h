@@ -61,10 +61,10 @@ void Error_Handler(void);
 /* USER CODE END EFP */
 
 /* Private defines -----------------------------------------------------------*/
-#define TIM_PERIOD_24mS 24576
+#define TIM_PERIOD_RGBLED 24576
 #define Lr_PID 0xA380
 #define TIM_PERIOD_KEY_MTRX 7999
-#define TIM_PERIOD_32mS 32767
+#define TIM_PERIOD_OLED 32767
 #define TIM_PERIOD_NPIX 279
 #define Lr_PRODUCT "LrTMAX"
 #define PWM_HI 38
