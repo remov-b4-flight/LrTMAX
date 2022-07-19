@@ -81,7 +81,7 @@ enum lr_scene_t {
 #define	LED_TIM_SHORT		4		//100ms
 #define LED_TIM_HALF		11		//250ms
 #define LED_TIM_LONG		42		//1Sec
-#define LED_TIM_CONNECT		83		//2Sec
+#define LED_TIM_CONNECT		64		//1.5Sec
 
 // Screen timer definitions
 #define MSG_TIMER_DEFAULT	122		//4Sec (1 tick=32.7ms)
