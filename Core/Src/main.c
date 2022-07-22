@@ -344,16 +344,13 @@ int main(void)
   MX_TIM3_Init();
   MX_TIM1_Init();
   MX_TIM14_Init();
-#if 1
-  MX_USB_MIDI_INIT();
-#else
   MX_USB_DEVICE_Init();
-#endif
   MX_I2C2_Init();
   MX_TIM7_Init();
   MX_TIM6_Init();
   MX_TIM15_Init();
   /* USER CODE BEGIN 2 */
+	MX_USB_MIDI_INIT();
 	//Stop All Encoders until USB link up
 	Stop_All_Encoders();
 	//Initialize Switch matrix
