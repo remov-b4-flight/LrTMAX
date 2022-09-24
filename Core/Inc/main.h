@@ -33,7 +33,7 @@ extern "C" {
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 #define USBD_DEVICE_VER_MAJ	0x00
-#define USBD_DEVICE_VER_MIN	0x60
+#define USBD_DEVICE_VER_MIN	0x61
 /* USER CODE END Includes */
 
 /* Exported types ------------------------------------------------------------*/
@@ -70,9 +70,10 @@ void Error_Handler(void);
 #define PWM_HI 38
 #define Lr_VENDOR "Ruffles Inc."
 #define TIM_PRESC_1uS 47
+#define TIM_PRESC_100uS 4799
 #define PWM_LO 15
 #define PWM_PERIOD 59
-#define TIM_PERIOD_DCHAT 2999
+#define TIM_PERIOD_DCHAT 750
 #define ENC5B_Pin GPIO_PIN_13
 #define ENC5B_GPIO_Port GPIOC
 #define ENC5B_EXTI_IRQn EXTI4_15_IRQn
