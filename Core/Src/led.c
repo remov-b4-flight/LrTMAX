@@ -16,7 +16,7 @@ extern bool	isLEDsendpulse;
 extern uint8_t	LED_Scene[SCENE_COUNT][LED_COUNT];
 
 uint8_t		LEDColor[LED_COUNT];		// coded LED color value
-uint16_t	LEDPulse[TOTAL_BITS + 1];	// Data formed PWM width send to LED
+uint16_t	LEDPulse[TOTAL_BITS+1];	// Data formed PWM width send to LED
 uint8_t		LEDTimer[LED_COUNT];		// Individual LED Timer Counter
 
 /**
@@ -56,7 +56,7 @@ void LED_Initialize(){
  * @brief Delay process in us unit.
  * @note Delay period defined as TIM_PERIOD_NPIX
  */
-static void LED_Delay_us(){
+static void LED_Delay_us() {
 	HAL_TIM_Base_Start(&htim14);
 	htim14.Instance->SR = 0;
 
@@ -69,7 +69,7 @@ static void LED_Delay_us(){
  * @brief alter LED contents by scene
  * @param scene	Scene No
  */
-void LED_SetScene(uint8_t scene){
+void LED_SetScene(uint8_t scene) {
 	memcpy(LEDColor, LED_Scene[scene], LED_COUNT);
 	LED_SendPulse();
 }
@@ -77,7 +77,7 @@ void LED_SetScene(uint8_t scene){
 /**
  *	@brief	Sets decorative color pattern to LEDs.
  */
-void LED_TestPattern(){
+void LED_TestPattern() {
 	LEDColor[0] = LED_WHITE;
 	LEDColor[1] = LED_RED;
 	LEDColor[2] = LED_ORANGE;
@@ -96,7 +96,7 @@ void LED_TestPattern(){
  *	@param	color	color of LED.
  *	@param	pulse	duration of pulse in 4ms unit(i.e. pulse=25 => 100ms).
  */
-inline void LED_SetPulse(uint8_t index, uint8_t color, uint8_t pulse){
+inline void LED_SetPulse(uint8_t index, uint8_t color, uint8_t pulse) {
 	LEDColor[index] = color;
     LEDTimer[index] = pulse;	// 24ms unit (i.e. pulse=25 => 600ms)
 	isLEDsendpulse = true;
@@ -106,7 +106,7 @@ inline void LED_SetPulse(uint8_t index, uint8_t color, uint8_t pulse){
  *	@brief	make LEDPulse[] from LEDColor[]
  *	@pre	LEDColor[] contains LED color setting.
  */
-static void Color2Pulse(){
+static void Color2Pulse() {
 	uint8_t	pulse = 0;
 	LEDDATA	leddata;
 	//Convert LEDColor[] to LEDPulse[];
@@ -126,7 +126,7 @@ static void Color2Pulse(){
  *	@pre	LEDPulse[] contains pulse width array.
  *	@return	result of Send
  */
-bool LED_SendPulse(){
+bool LED_SendPulse() {
 
 	bool r = true;
 	//Convert LEDColor[] to LEDPulse[]
@@ -144,7 +144,7 @@ bool LED_SendPulse(){
 	htim3.Instance->CNT = (PWM_PERIOD);
 
 	//Start DMA
-	if (HAL_TIM_PWM_Start_DMA(&htim3, TIM_CHANNEL_1, (uint32_t *)LEDPulse, TOTAL_BITS + 1) != HAL_OK){
+	if (HAL_TIM_PWM_Start_DMA(&htim3, TIM_CHANNEL_1, (uint32_t *)LEDPulse, TOTAL_BITS + 1) != HAL_OK) {
 		r = false;
 	}
 	return r;

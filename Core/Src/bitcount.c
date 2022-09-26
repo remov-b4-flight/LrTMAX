@@ -14,7 +14,7 @@
  * @param 	b8	number to count bits
  * @return	count of bit '1'
  */
-uint8_t bitcount8(uint8_t b8){
+uint8_t bitcount8(uint8_t b8) {
 	uint8_t count = ( ((b8 & 0xaa) >> 1) + (b8 & 0x55) );
 	count = ( ((count & 0xcc) >> 2) + (count & 0x33) );
 	return ( ((count & 0xf0) >> 4) + (count & 0x0f) );
@@ -37,8 +37,7 @@ uint8_t bitcount16(uint16_t b16) {
  * @param 	b32	number to count bits
  * @return	count of bit '1'
  */
-int bitcount32(uint32_t b32)
-{
+int bitcount32(uint32_t b32) {
 	uint32_t count = (b32 & 0x55555555) + (b32 >> 1 & 0x55555555);
 	count = (count & 0x33333333) + (count >> 2 & 0x33333333);
 	count = (count & 0x0f0f0f0f) + (count >> 4 & 0x0f0f0f0f);
@@ -51,7 +50,7 @@ int bitcount32(uint32_t b32)
  *	@param 	v	number to computes
  *	@return	bit number (0-15)
  */
-uint8_t ntz16(uint16_t v){
+uint8_t ntz16(uint16_t v) {
 	uint16_t w = (v & (-v)) - 1;
 	return bitcount16(w);
 }
@@ -61,7 +60,7 @@ uint8_t ntz16(uint16_t v){
  *	@param	v	number to computes
  *	@return	bit number (0-31)
  */
-uint8_t ntz32(uint32_t v){
+uint8_t ntz32(uint32_t v) {
 	uint32_t w = (v & (-v)) - 1;
 	return bitcount32(w);
 }

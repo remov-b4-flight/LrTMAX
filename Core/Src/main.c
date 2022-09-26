@@ -201,7 +201,7 @@ static void	MakeMasks(){
  *	@pre	isKeyPressed	any key is pressed or not
  *	@pre	Key_Stat		current key status
  */
-static void EmulateMIDI(){
+static void EmulateMIDI() {
 	//! USB MIDI message structure for send
 	MIDI_EVENT	USBMIDI_TxEvent;
 
@@ -275,7 +275,7 @@ static void EmulateMIDI(){
 			LED_SetPulse(keytable[LrScene][bitpos].axis, keytable[LrScene][bitpos].color, keytable[LrScene][bitpos].period);
 			isKeyReport = true;
 
-		}else if(isPrev_sw == true && rkey == 0) {// Switch is released
+		} else if (isPrev_sw == true && rkey == 0) {// Switch is released
 			//Send 'Note Off' Event
 			USBMIDI_TxEvent.header = MIDI_NT_OFF;
 			USBMIDI_TxEvent.status = MIDI_NT_OFF_S;
@@ -286,7 +286,7 @@ static void EmulateMIDI(){
 			isPrev_sw = false;
 		}
 
-		if(isKeyReport == true){
+		if (isKeyReport == true) {
 			//Send MIDI event via USB
 			USBD_LL_Transmit (pInstance, MIDI_IN_EP, (uint8_t *)&USBMIDI_TxEvent, MIDI_EVENT_LENGTH);
 			isKeyReport = false;
@@ -414,7 +414,7 @@ int main(void)
 	} else if (LrState == LR_USB_LINKED) {
 		//Operate as MIDI Instruments.
 		EmulateMIDI();
-	} else if(LrState == LR_USB_LINK_LOST) {
+	} else if (LrState == LR_USB_LINK_LOST) {
 		LrScene	= Lr_SCENE0;
 		Stop_All_Encoders();
 		HAL_TIM_Base_Stop(&htim1);
@@ -425,7 +425,7 @@ int main(void)
 		nc_count = 0;
 		LrState = LR_USB_NOLINK;
 
-	} else if(LrState == LR_USB_NOLINK) {
+	} else if (LrState == LR_USB_NOLINK) {
 		//USB can't be configured or disconnected by host.
 		if (Msg_Off_Flag == true) {
 			if (Msg_1st_timeout == true) {
@@ -456,7 +456,7 @@ int main(void)
 	}// LrState
 
 	//LED Timer
-	if (LED_Timer_Update == true){ //24ms interval
+	if (LED_Timer_Update == true) { //24ms interval
 		for (uint8_t i = 0; i < LED_COUNT; i++){
 			if (LEDTimer[i] != LED_TIMER_CONSTANT && --LEDTimer[i] == 0) {
 				LED_SetPulse(i, LED_Scene[LrScene][i], LED_TIMER_CONSTANT);
@@ -468,17 +468,17 @@ int main(void)
 
 	//Flashing LEDs
 	if (isLEDsendpulse == true) {
-		if (LED_SendPulse() == true){
+		if (LED_SendPulse() == true) {
 			isLEDsendpulse = false;
-		}else{
+		} else {
 			HAL_Delay(LED_TIM_RETRY_WAIT);	// i2c is busy, retry with interval
 		}
 		continue;
 	}
 
 	//OLED timer
-	if (Msg_Timer_Update == true){	//32.7ms interval
-		if(Msg_Timer_Enable == true && (--Msg_Timer_Count) <= 0){
+	if (Msg_Timer_Update == true) {	//32.7ms interval
+		if (Msg_Timer_Enable == true && (--Msg_Timer_Count) <= 0) {
 			Msg_Timer_Enable = false;
 			Msg_Off_Flag = true;
 		}
@@ -487,7 +487,7 @@ int main(void)
 	}
 
 	//OLED off Timer
-	if(Msg_Off_Flag == true){
+	if (Msg_Off_Flag == true) {
 		Msg_Off_Flag = false;
 		SSD1306_SetScreen(OFF);
 		SSD1306_ClearBuffer();
