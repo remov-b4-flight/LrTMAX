@@ -52,8 +52,8 @@ const KEY_DEFINE keytable[SCENE_COUNT][DEFINES_PER_SCENE] = {
 /*N00*/	{.type = TYPE_SWITCH,	.axis = 0,	.color = LED_YELLOW,.period = LED_TIM_NORM,	.message = "Undo"},				//L0M0	SW1
 /*N01*/	{.type = TYPE_SWITCH,	.axis = 0,	.color = LED_YELLOW,.period = LED_TIM_NORM,	.message = "Rate 1"},			//L0M1	SW2
 /*N02*/	{.type = TYPE_SWITCH,	.axis = 0,	.color = LED_YELLOW,.period = LED_TIM_NORM,	.message = "Rate 2"},			//L0M2	SW3
-		{.type = TYPE_SWITCH,	.axis = 0,	.color = LED_YELLOW,.period = LED_TIM_NORM,	.message = "Rate 3"},			//L0M3	SW4
-		{.type = TYPE_SWITCH,	.axis = 0,	.color = LED_YELLOW,.period = LED_TIM_NORM,	.message = "Rate 0"},			//L1M0	SW5
+		{.type = TYPE_SWITCH,	.axis = 0,	.color = LED_YELLOW,.period = LED_TIM_NORM,	.message = "Dev. Copy"},		//L0M3	SW4
+		{.type = TYPE_SWITCH,	.axis = 0,	.color = LED_YELLOW,.period = LED_TIM_NORM,	.message = "Dev. Paste"},		//L1M0	SW5
 		{.type = TYPE_SWITCH,	.axis = 0,	.color = LED_YELLOW,.period = LED_TIM_NORM,	.message = "Add Quick Colle."},	//L1M1	SW6
 		{.type = TYPE_SWITCH,	.axis = 0,	.color = LED_YELLOW,.period = LED_TIM_NORM,	.message = "2nd Moni. On/Off"},	//L1M2	SW7
 		{.type = TYPE_SWITCH,	.axis = 0,	.color = LED_BLUE,	.period = LED_TIM_LONG,	.message = "Scene 0"},			//L1M3	SW8 [SCENE]
