@@ -53,27 +53,6 @@ USBD_HandleTypeDef hUsbDeviceFS;
 /*
  * -- Insert your external function declaration here --
  */
-/* USER CODE BEGIN 1 */
-
-void MX_USB_MIDI_INIT(void)
-{
-  if (USBD_Init(&hUsbDeviceFS, &FS_Desc, DEVICE_FS) != USBD_OK){
-	  Error_Handler();
-  }
-
-  if (USBD_RegisterClass(&hUsbDeviceFS, &USBD_MIDI) != USBD_OK){
-	  Error_Handler();
-  }
-  if (USBD_MIDI_RegisterInterface(&hUsbDeviceFS, &USBD_Interface_fops_FS) != USBD_OK){
-	  Error_Handler();
-  }
-
-  if (USBD_Start(&hUsbDeviceFS) != USBD_OK){
-	  Error_Handler();
-  }
-}
-
-/* USER CODE END 1 */
 
 /**
   * Init USB device Library, add supported class and start the library
@@ -82,7 +61,7 @@ void MX_USB_MIDI_INIT(void)
 void MX_USB_DEVICE_Init(void)
 {
   /* USER CODE BEGIN USB_DEVICE_Init_PreTreatment */
-#if 0
+
   /* USER CODE END USB_DEVICE_Init_PreTreatment */
 
   /* Init Device Library, add supported class and start the library. */
@@ -90,16 +69,29 @@ void MX_USB_DEVICE_Init(void)
   {
     Error_Handler();
   }
+  /* USER CODE BEGIN 1 */
+#if 1
+  if (USBD_RegisterClass(&hUsbDeviceFS, &USBD_MIDI) != USBD_OK){
+	  Error_Handler();
+  }
+  if (USBD_MIDI_RegisterInterface(&hUsbDeviceFS, &USBD_Interface_fops_FS) != USBD_OK){
+	  Error_Handler();
+  }
+#else
+  /* USER CODE END 1 */
   if (USBD_RegisterClass(&hUsbDeviceFS, &USBD_HID) != USBD_OK)
   {
     Error_Handler();
   }
+  /* USER CODE BEGIN 2 */
+#endif
+  /* USER CODE END 2 */
   if (USBD_Start(&hUsbDeviceFS) != USBD_OK)
   {
     Error_Handler();
   }
   /* USER CODE BEGIN USB_DEVICE_Init_PostTreatment */
-#endif
+
   /* USER CODE END USB_DEVICE_Init_PostTreatment */
 }
 

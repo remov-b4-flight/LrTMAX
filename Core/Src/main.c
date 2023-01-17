@@ -350,7 +350,6 @@ int main(void)
   MX_TIM6_Init();
   MX_TIM15_Init();
   /* USER CODE BEGIN 2 */
-	MX_USB_MIDI_INIT();
 	//Stop All Encoders until USB link up
 	Stop_All_Encoders();
 	//Initialize Switch matrix
