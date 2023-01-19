@@ -34,10 +34,11 @@ typedef union keyscan_t {
 //! Lr**** State definition
 enum lr_state_t {
 	LR_RESET,			//!< LR_RESET
-	LR_USB_NOLINK,		//!< LRE6_USB_NOLINK
+	LR_USB_NOLINK,		//!< LR_USB_NOLINK
 	LR_USB_LINKUP,		//!< LR_USB_LINKUP
 	LR_USB_LINKED,		//!< LR_USB_LINKED
 	LR_USB_LINK_LOST,	//!< LR_USB_LINK_LOST
+	LR_USB_DFU,
 };
 
 //! Key matrix lines

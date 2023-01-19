@@ -51,6 +51,9 @@
 #define CC_MSG_3DG	"C%3d = %3d    S%1d"
 #define CC_MSG_2DG	"Ch%1d = %3d    S%1d"
 #define SPACE_CHAR  ' '
+#define SWMASK	0x0F
+#define SW1	1
+#define SW3	4
 /* USER CODE END PD */
 
 /* Private macro -------------------------------------------------------------*/
@@ -75,6 +78,7 @@ DMA_HandleTypeDef hdma_tim3_ch1_trig;
 //! STM32 TIM3 instance handle
 TIM_HandleTypeDef htim3;
 extern	USBD_HandleTypeDef hUsbDeviceFS;
+extern PCD_HandleTypeDef hpcd_USB_FS;
 //! Lr**** USB connection state
 uint8_t		LrState;
 //! Lr**** Scene index
@@ -152,6 +156,81 @@ static void MX_TIM15_Init(void);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
+
+/**
+ * @brief jump into system memory (DFU bootloader)
+ * @author ERODF.1
+ * @note  Quoted from ST Community and modified.
+ */
+void Jump2SystemMemory() {
+	void (*SysMemBootJump)(void);
+
+	/*
+	* Set system memory address.
+	* For STM32F072, system memory is on 0x1FFFC800
+	*/
+	volatile uint32_t addr = 0x1FFFC800;
+
+	// De-initialize all peripherals configured for this Application
+	HAL_TIM_Base_DeInit(&htim1);
+	HAL_TIM_Base_DeInit(&htim14);
+	HAL_TIM_Base_DeInit(&htim15);
+	HAL_TIM_PWM_DeInit(&htim3);
+	HAL_TIM_Base_DeInit(&htim3);
+
+	HAL_NVIC_DisableIRQ(DMA1_Channel4_5_6_7_IRQn);
+	HAL_DMA_DeInit(&hdma_tim3_ch1_trig);
+
+	HAL_I2C_DeInit(&hi2c2);
+	HAL_PCD_DeInit(&hpcd_USB_FS);
+
+	// Disable GPIO interrupts
+	HAL_NVIC_DisableIRQ(EXTI0_1_IRQn);
+	HAL_NVIC_DisableIRQ(EXTI2_3_IRQn);
+	HAL_NVIC_DisableIRQ(EXTI4_15_IRQn);
+
+	// Disable RCC, set it to default (after reset) settings
+	//       Internal clock, no PLL, etc.
+	HAL_RCC_DeInit();
+
+	// Disable systick timer and reset it to default values
+	SysTick->CTRL = 0;
+	SysTick->LOAD = 0;
+	SysTick->VAL = 0;
+
+	// Disable all interrupts
+	__disable_irq();
+
+	/**
+	 * Remap system memory to address 0x0000 0000 in address space
+	 * For each family registers may be different.
+	 * Check reference manual for each family.
+	 *
+	 * For STM32F0xx, CFGR1 register in SYSCFG is used (bits[1:0])
+	 */
+	#if defined(STM32F0)
+	SYSCFG->CFGR1 = 0x01;
+	#endif
+
+	// Set jump memory location for system memory
+	// Use address with 4 bytes offset which specifies jump location where program starts
+	SysMemBootJump = (void (*)(void)) (*((uint32_t *)(addr + 4)));
+
+	/**
+	 * Set main stack pointer.
+	 * This step must be done last otherwise local variables in this function
+	 * don't have proper value since stack pointer is located on different position
+	 *
+	 * Set direct address location which specifies stack pointer in SRAM location
+	 */
+	__set_MSP(*(uint32_t *)addr);
+
+	/**
+	 * Call our function to jump to set location
+	 * This will start system memory execution
+	 */
+	SysMemBootJump();
+}
 
 /**
  *	@brief	Mask all EXTI lines of encoders
@@ -344,7 +423,7 @@ int main(void)
   MX_TIM3_Init();
   MX_TIM1_Init();
   MX_TIM14_Init();
-  MX_USB_DEVICE_Init();
+//MX_USB_DEVICE_Init();
   MX_I2C2_Init();
   MX_TIM7_Init();
   MX_TIM6_Init();
@@ -379,6 +458,13 @@ int main(void)
 	Start_MsgTimer(MSG_TIMER_DEFAULT);
 	LrState = LR_USB_NOLINK;
 
+	//Check SW1 and SW3 at Power On
+	if ((GPIOA->IDR & SWMASK) == (SW1)){
+		LrState = LR_USB_DFU;
+	} else {
+		MX_USB_DEVICE_Init();
+	}
+
 	//Initialize CC Value table
 	memset(MIDI_CC_Value, MIDI_CC_INITIAL, CC_COUNT);
 
@@ -391,8 +477,8 @@ int main(void)
 		//USB device configured by host
 		SSD1306_SetScreen(ON);
 		HAL_TIM_Base_Start_IT(&htim1);		//Start Switch matrix timer.
-    htim15.Instance->CNT = TIM_PERIOD_DCHAT;
-    HAL_TIM_Base_Start(&htim15);      //Start De-chatter timer.
+		htim15.Instance->CNT = TIM_PERIOD_DCHAT;
+		HAL_TIM_Base_Start(&htim15);      //Start De-chatter timer.
 		Start_All_Encoders();				//Start rotary encoder.
 
 #ifdef DEBUG
@@ -452,6 +538,22 @@ int main(void)
 				isLEDsendpulse = true;
 			}
 		}// Msg_Off_Flag
+	} else if (LrState == LR_USB_DFU) {
+		if (Msg_Off_Flag == true) {
+			if (nc_count == 0){
+				strcpy(Msg_Buffer[0], "DFU Bootloader.");
+				SSD1306_SetScreen(ON);
+				Msg_Print();
+				nc_count++;
+			}else if(nc_count == 1){
+				LED_TestPattern();
+				nc_count++;
+			}else if (nc_count <= 2){
+				Jump2SystemMemory();
+			}
+			Start_MsgTimer(MSG_TIMER_NOLINK/2);
+		}
+
 	}// LrState
 
 	//LED Timer
