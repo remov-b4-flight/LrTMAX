@@ -51,6 +51,7 @@
 #define CC_MSG_3DG	"C%3d = %3d    S%1d"
 #define CC_MSG_2DG	"Ch%1d = %3d    S%1d"
 #define SPACE_CHAR  ' '
+#define SYSTEM_MEMORY	0x1FFFC800
 #define SWMASK	0x0F
 #define SW1	1
 #define SW3	4
@@ -159,8 +160,6 @@ static void MX_TIM15_Init(void);
 
 /**
  * @brief jump into system memory (DFU bootloader)
- * @author ERODF.1
- * @note  Quoted from ST Community and modified.
  */
 void Jump2SystemMemory() {
 	void (*SysMemBootJump)(void);
@@ -169,61 +168,45 @@ void Jump2SystemMemory() {
 	* Set system memory address.
 	* For STM32F072, system memory is on 0x1FFFC800
 	*/
-	volatile uint32_t addr = 0x1FFFC800;
-
-	// De-initialize all peripherals configured for this Application
-	HAL_TIM_Base_DeInit(&htim1);
-	HAL_TIM_Base_DeInit(&htim14);
-	HAL_TIM_Base_DeInit(&htim15);
-	HAL_TIM_PWM_DeInit(&htim3);
-	HAL_TIM_Base_DeInit(&htim3);
-
-	HAL_NVIC_DisableIRQ(DMA1_Channel4_5_6_7_IRQn);
-	HAL_DMA_DeInit(&hdma_tim3_ch1_trig);
-
-	HAL_I2C_DeInit(&hi2c2);
-	HAL_PCD_DeInit(&hpcd_USB_FS);
-
-	// Disable GPIO interrupts
-	HAL_NVIC_DisableIRQ(EXTI0_1_IRQn);
-	HAL_NVIC_DisableIRQ(EXTI2_3_IRQn);
-	HAL_NVIC_DisableIRQ(EXTI4_15_IRQn);
-
-	// Disable RCC, set it to default (after reset) settings
-	//       Internal clock, no PLL, etc.
-	HAL_RCC_DeInit();
-
+	volatile uint32_t addr = SYSTEM_MEMORY;
+	// Disable all interrupts
+	__disable_irq();
+	/**
+	 * Stop all Interrupt source
+	 */
+	//TIM1
+	TIM1->DIER = 0;
+	TIM1->SR = 0;
+	//TIM6
+	TIM6->DIER = 0;
+	TIM6->SR = 0;
+	//TIM7
+	TIM7->DIER = 0;
+	TIM7->SR = 0;
+	//EXTI
+	EXTI->IMR = 0;
+	EXTI->PR = 0;
+	//DMA
+	DMA1->IFCR = 0;
+	//I2C2
+	I2C2->ICR = 0;
+	//USB
+	USB->ISTR = 0;
 	// Disable systick timer and reset it to default values
 	SysTick->CTRL = 0;
 	SysTick->LOAD = 0;
 	SysTick->VAL = 0;
 
-	// Disable all interrupts
-	__disable_irq();
-
-	/**
-	 * Remap system memory to address 0x0000 0000 in address space
-	 * For each family registers may be different.
-	 * Check reference manual for each family.
-	 *
-	 * For STM32F0xx, CFGR1 register in SYSCFG is used (bits[1:0])
-	 */
-	#if defined(STM32F0)
+	// Re-map system memory to address 0x0000 0000 in address space
 	SYSCFG->CFGR1 = 0x01;
-	#endif
 
 	// Set jump memory location for system memory
 	// Use address with 4 bytes offset which specifies jump location where program starts
 	SysMemBootJump = (void (*)(void)) (*((uint32_t *)(addr + 4)));
 
-	/**
-	 * Set main stack pointer.
-	 * This step must be done last otherwise local variables in this function
-	 * don't have proper value since stack pointer is located on different position
-	 *
-	 * Set direct address location which specifies stack pointer in SRAM location
-	 */
-	__set_MSP(*(uint32_t *)addr);
+	// Set main stack pointer.
+	uint32_t msp = *(uint32_t *)addr;
+	__set_MSP(msp);
 
 	/**
 	 * Call our function to jump to set location
@@ -459,7 +442,7 @@ int main(void)
 	LrState = LR_USB_NOLINK;
 
 	//Check SW1 and SW3 at Power On
-	if ((GPIOA->IDR & SWMASK) == (SW1)){
+	if ((GPIOA->IDR & SWMASK) == (SW1|SW3)){
 		LrState = LR_USB_DFU;
 	} else {
 		MX_USB_DEVICE_Init();

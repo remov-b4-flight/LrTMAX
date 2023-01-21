@@ -125,9 +125,7 @@ void NMI_Handler(void)
 void HardFault_Handler(void)
 {
   /* USER CODE BEGIN HardFault_IRQn 0 */
-  strcpy(Msg_Buffer[0],"Hard Fault");
-  SSD1306_Render2Buffer();
-  SSD1306_FlashScreen();
+
   /* USER CODE END HardFault_IRQn 0 */
   while (1)
   {
