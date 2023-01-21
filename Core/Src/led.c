@@ -41,7 +41,10 @@ const LEDDATA LEDTable[COLOR_MAX] = {
 	{.rgbw = {.r=LMAX,.g=LQTR,.b=LHLF}},//LED_PINK,
 	{.rgbw = {.r=LQTR,.g=LMAX,.b=LQTR}},//LED_MINT,
 };
-
+const uint8_t LED_Testpattern[LED_COUNT] = {
+	LED_WHITE,LED_RED,LED_ORANGE,LED_YELLOW,
+	LED_GREEN,LED_CYAN,LED_BLUE,LED_MAGENTA,
+};
 /**
  * @brief	LED Initialize - Sets all LEDs to 'OFF'
  * @pre		TIM3 Initialized.
@@ -78,15 +81,7 @@ void LED_SetScene(uint8_t scene) {
  *	@brief	Sets decorative color pattern to LEDs.
  */
 void LED_TestPattern() {
-	LEDColor[0] = LED_WHITE;
-	LEDColor[1] = LED_RED;
-	LEDColor[2] = LED_ORANGE;
-	LEDColor[3] = LED_YELLOW;
-	LEDColor[4] = LED_GREEN;
-	LEDColor[5] = LED_CYAN;
-	LEDColor[6] = LED_BLUE;
-	LEDColor[7] = LED_MAGENTA;
-
+	memcpy(LEDColor, LED_Testpattern, LED_COUNT);
 	LED_SendPulse();
 }
 

@@ -51,6 +51,8 @@
 #define CC_MSG_3DG	"C%3d = %3d    S%1d"
 #define CC_MSG_2DG	"Ch%1d = %3d    S%1d"
 #define SPACE_CHAR  ' '
+
+#define DFU_MSG	"DFU Bootloader."
 #define SYSTEM_MEMORY	0x1FFFC800
 #define SWMASK	0x0F
 #define SW1	1
@@ -169,8 +171,6 @@ void Jump2SystemMemory() {
 	* For STM32F072, system memory is on 0x1FFFC800
 	*/
 	volatile uint32_t addr = SYSTEM_MEMORY;
-	// Disable all interrupts
-	__disable_irq();
 	/**
 	 * Stop all Interrupt source
 	 */
@@ -524,7 +524,7 @@ int main(void)
 	} else if (LrState == LR_USB_DFU) {
 		if (Msg_Off_Flag == true) {
 			if (nc_count == 0){
-				strcpy(Msg_Buffer[0], "DFU Bootloader.");
+				strcpy(Msg_Buffer[0], DFU_MSG);
 				SSD1306_SetScreen(ON);
 				Msg_Print();
 				nc_count++;
@@ -532,6 +532,7 @@ int main(void)
 				LED_TestPattern();
 				nc_count++;
 			}else if (nc_count <= 2){
+				LED_Initialize();
 				Jump2SystemMemory();
 			}
 			Start_MsgTimer(MSG_TIMER_NOLINK/2);
