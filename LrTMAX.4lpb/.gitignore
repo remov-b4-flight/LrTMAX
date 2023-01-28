@@ -3,3 +3,7 @@
 *.sch-bak
 *.bak
 /Gerber/
+*.kicad_prl
+*.bck
+#6.0 or later kicad projecct
+*.kicad_pro
