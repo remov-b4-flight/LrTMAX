@@ -11,7 +11,7 @@ Item,Qty,Reference(s),Value,LibPart,Footprint,Purchase URL
 10,1,J2,SM06B-SRSS-TB,LrE-6-rescue:Conn_01x06-Connector_Generic,Connector_JST:JST_SH_SM06B-SRSS-TB_1x06-1MP_P1.00mm_Horizontal,https://www.aliexpress.com/item/32831122807.html
 11,1,Q1,2N7002,LrE-6-rescue:2N7002-Transistor_FET,Package_TO_SOT_SMD:SOT-23,https://www.aliexpress.com/item/32843479156.html
 12,5,"R1, R2, R3, R4, R48",1K,LrE-6-rescue:R-Device,Resistor_SMD:R_0805_2012Metric,
-13,19,"R10, R11, R12, R13, R14, R15, R16, R17, R18, R19, R20, R21, R22, R23, R24, R25, R40, R41, R47",10K,LrE-6-rescue:R-Device,Resistor_SMD:R_0805_2012Metric,
+13,20,"R7,R10, R11, R12, R13, R14, R15, R16, R17, R18, R19, R20, R21, R22, R23, R24, R25, R40, R41, R47",10K,LrE-6-rescue:R-Device,Resistor_SMD:R_0805_2012Metric,
 14,1,R42,1K,LrE-6-rescue:R-Device,Resistor_SMD:R_0805_2012Metric,
 15,1,R44,100,LrE-6-rescue:R-Device,Resistor_SMD:R_0805_2012Metric,
 16,1,R45,62,LrE-6-rescue:R-Device,Resistor_SMD:R_0805_2012Metric,
@@ -22,3 +22,4 @@ Item,Qty,Reference(s),Value,LibPart,Footprint,Purchase URL
 21,1,U3,SSD1306_OLED_0.91,LrE-6:OLED-0.91,LrE-6:OLED-9.1,https://www.aliexpress.com/item/32787123531.html
 22,1,U4,SPX3819M5-L3-3TR,LrE-6-rescue:LDK130-08_SOT23_SOT353-Regulator_Linear,Package_TO_SOT_SMD:SOT-23-5,https://www.aliexpress.com/item/32703161484.html
 23,16,"C10, C11, C12, C13, C14, C15, C16, C17, C18, C19, C20, C21, C22, C23, C24, C25,",22n,LrE-6-rescue:C-Device,Capacitor_SMD:C_0805_2012Metric,
+24,1,R8,0,LrE-6-rescue:R-Device,Resistor_SMD:R_0805_2012Metric,
