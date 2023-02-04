@@ -276,7 +276,9 @@ static void EmulateMIDI() {
 		if ( Key_Stat.wd & MaskKey[LrScene] ) { //Check Matrix switches
 			//Send 'Note On' Event from key matrix
 			uint8_t	note = (LrScene * NOTES_PER_SCENE) + bitpos;
-			if (bitpos == SCENE_BIT) { //is [SCENE] switch pressed?
+			if (Key_Stat.wd == RESET_KEY_PATTERN) {
+				HAL_NVIC_SystemReset();
+			}else if (bitpos == SCENE_BIT) { //is [SCENE] switch pressed?
 			   	//Move to next Scene.
 				if((++LrScene) >= SCENE_COUNT){
 					LrScene = Lr_SCENE0;

@@ -158,7 +158,8 @@ void Error_Handler(void);
 #define LED_TIM_RETRY_WAIT	21		//Transfer period for I2C
 //! I2C time definitions
 #define I2C_RETRY_WAIT		2		//Transfer period for TIM3 PWM
-
+//! deine Key combination to invoke reset
+#define RESET_KEY_PATTERN	0x81	//[Undo]+[Scene]
 /* USER CODE END Private defines */
 
 #ifdef __cplusplus
