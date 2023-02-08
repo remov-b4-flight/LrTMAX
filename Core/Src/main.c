@@ -8,13 +8,12 @@
   ******************************************************************************
   * @attention
   *
-  * <h2><center>&copy; Copyright (c) 2021 STMicroelectronics.
-  * All rights reserved.</center></h2>
+  * Copyright (c) 2023 STMicroelectronics.
+  * All rights reserved.
   *
-  * This software component is licensed by ST under Ultimate Liberty license
-  * SLA0044, the "License"; You may not use this file except in compliance with
-  * the License. You may obtain a copy of the License at:
-  *                             www.st.com/SLA0044
+  * This software is licensed under terms that can be found in the LICENSE file
+  * in the root directory of this software component.
+  * If no LICENSE file comes with this software, it is provided AS-IS.
   *
   ******************************************************************************
   */
@@ -55,8 +54,11 @@
 #define DFU_MSG	"DFU Bootloader."
 #define SYSTEM_MEMORY	0x1FFFC800
 #define SWMASK	0x0F
-#define SW1	1
-#define SW3	4
+#define SW1_MASK	1
+#define SW3_MASK	4
+//! deine Key combination to invoke reset
+#define RESET_KEY_PATTERN	0x81	//[Undo]+[Scene]
+
 /* USER CODE END PD */
 
 /* Private macro -------------------------------------------------------------*/
@@ -444,7 +446,7 @@ int main(void)
 	LrState = LR_USB_NOLINK;
 
 	//Check SW1 and SW3 at Power On
-	if ((GPIOA->IDR & SWMASK) == (SW1|SW3)){
+	if ((GPIOA->IDR & SWMASK) == (SW1_MASK | SW3_MASK)) {
 		LrState = LR_USB_DFU;
 	} else {
 		MX_USB_DEVICE_Init();

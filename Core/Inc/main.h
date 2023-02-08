@@ -7,13 +7,12 @@
   ******************************************************************************
   * @attention
   *
-  * <h2><center>&copy; Copyright (c) 2021 STMicroelectronics.
-  * All rights reserved.</center></h2>
+  * Copyright (c) 2023 STMicroelectronics.
+  * All rights reserved.
   *
-  * This software component is licensed by ST under Ultimate Liberty license
-  * SLA0044, the "License"; You may not use this file except in compliance with
-  * the License. You may obtain a copy of the License at:
-  *                             www.st.com/SLA0044
+  * This software is licensed under terms that can be found in the LICENSE file
+  * in the root directory of this software component.
+  * If no LICENSE file comes with this software, it is provided AS-IS.
   *
   ******************************************************************************
   */
@@ -158,8 +157,6 @@ void Error_Handler(void);
 #define LED_TIM_RETRY_WAIT	21		//Transfer period for I2C
 //! I2C time definitions
 #define I2C_RETRY_WAIT		2		//Transfer period for TIM3 PWM
-//! deine Key combination to invoke reset
-#define RESET_KEY_PATTERN	0x81	//[Undo]+[Scene]
 /* USER CODE END Private defines */
 
 #ifdef __cplusplus
