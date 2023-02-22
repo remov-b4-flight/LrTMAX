@@ -4,8 +4,8 @@ LrTMAX MIDI controller is formed by embedded hardware board and its firmware.
 It used with [MIDI2LR](https://github.com/rsjaffe/MIDI2LR) software,  
 You can control development parameters on RAW photos.  
 ## Video
-![LrE-6.gif](LrE-6.gif)
-more details on [YouTube (LrE-6)](https://www.youtube.com/watch?v=oeDpP1sG9_Y)  
+![LrE-6.gif](LrE-6.gif)  
+detailed Video on [YouTube (LrE-6)](https://www.youtube.com/watch?v=oeDpP1sG9_Y)  
 ## Photo
 ![LrTMAX_photo.png](LrTMAX_photo.png)  
 LrTMAX is near to [LrE-6](https://github.com/remov-b4-flight/LrE-6)  
