@@ -65,7 +65,7 @@
 #define MIDI_NT_OFF_S		0x80
 
 //! LrTMAX does not use keyboard velocity
-#define MIDI_NT_VELOCITY	0x40
+#define MIDI_NT_VELOCITY	0x7F
 #define MIDI_CC_HEADER		0x0B
 #define MIDI_CC_STATUS		0xB0
 
