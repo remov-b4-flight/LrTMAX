@@ -521,28 +521,28 @@ void TIM1_BRK_UP_TRG_COM_IRQHandler(void)
 			r = (Mx_GPIO_Port->IDR) & LxMASK;
 			current_scan.nb.n0 = (r);
 			Key_Line++;
-			HAL_GPIO_WritePin(L0_GPIO_Port,L0_Pin,GPIO_PIN_RESET);
-			HAL_GPIO_WritePin(L1_GPIO_Port,L1_Pin,GPIO_PIN_SET);
+			HAL_GPIO_WritePin(L0_GPIO_Port, L0_Pin, GPIO_PIN_RESET);
+			HAL_GPIO_WritePin(L1_GPIO_Port, L1_Pin, GPIO_PIN_SET);
 			break;
 		case L1:
 			r = (Mx_GPIO_Port->IDR) & LxMASK;
 			current_scan.nb.n1 = (r);
 			Key_Line++;
-			HAL_GPIO_WritePin(L1_GPIO_Port,L1_Pin,GPIO_PIN_RESET);
-			HAL_GPIO_WritePin(L2_GPIO_Port,L2_Pin,GPIO_PIN_SET);
+			HAL_GPIO_WritePin(L1_GPIO_Port, L1_Pin, GPIO_PIN_RESET);
+			HAL_GPIO_WritePin(L2_GPIO_Port, L2_Pin, GPIO_PIN_SET);
 			break;
 		case L2:
 			r = (Mx_GPIO_Port->IDR) & LxMASK;
 			current_scan.nb.n2 = (r);
 			Key_Line++;
-			HAL_GPIO_WritePin(L2_GPIO_Port,L2_Pin,GPIO_PIN_RESET);
-			HAL_GPIO_WritePin(L3_GPIO_Port,L3_Pin,GPIO_PIN_SET);
+			HAL_GPIO_WritePin(L2_GPIO_Port, L2_Pin, GPIO_PIN_RESET);
+			HAL_GPIO_WritePin(L3_GPIO_Port, L3_Pin, GPIO_PIN_SET);
 			break;
 		case L3:
 			r = (Mx_GPIO_Port->IDR) & LxMASK;
 			current_scan.nb.n3 = (r);
-			HAL_GPIO_WritePin(L3_GPIO_Port,L3_Pin,GPIO_PIN_RESET);
-			HAL_GPIO_WritePin(L0_GPIO_Port,L0_Pin,GPIO_PIN_SET);
+			HAL_GPIO_WritePin(L3_GPIO_Port, L3_Pin, GPIO_PIN_RESET);
+			HAL_GPIO_WritePin(L0_GPIO_Port, L0_Pin, GPIO_PIN_SET);
 			Key_Line = L0;
 
 			//Key detection

@@ -258,7 +258,15 @@ static void	MakeMasks(){
 		}
 	}
 }
-
+/**
+ * @brief start/stop matrix L0-L3 control
+ */
+static void matrix_control(uint8_t control) {
+	HAL_GPIO_WritePin(L0_GPIO_Port, L0_Pin, (control == Lr_MATRIX_START)? GPIO_PIN_SET : GPIO_PIN_RESET);
+	HAL_GPIO_WritePin(L1_GPIO_Port, L1_Pin, GPIO_PIN_RESET);
+	HAL_GPIO_WritePin(L2_GPIO_Port, L2_Pin, GPIO_PIN_RESET);
+	HAL_GPIO_WritePin(L3_GPIO_Port, L3_Pin, GPIO_PIN_RESET);
+}
 /**
  *	@brief	Generate MIDI event and Send to host by User interaction.
  *	@return true : function processed any Key/Encoder event.
@@ -465,13 +473,15 @@ int main(void)
 	if (LrState == LR_USB_LINKUP) {
 		//USB device configured by host
 		SSD1306_SetScreen(ON);
-
+#if 1
+		matrix_control(Lr_MATRIX_START);
+#else
 		//Initialize L0-3.
 		HAL_GPIO_WritePin(L0_GPIO_Port, L0_Pin, GPIO_PIN_SET);
 		HAL_GPIO_WritePin(L1_GPIO_Port, L1_Pin, GPIO_PIN_RESET);
 		HAL_GPIO_WritePin(L2_GPIO_Port, L2_Pin, GPIO_PIN_RESET);
 		HAL_GPIO_WritePin(L3_GPIO_Port, L3_Pin, GPIO_PIN_RESET);
-
+#endif
 		HAL_TIM_Base_Start_IT(&htim1);		//Start Switch matrix timer.
 		htim15.Instance->CNT = TIM_PERIOD_DCHAT;
 		HAL_TIM_Base_Start(&htim15);      //Start De-chatter timer.
@@ -499,13 +509,15 @@ int main(void)
 		LrScene	= Lr_SCENE0;
 		Stop_All_Encoders();
 		HAL_TIM_Base_Stop(&htim1);
-
+#if 1
+		matrix_control(Lr_MATRIX_STOP);
+#else
 		//Stop L0-L3
 		HAL_GPIO_WritePin(L0_GPIO_Port, L0_Pin, GPIO_PIN_RESET);
 		HAL_GPIO_WritePin(L1_GPIO_Port, L1_Pin, GPIO_PIN_RESET);
 		HAL_GPIO_WritePin(L2_GPIO_Port, L2_Pin, GPIO_PIN_RESET);
 		HAL_GPIO_WritePin(L3_GPIO_Port, L3_Pin, GPIO_PIN_RESET);
-
+#endif
 		LED_TestPattern();
 		Msg_1st_timeout = false;
 		Start_MsgTimer(MSG_TIMER_DEFAULT);

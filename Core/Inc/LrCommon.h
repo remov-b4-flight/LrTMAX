@@ -68,6 +68,12 @@ enum lr_scene_t {
 	Lr_SCENE2 = 2,
 	Lr_SCENE3 = 3,
 };
+//!
+enum lr_matrix_t {
+	Lr_MATRIX_STOP = 0,
+	Lr_MATRIX_START = 1,
+};
+//! number of scene
 #define	SCENE_COUNT		4
 //! Key define structure
 #define DEFINES_PER_SCENE	( KEY_COUNT + (ENC_COUNT * 2) )
