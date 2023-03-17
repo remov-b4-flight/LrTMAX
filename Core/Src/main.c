@@ -426,10 +426,6 @@ int main(void)
   /* USER CODE BEGIN 2 */
 	//Stop All Encoders until USB link up
 	Stop_All_Encoders();
-	//Initialize Switch matrix
-#if 0
-	HAL_GPIO_WritePin(L0_GPIO_Port, L0_Pin, GPIO_PIN_SET);	//Initialize L0-3.
-#endif
 	MakeMasks();
 
 	//Initialize series of WS2812C
@@ -473,16 +469,10 @@ int main(void)
 	if (LrState == LR_USB_LINKUP) {
 		//USB device configured by host
 		SSD1306_SetScreen(ON);
-#if 1
-		matrix_control(Lr_MATRIX_START);
-#else
-		//Initialize L0-3.
-		HAL_GPIO_WritePin(L0_GPIO_Port, L0_Pin, GPIO_PIN_SET);
-		HAL_GPIO_WritePin(L1_GPIO_Port, L1_Pin, GPIO_PIN_RESET);
-		HAL_GPIO_WritePin(L2_GPIO_Port, L2_Pin, GPIO_PIN_RESET);
-		HAL_GPIO_WritePin(L3_GPIO_Port, L3_Pin, GPIO_PIN_RESET);
-#endif
+
+		matrix_control(Lr_MATRIX_START);		//Initialize L0-3.
 		HAL_TIM_Base_Start_IT(&htim1);		//Start Switch matrix timer.
+
 		htim15.Instance->CNT = TIM_PERIOD_DCHAT;
 		HAL_TIM_Base_Start(&htim15);      //Start De-chatter timer.
 		Start_All_Encoders();				//Start rotary encoder.
@@ -508,16 +498,10 @@ int main(void)
 	} else if (LrState == LR_USB_LINK_LOST) {
 		LrScene	= Lr_SCENE0;
 		Stop_All_Encoders();
+
 		HAL_TIM_Base_Stop(&htim1);
-#if 1
-		matrix_control(Lr_MATRIX_STOP);
-#else
-		//Stop L0-L3
-		HAL_GPIO_WritePin(L0_GPIO_Port, L0_Pin, GPIO_PIN_RESET);
-		HAL_GPIO_WritePin(L1_GPIO_Port, L1_Pin, GPIO_PIN_RESET);
-		HAL_GPIO_WritePin(L2_GPIO_Port, L2_Pin, GPIO_PIN_RESET);
-		HAL_GPIO_WritePin(L3_GPIO_Port, L3_Pin, GPIO_PIN_RESET);
-#endif
+		matrix_control(Lr_MATRIX_STOP);		//Stop L0-L3
+
 		LED_TestPattern();
 		Msg_1st_timeout = false;
 		Start_MsgTimer(MSG_TIMER_DEFAULT);
