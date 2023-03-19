@@ -426,6 +426,8 @@ int main(void)
   /* USER CODE BEGIN 2 */
 	//Stop All Encoders until USB link up
 	Stop_All_Encoders();
+	//Initialize Switch matrix
+	HAL_GPIO_WritePin(L0_GPIO_Port, L0_Pin, GPIO_PIN_SET);	//Initialize L0-3.
 	MakeMasks();
 
 	//Initialize series of WS2812C
