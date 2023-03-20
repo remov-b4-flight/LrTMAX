@@ -8,13 +8,12 @@
   ******************************************************************************
   * @attention
   *
-  * <h2><center>&copy; Copyright (c) 2021 STMicroelectronics.
-  * All rights reserved.</center></h2>
+  * Copyright (c) 2023 STMicroelectronics.
+  * All rights reserved.
   *
-  * This software component is licensed by ST under Ultimate Liberty license
-  * SLA0044, the "License"; You may not use this file except in compliance with
-  * the License. You may obtain a copy of the License at:
-  *                             www.st.com/SLA0044
+  * This software is licensed under terms that can be found in the LICENSE file
+  * in the root directory of this software component.
+  * If no LICENSE file comes with this software, it is provided AS-IS.
   *
   ******************************************************************************
   */
@@ -55,8 +54,11 @@
 #define DFU_MSG	"DFU Bootloader."
 #define SYSTEM_MEMORY	0x1FFFC800
 #define SWMASK	0x0F
-#define SW1	1
-#define SW3	4
+#define SW1_MASK	1
+#define SW3_MASK	4
+//! deine Key combination to invoke reset
+#define RESET_KEY_PATTERN	0x81	//[Undo]+[Scene]
+
 /* USER CODE END PD */
 
 /* Private macro -------------------------------------------------------------*/
@@ -256,7 +258,15 @@ static void	MakeMasks(){
 		}
 	}
 }
-
+/**
+ * @brief start/stop matrix L0-L3 control
+ */
+static void matrix_control(uint8_t control) {
+	HAL_GPIO_WritePin(L0_GPIO_Port, L0_Pin, (control == Lr_MATRIX_START)? GPIO_PIN_SET : GPIO_PIN_RESET);
+	HAL_GPIO_WritePin(L1_GPIO_Port, L1_Pin, GPIO_PIN_RESET);
+	HAL_GPIO_WritePin(L2_GPIO_Port, L2_Pin, GPIO_PIN_RESET);
+	HAL_GPIO_WritePin(L3_GPIO_Port, L3_Pin, GPIO_PIN_RESET);
+}
 /**
  *	@brief	Generate MIDI event and Send to host by User interaction.
  *	@return true : function processed any Key/Encoder event.
@@ -276,7 +286,9 @@ static void EmulateMIDI() {
 		if ( Key_Stat.wd & MaskKey[LrScene] ) { //Check Matrix switches
 			//Send 'Note On' Event from key matrix
 			uint8_t	note = (LrScene * NOTES_PER_SCENE) + bitpos;
-			if (bitpos == SCENE_BIT) { //is [SCENE] switch pressed?
+			if (Key_Stat.wd == RESET_KEY_PATTERN) {
+				HAL_NVIC_SystemReset();
+			}else if (bitpos == SCENE_BIT) { //is [SCENE] switch pressed?
 			   	//Move to next Scene.
 				if((++LrScene) >= SCENE_COUNT){
 					LrScene = Lr_SCENE0;
@@ -442,7 +454,7 @@ int main(void)
 	LrState = LR_USB_NOLINK;
 
 	//Check SW1 and SW3 at Power On
-	if ((GPIOA->IDR & SWMASK) == (SW1|SW3)){
+	if ((GPIOA->IDR & SWMASK) == (SW1_MASK | SW3_MASK)) {
 		LrState = LR_USB_DFU;
 	} else {
 		MX_USB_DEVICE_Init();
@@ -459,7 +471,10 @@ int main(void)
 	if (LrState == LR_USB_LINKUP) {
 		//USB device configured by host
 		SSD1306_SetScreen(ON);
+
+		matrix_control(Lr_MATRIX_START);		//Initialize L0-3.
 		HAL_TIM_Base_Start_IT(&htim1);		//Start Switch matrix timer.
+
 		htim15.Instance->CNT = TIM_PERIOD_DCHAT;
 		HAL_TIM_Base_Start(&htim15);      //Start De-chatter timer.
 		Start_All_Encoders();				//Start rotary encoder.
@@ -476,7 +491,7 @@ int main(void)
 #endif
 		Start_MsgTimer(MSG_TIMER_DEFAULT);
 		memcpy(LEDColor,LED_Scene[LrScene],LED_COUNT);
-		LED_SetPulse(LED_IDX_ENC0, LED_MINT, LED_TIM_CONNECT);
+		LED_SetPulse(LED_IDX_ENC0, LED_PINK, LED_TIM_CONNECT);
 		LrState = LR_USB_LINKED;
 
 	} else if (LrState == LR_USB_LINKED) {
@@ -485,7 +500,9 @@ int main(void)
 	} else if (LrState == LR_USB_LINK_LOST) {
 		LrScene	= Lr_SCENE0;
 		Stop_All_Encoders();
+
 		HAL_TIM_Base_Stop(&htim1);
+		matrix_control(Lr_MATRIX_STOP);		//Stop L0-L3
 
 		LED_TestPattern();
 		Msg_1st_timeout = false;
@@ -593,7 +610,7 @@ int main(void)
 		}
 		continue;
 	}
-#ifndef DEBUG
+#if 0
 	HAL_PWR_EnterSLEEPMode(PWR_LOWPOWERREGULATOR_ON, PWR_SLEEPENTRY_WFI);
 #endif
   /* USER CODE END WHILE */
