@@ -15,9 +15,9 @@ extern TIM_HandleTypeDef htim14;
 extern bool	isLEDsendpulse;
 extern uint8_t	LED_Scene[SCENE_COUNT][LED_COUNT];
 
-uint8_t		LEDColor[LED_COUNT];		// coded LED color value
+uint8_t	LEDColor[LED_COUNT];		// coded LED color value
 uint16_t	LEDPulse[TOTAL_BITS+1];	// Data formed PWM width send to LED
-uint8_t		LEDTimer[LED_COUNT];		// Individual LED Timer Counter
+uint8_t	LEDTimer[LED_COUNT];		// Individual LED Timer Counter
 
 /**
  * @brief RGB LED intensity table
@@ -105,7 +105,7 @@ static void Color2Pulse() {
 	uint8_t	pulse = 0;
 	LEDDATA	leddata;
 	//Convert LEDColor[] to LEDPulse[];
-	for(uint8_t	led = 0; led < LED_COUNT; led++){
+	for(uint8_t led = 0; led < LED_COUNT; led++){
 		uint8_t c = LEDColor[led];
 		leddata.n = LEDTable[c].n;
 		for (uint32_t mask = 0x80000000; mask > 0x80; mask >>= 1){

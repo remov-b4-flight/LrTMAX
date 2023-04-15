@@ -87,14 +87,14 @@ extern PCD_HandleTypeDef hpcd_USB_FS;
 //! Lr**** USB connection state
 uint8_t		LrState;
 //! Lr**** Scene index
-uint8_t		LrScene;
+uint8_t	LrScene;
 // keyboard variable
 //! If true, ISR detected any Key/Encoder was moved.
 bool		isKeyPressed;
 //! Key pressed/released status set by timer key scanning.
-KEYSCAN     Key_Stat;
+KEYSCAN	Key_Stat;
 //! In key scanning whether Line selected to read for key matrix.
-uint8_t		Key_Line;
+uint8_t	Key_Line;
 //! If true, MIDI event previous sent is switch. if false, it's encoder
 bool		isPrev_sw;
 //! Bit masks for which bit of KEYSCAN variable acts as key.
@@ -106,11 +106,11 @@ uint32_t	MaskEnc[SCENE_COUNT];
 //! Flag set by timer ISR, It makes 'off' OLES contents.
 bool 		Msg_Timer_Update;
 //! Timer counter ticked by TIM7.
-int32_t		Msg_Timer_Count;
+int32_t	Msg_Timer_Count;
 //! If true Msg_Timer counting is enabled.
-bool		Msg_Timer_Enable;
+bool	Msg_Timer_Enable;
 //! If true, Screen is cleared in main() that is determined on timer interrupt.
-bool		Msg_Off_Flag;
+bool	Msg_Off_Flag;
 //! If true, Screen is flashed by Msg_Buffer[] at main() function.
 static	bool	isMsgFlash;
 //! If true, frame_buffer[] contents flashes the screen.
@@ -118,13 +118,13 @@ static	bool	isRender;
 
 // LED variables
 //! If true, LEDs are flashed by LEDColor[] array.
-bool		isLEDsendpulse;
+bool	isLEDsendpulse;
 //! Flag is set by timer ISR, It makes LED_Timer[] count up in main()
-bool		LED_Timer_Update;
+bool	LED_Timer_Update;
 
 // Scene related
-extern	KEY_DEFINE keytable[SCENE_COUNT][DEFINES_PER_SCENE];
-extern	char *scene_name[SCENE_COUNT];
+extern	KEY_DEFINE	keytable[SCENE_COUNT][DEFINES_PER_SCENE];
+extern	char 		*scene_name[SCENE_COUNT];
 extern	uint8_t	led_axis_table[DEFINES_PER_SCENE];
 
 extern	uint8_t	LED_Scene[SCENE_COUNT][LED_COUNT];
