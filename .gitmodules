@@ -1,0 +1,12 @@
+[submodule "LrTMAX.4lpb"]
+	path = LrTMAX.4lpb
+	url = https://github.com/remov-b4-flight/LrTMAX.4lpb.git
+[submodule "LrTMAX.panel"]
+	path = LrTMAX.panel
+	url = https://github.com/remov-b4-flight/LrTMAX.panel.git
+[submodule "LrTMAX.case"]
+	path = LrTMAX.case
+	url = https://github.com/remov-b4-flight/LrTMAX.case.git
+[submodule "LrTMAX.knob"]
+	path = LrTMAX.knob
+	url = https://github.com/remov-b4-flight/LrTMAX.knob.git
