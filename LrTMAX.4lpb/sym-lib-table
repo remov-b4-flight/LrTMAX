@@ -1,4 +1,0 @@
-(sym_lib_table
-  (lib (name LrE-6)(type Legacy)(uri ${KIPRJMOD}/LrE-6.lib)(options "")(descr "Local Libs."))
-  (lib (name LrE-6-rescue)(type Legacy)(uri ${KIPRJMOD}/LrE-6-rescue.lib)(options "")(descr ""))
-)
