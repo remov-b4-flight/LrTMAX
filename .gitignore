@@ -17,7 +17,6 @@
 /Release/
 /.code_review_properties
 *.bak
-*.FCStd1
 *.zip
 
 #STM32Cube
