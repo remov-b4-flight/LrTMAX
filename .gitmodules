@@ -10,3 +10,6 @@
 [submodule "LrTMAX.knob"]
 	path = LrTMAX.knob
 	url = https://github.com/remov-b4-flight/LrTMAX.knob.git
+[submodule "LrTMAX.documents"]
+	path = LrTMAX.documents
+	url = https://github.com/remov-b4-flight/LrTMAX.documents.git
