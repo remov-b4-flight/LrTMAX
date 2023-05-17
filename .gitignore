@@ -11,8 +11,6 @@
 *.bin
 
 #Others
-/Documents/html/
-/Documents/MIDI1.0.pdf
 /Debug/
 /Release/
 /.code_review_properties
