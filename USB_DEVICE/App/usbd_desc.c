@@ -77,8 +77,8 @@
 #define USBD_VID					0x1209
 #define USBD_MANUFACTURER_STRING	Lr_VENDOR
 #define USBD_PRODUCT_STRING_FS		Lr_PRODUCT
-#define	DEVICE_CLASS				0x00	/*bDeviceClass = (specified in interface desc.) */
-#define	DEVICE_SUBCLASS				0x00	/*bDeviceSubClass = (specified in interface desc.) */
+#define DEVICE_CLASS					0x00	/*bDeviceClass = (specified in interface desc.) */
+#define DEVICE_SUBCLASS				0x00	/*bDeviceSubClass = (specified in interface desc.) */
 /* USER CODE END PRIVATE_DEFINES */
 
 /**
