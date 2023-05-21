@@ -66,18 +66,18 @@ const KEY_DEFINE keytable[SCENE_COUNT][DEFINES_PER_SCENE] = {
 		{.type = TYPE_SWITCH,	.axis = 6,	.color = LED_OFF,		.period = LED_TIM_NORM,	.message = "A6p"},				//L3M2	enc6 push
 /*N15*/{.type = TYPE_SWITCH,	.axis = 7,	.color = LED_OFF,		.period = LED_TIM_NORM,	.message = "A7p"},				//L3M3	enc7 push
 		//Scence0 Encoders																					 0123456789ABCDEF
-/*N16*/{.type = TYPE_SWITCH,	.axis = 0,	.color = LED_RED,		.period = LED_TIM_SHORT,.message = "Next " RIGHTA},		//enc0 CW cursor right
-/*N17*/{.type = TYPE_SWITCH,	.axis = 0,	.color = LED_RED,		.period = LED_TIM_SHORT,.message = "Prev. " LEFTA},		//enc0 CCW cursor left
-		{.type = TYPE_SWITCH,	.axis = 1,	.color = LED_BLUE,	.period = LED_TIM_HALF,	.message = "Rate " UPA},			//enc1 CW
-		{.type = TYPE_SWITCH,	.axis = 1,	.color = LED_BLUE,	.period = LED_TIM_HALF,	.message = "Rate " DOWNA},		//enc1 CCW
-		{.type = TYPE_SWITCH,	.axis = 2,	.color = LED_GREEN,	.period = LED_TIM_HALF,	.message = "Flag " UPA},			//enc2 CW
-		{.type = TYPE_SWITCH,	.axis = 2,	.color = LED_GREEN,	.period = LED_TIM_HALF,	.message = "Flag " DOWNA},		//enc2 CCW
-		{.type = TYPE_SWITCH,	.axis = 3,	.color = LED_YELLOW,	.period = LED_TIM_HALF,	.message = "Rotate " RIGHTA},	//enc3 CW
-		{.type = TYPE_SWITCH,	.axis = 3,	.color = LED_YELLOW,	.period = LED_TIM_HALF,	.message = "Rotate " LEFTA},	//enc3 CCW
-		{.type = TYPE_SWITCH,	.axis = 4,	.color =LED_MAGENTA,	.period = LED_TIM_HALF,	.message = "Scroll " DOWNA},	//enc4 CW
-		{.type = TYPE_SWITCH,	.axis = 4,	.color =LED_MAGENTA,	.period = LED_TIM_HALF,	.message = "Scroll " UPA},		//enc4 CCW
-		{.type = TYPE_SWITCH,	.axis = 5,	.color = LED_ORANGE,	.period = LED_TIM_HALF,	.message = "Zoom In"},			//enc5 CW
-/*N27*/{.type = TYPE_SWITCH,	.axis = 5,	.color = LED_ORANGE,	.period = LED_TIM_HALF,	.message = "Zoom Out"},			//enc5 CCW
+/*N16*/{.type = TYPE_ROTARY,	.axis = 0,	.color = LED_RED,		.period = LED_TIM_SHORT,.message = "Next " RIGHTA},		//enc0 CW cursor right
+/*N17*/{.type = TYPE_ROTARY,	.axis = 0,	.color = LED_RED,		.period = LED_TIM_SHORT,.message = "Prev. " LEFTA},		//enc0 CCW cursor left
+		{.type = TYPE_ROTARY,	.axis = 1,	.color = LED_BLUE,	.period = LED_TIM_HALF,	.message = "Rate " UPA},			//enc1 CW
+		{.type = TYPE_ROTARY,	.axis = 1,	.color = LED_BLUE,	.period = LED_TIM_HALF,	.message = "Rate " DOWNA},		//enc1 CCW
+		{.type = TYPE_ROTARY,	.axis = 2,	.color = LED_GREEN,	.period = LED_TIM_HALF,	.message = "Flag " UPA},			//enc2 CW
+		{.type = TYPE_ROTARY,	.axis = 2,	.color = LED_GREEN,	.period = LED_TIM_HALF,	.message = "Flag " DOWNA},		//enc2 CCW
+		{.type = TYPE_ROTARY,	.axis = 3,	.color = LED_YELLOW,	.period = LED_TIM_HALF,	.message = "Rotate " RIGHTA},	//enc3 CW
+		{.type = TYPE_ROTARY,	.axis = 3,	.color = LED_YELLOW,	.period = LED_TIM_HALF,	.message = "Rotate " LEFTA},	//enc3 CCW
+		{.type = TYPE_ROTARY,	.axis = 4,	.color =LED_MAGENTA,	.period = LED_TIM_HALF,	.message = "Scroll " DOWNA},	//enc4 CW
+		{.type = TYPE_ROTARY,	.axis = 4,	.color =LED_MAGENTA,	.period = LED_TIM_HALF,	.message = "Scroll " UPA},		//enc4 CCW
+		{.type = TYPE_ROTARY,	.axis = 5,	.color = LED_ORANGE,	.period = LED_TIM_HALF,	.message = "Zoom In"},			//enc5 CW
+/*N27*/{.type = TYPE_ROTARY,	.axis = 5,	.color = LED_ORANGE,	.period = LED_TIM_HALF,	.message = "Zoom Out"},			//enc5 CCW
 /*C70*/{.type = TYPE_ROTARY,	.axis = 6,	.color = LED_WHITE,	.period = LED_TIM_NORM,	.message = "Quick Expo. " UPA},	//enc6 CW
 		{.type = TYPE_ROTARY,	.axis = 6,	.color = LED_DARK,	.period = LED_TIM_NORM,	.message = "Quick Expo. " DOWNA},//enc6 CCW
 /*C71*/{.type = TYPE_ROTARY,	.axis = 7,	.color = LED_YELLOW,	.period = LED_TIM_NORM,	.message = "Quick C-Temp. " RIGHTA},//enc7 CW
