@@ -13,3 +13,6 @@
 [submodule "LrTMAX.documents"]
 	path = LrTMAX.documents
 	url = https://github.com/remov-b4-flight/LrTMAX.documents.git
+[submodule "LrTMAX.config"]
+	path = LrTMAX.config
+	url = https://github.com/remov-b4-flight/LrTMAX.config.git
