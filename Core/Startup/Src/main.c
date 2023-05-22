@@ -97,11 +97,12 @@ KEYSCAN	Key_Stat;
 uint8_t	Key_Line;
 //! If true, MIDI event previous sent is switch. if false, it's encoder
 bool		isPrev_sw;
+#if 0
 //! Bit masks for which bit of KEYSCAN variable acts as key.
 uint32_t	MaskKey[SCENE_COUNT];
 //! Bit masks for which bit of KEYSCAN variable acts as encoder.
 uint32_t	MaskEnc[SCENE_COUNT];
-
+#endif
 // OLED variables
 //! Flag set by timer ISR, It makes 'off' OLES contents.
 bool 		Msg_Timer_Update;
@@ -250,6 +251,8 @@ static inline void Msg_Print(){
  * @return false : there is some configuration error.
  */
 static void	MakeMasks(){
+#if 1
+#else
 	for(uint8_t scn = 0; scn < SCENE_COUNT; scn++){
 		for(uint8_t bit = 0; bit < DEFINES_PER_SCENE; bit++){
 			uint32_t	or_bit = (1 << bit);
@@ -257,6 +260,7 @@ static void	MakeMasks(){
 			MaskEnc[scn] |= (keytable[scn][bit].type == TYPE_ROTARY)?	or_bit : 0;
 		}
 	}
+#endif
 }
 /**
  * @brief start/stop matrix L0-L3 control
@@ -283,7 +287,7 @@ static void EmulateMIDI() {
 		uint32_t	rkey = (Key_Stat.wd);
 		bool 		isKeyReport = false;
 
-		if ( Key_Stat.wd & MaskKey[LrScene] ) { //Check Matrix switches
+		if ( Key_Stat.wd & MASK_KEY ) { //Check Matrix switches
 			//Send 'Note On' Event from key matrix
 			uint8_t	note = (LrScene * NOTES_PER_SCENE) + bitpos;
 			if (Key_Stat.wd == RESET_KEY_PATTERN) {
@@ -322,7 +326,7 @@ static void EmulateMIDI() {
 				prev_note = note;
 				isPrev_sw = true;
 			}
-		}else if( Key_Stat.wd & MaskEnc[LrScene] ) { //Check encoder's move
+		}else if( Key_Stat.wd & MASK_ENC ) { //Check encoder's move
 			//Send CC Event from encoder
 			uint8_t axis = (bitpos - KEY_COUNT) / 2;
 			uint8_t val = MIDI_CC_Value[LrScene][axis];
