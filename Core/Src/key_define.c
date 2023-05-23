@@ -48,7 +48,7 @@ const uint8_t LED_Scene[SCENE_COUNT][LED_COUNT] = {
 
 //! @union Key/encoder configuration table
 const KEY_DEFINE keytable[SCENE_COUNT][DEFINES_PER_SCENE] = {
-	{	//Scene0 Switches	(Library Tab)																		 0123456789ABCDEF
+	{	//Scene0 Switches	(Library Tab)												 0123456789ABCDEF
 /*N00*/{.axis = 0,	.color = LED_YELLOW,	.period = LED_TIM_NORM,	.message = "Undo"},				//L0M0	SW1
 /*N01*/{.axis = 0,	.color = LED_YELLOW,	.period = LED_TIM_NORM,	.message = "Rate 1"},			//L0M1	SW2
 /*N02*/{.axis = 0,	.color = LED_YELLOW,	.period = LED_TIM_NORM,	.message = "Rate 2"},			//L0M2	SW3
@@ -65,7 +65,7 @@ const KEY_DEFINE keytable[SCENE_COUNT][DEFINES_PER_SCENE] = {
 		{.axis = 5,	.color = LED_WHITE,	.period = LED_TIM_NORM,	.message = "Zoom reset"},		//L3M1	enc5 push
 		{.axis = 6,	.color = LED_OFF,		.period = LED_TIM_NORM,	.message = "A6p"},				//L3M2	enc6 push
 /*N15*/{.axis = 7,	.color = LED_OFF,		.period = LED_TIM_NORM,	.message = "A7p"},				//L3M3	enc7 push
-		//Scence0 Encoders																					 0123456789ABCDEF
+		//Scence0 Encoders															 0123456789ABCDEF
 /*C64*/{.axis = 0,	.color = LED_RED,		.period = LED_TIM_SHORT,.message = "Next " RIGHTA},		//enc0 CW cursor right
 		{.axis = 0,	.color = LED_RED,		.period = LED_TIM_SHORT,.message = "Prev. " LEFTA},		//enc0 CCW cursor left
 		{.axis = 1,	.color = LED_BLUE,	.period = LED_TIM_HALF,	.message = "Rate " UPA},			//enc1 CW
@@ -74,15 +74,15 @@ const KEY_DEFINE keytable[SCENE_COUNT][DEFINES_PER_SCENE] = {
 		{.axis = 2,	.color = LED_GREEN,	.period = LED_TIM_HALF,	.message = "Flag " DOWNA},		//enc2 CCW
 		{.axis = 3,	.color = LED_YELLOW,	.period = LED_TIM_HALF,	.message = "Rotate " RIGHTA},	//enc3 CW
 		{.axis = 3,	.color = LED_YELLOW,	.period = LED_TIM_HALF,	.message = "Rotate " LEFTA},	//enc3 CCW
-		{.axis = 4,	.color =LED_MAGENTA,	.period = LED_TIM_HALF,	.message = "Scroll " DOWNA},	//enc4 CW
-		{.axis = 4,	.color =LED_MAGENTA,	.period = LED_TIM_HALF,	.message = "Scroll " UPA},		//enc4 CCW
+		{.axis = 4,	.color =LED_MAGENTA,	.period = LED_TIM_HALF,	.message = "A4" RIGHTA},			//enc4 CW
+		{.axis = 4,	.color =LED_MAGENTA,	.period = LED_TIM_HALF,	.message = "A4" LEFTA},			//enc4 CCW
 		{.axis = 5,	.color = LED_ORANGE,	.period = LED_TIM_HALF,	.message = "Zoom In"},			//enc5 CW
 /*N27*/{.axis = 5,	.color = LED_ORANGE,	.period = LED_TIM_HALF,	.message = "Zoom Out"},			//enc5 CCW
 /*C70*/{.axis = 6,	.color = LED_WHITE,	.period = LED_TIM_NORM,	.message = "Quick Expo. " UPA},	//enc6 CW
 		{.axis = 6,	.color = LED_DARK,	.period = LED_TIM_NORM,	.message = "Quick Expo. " DOWNA},//enc6 CCW
 /*C71*/{.axis = 7,	.color = LED_YELLOW,	.period = LED_TIM_NORM,	.message = "Quick C-Temp. " RIGHTA},//enc7 CW
 		{.axis = 7,	.color = LED_BLUE,	.period = LED_TIM_NORM,	.message = "Quick C-Temp. " LEFTA},//enc7 CCW
-	},{	//Scene1 Switches	(Basic Edits)																		 0123456789ABCDEF
+	},{	//Scene1 Switches	(Basic Edits)												 0123456789ABCDEF
 /*N32*/{.axis = 0,	.color = LED_WHITE,	.period = LED_TIM_NORM,	.message = "Undo"},				//L0M0	SW1
 /*N33*/{.axis = 0,	.color = LED_RED,		.period = LED_TIM_NORM,	.message = "Auto Tone"},			//L0M1	SW2
 		{.axis = 0,	.color = LED_ORANGE,	.period = LED_TIM_NORM,	.message = "DayLight"},			//L0M2	SW3
@@ -99,7 +99,7 @@ const KEY_DEFINE keytable[SCENE_COUNT][DEFINES_PER_SCENE] = {
 		{.axis = 5,	.color = LED_DARK,	.period = LED_TIM_NORM,	.message = "Vibra. reset"},		//L3M1	enc5 push
 		{.axis = 6,	.color = LED_DARK,	.period = LED_TIM_NORM,	.message = "Nat-Vibra. reset"},	//L3M2	enc6 push
 /*N47*/{.axis = 7,	.color = LED_OFF,		.period = LED_TIM_NORM,	.message = "A7p"},				//L3M3	enc7 push
-		//Scence1 Encoders																					 0123456879ABCDEF
+		//Scence1 Encoders															 0123456879ABCDEF
 /*C72*/{.axis = 0,	.color = LED_RED,		.period = LED_TIM_NORM,	.message = "Next " RIGHTA},		//enc0 CW
 		{.axis = 0,	.color = LED_RED,		.period = LED_TIM_NORM,	.message = "Prev. " LEFTA},		//enc0 CCW
 /*C73*/{.axis = 1,	.color = LED_YELLOW,	.period = LED_TIM_HALF,	.message = "Color-Temp. " UPA},	//enc1 CW
@@ -116,7 +116,7 @@ const KEY_DEFINE keytable[SCENE_COUNT][DEFINES_PER_SCENE] = {
 		{.axis = 6,	.color = LED_ORANGE,	.period = LED_TIM_NORM,	.message = "Natural Vibra." LEFTA},		//enc6 CCW
 /*C79*/{.axis = 7,	.color = LED_OFF,		.period = LED_TIM_NORM,	.message = "A7" RIGHTA},			//enc7 CW
 		{.axis = 7,	.color = LED_OFF,		.period = LED_TIM_NORM,	.message = "A7" LEFTA},			//enc7 CCW
-	},{	//Scene2 Switches	(Tone Curve)																		 0123456789ABCDEF
+	},{	//Scene2 Switches	(Tone Curve)												 0123456789ABCDEF
 /*N64*/{.axis = 0,	.color = LED_WHITE,	.period = LED_TIM_NORM,	.message = "Undo"},				//L0M0	SW1
 		{.axis = 0,	.color = LED_DARK,	.period = LED_TIM_NORM,	.message = "Keyword1"},			//L0M1	SW2
 		{.axis = 0,	.color = LED_DARK,	.period = LED_TIM_NORM,	.message = "Keyword2"},			//L0M2	SW3
@@ -133,7 +133,7 @@ const KEY_DEFINE keytable[SCENE_COUNT][DEFINES_PER_SCENE] = {
 		{.axis = 5,	.color = LED_OFF,		.period = LED_TIM_NORM,	.message = "A5p"},				//L3M1	enc5 push
 		{.axis = 6,	.color = LED_OFF,		.period = LED_TIM_NORM,	.message = "A6p"},				//L3M2	enc6 push
 		{.axis = 7,	.color = LED_OFF,		.period = LED_TIM_NORM,	.message = "A7p"},				//L3M3	enc7 push
-		//Scence2 Encoders																					 0123456789ABCDEF
+		//Scence2 Encoders															 0123456789ABCDEF
 /*C80*/{.axis = 0,	.color = LED_RED,		.period = LED_TIM_NORM,	.message = "Next " RIGHTA},		//enc0 CW cursor right
 		{.axis = 0,	.color = LED_RED,		.period = LED_TIM_NORM,	.message = "Prev. " LEFTA},		//enc0 CCW cursor left
 /*C81*/{.axis = 1,	.color = LED_DARK,	.period = LED_TIM_HALF,	.message = "Dark " UPA},			//enc1 CW
@@ -150,7 +150,7 @@ const KEY_DEFINE keytable[SCENE_COUNT][DEFINES_PER_SCENE] = {
 		{.axis = 6,	.color = LED_OFF,		.period = LED_TIM_NORM,	.message = "A6" LEFTA},			//enc6 CCW
 /*C87*/{.axis = 7,	.color = LED_OFF,		.period = LED_TIM_NORM,	.message = "A7" RIGHTA},			//enc7 CW
 		{.axis = 7,	.color = LED_OFF,		.period = LED_TIM_NORM,	.message = "A7" LEFTA},			//enc7 CCW
-	},{	//Scene3 Switches	(Color Balance)																	 0123456789ABCDEF
+	},{	//Scene3 Switches	(Color Balance)											 0123456789ABCDEF
 /*N96*/{.axis = 0,	.color = LED_WHITE,	.period = LED_TIM_NORM,	.message = "Undo"},				//L0M0	SW1
 		{.axis = 0,	.color = LED_DARK,	.period = LED_TIM_NORM,	.message = "RedEye"},			//L0M1	SW2
 		{.axis = 0,	.color = LED_DARK,	.period = LED_TIM_NORM,	.message = "Lens Colle."},		//L0M2	SW3
@@ -167,7 +167,7 @@ const KEY_DEFINE keytable[SCENE_COUNT][DEFINES_PER_SCENE] = {
 		{.axis = 5,	.color = LED_WHITE,	.period = LED_TIM_NORM,	.message = "Cyan reset"},		//L3M1	enc5 push
 		{.axis = 6,	.color = LED_WHITE,	.period = LED_TIM_NORM,	.message = "Blue reset"},		//L3M2	enc6 push
 		{.axis = 7,	.color = LED_WHITE,	.period = LED_TIM_NORM,	.message = "Magenta reset"},	//L3M3	enc7 push
-		//Scence3 Encoders																					 0123456789ABCDEF
+		//Scence3 Encoders															 0123456789ABCDEF
 /*C88*/{.axis = 0,	.color = LED_RED,		.period = LED_TIM_NORM,	.message = "Next " RIGHTA},		//enc0 CW cursor right
 		{.axis = 0,	.color = LED_RED,		.period = LED_TIM_NORM,	.message = "Prev. " LEFTA},		//enc0 CCW cursor left
 /*C89*/{.axis = 1,	.color = LED_RED,		.period = LED_TIM_HALF,	.message = "Red " UPA},			//enc1 CW
