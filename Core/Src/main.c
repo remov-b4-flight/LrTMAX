@@ -97,12 +97,6 @@ KEYSCAN	Key_Stat;
 uint8_t	Key_Line;
 //! If true, MIDI event previous sent is switch. if false, it's encoder
 bool		isPrev_sw;
-#if 0
-//! Bit masks for which bit of KEYSCAN variable acts as key.
-uint32_t	MaskKey[SCENE_COUNT];
-//! Bit masks for which bit of KEYSCAN variable acts as encoder.
-uint32_t	MaskEnc[SCENE_COUNT];
-#endif
 // OLED variables
 //! Flag set by timer ISR, It makes 'off' OLES contents.
 bool 		Msg_Timer_Update;
@@ -246,22 +240,6 @@ static inline void Msg_Print(){
 	isMsgFlash = true;
 }
 
-/**
- * @brief Make MaskKey[],MaskRot[] from keytable[](in key_define.c)
- * @return false : there is some configuration error.
- */
-static void	MakeMasks(){
-#if 1
-#else
-	for(uint8_t scn = 0; scn < SCENE_COUNT; scn++){
-		for(uint8_t bit = 0; bit < DEFINES_PER_SCENE; bit++){
-			uint32_t	or_bit = (1 << bit);
-			MaskKey[scn] |= (keytable[scn][bit].type == TYPE_SWITCH)?	or_bit : 0;
-			MaskEnc[scn] |= (keytable[scn][bit].type == TYPE_ROTARY)?	or_bit : 0;
-		}
-	}
-#endif
-}
 /**
  * @brief start/stop matrix L0-L3 control
  */
@@ -432,7 +410,6 @@ int main(void)
 	Stop_All_Encoders();
 	//Initialize Switch matrix
 	HAL_GPIO_WritePin(L0_GPIO_Port, L0_Pin, GPIO_PIN_SET);	//Initialize L0-3.
-	MakeMasks();
 
 	//Initialize series of WS2812C
 	GPIOA->PUPDR |= GPIO_PUPDR_PUPDR6_0;	//Pull up PA6 (WS2812C-2020 workaround)
