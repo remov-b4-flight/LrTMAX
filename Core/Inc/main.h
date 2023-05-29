@@ -157,6 +157,8 @@ void Error_Handler(void);
 #define LED_TIM_RETRY_WAIT	21		//Transfer period for I2C
 //! I2C time definitions
 #define I2C_RETRY_WAIT		2		//Transfer period for TIM3 PWM
+//! Start address of DFU bootloader
+#define SYSTEM_MEMORY	0x1FFFC800
 /* USER CODE END Private defines */
 
 #ifdef __cplusplus

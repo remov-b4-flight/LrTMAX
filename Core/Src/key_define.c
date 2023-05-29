@@ -52,7 +52,7 @@ const KEY_DEFINE keytable[SCENE_COUNT][DEFINES_PER_SCENE] = {
 /*N00*/	{.axis = 0,	.color = LED_YELLOW,.period = LED_TIM_NORM,	.message = "Undo"},				//L0M0	SW1
 /*N01*/	{.axis = 0,	.color = LED_YELLOW,.period = LED_TIM_NORM,	.message = "Rate 1"},			//L0M1	SW2
 /*N02*/	{.axis = 0,	.color = LED_YELLOW,.period = LED_TIM_NORM,	.message = "Rate 2"},			//L0M2	SW3
-		{.axis = 0,	.color = LED_YELLOW,.period = LED_TIM_NORM,	.message = "Dev. Copy"},			//L0M3	SW4
+		{.axis = 0,	.color = LED_YELLOW,.period = LED_TIM_NORM,	.message = "Dev. Copy"},		//L0M3	SW4
 		{.axis = 0,	.color = LED_YELLOW,.period = LED_TIM_NORM,	.message = "Dev. Paste"},		//L1M0	SW5
 		{.axis = 0,	.color = LED_YELLOW,.period = LED_TIM_NORM,	.message = "Add Quick Colle."},	//L1M1	SW6
 		{.axis = 0,	.color = LED_YELLOW,.period = LED_TIM_NORM,	.message = "2nd Moni. On/Off"},	//L1M2	SW7
@@ -68,14 +68,14 @@ const KEY_DEFINE keytable[SCENE_COUNT][DEFINES_PER_SCENE] = {
 		//Scence0 Encoders													0123456789ABCDEF
 /*C64*/	{.axis = 0,	.color = LED_RED,	.period = LED_TIM_SHORT,.message = "Next " RIGHTA},		//enc0 CW cursor right
 		{.axis = 0,	.color = LED_RED,	.period = LED_TIM_SHORT,.message = "Prev. " LEFTA},		//enc0 CCW cursor left
-		{.axis = 1,	.color = LED_BLUE,	.period = LED_TIM_HALF,	.message = "Rate " UPA},			//enc1 CW
+		{.axis = 1,	.color = LED_BLUE,	.period = LED_TIM_HALF,	.message = "Rate " UPA},		//enc1 CW
 		{.axis = 1,	.color = LED_BLUE,	.period = LED_TIM_HALF,	.message = "Rate " DOWNA},		//enc1 CCW
-		{.axis = 2,	.color = LED_GREEN,	.period = LED_TIM_HALF,	.message = "Flag " UPA},			//enc2 CW
+		{.axis = 2,	.color = LED_GREEN,	.period = LED_TIM_HALF,	.message = "Flag " UPA},		//enc2 CW
 		{.axis = 2,	.color = LED_GREEN,	.period = LED_TIM_HALF,	.message = "Flag " DOWNA},		//enc2 CCW
 		{.axis = 3,	.color = LED_YELLOW,.period = LED_TIM_HALF,	.message = "Rotate " RIGHTA},	//enc3 CW
 		{.axis = 3,	.color = LED_YELLOW,.period = LED_TIM_HALF,	.message = "Rotate " LEFTA},	//enc3 CCW
-		{.axis = 4,	.color =LED_MAGENTA,.period = LED_TIM_HALF,	.message = "A4" RIGHTA},			//enc4 CW
-		{.axis = 4,	.color =LED_MAGENTA,.period = LED_TIM_HALF,	.message = "A4" LEFTA},			//enc4 CCW
+		{.axis = 4,	.color = LED_OFF,	.period = LED_TIM_HALF,	.message = "A4" RIGHTA},		//enc4 CW
+		{.axis = 4,	.color = LED_OFF,	.period = LED_TIM_HALF,	.message = "A4" LEFTA},			//enc4 CCW
 		{.axis = 5,	.color = LED_ORANGE,.period = LED_TIM_HALF,	.message = "Zoom In"},			//enc5 CW
 /*N27*/	{.axis = 5,	.color = LED_ORANGE,.period = LED_TIM_HALF,	.message = "Zoom Out"},			//enc5 CCW
 /*C70*/	{.axis = 6,	.color = LED_WHITE,	.period = LED_TIM_NORM,	.message = "Quick Expo. " UPA},	//enc6 CW
@@ -84,7 +84,7 @@ const KEY_DEFINE keytable[SCENE_COUNT][DEFINES_PER_SCENE] = {
 		{.axis = 7,	.color = LED_BLUE,	.period = LED_TIM_NORM,	.message = "Quick C-Temp. " LEFTA},//enc7 CCW
 	},{	//Scene1 Switches	(Basic Edits)									0123456789ABCDEF
 /*N32*/	{.axis = 0,	.color = LED_WHITE,	.period = LED_TIM_NORM,	.message = "Undo"},				//L0M0	SW1
-/*N33*/	{.axis = 0,	.color = LED_RED,	.period = LED_TIM_NORM,	.message = "Auto Tone"},			//L0M1	SW2
+/*N33*/	{.axis = 0,	.color = LED_RED,	.period = LED_TIM_NORM,	.message = "Auto Tone"},		//L0M1	SW2
 		{.axis = 0,	.color = LED_ORANGE,.period = LED_TIM_NORM,	.message = "DayLight"},			//L0M2	SW3
 		{.axis = 0,	.color = LED_YELLOW,.period = LED_TIM_NORM,	.message = "Tungsten"},			//L0M3	SW4
 		{.axis = 0,	.color = LED_GREEN,	.period = LED_TIM_NORM,	.message = "Fluorescent"},		//L1M0	SW5
@@ -105,7 +105,7 @@ const KEY_DEFINE keytable[SCENE_COUNT][DEFINES_PER_SCENE] = {
 /*C73*/	{.axis = 1,	.color = LED_YELLOW,.period = LED_TIM_HALF,	.message = "Color-Temp. " UPA},	//enc1 CW
 		{.axis = 1,	.color = LED_BLUE,	.period = LED_TIM_HALF,	.message = "Color-Temp. "DOWNA},//enc1 CCW
 		{.axis = 2,	.color =LED_MAGENTA,.period = LED_TIM_HALF,	.message = "Magenta"},			//enc2 CW
-		{.axis = 2,	.color = LED_GREEN,	.period = LED_TIM_HALF,	.message = "Green"},				//enc2 CCW
+		{.axis = 2,	.color = LED_GREEN,	.period = LED_TIM_HALF,	.message = "Green"},			//enc2 CCW
 		{.axis = 3,	.color = LED_WHITE,	.period = LED_TIM_HALF,	.message = "Exposure " UPA},	//enc3 CW
 		{.axis = 3,	.color = LED_GLAY,	.period = LED_TIM_HALF,	.message = "Exposure " DOWNA},	//enc3 CCW
 		{.axis = 4,	.color = LED_WHITE,	.period = LED_TIM_HALF,	.message = "Contrast " UPA},	//enc4 CW

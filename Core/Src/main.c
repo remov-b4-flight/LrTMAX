@@ -47,12 +47,11 @@
 #define CONN_MSG	"%2x.%02x"
 #endif
 
-#define CC_MSG_3DG	"C%3d = %3d    S%1d"
-#define CC_MSG_2DG	"Ch%1d = %3d    S%1d"
+#define CC_MSG_3DG	"C%3u = %3u    S%1u"
+#define CC_MSG_2DG	"Ch%2u = %3u    S%1u"
 #define SPACE_CHAR  ' '
 
 #define DFU_MSG	"DFU Bootloader."
-#define SYSTEM_MEMORY	0x1FFFC800
 #define SWMASK	0x0F
 #define SW1_MASK	1
 #define SW3_MASK	4
@@ -83,23 +82,23 @@ DMA_HandleTypeDef hdma_tim3_ch1_trig;
 //! STM32 TIM3 instance handle
 TIM_HandleTypeDef htim3;
 extern	USBD_HandleTypeDef hUsbDeviceFS;
-extern PCD_HandleTypeDef hpcd_USB_FS;
+extern	PCD_HandleTypeDef hpcd_USB_FS;
 //! Lr**** USB connection state
-uint8_t		LrState;
+uint8_t	LrState;
 //! Lr**** Scene index
 uint8_t	LrScene;
 // keyboard variable
 //! If true, ISR detected any Key/Encoder was moved.
-bool		isKeyPressed;
+bool	isKeyPressed;
 //! Key pressed/released status set by timer key scanning.
 KEYSCAN	Key_Stat;
 //! In key scanning whether Line selected to read for key matrix.
 uint8_t	Key_Line;
 //! If true, MIDI event previous sent is switch. if false, it's encoder
-bool		isPrev_sw;
+bool	isPrev_sw;
 // OLED variables
 //! Flag set by timer ISR, It makes 'off' OLES contents.
-bool 		Msg_Timer_Update;
+bool 	Msg_Timer_Update;
 //! Timer counter ticked by TIM7.
 int32_t	Msg_Timer_Count;
 //! If true Msg_Timer counting is enabled.
@@ -120,7 +119,7 @@ bool	LED_Timer_Update;
 // Scene related
 extern	KEY_DEFINE	keytable[SCENE_COUNT][DEFINES_PER_SCENE];
 extern	char 		*scene_name[SCENE_COUNT];
-extern	uint8_t	led_axis_table[DEFINES_PER_SCENE];
+extern	uint8_t		led_axis_table[DEFINES_PER_SCENE];
 
 extern	uint8_t	LED_Scene[SCENE_COUNT][LED_COUNT];
 extern	uint8_t	LEDColor[LED_COUNT];
@@ -135,7 +134,7 @@ uint8_t MIDI_CC_Value[SCENE_COUNT][ENC_COUNT];
 //! keep previous sent 'Key On' note/channel for release message.
 uint8_t prev_note;
 //! Instance Handle of USB interface
-extern USBD_HandleTypeDef *pInstance;
+extern	USBD_HandleTypeDef *pInstance;
 
 /* USER CODE END PV */
 
