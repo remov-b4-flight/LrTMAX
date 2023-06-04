@@ -343,7 +343,7 @@ static void EmulateMIDI() {
 
 		if (isKeyReport == true) {
 			//Send MIDI event via USB
-			USBD_LL_Transmit (pInstance, MIDI_IN_EP, (uint8_t *)&USBMIDI_TxEvent, MIDI_EVENT_LENGTH);
+			USBD_LL_Transmit (pInstance, MIDI_OUT_EP, (uint8_t *)&USBMIDI_TxEvent, MIDI_EVENT_LENGTH);
 			isKeyReport = false;
 		}
 

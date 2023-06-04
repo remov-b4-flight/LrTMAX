@@ -18,15 +18,20 @@
 /* Includes ------------------------------------------------------------------*/
 #include  "usbd_ioreq.h"
 
-#define MIDI_IN_EP									0x82  /* EP1 for data IN */
-#define MIDI_OUT_EP									0x01  /* EP1 for data OUT */
+#define MIDI_IN_EP									0x02  /* EP1 for data IN */
+#define MIDI_OUT_EP									0x81  /* EP1 for data OUT */
 
 #define MIDI_DATA_FS_MAX_PACKET_SIZE				64 /* Endpoint IN & OUT Packet size */
 #define MIDI_CMD_PACKET_SIZE						8  /* Control Endpoint Packet size */
 
-#define USB_MIDI_CONFIG_DESC_SIZ					86
+#define USB_MIDI_CONFIG_DESC_SIZE					83
 #define MIDI_DATA_IN_PACKET_SIZE					MIDI_DATA_FS_MAX_PACKET_SIZE
 #define MIDI_DATA_OUT_PACKET_SIZE					MIDI_DATA_FS_MAX_PACKET_SIZE
+
+#define MIDI_JACK_NO_IN_ENB		0x10
+#define MIDI_JACK_NO_IN_EXT		0x20
+#define MIDI_JACK_NO_OUT_ENB	0x30
+#define MIDI_JACK_NO_OUT_EXT	0x40
 
 typedef struct _USBD_MIDI_ItfTypeDef{
 	uint16_t (*pIf_MidiRx)    (uint8_t *msg, uint16_t length);
