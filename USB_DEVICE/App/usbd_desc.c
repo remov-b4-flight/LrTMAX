@@ -74,10 +74,11 @@
 #undef	USBD_VID
 #undef	USBD_MANUFACTURER_STRING
 #undef	USBD_PRODUCT_STRING_FS
+#define USB_VERSION					0x0200
 #define USBD_VID					0x1209
 #define USBD_MANUFACTURER_STRING	Lr_VENDOR
 #define USBD_PRODUCT_STRING_FS		Lr_PRODUCT
-#define DEVICE_CLASS					0x00	/*bDeviceClass = (specified in interface desc.) */
+#define DEVICE_CLASS				0x00	/*bDeviceClass = (specified in interface desc.) */
 #define DEVICE_SUBCLASS				0x00	/*bDeviceSubClass = (specified in interface desc.) */
 /* USER CODE END PRIVATE_DEFINES */
 
@@ -155,9 +156,9 @@ __ALIGN_BEGIN uint8_t USBD_FS_DeviceDesc[USB_LEN_DEV_DESC] __ALIGN_END =
 {
   0x12,                       /*bLength */
   USB_DESC_TYPE_DEVICE,       /*bDescriptorType*/
-  0x10,                       /*bcdUSB */
-  0x01,
 /* USER CODE BEGIN DESC. */
+  LOBYTE(USB_VERSION),        /*bcdUSB */
+  HIBYTE(USB_VERSION),
   DEVICE_CLASS,
   DEVICE_SUBCLASS,
 /* USER CODE END DESC. */

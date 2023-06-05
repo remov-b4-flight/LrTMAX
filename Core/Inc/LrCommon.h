@@ -85,10 +85,10 @@ enum lr_matrix_t {
 #define CC_COUNT			(ENC_COUNT * SCENE_COUNT)
 // LED timer definitions
 #define LED_TIM_NORM		21		//500ms (1 tick=24ms)
-#define LED_TIM_SHORT	4		//100ms
+#define LED_TIM_SHORT		4		//100ms
 #define LED_TIM_HALF		11		//250ms
 #define LED_TIM_LONG		42		//1.0Sec
-#define LED_TIM_CONNECT	64		//1.5Sec
+#define LED_TIM_CONNECT		64		//1.5Sec
 
 // Screen timer definitions
 #define MSG_TIMER_DEFAULT	122		//4Sec (1 tick=32.7ms)

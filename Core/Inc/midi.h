@@ -24,11 +24,7 @@
 #define BUSPOWERED			0x80
 #define REMOTE_WAKEUP		0x20
 #define MIDI_POWER			0x64 //=200mA
-<<<<<<< HEAD
-#define NUM_INTF			0x02
-=======
 #define NUM_INTF			0x01
->>>>>>> refs/heads/nanokon2-ep
 
 //! Interface descriptor
 #define INTF0				0x00
@@ -40,10 +36,6 @@
 #define MIDI_STREAM			0x03
 
 #define ALTER0				0x00
-<<<<<<< HEAD
-#define NO_EP				0x00
-=======
->>>>>>> refs/heads/nanokon2-ep
 
 //! CS Interface descriptor
 #define HEADER				0x01
@@ -59,14 +51,8 @@
 #define MIDI_IN_JACK		0x02
 #define MIDI_OUT_JACK		0x03
 
-<<<<<<< HEAD
-#define MIDI_IN_JACK_NO		0x01
-#define MIDI_OUT_JACK_NO	0x02
-=======
 #define MIDI_JTYPE_ENB		0x01
 #define MIDI_JTYPE_EXT		0x02
-
->>>>>>> refs/heads/nanokon2-ep
 
 //! Note constants
 #define MIDI_NT_ON			0x09

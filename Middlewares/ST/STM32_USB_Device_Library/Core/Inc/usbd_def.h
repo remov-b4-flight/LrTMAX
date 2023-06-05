@@ -123,11 +123,8 @@ extern "C" {
 
 #define USB_HS_MAX_PACKET_SIZE                          512U
 #define USB_FS_MAX_PACKET_SIZE                          64U
-#if 1
-#define USB_MAX_EP0_SIZE                                8U
-#else
 #define USB_MAX_EP0_SIZE                                64U
-#endif
+
 /*  Device Status */
 #define USBD_STATE_DEFAULT                              0x01U
 #define USBD_STATE_ADDRESSED                            0x02U
