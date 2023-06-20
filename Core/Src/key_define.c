@@ -112,10 +112,10 @@ const KEY_DEFINE keytable[SCENE_COUNT][DEFINES_PER_SCENE] = {
 		{.axis = 4,	.color = LED_GLAY,	.period = LED_TIM_HALF,	.message = "Contrast " DOWNA},	//enc4 CCW
 		{.axis = 5,	.color = LED_WHITE,	.period = LED_TIM_HALF,	.message = "Vibrance " UPA},	//enc5 CW
 		{.axis = 5,	.color = LED_GLAY,	.period = LED_TIM_HALF,	.message = "Vibrance " DOWNA},	//enc5 CCW
-		{.axis = 6,	.color = LED_GREEN,	.period = LED_TIM_NORM,	.message = "Natural Vibra." RIGHTA},	//enc6 CW
-		{.axis = 6,	.color = LED_ORANGE,.period = LED_TIM_NORM,	.message = "Natural Vibra." LEFTA},		//enc6 CCW
-/*C79*/	{.axis = 7,	.color = LED_OFF,	.period = LED_TIM_NORM,	.message = "A7" RIGHTA},			//enc7 CW
-		{.axis = 7,	.color = LED_OFF,	.period = LED_TIM_NORM,	.message = "A7" LEFTA},			//enc7 CCW
+		{.axis = 6,	.color = LED_GREEN,	.period = LED_TIM_NORM,	.message = "Local Texture " UPA},	//enc6 CW
+		{.axis = 6,	.color = LED_ORANGE,.period = LED_TIM_NORM,	.message = "Local Texture " DOWNA},	//enc6 CCW
+/*C79*/	{.axis = 7,	.color = LED_OFF,	.period = LED_TIM_NORM,	.message = "Loc. Clearity " UPA},	//enc7 CW
+		{.axis = 7,	.color = LED_OFF,	.period = LED_TIM_NORM,	.message = "Loc. Clearity" DOWNA},	//enc7 CCW
 	},{	//Scene2 Switches	(Tone Curve)									0123456789ABCDEF
 /*N64*/	{.axis = 0,	.color = LED_WHITE,	.period = LED_TIM_NORM,	.message = "Undo"},				//L0M0	SW1
 		{.axis = 0,	.color = LED_DARK,	.period = LED_TIM_NORM,	.message = "Keyword1"},			//L0M1	SW2
