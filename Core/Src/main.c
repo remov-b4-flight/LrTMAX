@@ -91,8 +91,6 @@ bool	isKeyPressed;
 KEYSCAN	Key_Stat;
 //! In key scanning whether Line selected to read for key matrix.
 uint8_t	Key_Line;
-//! If true, MIDI event previous sent is switch. if false, it's encoder
-bool	isPrev_sw;
 // OLED variables
 //! Flag set by timer ISR, It makes 'off' OLES contents.
 bool 	Msg_Timer_Update;
@@ -124,10 +122,6 @@ extern	uint8_t	LEDTimer[LED_COUNT];
 
 //! String message buffer of screen
 extern	char Msg_Buffer[MSG_LINES][MSG_WIDTH + 1];
-
-// MIDI variables
-//! MIDI CC message value for each channels.
-uint8_t MIDI_CC_Value[SCENE_COUNT][ENC_COUNT];
 
 /* USER CODE END PV */
 
@@ -270,7 +264,6 @@ int main(void)
 	LrState = LR_RESET;
 	LrScene = Lr_SCENE0;
 
-	isPrev_sw = false;
 	isLEDsendpulse = false;
 	Msg_Timer_Update = false;
 	LED_Timer_Update = false;
@@ -331,7 +324,8 @@ int main(void)
 	}
 
 	//Initialize CC Value table
-	memset(MIDI_CC_Value, MIDI_CC_INITIAL, CC_COUNT);
+	EmulateMIDI_Init();
+//	memset(MIDI_CC_Value, MIDI_CC_INITIAL, CC_COUNT);
 
 	//LED Initialize
 	LED_SetScene(LrScene);

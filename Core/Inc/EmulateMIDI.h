@@ -19,6 +19,6 @@
 #define CC_MSG_2DG	"Ch%2u = %3u    S%1u"
 
 void EmulateMIDI();
-extern bool isKeyPressed;
+void EmulateMIDI_Init();
 
 #endif /* INC_EMULATEMIDI_H_ */

@@ -7,16 +7,30 @@
 extern	uint8_t MIDI_CC_Value[SCENE_COUNT][ENC_COUNT];
 extern	KEYSCAN	Key_Stat;
 extern	uint8_t	LrScene;
-extern	bool	isPrev_sw;
 extern	char 	*scene_name[SCENE_COUNT];
 extern	KEY_DEFINE	keytable[SCENE_COUNT][DEFINES_PER_SCENE];
 extern	char Msg_Buffer[MSG_LINES][MSG_WIDTH + 1];
 //! Instance Handle of USB interface
 extern	USBD_HandleTypeDef *pInstance;
-//! keep previous sent 'Key On' note/channel for release message.
+//! keep previous sent 'Key On' note/channevoid EmulateMIDI_init()l for release message.
+extern bool isKeyPressed;
+
 uint8_t	prev_note;
+//! If true, MIDI event previous sent is switch. if false, it's encoder
+bool	isPrev_sw;
+// MIDI variables
+//! MIDI CC message value for each channels.
+uint8_t MIDI_CC_Value[SCENE_COUNT][ENC_COUNT];
+
 void Start_MsgTimer(uint32_t tick);
 void Msg_Print();
+/**
+ * 	@brief	Initialize MIDI
+ */
+void EmulateMIDI_Init(){
+	isPrev_sw = false;
+	memset(MIDI_CC_Value, MIDI_CC_INITIAL, CC_COUNT);
+}
 /**
  *	@brief	Generate MIDI event and Send to host by User interaction.
  *	@return true : function processed any Key/Encoder event.

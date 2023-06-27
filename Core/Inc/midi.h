@@ -68,7 +68,12 @@
 
 //! CC constants
 #define MIDI_CC_ON			0x7F
+
+#if 1
+#define MIDI_CC_OFF			0x40
+#else
 #define MIDI_CC_OFF			0x00
+#endif
 
 #define MIDI_CC_MAX			0x7F
 #define MIDI_CC_MIN			0x00
