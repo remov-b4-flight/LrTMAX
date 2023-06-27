@@ -81,7 +81,7 @@ void EmulateMIDI() {
 				USBMIDI_TxEvent.header = MIDI_NT_ON;
 				USBMIDI_TxEvent.status = MIDI_NT_ON_S;
 				USBMIDI_TxEvent.channel = note;
-				USBMIDI_TxEvent.value = MIDI_NT_VELOCITY;
+				USBMIDI_TxEvent.value = MIDI_NT_ON_VELOCITY;
 
 				prev_note = note;
 				isPrev_sw = true;
@@ -118,7 +118,7 @@ void EmulateMIDI() {
 			USBMIDI_TxEvent.header = MIDI_NT_OFF;
 			USBMIDI_TxEvent.status = MIDI_NT_OFF_S;
 			USBMIDI_TxEvent.channel = prev_note;
-			USBMIDI_TxEvent.value = MIDI_NT_VELOCITY;
+			USBMIDI_TxEvent.value = MIDI_NT_OFF_VELO;
 
 			isKeyReport = true;
 			isPrev_sw = false;

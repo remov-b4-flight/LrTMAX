@@ -62,19 +62,17 @@
 #define MIDI_NT_OFF_S		0x80
 
 //! LrTMAX does not use keyboard velocity
-#define MIDI_NT_VELOCITY	0x7F
+#define MIDI_NT_ON_VELOCITY	0x7F
+#define MIDI_NT_OFF_VELO	0x40
 #define MIDI_CC_HEADER		0x0B
 #define MIDI_CC_STATUS		0xB0
 
 //! CC constants
+//! Used with CC control as button(unused in LrTMAX)
 #define MIDI_CC_ON			0x7F
-
-#if 1
-#define MIDI_CC_OFF			0x40
-#else
 #define MIDI_CC_OFF			0x00
-#endif
 
+//! CC boundaries
 #define MIDI_CC_MAX			0x7F
 #define MIDI_CC_MIN			0x00
 #define MIDI_CC_INITIAL		0x40
