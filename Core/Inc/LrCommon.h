@@ -78,7 +78,7 @@ enum lr_matrix_t {
 //! Key define structure
 #define DEFINES_PER_SCENE	( KEY_COUNT + (ENC_COUNT * 2) )
 //! Assigned notes per scene.
-#define NOTES_PER_SCENE	32
+#define NOTES_PER_SCENE	16
 //! Define key that designated for scene change.
 #define SCENE_BIT			7
 //! number of cc channels that Lr**** controls.

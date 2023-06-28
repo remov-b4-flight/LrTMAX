@@ -10,16 +10,16 @@
 * Users can use up to 4 Scenes. SW10 is fixed for Scene function.
 *
 * Scene / CC event channel definition (by Encoders)
-* Scene0	ch. 64~71
-* Scene1	ch. 72~79
-* Scene2	ch. 80~87
-* Scene3	ch. 88~95
+* Scene0	ch. 0~7
+* Scene1	ch. 8~15
+* Scene2	ch. 16~23
+* Scene3	ch. 24~31
 *
 * Scene / Note definition (by SWs)
 * Scene0	Note 0~15
-* Scene1	Note 32~47
-* Scene2	Note 64~79
-* Scene3	Note 96~111
+* Scene1	Note 16~31
+* Scene2	Note 32~63
+* Scene3	Note 64~79
 */
 
 /* Includes ------------------------------------------------------------------*/
