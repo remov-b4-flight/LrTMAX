@@ -5,7 +5,9 @@
  * @brief key definition structure.
  */
 typedef struct key_define_t {
+#if 0
 	uint8_t	axis;
+#endif
 	uint8_t color;
 	uint8_t period;
 	char	*message;

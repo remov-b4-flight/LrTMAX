@@ -30,7 +30,13 @@ void Msg_Print();
  * @return	axis number.
  * */
 uint8_t get_axis(uint8_t bitpos){
-	return (bitpos < SW_COUNT)? 0:bitpos & 0x07;
+	if (bitpos < SW_COUNT){
+		return 0;
+	} else if(bitpos < KEY_COUNT) {
+		return (bitpos & 0x07);
+	} else {
+		return (bitpos / 2);
+	}
 }
 /**
  * 	@brief	Initialize MIDI
@@ -68,7 +74,7 @@ void EmulateMIDI() {
 				LED_SetScene(LrScene);
 				strcpy(msg_string, scene_name[LrScene]);
 			}else{
-#if 1
+#if 0
 				LED_SetPulse(keytable[LrScene][bitpos].axis, keytable[LrScene][bitpos].color, keytable[LrScene][bitpos].period);
 #else
 				LED_SetPulse(get_axis(bitpos), keytable[LrScene][bitpos].color, keytable[LrScene][bitpos].period);
@@ -122,7 +128,7 @@ void EmulateMIDI() {
 
 				Start_MsgTimer(MSG_TIMER_DEFAULT);
 			}
-#if 1
+#if 0
 			LED_SetPulse(keytable[LrScene][bitpos].axis, keytable[LrScene][bitpos].color, keytable[LrScene][bitpos].period);
 #else
 			LED_SetPulse(get_axis(bitpos), keytable[LrScene][bitpos].color, keytable[LrScene][bitpos].period);
