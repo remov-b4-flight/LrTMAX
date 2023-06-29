@@ -10,7 +10,8 @@
 #include <stdint.h>
 
 //! Lr**** Hardware definition
-#define KEY_COUNT	16
+#define KEY_COUNT	16	//(SW_COUNT+ENC_COUNT)
+#define SW_COUNT	8
 #define ENC_COUNT	8
 
 typedef union keyscan_t {

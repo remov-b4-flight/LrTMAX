@@ -56,7 +56,7 @@ const KEY_DEFINE keytable[SCENE_COUNT][DEFINES_PER_SCENE] = {
 		{.axis = 0,	.color = LED_YELLOW,.period = LED_TIM_NORM,	.message = "Dev. Paste"},		//L1M0	SW5
 		{.axis = 0,	.color = LED_YELLOW,.period = LED_TIM_NORM,	.message = "Add Quick Colle."},	//L1M1	SW6
 		{.axis = 0,	.color = LED_YELLOW,.period = LED_TIM_NORM,	.message = "2nd Moni. On/Off"},	//L1M2	SW7
-		{.axis = 0,	.color = LED_BLUE,	.period = LED_TIM_LONG,	.message = "Scene 0"},			//L1M3	SW8 [SCENE]
+/*N07*/	{.axis = 0,	.color = LED_BLUE,	.period = LED_TIM_LONG,	.message = "Scene 0"},			//L1M3	SW8 [SCENE]
 		{.axis = 0,	.color = LED_WHITE,	.period = LED_TIM_NORM,	.message = "Reject"},			//L2M0	enc0 push
 		{.axis = 1,	.color = LED_WHITE,	.period = LED_TIM_NORM,	.message = "Rate reset"},		//L2M1	enc1 push
 		{.axis = 2,	.color = LED_WHITE,	.period = LED_TIM_NORM,	.message = "Flag reset"},		//L2M2	enc2 push
@@ -90,7 +90,7 @@ const KEY_DEFINE keytable[SCENE_COUNT][DEFINES_PER_SCENE] = {
 		{.axis = 0,	.color = LED_GREEN,	.period = LED_TIM_NORM,	.message = "Fluorescent"},		//L1M0	SW5
 		{.axis = 0,	.color = LED_DARK,	.period = LED_TIM_NORM,	.message = "W/B Auto"},			//L1M1	SW6
 		{.axis = 0,	.color = LED_DARK,	.period = LED_TIM_NORM,	.message = "W/B As Shot"},		//L1M2	SW7
-		{.axis = 0,	.color = LED_BLUE,	.period = LED_TIM_LONG,	.message = "Scene 1"},			//L1M3	SW8 [SCENE]
+/*N23*/	{.axis = 0,	.color = LED_BLUE,	.period = LED_TIM_LONG,	.message = "Scene 1"},			//L1M3	SW8 [SCENE]
 		{.axis = 0,	.color = LED_WHITE,	.period = LED_TIM_NORM,	.message = "Reject"},			//L2M0	enc0 push
 		{.axis = 1,	.color = LED_DARK,	.period = LED_TIM_NORM,	.message = "C-temp. reset"},	//L2M1	enc1 push
 		{.axis = 2,	.color = LED_DARK,	.period = LED_TIM_NORM,	.message = "Tint reset"},		//L2M2	enc2 push
@@ -124,7 +124,7 @@ const KEY_DEFINE keytable[SCENE_COUNT][DEFINES_PER_SCENE] = {
 		{.axis = 0,	.color = LED_DARK,	.period = LED_TIM_NORM,	.message = "Keyword4"},			//L1M0	SW5
 		{.axis = 0,	.color = LED_DARK,	.period = LED_TIM_NORM,	.message = "Keyword5"},			//L1M1	SW6
 		{.axis = 0,	.color = LED_DARK,	.period = LED_TIM_NORM,	.message = "Keyword6"},			//L1M2	SW7
-		{.axis = 0,	.color = LED_RED,	.period = LED_TIM_LONG,	.message = "Scene 2"},			//L1M3	SW8 [SCENE]
+/*N40*/	{.axis = 0,	.color = LED_RED,	.period = LED_TIM_LONG,	.message = "Scene 2"},			//L1M3	SW8 [SCENE]
 		{.axis = 0,	.color = LED_WHITE,	.period = LED_TIM_NORM,	.message = "Reject"},			//L2M0	enc0 push
 		{.axis = 1,	.color = LED_WHITE,	.period = LED_TIM_NORM,	.message = "Dark reset"},		//L2M1	enc1 push
 		{.axis = 2,	.color = LED_WHITE,	.period = LED_TIM_NORM,	.message = "Shadow reset"},		//L2M2	enc2 push
@@ -136,7 +136,7 @@ const KEY_DEFINE keytable[SCENE_COUNT][DEFINES_PER_SCENE] = {
 		//Scence2 Encoders													0123456789ABCDEF
 /*C16*/	{.axis = 0,	.color = LED_RED,	.period = LED_TIM_NORM,	.message = "Next " RIGHTA},		//enc0 CW cursor right
 		{.axis = 0,	.color = LED_RED,	.period = LED_TIM_NORM,	.message = "Prev. " LEFTA},		//enc0 CCW cursor left
-/*C17*/	{.axis = 1,	.color = LED_DARK,	.period = LED_TIM_HALF,	.message = "Dark " UPA},			//enc1 CW
+/*C17*/	{.axis = 1,	.color = LED_DARK,	.period = LED_TIM_HALF,	.message = "Dark " UPA},		//enc1 CW
 		{.axis = 1,	.color = LED_OFF,	.period = LED_TIM_HALF,	.message = "Dark " DOWNA},		//enc1 CCW
 		{.axis = 2,	.color = LED_WHITE,	.period = LED_TIM_HALF,	.message = "Shadow " UPA},		//enc2 CW
 		{.axis = 2,	.color = LED_DARK,	.period = LED_TIM_HALF,	.message = "Shadow " DOWNA},	//enc2 CCW
@@ -144,11 +144,11 @@ const KEY_DEFINE keytable[SCENE_COUNT][DEFINES_PER_SCENE] = {
 		{.axis = 3,	.color = LED_WHITE,	.period = LED_TIM_HALF,	.message = "Light " DOWNA},		//enc3 CCW
 		{.axis = 4,	.color =LED_HILIGHT,.period = LED_TIM_HALF,	.message = "Hilight " UPA},		//enc4 CW
 		{.axis = 4,	.color = LED_WHITE,	.period = LED_TIM_HALF,	.message = "Hilight " DOWNA},	//enc4 CCW
-		{.axis = 5,	.color = LED_OFF,	.period = LED_TIM_NORM,	.message = "A5" RIGHTA},			//enc5 CW
+		{.axis = 5,	.color = LED_OFF,	.period = LED_TIM_NORM,	.message = "A5" RIGHTA},		//enc5 CW
 		{.axis = 5,	.color = LED_OFF,	.period = LED_TIM_NORM,	.message = "A5" LEFTA},			//enc5 CCW
-		{.axis = 6,	.color = LED_OFF,	.period = LED_TIM_NORM,	.message = "A6" RIGHTA},			//enc6 CW
+		{.axis = 6,	.color = LED_OFF,	.period = LED_TIM_NORM,	.message = "A6" RIGHTA},		//enc6 CW
 		{.axis = 6,	.color = LED_OFF,	.period = LED_TIM_NORM,	.message = "A6" LEFTA},			//enc6 CCW
-/*C23*/	{.axis = 7,	.color = LED_OFF,	.period = LED_TIM_NORM,	.message = "A7" RIGHTA},			//enc7 CW
+/*C23*/	{.axis = 7,	.color = LED_OFF,	.period = LED_TIM_NORM,	.message = "A7" RIGHTA},		//enc7 CW
 		{.axis = 7,	.color = LED_OFF,	.period = LED_TIM_NORM,	.message = "A7" LEFTA},			//enc7 CCW
 	},{	//Scene3 Switches	(Color Balance)									0123456789ABCDEF
 /*N48*/	{.axis = 0,	.color = LED_WHITE,	.period = LED_TIM_NORM,	.message = "Undo"},				//L0M0	SW1
@@ -158,9 +158,9 @@ const KEY_DEFINE keytable[SCENE_COUNT][DEFINES_PER_SCENE] = {
 		{.axis = 0,	.color = LED_BLUE,	.period = LED_TIM_NORM,	.message = "Auto Upright"},		//L1M0	SW5
 		{.axis = 0,	.color = LED_YELLOW,.period = LED_TIM_NORM,	.message = "Upright Horizon"},	//L1M1	SW6
 		{.axis = 0,	.color = LED_GREEN,	.period = LED_TIM_NORM,	.message = "Upright Vert."},	//L1M2	SW7
-		{.axis = 0,	.color = LED_BLUE,	.period = LED_TIM_LONG,	.message = "Scene 3"},			//L1M3	SW8 [SCENE]
+/*N56*/	{.axis = 0,	.color = LED_BLUE,	.period = LED_TIM_LONG,	.message = "Scene 3"},			//L1M3	SW8 [SCENE]
 		{.axis = 0,	.color = LED_WHITE,	.period = LED_TIM_NORM,	.message = "Reject"},			//L2M0	enc0 push
-		{.axis = 1,	.color = LED_WHITE,	.period = LED_TIM_NORM,	.message = "Red reset"},			//L2M1	enc1 push
+		{.axis = 1,	.color = LED_WHITE,	.period = LED_TIM_NORM,	.message = "Red reset"},		//L2M1	enc1 push
 		{.axis = 2,	.color = LED_WHITE,	.period = LED_TIM_NORM,	.message = "Orange reset"},		//L2M2	enc2 push
 		{.axis = 3,	.color = LED_WHITE,	.period = LED_TIM_NORM,	.message = "Yellow reset"},		//L2M3	enc3 push
 		{.axis = 4,	.color = LED_WHITE,	.period = LED_TIM_NORM,	.message = "Green reset"},		//L3M0	enc4 push
@@ -178,9 +178,9 @@ const KEY_DEFINE keytable[SCENE_COUNT][DEFINES_PER_SCENE] = {
 		{.axis = 3,	.color = LED_YELLOW,.period = LED_TIM_HALF,	.message = "Yellow " DOWNA},	//enc3 CCW
 		{.axis = 4,	.color = LED_GREEN,	.period = LED_TIM_HALF,	.message = "Green " UPA},		//enc4 CW
 		{.axis = 4,	.color = LED_GREEN,	.period = LED_TIM_HALF,	.message = "Green " DOWNA},		//enc4 CCW
-		{.axis = 5,	.color = LED_CYAN,	.period = LED_TIM_HALF,	.message = "Cyan " UPA},			//enc5 CW
+		{.axis = 5,	.color = LED_CYAN,	.period = LED_TIM_HALF,	.message = "Cyan " UPA},		//enc5 CW
 		{.axis = 5,	.color = LED_CYAN,	.period = LED_TIM_HALF,	.message = "Cyan " DOWNA},		//enc5 CCW
-		{.axis = 6,	.color = LED_BLUE,	.period = LED_TIM_NORM,	.message = "Blue " UPA},			//enc6 CW
+		{.axis = 6,	.color = LED_BLUE,	.period = LED_TIM_NORM,	.message = "Blue " UPA},		//enc6 CW
 		{.axis = 6,	.color = LED_BLUE,	.period = LED_TIM_NORM,	.message = "Blue " DOWNA},		//enc6 CCW
 /*C31*/	{.axis = 7,	.color =LED_MAGENTA,.period = LED_TIM_NORM,	.message = "Magenta " UPA},		//enc7 CW
 		{.axis = 7,	.color =LED_MAGENTA,.period = LED_TIM_NORM,	.message = "Magenta " DOWNA},	//enc7 CCW
