@@ -30,7 +30,13 @@ void Msg_Print();
  * @return	axis number.
  * */
 uint8_t get_axis(uint8_t bitpos){
-	return (bitpos < SW_COUNT)? 0:bitpos & 0x07;
+	if (bitpos < SW_COUNT){
+		return 0;
+	} else if(bitpos < KEY_COUNT) {
+		return (bitpos & 0x07);
+	} else {
+		return (bitpos / 2);
+	}
 }
 /**
  * 	@brief	Initialize MIDI
@@ -53,7 +59,7 @@ void EmulateMIDI() {
 		char 		msg_string[MSG_WIDTH + 1];
 		uint8_t		bitpos = ntz32(Key_Stat.wd);
 		uint32_t	rkey = (Key_Stat.wd);
-		bool 		isKeyReport = false;
+		bool 		isSendMIDIEvent = false;
 
 		if ( Key_Stat.wd & MASK_KEY ) { //Check Matrix switches
 			//Send 'Note On' Event from key matrix
@@ -75,7 +81,7 @@ void EmulateMIDI() {
 #endif
 				sprintf(msg_string, "Note: %3d    S%1d", note, (LrScene % SCENE_COUNT) );
 			}
-			isKeyReport = true;
+			isSendMIDIEvent = true;
 
 			//Print Message to OLED & LED
 			if (keytable[LrScene][bitpos].message != NULL) {
@@ -88,7 +94,7 @@ void EmulateMIDI() {
 				Start_MsgTimer(MSG_TIMER_DEFAULT);
 			}
 
-			if (isKeyReport == true) {
+			if (isSendMIDIEvent == true) {
 				//Set 'Note ON
 				USBMIDI_TxEvent.header = MIDI_NT_ON;
 				USBMIDI_TxEvent.status = MIDI_NT_ON_S;
@@ -127,7 +133,7 @@ void EmulateMIDI() {
 #else
 			LED_SetPulse(get_axis(bitpos), keytable[LrScene][bitpos].color, keytable[LrScene][bitpos].period);
 #endif
-			isKeyReport = true;
+			isSendMIDIEvent = true;
 
 		} else if (isPrev_sw == true && rkey == 0) {// Switch is released
 			//Send 'Note Off' Event
@@ -136,14 +142,14 @@ void EmulateMIDI() {
 			USBMIDI_TxEvent.channel = prev_note;
 			USBMIDI_TxEvent.value = MIDI_NT_OFF_VELO;
 
-			isKeyReport = true;
+			isSendMIDIEvent = true;
 			isPrev_sw = false;
 		}
 
-		if (isKeyReport == true) {
+		if (isSendMIDIEvent == true) {
 			//Send MIDI event via USB
 			USBD_LL_Transmit (pInstance, MIDI_IN_EP, (uint8_t *)&USBMIDI_TxEvent, MIDI_EVENT_LENGTH);
-			isKeyReport = false;
+			isSendMIDIEvent = false;
 		}
 
 		/* Clear the switch pressed flag */
