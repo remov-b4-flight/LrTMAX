@@ -55,16 +55,16 @@ static uint16_t MIDI_DataRx(uint8_t *msg, uint16_t length){
 	MIDI_EVENT *rx_event = (MIDI_EVENT *)msg;
 
 	for (uint8_t i = 0; i < event_count; i++,rx_event++){
-		uint8_t cc_channel = rx_event->channel - CC_CH_OFFSET;
-		if (cc_channel > (CC_INDEX_MAX) ){
+		if ( (rx_event->header & 0x0F) != MIDI_CC_HEADER
+				|| rx_event->channel < CC_CH_OFFSET
+				|| CC_CH_MAX < rx_event->channel ) {
 			continue;
 		}
+		uint8_t cc_channel = rx_event->channel - CC_CH_OFFSET;
 
 		uint8_t cc_scene = cc_channel / CC_CH_PER_SCENE;
 		uint8_t channel = cc_channel % CC_CH_PER_SCENE;
-		if ( (rx_event->header & 0x0F) == MIDI_CC_HEADER){
-			MIDI_CC_Value[cc_scene][channel] = rx_event->value;
-		}
+		MIDI_CC_Value[cc_scene][channel] = rx_event->value;
 	}
 	return USBD_OK;
 }

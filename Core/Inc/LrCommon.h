@@ -84,6 +84,12 @@ enum lr_matrix_t {
 #define SCENE_BIT			7
 //! number of cc channels that Lr**** controls.
 #define CC_COUNT			(ENC_COUNT * SCENE_COUNT)
+//CC channel offset
+#define CC_CH_OFFSET	40
+
+#define CC_CH_PER_SCENE	8
+#define CC_CH_MAX	(CC_CH_OFFSET + CC_COUNT -1)
+
 // LED timer definitions
 #define LED_TIM_NORM		21		//500ms (1 tick=24ms)
 #define LED_TIM_SHORT		4		//100ms

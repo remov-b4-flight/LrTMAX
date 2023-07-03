@@ -31,10 +31,6 @@
 
 extern USBD_MIDI_ItfTypeDef  USBD_Interface_fops_FS;
 
-#define CC_CH_OFFSET	0
-#define CC_CH_PER_SCENE	8
-#define CC_INDEX_MAX	( CC_COUNT - 1 )
-
 typedef struct midi_event_t {
 	uint8_t	header;
 	uint8_t	status;
