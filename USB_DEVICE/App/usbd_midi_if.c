@@ -29,12 +29,14 @@
 #include "usbd_midi_if.h"
 #include "stm32f0xx_hal.h"
 #include "midi.h"
+#include "EmulateMIDI.h"
 
 // basic MIDI RX/TX functions
 static uint16_t MIDI_DataRx(uint8_t *msg, uint16_t length);
 static uint16_t MIDI_DataTx(uint8_t *msg, uint16_t length);
 
 extern uint8_t MIDI_CC_Value[SCENE_COUNT][ENC_COUNT];
+extern	char Msg_Buffer[MSG_LINES][MSG_WIDTH + 1];
 
 /**
  *	@brief	Array of callback function pointer with MIDI.
@@ -51,6 +53,7 @@ USBD_MIDI_ItfTypeDef USBD_Interface_fops_FS =
  *	@param	length	Length of received data.
  */
 static uint16_t MIDI_DataRx(uint8_t *msg, uint16_t length){
+	char 		msg_string[MSG_WIDTH + 1];
 	uint8_t	event_count = length / MIDI_EVENT_LENGTH;
 	MIDI_EVENT *rx_event = (MIDI_EVENT *)msg;
 
@@ -62,9 +65,15 @@ static uint16_t MIDI_DataRx(uint8_t *msg, uint16_t length){
 		}
 		uint8_t cc_index = rx_event->channel - CC_CH_OFFSET;
 
-		uint8_t cc_scene = cc_index / CC_CH_PER_SCENE;
-		uint8_t cc_axis = cc_index % CC_CH_PER_SCENE;
+		uint8_t cc_scene = (cc_index / CC_CH_PER_SCENE) & 0x03;
+		uint8_t cc_axis = (cc_index % CC_CH_PER_SCENE) & 0x7f;
 		MIDI_CC_Value[cc_scene][cc_axis] = rx_event->value;
+		SSD1306_SetScreen(ON);
+		sprintf(msg_string, CC_MSG_2DG, rx_event->channel, rx_event->value, cc_scene);
+		strcpy(Msg_Buffer[0], msg_string);
+		Msg_Print();
+
+		Start_MsgTimer(MSG_TIMER_DEFAULT);
 	}
 	return USBD_OK;
 }

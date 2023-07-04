@@ -7,6 +7,7 @@
 
 #ifndef INC_EMULATEMIDI_H_
 #define INC_EMULATEMIDI_H_
+#include "main.h"
 #include "midi.h"
 #include "usbd_midi_if.h"
 #include "bitcount.h"
@@ -15,7 +16,6 @@
 #include "led.h"
 //! deine Key combination to invoke reset
 #define RESET_KEY_PATTERN	0x81	//[Undo]+[Scene]
-#define CC_MSG_3DG	"C%3u = %3u    S%1u"
 #define CC_MSG_2DG	"Ch%2u = %3u    S%1u"
 
 void EmulateMIDI();

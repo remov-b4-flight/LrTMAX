@@ -48,8 +48,6 @@
 #define CONN_MSG	"%2x.%02x"
 #endif
 
-#define SPACE_CHAR  ' '
-
 #define DFU_MSG	"DFU Bootloader."
 #define SWMASK	0x0F
 #define SW1_MASK	1
@@ -457,6 +455,8 @@ int main(void)
 		Msg_Off_Flag = false;
 		SSD1306_SetScreen(OFF);
 		SSD1306_ClearBuffer();
+		memset(Msg_Buffer[0], (int)SPACE_CHAR, MSG_WIDTH );
+		memset(Msg_Buffer[1], (int)SPACE_CHAR, MSG_WIDTH );
 		continue;
 	}
 

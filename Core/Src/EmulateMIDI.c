@@ -20,15 +20,13 @@ bool	isPrev_sw;
 // MIDI variables
 //! MIDI CC message value for each channels.
 uint8_t MIDI_CC_Value[SCENE_COUNT][ENC_COUNT];
-
-void Start_MsgTimer(uint32_t tick);
-void Msg_Print();
-
+bool	isPrev_scene;
 /**
  * 	@brief	Initialize MIDI
  */
 void EmulateMIDI_Init(){
 	isPrev_sw = false;
+	isPrev_scene = false;
 	memset(MIDI_CC_Value, MIDI_CC_INITIAL, CC_COUNT);
 }
 /**
@@ -58,23 +56,22 @@ void EmulateMIDI() {
 					LrScene = Lr_SCENE0;
 				}
 				LED_SetScene(LrScene);
+				sprintf(msg_string, "Scene %1d",LrScene);
+				strcpy(Msg_Buffer[0], msg_string);
 				strcpy(msg_string, scene_name[LrScene]);
+				isPrev_scene = true;
 			}else{
 				LED_SetPulse(keytable[LrScene][bitpos].axis, keytable[LrScene][bitpos].color, keytable[LrScene][bitpos].period);
+				memset(Msg_Buffer[0], (int)SPACE_CHAR, MSG_WIDTH );
 				sprintf(msg_string, "Note: %3d    S%1d", note, (LrScene % SCENE_COUNT) );
 			}
 			isSendMIDIEvent = true;
 
 			//Print Message to OLED & LED
-			if (keytable[LrScene][bitpos].message != NULL) {
-				SSD1306_SetScreen(ON);
-
-				strcpy(Msg_Buffer[0], keytable[LrScene][bitpos].message);
-				strcpy(Msg_Buffer[1], msg_string);
-				Msg_Print();
-
-				Start_MsgTimer(MSG_TIMER_DEFAULT);
-			}
+			SSD1306_SetScreen(ON);
+			strcpy(Msg_Buffer[1], msg_string);
+			Msg_Print();
+			Start_MsgTimer(MSG_TIMER_DEFAULT);
 
 			if (isSendMIDIEvent == true) {
 				//Set 'Note ON
@@ -100,16 +97,17 @@ void EmulateMIDI() {
 			isPrev_sw = false;
 
 			//Print Message to OLED & LED
-			if (keytable[LrScene][bitpos].message != NULL) {
-				SSD1306_SetScreen(ON);
-				sprintf(msg_string,
-					((channel > 99)? CC_MSG_3DG : CC_MSG_2DG), channel, val, LrScene);
-				strcpy(Msg_Buffer[0], keytable[LrScene][bitpos].message);
-				strcpy(Msg_Buffer[1], msg_string);
-				Msg_Print();
-
-				Start_MsgTimer(MSG_TIMER_DEFAULT);
+			SSD1306_SetScreen(ON);
+			sprintf(msg_string, CC_MSG_2DG, channel, val, LrScene);
+			if (isPrev_scene == true) {
+				memset(Msg_Buffer[0], (int)SPACE_CHAR, MSG_WIDTH );
+				isPrev_scene = false;
 			}
+			strcpy(Msg_Buffer[1], msg_string);
+			Msg_Print();
+
+			Start_MsgTimer(MSG_TIMER_DEFAULT);
+
 			LED_SetPulse(keytable[LrScene][bitpos].axis, keytable[LrScene][bitpos].color, keytable[LrScene][bitpos].period);
 			isSendMIDIEvent = true;
 
