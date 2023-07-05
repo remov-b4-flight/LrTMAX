@@ -18,5 +18,6 @@ typedef struct key_define_t {
 
 #define MASK_KEY	0x0000ffff
 #define MASK_ENC	0xffff0000
+#define MASK_ENCPUSH 0x0000ff00
 
 #endif /*_USB_HID_H */
