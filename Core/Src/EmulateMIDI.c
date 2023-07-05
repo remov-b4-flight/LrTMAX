@@ -12,14 +12,14 @@ extern	char Msg_Buffer[MSG_LINES][MSG_WIDTH + 1];
 //! Instance Handle of USB interface
 extern	USBD_HandleTypeDef *pInstance;
 //! keep previous sent 'Key On' note/channevoid EmulateMIDI_init()l for release message.
-extern bool isKeyPressed;
+extern	bool isKeyPressed;
 
 uint8_t	prev_note;
 //! If true, MIDI event previous sent is switch. if false, it's encoder
 bool	isPrev_sw;
 // MIDI variables
 //! MIDI CC message value for each channels.
-uint8_t MIDI_CC_Value[SCENE_COUNT][ENC_COUNT];
+uint8_t	MIDI_CC_Value[SCENE_COUNT][ENC_COUNT];
 bool	isPrev_scene;
 /**
  * 	@brief	Initialize MIDI
