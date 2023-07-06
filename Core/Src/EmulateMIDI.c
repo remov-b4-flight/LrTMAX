@@ -42,7 +42,7 @@ void EmulateMIDI() {
 	MIDI_EVENT	USBMIDI_TxMessage;
 
 	if (isAnyMoved) {
-		char 		msg_string[MSG_WIDTH + 1];
+		char 		msg_string[MSG_WIDTH + 2];
 		uint8_t		bitpos = ntz32(ENCSW_Stat.wd);
 		uint32_t	rstat = (ENCSW_Stat.wd);
 		bool 		isSendMIDIMessage = false;
@@ -100,7 +100,7 @@ void EmulateMIDI() {
 
 			//Print Message to OLED & LEDs.
 			SSD1306_SetScreen(ON);
-			sprintf(msg_string, CC_MSG_2DG, channel, val, LrScene);
+			sprintf(msg_string, CC_MSG_2DG, channel, val, LrScene & 0x3);
 			if (isPrev_Scene == true) {
 				memset(Msg_Buffer[0], (int)SPACE_CHAR, MSG_WIDTH );
 				isPrev_Scene = false;

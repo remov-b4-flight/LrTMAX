@@ -1,5 +1,5 @@
 /**
-* @file key_define.c
+* @file prof_define.c
 * @brief MIDI channel/note definition
 * @details This file defines MIDI Control Change(CC) / Note ON-OFF message on MIDI.
 * LrTMAX has 8 encoder as enc0~7, and 8 individual switch(SW) as SW1~8 and SW on encoder as 'enc0~7 push'

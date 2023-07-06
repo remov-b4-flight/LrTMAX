@@ -2,7 +2,7 @@
 #define _PROF_DEFINE_H
 #include <stdint.h>
 /**
- * @brief key definition structure.
+ * @brief prof definition structure.
  */
 typedef struct enc_sw_define_t {
 	uint8_t	axis;
