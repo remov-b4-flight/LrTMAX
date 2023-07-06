@@ -53,9 +53,9 @@ USBD_MIDI_ItfTypeDef USBD_Interface_fops_FS =
  *	@param	length	Length of received data.
  */
 static uint16_t MIDI_DataRx(uint8_t *msg, uint16_t length){
-	char 		msg_string[MSG_WIDTH + 1];
+	char 		msg_string[MSG_WIDTH + 2];
 	uint8_t	message_count = length / MIDI_MESSAGE_LENGTH;
-	MIDI_EVENT *rx_message = (MIDI_EVENT *)msg;
+	MIDI_MESSAGE *rx_message = (MIDI_MESSAGE *)msg;
 
 	for (uint8_t i = 0; i < message_count; i++,rx_message++){
 		if ( (rx_message->header & 0x0F) != MIDI_CC_HEADER

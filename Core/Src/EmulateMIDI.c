@@ -39,7 +39,7 @@ void EmulateMIDI_Init(){
  */
 void EmulateMIDI() {
 	//! USB MIDI message structure for send
-	MIDI_EVENT	USBMIDI_TxMessage;
+	MIDI_MESSAGE	USBMIDI_TxMessage;
 
 	if (isAnyMoved) {
 		char 		msg_string[MSG_WIDTH + 2];

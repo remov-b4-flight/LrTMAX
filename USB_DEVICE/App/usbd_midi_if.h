@@ -31,12 +31,12 @@
 
 extern USBD_MIDI_ItfTypeDef  USBD_Interface_fops_FS;
 
-typedef struct midi_event_t {
+typedef struct midi_message_t {
 	uint8_t	header;
 	uint8_t	status;
 	uint8_t	channel;
 	uint8_t	value;
-} MIDI_EVENT;
+} MIDI_MESSAGE;
 
 #ifdef __cplusplus
 }
