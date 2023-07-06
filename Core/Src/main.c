@@ -19,6 +19,7 @@
   */
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
+#include <prof_define.h>
 #include "main.h"
 #include "usb_device.h"
 
@@ -29,7 +30,6 @@
 #include "midi.h"
 #include "led.h"
 #include "bitcount.h"
-#include "key_define.h"
 #include "usbd_midi_if.h"
 #include "ssd1306.h"
 #include "EmulateMIDI.h"
@@ -110,7 +110,7 @@ bool	isLEDsendpulse;
 bool	LED_Timer_Update;
 
 // Scene related
-extern	ENC_SW_DEFINE	keytable[SCENE_COUNT][DEFINES_PER_SCENE];
+extern	ENC_SW_DEFINE	prof_table[SCENE_COUNT][DEFINES_PER_SCENE];
 extern	char 		*scene_name[SCENE_COUNT];
 extern	uint8_t		led_axis_table[DEFINES_PER_SCENE];
 

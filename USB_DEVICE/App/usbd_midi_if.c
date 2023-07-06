@@ -37,7 +37,7 @@ static uint16_t MIDI_DataTx(uint8_t *msg, uint16_t length);
 
 extern uint8_t MIDI_CC_Value[SCENE_COUNT][ENC_COUNT];
 extern char Msg_Buffer[MSG_LINES][MSG_WIDTH + 1];
-extern bool isPrev_scene;
+extern bool isPrev_Scene;
 /**
  *	@brief	Array of callback function pointer with MIDI.
  */
@@ -71,7 +71,7 @@ static uint16_t MIDI_DataRx(uint8_t *msg, uint16_t length){
 		SSD1306_SetScreen(ON);
 		sprintf(msg_string, CC_MSG_2DG, rx_message->channel, rx_message->value, cc_scene);
 		strcpy(Msg_Buffer[0], msg_string);
-		if (isPrev_scene == true) {
+		if (isPrev_Scene == true) {
 			memset(Msg_Buffer[1], (int)SPACE_CHAR, MSG_WIDTH );
 		}
 		Msg_Print();

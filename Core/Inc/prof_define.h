@@ -1,6 +1,6 @@
-#ifndef _USB_HID_H
-#define _USB_HID_H
-
+#ifndef _PROF_DEFINE_H
+#define _PROF_DEFINE_H
+#include <stdint.h>
 /**
  * @brief key definition structure.
  */
@@ -19,4 +19,4 @@ typedef struct enc_sw_define_t {
 #define MASK_ENC		0xffff0000
 #define MASK_ENCPUSH	0x0000ff00
 
-#endif /*_USB_HID_H */
+#endif /* _PROF_DEFINE_H */

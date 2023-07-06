@@ -7,11 +7,11 @@
 
 #ifndef INC_EMULATEMIDI_H_
 #define INC_EMULATEMIDI_H_
+#include <prof_define.h>
 #include "main.h"
 #include "midi.h"
 #include "usbd_midi_if.h"
 #include "bitcount.h"
-#include "key_define.h"
 #include "ssd1306.h"
 #include "led.h"
 //! deine switch combination to invoke reset
