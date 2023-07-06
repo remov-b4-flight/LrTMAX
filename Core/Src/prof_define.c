@@ -53,142 +53,142 @@ const uint8_t LED_Scene[SCENE_COUNT][LED_COUNT] = {
 };
 //! @union Switches/Encoders configuration table
 const ENC_SW_DEFINE prof_table[SCENE_COUNT][DEFINES_PER_SCENE] = {
-	{	//Scene0 Switches	(Library Tab)
-/*N00*/	{.axis = 0,	.color = LED_YELLOW,	.period = LED_TIM_NORM},	//L0M0	SW1 'UNDO'
+	{	//Scene0 switches/encoders push	(Library Tab)
+/*N00*/	{.axis = 0,	.color = LED_BLUE,		.period = LED_TIM_HALF},	//L0M0	SW1 'UNDO'
 /*N01*/	{.axis = 0,	.color = LED_YELLOW,	.period = LED_TIM_NORM},	//L0M1	SW2
 /*N02*/	{.axis = 0,	.color = LED_YELLOW,	.period = LED_TIM_NORM},	//L0M2	SW3
 		{.axis = 0,	.color = LED_YELLOW,	.period = LED_TIM_NORM},	//L0M3	SW4
 		{.axis = 0,	.color = LED_YELLOW,	.period = LED_TIM_NORM},	//L1M0	SW5
 		{.axis = 0,	.color = LED_YELLOW,	.period = LED_TIM_NORM},	//L1M1	SW6
 		{.axis = 0,	.color = LED_YELLOW,	.period = LED_TIM_NORM},	//L1M2	SW7
-/*N07*/	{.axis = 0,	.color = LED_BLUE,		.period = LED_TIM_LONG},	//L1M3	SW8 [SCENE]
+/*N07*/	{.axis = 0,	.color = LED_PINK,		.period = LED_TIM_LONG},	//L1M3	SW8 [SCENE]
 /*N40*/	{.axis = 0,	.color = LED_RED,		.period = LED_TIM_NORM},	//L2M0	enc0 push 'reject'
-		{.axis = 1,	.color = LED_WHITE,		.period = LED_TIM_NORM},	//L2M1	enc1 push
-		{.axis = 2,	.color = LED_WHITE,		.period = LED_TIM_NORM},	//L2M2	enc2 push
-		{.axis = 3,	.color = LED_OFF,		.period = LED_TIM_NORM},	//L2M3	enc3 push
-		{.axis = 4,	.color = LED_OFF,		.period = LED_TIM_NORM},	//L3M0	enc4 push
-		{.axis = 5,	.color = LED_WHITE,		.period = LED_TIM_NORM},	//L3M1	enc5 push
-		{.axis = 6,	.color = LED_OFF,		.period = LED_TIM_NORM},	//L3M2	enc6 push
-/*N47*/	{.axis = 7,	.color = LED_OFF,		.period = LED_TIM_NORM},	//L3M3	enc7 push
-		//Scence0 Encoders
+		{.axis = 1,	.color = LED_GLAY,		.period = LED_TIM_NORM},	//L2M1	enc1 push
+		{.axis = 2,	.color = LED_GLAY,		.period = LED_TIM_NORM},	//L2M2	enc2 push
+		{.axis = 3,	.color = LED_GLAY,		.period = LED_TIM_NORM},	//L2M3	enc3 push
+		{.axis = 4,	.color = LED_GLAY,		.period = LED_TIM_NORM},	//L3M0	enc4 push
+		{.axis = 5,	.color = LED_GLAY,		.period = LED_TIM_NORM},	//L3M1	enc5 push
+		{.axis = 6,	.color = LED_GLAY,		.period = LED_TIM_NORM},	//L3M2	enc6 push
+/*N47*/	{.axis = 7,	.color = LED_GLAY,		.period = LED_TIM_NORM},	//L3M3	enc7 push
+		//Scence0 encoders rotate
 /*C40*/	{.axis = 0,	.color = LED_MINT,		.period = LED_TIM_SHORT},	//enc0 CW
 		{.axis = 0,	.color = LED_MINT,		.period = LED_TIM_SHORT},	//enc0 CCW
-/*C41*/	{.axis = 1,	.color = LED_BLUE,		.period = LED_TIM_HALF},	//enc1 CW
-		{.axis = 1,	.color = LED_BLUE,		.period = LED_TIM_HALF},	//enc1 CCW
-/*C42*/	{.axis = 2,	.color = LED_GREEN,		.period = LED_TIM_HALF},	//enc2 CW
-		{.axis = 2,	.color = LED_GREEN,		.period = LED_TIM_HALF},	//enc2 CCW
-		{.axis = 3,	.color = LED_YELLOW,	.period = LED_TIM_HALF},	//enc3 CW
-		{.axis = 3,	.color = LED_YELLOW,	.period = LED_TIM_HALF},	//enc3 CCW
-		{.axis = 4,	.color = LED_OFF,		.period = LED_TIM_HALF},	//enc4 CW
-		{.axis = 4,	.color = LED_OFF,		.period = LED_TIM_HALF},	//enc4 CCW
-		{.axis = 5,	.color = LED_ORANGE,	.period = LED_TIM_HALF},	//enc5 CW
-		{.axis = 5,	.color = LED_ORANGE,	.period = LED_TIM_HALF},	//enc5 CCW
+/*C41*/	{.axis = 1,	.color = LED_GREEN,		.period = LED_TIM_NORM},	//enc1 CW
+		{.axis = 1,	.color = LED_GREEN,		.period = LED_TIM_NORM},	//enc1 CCW
+/*C42*/	{.axis = 2,	.color = LED_BLUE,		.period = LED_TIM_NORM},	//enc2 CW
+		{.axis = 2,	.color = LED_BLUE,		.period = LED_TIM_NORM},	//enc2 CCW
+/*C43*/	{.axis = 3,	.color = LED_YELLOW,	.period = LED_TIM_NORM},	//enc3 CW
+		{.axis = 3,	.color = LED_YELLOW,	.period = LED_TIM_NORM},	//enc3 CCW
+/*C44*/	{.axis = 4,	.color = LED_CYAN,		.period = LED_TIM_NORM},	//enc4 CW
+		{.axis = 4,	.color = LED_CYAN,		.period = LED_TIM_NORM},	//enc4 CCW
+/*C45*/	{.axis = 5,	.color = LED_ORANGE,	.period = LED_TIM_NORM},	//enc5 CW
+		{.axis = 5,	.color = LED_WHITE,		.period = LED_TIM_NORM},	//enc5 CCW
 /*C46*/	{.axis = 6,	.color = LED_WHITE,		.period = LED_TIM_NORM},	//enc6 CW
 		{.axis = 6,	.color = LED_DARK,		.period = LED_TIM_NORM},	//enc6 CCW
-/*C47*/	{.axis = 7,	.color = LED_YELLOW,	.period = LED_TIM_NORM},	//enc7 CW
-		{.axis = 7,	.color = LED_BLUE,		.period = LED_TIM_NORM},	//enc7 CCW
-	},{	//Scene1 Switches	(Basic Edits)
-/*N16*/	{.axis = 0,	.color = LED_BLUE,		.period = LED_TIM_NORM},	//L0M0	SW1 'UNDO'
-/*N17*/	{.axis = 0,	.color = LED_RED,		.period = LED_TIM_NORM},	//L0M1	SW2
-		{.axis = 0,	.color = LED_ORANGE,	.period = LED_TIM_NORM},	//L0M2	SW3
+/*C47*/	{.axis = 7,	.color = LED_WHITE,		.period = LED_TIM_NORM},	//enc7 CW
+		{.axis = 7,	.color = LED_DARK,		.period = LED_TIM_NORM},	//enc7 CCW
+	},{	//Scene1 switches/encoders push	(Basic Edits)
+/*N16*/	{.axis = 0,	.color = LED_BLUE,		.period = LED_TIM_HALF},	//L0M0	SW1 'UNDO'
+/*N17*/	{.axis = 0,	.color = LED_YELLOW,	.period = LED_TIM_NORM},	//L0M1	SW2
+		{.axis = 0,	.color = LED_YELLOW,	.period = LED_TIM_NORM},	//L0M2	SW3
 		{.axis = 0,	.color = LED_YELLOW,	.period = LED_TIM_NORM},	//L0M3	SW4
-		{.axis = 0,	.color = LED_GREEN,		.period = LED_TIM_NORM},	//L1M0	SW5
-		{.axis = 0,	.color = LED_DARK,		.period = LED_TIM_NORM},	//L1M1	SW6
-		{.axis = 0,	.color = LED_DARK,		.period = LED_TIM_NORM},	//L1M2	SW7
+		{.axis = 0,	.color = LED_YELLOW,	.period = LED_TIM_NORM},	//L1M0	SW5
+		{.axis = 0,	.color = LED_YELLOW,	.period = LED_TIM_NORM},	//L1M1	SW6
+		{.axis = 0,	.color = LED_YELLOW,	.period = LED_TIM_NORM},	//L1M2	SW7
 /*N23*/	{.axis = 0,	.color = LED_PINK,		.period = LED_TIM_LONG},	//L1M3	SW8 [SCENE]
 /*N48*/	{.axis = 0,	.color = LED_RED,		.period = LED_TIM_NORM},	//L2M0	enc0 push 'reject'
-		{.axis = 1,	.color = LED_DARK,		.period = LED_TIM_NORM},	//L2M1	enc1 push
-		{.axis = 2,	.color = LED_DARK,		.period = LED_TIM_NORM},	//L2M2	enc2 push
-		{.axis = 3,	.color = LED_DARK,		.period = LED_TIM_NORM},	//L2M3	enc3 push
-		{.axis = 4,	.color = LED_DARK,		.period = LED_TIM_NORM},	//L3M0	enc4 push
-		{.axis = 5,	.color = LED_DARK,		.period = LED_TIM_NORM},	//L3M1	enc5 push
-		{.axis = 6,	.color = LED_DARK,		.period = LED_TIM_NORM},	//L3M2	enc6 push
-/*N55*/	{.axis = 7,	.color = LED_DARK,		.period = LED_TIM_NORM},	//L3M3	enc7 push
-		//Scence1 Encoders
-/*C48*/	{.axis = 0,	.color = LED_MINT,		.period = LED_TIM_NORM},	//enc0 CW
-		{.axis = 0,	.color = LED_MINT,		.period = LED_TIM_NORM},	//enc0 CCW
-/*C49*/	{.axis = 1,	.color = LED_YELLOW,	.period = LED_TIM_HALF},	//enc1 CW
-		{.axis = 1,	.color = LED_BLUE,		.period = LED_TIM_HALF},	//enc1 CCW
-		{.axis = 2,	.color = LED_MAGENTA,	.period = LED_TIM_HALF},	//enc2 CW
-		{.axis = 2,	.color = LED_GREEN,		.period = LED_TIM_HALF},	//enc2 CCW
-		{.axis = 3,	.color = LED_WHITE,		.period = LED_TIM_HALF},	//enc3 CW
-		{.axis = 3,	.color = LED_GLAY,		.period = LED_TIM_HALF},	//enc3 CCW
-		{.axis = 4,	.color = LED_WHITE,		.period = LED_TIM_HALF},	//enc4 CW
-		{.axis = 4,	.color = LED_GLAY,		.period = LED_TIM_HALF},	//enc4 CCW
-		{.axis = 5,	.color = LED_WHITE,		.period = LED_TIM_HALF},	//enc5 CW
+		{.axis = 1,	.color = LED_GLAY,		.period = LED_TIM_NORM},	//L2M1	enc1 push
+		{.axis = 2,	.color = LED_GLAY,		.period = LED_TIM_NORM},	//L2M2	enc2 push
+		{.axis = 3,	.color = LED_GLAY,		.period = LED_TIM_NORM},	//L2M3	enc3 push
+		{.axis = 4,	.color = LED_GLAY,		.period = LED_TIM_NORM},	//L3M0	enc4 push
+		{.axis = 5,	.color = LED_GLAY,		.period = LED_TIM_NORM},	//L3M1	enc5 push
+		{.axis = 6,	.color = LED_GLAY,		.period = LED_TIM_NORM},	//L3M2	enc6 push
+/*N55*/	{.axis = 7,	.color = LED_GLAY,		.period = LED_TIM_NORM},	//L3M3	enc7 push
+		//Scence1 encoders rotate
+/*C48*/	{.axis = 0,	.color = LED_MINT,		.period = LED_TIM_SHORT},	//enc0 CW
+		{.axis = 0,	.color = LED_MINT,		.period = LED_TIM_SHORT},	//enc0 CCW
+/*C49*/	{.axis = 1,	.color = LED_YELLOW,	.period = LED_TIM_NORM},	//enc1 CW
+		{.axis = 1,	.color = LED_BLUE,		.period = LED_TIM_NORM},	//enc1 CCW
+/*C50*/	{.axis = 2,	.color = LED_MAGENTA,	.period = LED_TIM_NORM},	//enc2 CW
+		{.axis = 2,	.color = LED_GREEN,		.period = LED_TIM_NORM},	//enc2 CCW
+/*C51*/	{.axis = 3,	.color = LED_WHITE,		.period = LED_TIM_NORM},	//enc3 CW
+		{.axis = 3,	.color = LED_GLAY,		.period = LED_TIM_NORM},	//enc3 CCW
+/*C52*/	{.axis = 4,	.color = LED_WHITE,		.period = LED_TIM_NORM},	//enc4 CW
+		{.axis = 4,	.color = LED_GLAY,		.period = LED_TIM_NORM},	//enc4 CCW
+/*C53*/	{.axis = 5,	.color = LED_ORANGE,	.period = LED_TIM_NORM},	//enc5 CW
 		{.axis = 5,	.color = LED_GLAY,		.period = LED_TIM_HALF},	//enc5 CCW
-		{.axis = 6,	.color = LED_BLUE,		.period = LED_TIM_NORM},	//enc6 CW
-		{.axis = 6,	.color = LED_BLUE,		.period = LED_TIM_NORM},	//enc6 CCW
+/*C54*/	{.axis = 6,	.color = LED_BLUE,		.period = LED_TIM_NORM},	//enc6 CW
+		{.axis = 6,	.color = LED_GLAY,		.period = LED_TIM_HALF},	//enc6 CCW
 /*C55*/	{.axis = 7,	.color = LED_MAGENTA,	.period = LED_TIM_NORM},	//enc7 CW
-		{.axis = 7,	.color = LED_MAGENTA,	.period = LED_TIM_NORM},	//enc7 CCW
-	},{	//Scene2 Switches	(Tone Curve)
-/*N32*/	{.axis = 0,	.color = LED_BLUE,		.period = LED_TIM_NORM},	//L0M0	SW1 'UNDO'
-		{.axis = 0,	.color = LED_DARK,		.period = LED_TIM_NORM},	//L0M1	SW2
-		{.axis = 0,	.color = LED_DARK,		.period = LED_TIM_NORM},	//L0M2	SW3
-		{.axis = 0,	.color = LED_DARK,		.period = LED_TIM_NORM},	//L0M3	SW4
-		{.axis = 0,	.color = LED_DARK,		.period = LED_TIM_NORM},	//L1M0	SW5
-		{.axis = 0,	.color = LED_DARK,		.period = LED_TIM_NORM},	//L1M1	SW6
-		{.axis = 0,	.color = LED_DARK,		.period = LED_TIM_NORM},	//L1M2	SW7
+		{.axis = 7,	.color = LED_GLAY,		.period = LED_TIM_HALF},	//enc7 CCW
+	},{	//Scene2 switches/encoders push	(Tone Curve)
+/*N32*/	{.axis = 0,	.color = LED_BLUE,		.period = LED_TIM_HALF},	//L0M0	SW1 'UNDO'
+		{.axis = 0,	.color = LED_YELLOW,	.period = LED_TIM_NORM},	//L0M1	SW2
+		{.axis = 0,	.color = LED_YELLOW,	.period = LED_TIM_NORM},	//L0M2	SW3
+		{.axis = 0,	.color = LED_YELLOW,	.period = LED_TIM_NORM},	//L0M3	SW4
+		{.axis = 0,	.color = LED_YELLOW,	.period = LED_TIM_NORM},	//L1M0	SW5
+		{.axis = 0,	.color = LED_YELLOW,	.period = LED_TIM_NORM},	//L1M1	SW6
+		{.axis = 0,	.color = LED_YELLOW,	.period = LED_TIM_NORM},	//L1M2	SW7
 /*N40*/	{.axis = 0,	.color = LED_PINK,		.period = LED_TIM_LONG},	//L1M3	SW8 [SCENE]
 /*N56*/	{.axis = 0,	.color = LED_RED,		.period = LED_TIM_NORM},	//L2M0	enc0 push 'reject'
-		{.axis = 1,	.color = LED_WHITE,		.period = LED_TIM_NORM},	//L2M1	enc1 push
-		{.axis = 2,	.color = LED_WHITE,		.period = LED_TIM_NORM},	//L2M2	enc2 push
-		{.axis = 3,	.color = LED_WHITE,		.period = LED_TIM_NORM},	//L2M3	enc3 push
-		{.axis = 4,	.color = LED_WHITE,		.period = LED_TIM_NORM},	//L3M0	enc4 push
-		{.axis = 5,	.color = LED_WHITE,		.period = LED_TIM_NORM},	//L3M1	enc5 push
-		{.axis = 6,	.color = LED_WHITE,		.period = LED_TIM_NORM},	//L3M2	enc6 push
-/*N63*/	{.axis = 7,	.color = LED_WHITE,		.period = LED_TIM_NORM},	//L3M3	enc7 push
-		//Scence2 Encoders
-/*C56*/	{.axis = 0,	.color = LED_MINT,		.period = LED_TIM_NORM},	//enc0 CW
-		{.axis = 0,	.color = LED_MINT,		.period = LED_TIM_NORM},	//enc0 CCW
-/*C57*/	{.axis = 1,	.color = LED_DARK,		.period = LED_TIM_HALF},	//enc1 CW
+		{.axis = 1,	.color = LED_GLAY,		.period = LED_TIM_NORM},	//L2M1	enc1 push
+		{.axis = 2,	.color = LED_GLAY,		.period = LED_TIM_NORM},	//L2M2	enc2 push
+		{.axis = 3,	.color = LED_GLAY,		.period = LED_TIM_NORM},	//L2M3	enc3 push
+		{.axis = 4,	.color = LED_GLAY,		.period = LED_TIM_NORM},	//L3M0	enc4 push
+		{.axis = 5,	.color = LED_GLAY,		.period = LED_TIM_NORM},	//L3M1	enc5 push
+		{.axis = 6,	.color = LED_GLAY,		.period = LED_TIM_NORM},	//L3M2	enc6 push
+/*N63*/	{.axis = 7,	.color = LED_GLAY,		.period = LED_TIM_NORM},	//L3M3	enc7 push
+		//Scence2 encoders rotate
+/*C56*/	{.axis = 0,	.color = LED_MINT,		.period = LED_TIM_SHORT},	//enc0 CW
+		{.axis = 0,	.color = LED_MINT,		.period = LED_TIM_SHORT},	//enc0 CCW
+/*C57*/	{.axis = 1,	.color = LED_DARK,		.period = LED_TIM_NORM},	//enc1 CW
 		{.axis = 1,	.color = LED_OFF,		.period = LED_TIM_HALF},	//enc1 CCW
-		{.axis = 2,	.color = LED_WHITE,		.period = LED_TIM_HALF},	//enc2 CW
+/*C58*/	{.axis = 2,	.color = LED_WHITE,		.period = LED_TIM_NORM},	//enc2 CW
 		{.axis = 2,	.color = LED_DARK,		.period = LED_TIM_HALF},	//enc2 CCW
-		{.axis = 3,	.color = LED_HILIGHT,	.period = LED_TIM_HALF},	//enc3 CW
+/*C59*/	{.axis = 3,	.color = LED_HILIGHT,	.period = LED_TIM_NORM},	//enc3 CW
 		{.axis = 3,	.color = LED_WHITE,		.period = LED_TIM_HALF},	//enc3 CCW
-		{.axis = 4,	.color = LED_HILIGHT,	.period = LED_TIM_HALF},	//enc4 CW
+/*C60*/	{.axis = 4,	.color = LED_HILIGHT,	.period = LED_TIM_NORM},	//enc4 CW
 		{.axis = 4,	.color = LED_WHITE,		.period = LED_TIM_HALF},	//enc4 CCW
-		{.axis = 5,	.color = LED_GLAY,		.period = LED_TIM_NORM},	//enc5 CW
-		{.axis = 5,	.color = LED_DARK,		.period = LED_TIM_NORM},	//enc5 CCW
-		{.axis = 6,	.color = LED_GLAY,		.period = LED_TIM_NORM},	//enc6 CW
-		{.axis = 6,	.color = LED_DARK,		.period = LED_TIM_NORM},	//enc6 CCW
+/*C61*/	{.axis = 5,	.color = LED_GLAY,		.period = LED_TIM_NORM},	//enc5 CW
+		{.axis = 5,	.color = LED_DARK,		.period = LED_TIM_HALF},	//enc5 CCW
+/*C62*/	{.axis = 6,	.color = LED_GLAY,		.period = LED_TIM_NORM},	//enc6 CW
+		{.axis = 6,	.color = LED_DARK,		.period = LED_TIM_HALF},	//enc6 CCW
 /*C63*/	{.axis = 7,	.color = LED_GLAY,		.period = LED_TIM_NORM},	//enc7 CW
-		{.axis = 7,	.color = LED_DARK,		.period = LED_TIM_NORM},	//enc7 CCW
-	},{	//Scene3 Switches	(Color Balance)
-/*N48*/	{.axis = 0,	.color = LED_BLUE,		.period = LED_TIM_NORM},	//L0M0	SW1 'UNDO'
-		{.axis = 0,	.color = LED_DARK,		.period = LED_TIM_NORM},	//L0M1	SW2
-		{.axis = 0,	.color = LED_DARK,		.period = LED_TIM_NORM},	//L0M2	SW3
-		{.axis = 0,	.color = LED_DARK,		.period = LED_TIM_NORM},	//L0M3	SW4
-		{.axis = 0,	.color = LED_BLUE,		.period = LED_TIM_NORM},	//L1M0	SW5
+		{.axis = 7,	.color = LED_DARK,		.period = LED_TIM_HALF},	//enc7 CCW
+	},{	//Scene3 switches/endcoders push	(Color Balance)
+/*N48*/	{.axis = 0,	.color = LED_BLUE,		.period = LED_TIM_HALF},	//L0M0	SW1 'UNDO'
+		{.axis = 0,	.color = LED_YELLOW,	.period = LED_TIM_NORM},	//L0M1	SW2
+		{.axis = 0,	.color = LED_YELLOW,	.period = LED_TIM_NORM},	//L0M2	SW3
+		{.axis = 0,	.color = LED_YELLOW,	.period = LED_TIM_NORM},	//L0M3	SW4
+		{.axis = 0,	.color = LED_YELLOW,	.period = LED_TIM_NORM},	//L1M0	SW5
 		{.axis = 0,	.color = LED_YELLOW,	.period = LED_TIM_NORM},	//L1M1	SW6
-		{.axis = 0,	.color = LED_GREEN,		.period = LED_TIM_NORM},	//L1M2	SW7
+		{.axis = 0,	.color = LED_YELLOW,	.period = LED_TIM_NORM},	//L1M2	SW7
 /*N64*/	{.axis = 0,	.color = LED_PINK,		.period = LED_TIM_LONG},	//L1M3	SW8 [SCENE]
 		{.axis = 0,	.color = LED_RED,		.period = LED_TIM_NORM},	//L2M0	enc0 push 'reject'
-		{.axis = 1,	.color = LED_WHITE,		.period = LED_TIM_NORM},	//L2M1	enc1 push
-		{.axis = 2,	.color = LED_WHITE,		.period = LED_TIM_NORM},	//L2M2	enc2 push
-		{.axis = 3,	.color = LED_WHITE,		.period = LED_TIM_NORM},	//L2M3	enc3 push
-		{.axis = 4,	.color = LED_WHITE,		.period = LED_TIM_NORM},	//L3M0	enc4 push
-		{.axis = 5,	.color = LED_WHITE,		.period = LED_TIM_NORM},	//L3M1	enc5 push
-/*N70*/	{.axis = 6,	.color = LED_WHITE,		.period = LED_TIM_NORM},	//L3M2	enc6 push
-/*N71*/	{.axis = 7,	.color = LED_WHITE,		.period = LED_TIM_NORM},	//L3M3	enc7 push
-		//Scence3 Encoders
-/*C64*/	{.axis = 0,	.color = LED_MINT,		.period = LED_TIM_NORM},	//enc0 CW
-		{.axis = 0,	.color = LED_MINT,		.period = LED_TIM_NORM},	//enc0 CCW
-/*C65*/	{.axis = 1,	.color = LED_RED,		.period = LED_TIM_HALF},	//enc1 CW
+		{.axis = 1,	.color = LED_GLAY,		.period = LED_TIM_NORM},	//L2M1	enc1 push
+		{.axis = 2,	.color = LED_GLAY,		.period = LED_TIM_NORM},	//L2M2	enc2 push
+		{.axis = 3,	.color = LED_GLAY,		.period = LED_TIM_NORM},	//L2M3	enc3 push
+		{.axis = 4,	.color = LED_GLAY,		.period = LED_TIM_NORM},	//L3M0	enc4 push
+		{.axis = 5,	.color = LED_GLAY,		.period = LED_TIM_NORM},	//L3M1	enc5 push
+/*N70*/	{.axis = 6,	.color = LED_GLAY,		.period = LED_TIM_NORM},	//L3M2	enc6 push
+/*N71*/	{.axis = 7,	.color = LED_GLAY,		.period = LED_TIM_NORM},	//L3M3	enc7 push
+		//Scence3 encoders rotate
+/*C64*/	{.axis = 0,	.color = LED_MINT,		.period = LED_TIM_SHORT},	//enc0 CW
+		{.axis = 0,	.color = LED_MINT,		.period = LED_TIM_SHORT},	//enc0 CCW
+/*C65*/	{.axis = 1,	.color = LED_RED,		.period = LED_TIM_NORM},	//enc1 CW
 		{.axis = 1,	.color = LED_RED,		.period = LED_TIM_HALF},	//enc1 CCW
-		{.axis = 2,	.color = LED_ORANGE,	.period = LED_TIM_HALF},	//enc2 CW
+/*C66*/	{.axis = 2,	.color = LED_ORANGE,	.period = LED_TIM_NORM},	//enc2 CW
 		{.axis = 2,	.color = LED_ORANGE,	.period = LED_TIM_HALF},	//enc2 CCW
-		{.axis = 3,	.color = LED_YELLOW,	.period = LED_TIM_HALF},	//enc3 CW
+/*C67*/	{.axis = 3,	.color = LED_YELLOW,	.period = LED_TIM_NORM},	//enc3 CW
 		{.axis = 3,	.color = LED_YELLOW,	.period = LED_TIM_HALF},	//enc3 CCW
-		{.axis = 4,	.color = LED_GREEN,		.period = LED_TIM_HALF},	//enc4 CW
+/*C68*/	{.axis = 4,	.color = LED_GREEN,		.period = LED_TIM_NORM},	//enc4 CW
 		{.axis = 4,	.color = LED_GREEN,		.period = LED_TIM_HALF},	//enc4 CCW
-		{.axis = 5,	.color = LED_CYAN,		.period = LED_TIM_HALF},	//enc5 CW
+/*C69*/	{.axis = 5,	.color = LED_CYAN,		.period = LED_TIM_NORM},	//enc5 CW
 		{.axis = 5,	.color = LED_CYAN,		.period = LED_TIM_HALF},	//enc5 CCW
-		{.axis = 6,	.color = LED_BLUE,		.period = LED_TIM_NORM},	//enc6 CW
-		{.axis = 6,	.color = LED_BLUE,		.period = LED_TIM_NORM},	//enc6 CCW
+/*C70*/	{.axis = 6,	.color = LED_BLUE,		.period = LED_TIM_NORM},	//enc6 CW
+		{.axis = 6,	.color = LED_BLUE,		.period = LED_TIM_HALF},	//enc6 CCW
 /*C71*/	{.axis = 7,	.color = LED_MAGENTA,	.period = LED_TIM_NORM},	//enc7 CW
-		{.axis = 7,	.color = LED_MAGENTA,	.period = LED_TIM_NORM},	//enc7 CCW
+		{.axis = 7,	.color = LED_MAGENTA,	.period = LED_TIM_HALF},	//enc7 CCW
 	}
 };
 /* ******************************************************* **** END OF FILE****/
