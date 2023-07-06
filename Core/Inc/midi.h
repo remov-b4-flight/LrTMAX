@@ -10,7 +10,7 @@
 
 //! Commonly used
 #define MIDI_UNUSED			0x00
-#define MIDI_EVENT_LENGTH	4
+#define MIDI_MESSAGE_LENGTH	4
 
 //! Descriptor types
 #define CONFIG				0x02

@@ -78,17 +78,17 @@ DMA_HandleTypeDef hdma_tim3_ch1_trig;
 TIM_HandleTypeDef htim3;
 extern	USBD_HandleTypeDef hUsbDeviceFS;
 extern	PCD_HandleTypeDef hpcd_USB_FS;
-//! Lr**** USB connection state
+//! LrTMAX USB connection state
 uint8_t	LrState;
-//! Lr**** Scene index
+//! LrTMAX Scene index
 uint8_t	LrScene;
 // keyboard variable
-//! If true, ISR detected any Key/Encoder was moved.
-bool	isKeyPressed;
-//! Key pressed/released status set by timer key scanning.
-KEYSCAN	Key_Stat;
+//! If true, ISR detected any Switch/Encoder was moved.
+bool	isAnyMoved;
+//! Switch pressed/Encoder moved status set by timer scanning.
+ENC_SW_SCAN	ENCSW_Stat;
 //! In key scanning whether Line selected to read for key matrix.
-uint8_t	Key_Line;
+uint8_t	ENCSW_Line;
 // OLED variables
 //! Flag set by timer ISR, It makes 'off' OLES contents.
 bool 	Msg_Timer_Update;
@@ -110,7 +110,7 @@ bool	isLEDsendpulse;
 bool	LED_Timer_Update;
 
 // Scene related
-extern	KEY_DEFINE	keytable[SCENE_COUNT][DEFINES_PER_SCENE];
+extern	ENC_SW_DEFINE	keytable[SCENE_COUNT][DEFINES_PER_SCENE];
 extern	char 		*scene_name[SCENE_COUNT];
 extern	uint8_t		led_axis_table[DEFINES_PER_SCENE];
 
@@ -252,7 +252,7 @@ int main(void)
   HAL_Init();
 
   /* USER CODE BEGIN Init */
-	Key_Line = L0;
+	ENCSW_Line = L0;
 	Msg_Off_Flag = false;
 	Msg_Timer_Enable = false;
 	Msg_Timer_Count = MSG_TIMER_DEFAULT;
@@ -592,7 +592,7 @@ static void MX_TIM1_Init(void)
   htim1.Instance = TIM1;
   htim1.Init.Prescaler = TIM_PRESC_1uS;
   htim1.Init.CounterMode = TIM_COUNTERMODE_UP;
-  htim1.Init.Period = TIM_PERIOD_KEY_MTRX;
+  htim1.Init.Period = TIM_PERIOD_MATRIX;
   htim1.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
   htim1.Init.RepetitionCounter = 0;
   htim1.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_DISABLE;

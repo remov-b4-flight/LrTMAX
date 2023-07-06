@@ -14,8 +14,8 @@
 #include "key_define.h"
 #include "ssd1306.h"
 #include "led.h"
-//! deine Key combination to invoke reset
-#define RESET_KEY_PATTERN	0x81	//[Undo]+[Scene]
+//! deine switch combination to invoke reset
+#define RESET_SW_PATTERN	0x81	//[Undo]+[Scene]
 #define CC_MSG_2DG	"Ch%2u = %3u    S%1u"
 
 void EmulateMIDI();

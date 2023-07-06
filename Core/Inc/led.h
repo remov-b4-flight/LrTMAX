@@ -35,7 +35,7 @@ enum led_color_t {
 };
 #define COLOR_MAX 14
 
-//! @def Lr**** board definition
+//! @def LrTMAX board definition
 #define LED_COUNT		8
 #define BITS_PER_LED	24  // (RGB) 3 * 8bit
 #define TOTAL_BITS		(LED_COUNT * BITS_PER_LED)

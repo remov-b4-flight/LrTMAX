@@ -65,7 +65,7 @@ uint32_t previous_scan = 0;
 uint32_t previous_key = 0;
 uint32_t current_key = 0;
 //! Value of scanned from key matrix.
-KEYSCAN current_scan;
+ENC_SW_SCAN current_scan;
 uint8_t	enc_prev[ENC_COUNT];
 uint8_t	enc_timer[ENC_COUNT];
 
@@ -90,9 +90,9 @@ extern TIM_HandleTypeDef htim7;
 /* USER CODE BEGIN EV */
 extern TIM_HandleTypeDef htim3;
 extern TIM_HandleTypeDef htim15;
-extern uint8_t	Key_Line;
-extern bool		isKeyPressed;
-extern KEYSCAN	Key_Stat;
+extern uint8_t	ENCSW_Line;
+extern bool		isAnyMoved;
+extern ENC_SW_SCAN	ENCSW_Stat;
 extern char		*Msg_Buffer[];
 extern bool		LED_Timer_Update;
 extern bool		Msg_Timer_Update;
@@ -197,21 +197,21 @@ void EXTI0_1_IRQHandler(void)
 		if ( !(htim15.Instance->SR & TIM_SR_UIF)) {
 			return;
 		} else if (op == ENC_MOVE_CW) {
-			Key_Stat.nb.enc4 = ENC_MOVE_CW;
+			ENCSW_Stat.nb.enc4 = ENC_MOVE_CW;
 			MIDI_CC_Inc(Lr_ENC4);
-			isKeyPressed = true;
+			isAnyMoved = true;
 			TIM15_Restart();
 		} else if (op == ENC_MOVE_CCW) {
-			Key_Stat.nb.enc4 = ENC_MOVE_CCW;
+			ENCSW_Stat.nb.enc4 = ENC_MOVE_CCW;
 			MIDI_CC_Dec(Lr_ENC4);
-			isKeyPressed = true;
+			isAnyMoved = true;
 			TIM15_Restart();
 		} else if (op == ENC_STOPPED) {
-			Key_Stat.nb.enc4 = ENC_STOPPED;
-			isKeyPressed = true;
+			ENCSW_Stat.nb.enc4 = ENC_STOPPED;
+			isAnyMoved = true;
 		} else {
-			Key_Stat.nb.enc4 = ENC_STOPPED;
-			isKeyPressed = false;
+			ENCSW_Stat.nb.enc4 = ENC_STOPPED;
+			isAnyMoved = false;
 		}
 	}
 
@@ -240,21 +240,21 @@ void EXTI2_3_IRQHandler(void)
 		if ( !(htim15.Instance->SR & TIM_SR_UIF)) {
 			return;
 		} else if (op == ENC_MOVE_CW) {
-			Key_Stat.nb.enc6 = ENC_MOVE_CW;
+			ENCSW_Stat.nb.enc6 = ENC_MOVE_CW;
 			MIDI_CC_Inc(Lr_ENC6);
-			isKeyPressed = true;
+			isAnyMoved = true;
 			TIM15_Restart();
 		} else if(op == ENC_MOVE_CCW) {
-			Key_Stat.nb.enc6 = ENC_MOVE_CCW;
+			ENCSW_Stat.nb.enc6 = ENC_MOVE_CCW;
 			MIDI_CC_Dec(Lr_ENC6);
-			isKeyPressed = true;
+			isAnyMoved = true;
 			TIM15_Restart();
 		} else if(op == ENC_STOPPED) {
-			Key_Stat.nb.enc6 = ENC_STOPPED;
-			isKeyPressed = true;
+			ENCSW_Stat.nb.enc6 = ENC_STOPPED;
+			isAnyMoved = true;
 		} else {
-			Key_Stat.nb.enc6 = ENC_STOPPED;
-			isKeyPressed = false;
+			ENCSW_Stat.nb.enc6 = ENC_STOPPED;
+			isAnyMoved = false;
 		}
 	}
 
@@ -285,24 +285,24 @@ void EXTI4_15_IRQHandler(void)
 		if ( !(htim15.Instance->SR & TIM_SR_UIF)) {
 			return;
 		} else if (op == ENC_MOVE_CW) {
-			Key_Stat.nb.enc0 = ENC_MOVE_CW;
+			ENCSW_Stat.nb.enc0 = ENC_MOVE_CW;
 			MIDI_CC_Inc(Lr_ENC0);
-			isKeyPressed = true;
+			isAnyMoved = true;
 			TIM15_Restart();
 			return;
 		} else if(op == ENC_MOVE_CCW) {
-			Key_Stat.nb.enc0 = ENC_MOVE_CCW;
+			ENCSW_Stat.nb.enc0 = ENC_MOVE_CCW;
 			MIDI_CC_Dec(Lr_ENC0);
-			isKeyPressed = true;
+			isAnyMoved = true;
 			TIM15_Restart();
 			return;
 		} else if(op == ENC_STOPPED) {
-			Key_Stat.nb.enc0 = ENC_STOPPED;
-			isKeyPressed = true;
+			ENCSW_Stat.nb.enc0 = ENC_STOPPED;
+			isAnyMoved = true;
 			return;
 		} else {
-			Key_Stat.nb.enc0 = ENC_STOPPED;
-			isKeyPressed = false;
+			ENCSW_Stat.nb.enc0 = ENC_STOPPED;
+			isAnyMoved = false;
 		}
 	}
 
@@ -317,24 +317,24 @@ void EXTI4_15_IRQHandler(void)
 		if ( !(htim15.Instance->SR & TIM_SR_UIF)) {
 			return;
 		} else if (op == ENC_MOVE_CW) {
-			Key_Stat.nb.enc7 = ENC_MOVE_CW;
+			ENCSW_Stat.nb.enc7 = ENC_MOVE_CW;
 			MIDI_CC_Inc(Lr_ENC7);
-			isKeyPressed = true;
+			isAnyMoved = true;
 			TIM15_Restart();
 			return;
 		} else if(op == ENC_MOVE_CCW) {
-			Key_Stat.nb.enc7 = ENC_MOVE_CCW;
+			ENCSW_Stat.nb.enc7 = ENC_MOVE_CCW;
 			MIDI_CC_Dec(Lr_ENC7);
-			isKeyPressed = true;
+			isAnyMoved = true;
 			TIM15_Restart();
 			return;
 		} else if(op == ENC_STOPPED) {
-			Key_Stat.nb.enc7 = ENC_STOPPED;
-			isKeyPressed = true;
+			ENCSW_Stat.nb.enc7 = ENC_STOPPED;
+			isAnyMoved = true;
 			return;
 		} else {
-			Key_Stat.nb.enc7 = ENC_STOPPED;
-			isKeyPressed = false;
+			ENCSW_Stat.nb.enc7 = ENC_STOPPED;
+			isAnyMoved = false;
 		}
 	}
 
@@ -349,24 +349,24 @@ void EXTI4_15_IRQHandler(void)
 		if ( !(htim15.Instance->SR & TIM_SR_UIF)) {
 			return;
 		} else if (op == ENC_MOVE_CW) {
-			Key_Stat.nb.enc1 = ENC_MOVE_CW;
+			ENCSW_Stat.nb.enc1 = ENC_MOVE_CW;
 			MIDI_CC_Inc(Lr_ENC1);
-			isKeyPressed = true;
+			isAnyMoved = true;
 			TIM15_Restart();
 			return;
 		} else if(op == ENC_MOVE_CCW) {
-			Key_Stat.nb.enc1 = ENC_MOVE_CCW;
+			ENCSW_Stat.nb.enc1 = ENC_MOVE_CCW;
 			MIDI_CC_Dec(Lr_ENC1);
-			isKeyPressed = true;
+			isAnyMoved = true;
 			TIM15_Restart();
 			return;
 		} else if(op == ENC_STOPPED) {
-			Key_Stat.nb.enc1 = ENC_STOPPED;
-			isKeyPressed = true;
+			ENCSW_Stat.nb.enc1 = ENC_STOPPED;
+			isAnyMoved = true;
 			return;
 		} else {
-			Key_Stat.nb.enc1 = ENC_STOPPED;
-			isKeyPressed = false;
+			ENCSW_Stat.nb.enc1 = ENC_STOPPED;
+			isAnyMoved = false;
 		}
 	}
 
@@ -381,24 +381,24 @@ void EXTI4_15_IRQHandler(void)
 		if ( !(htim15.Instance->SR & TIM_SR_UIF)) {
 			return;
 		} else if (op == ENC_MOVE_CW) {
-			Key_Stat.nb.enc2 = ENC_MOVE_CW;
+			ENCSW_Stat.nb.enc2 = ENC_MOVE_CW;
 			MIDI_CC_Inc(Lr_ENC2);
-			isKeyPressed = true;
+			isAnyMoved = true;
 			TIM15_Restart();
 			return;
 		} else if(op == ENC_MOVE_CCW) {
-			Key_Stat.nb.enc2 = ENC_MOVE_CCW;
+			ENCSW_Stat.nb.enc2 = ENC_MOVE_CCW;
 			MIDI_CC_Dec(Lr_ENC2);
-			isKeyPressed = true;
+			isAnyMoved = true;
 			TIM15_Restart();
 			return;
 		} else if(op == ENC_STOPPED) {
-			Key_Stat.nb.enc2 = ENC_STOPPED;
-			isKeyPressed = true;
+			ENCSW_Stat.nb.enc2 = ENC_STOPPED;
+			isAnyMoved = true;
 			return;
 		} else {
-			Key_Stat.nb.enc2 = ENC_STOPPED;
-			isKeyPressed = false;
+			ENCSW_Stat.nb.enc2 = ENC_STOPPED;
+			isAnyMoved = false;
 		}
 	}
 
@@ -413,24 +413,24 @@ void EXTI4_15_IRQHandler(void)
 		if ( !(htim15.Instance->SR & TIM_SR_UIF)) {
 			return;
 		} else if (op == ENC_MOVE_CW) {
-			Key_Stat.nb.enc5 = ENC_MOVE_CW;
+			ENCSW_Stat.nb.enc5 = ENC_MOVE_CW;
 			MIDI_CC_Inc(Lr_ENC5);
-			isKeyPressed = true;
+			isAnyMoved = true;
 			TIM15_Restart();
 			return;
 		} else if(op == ENC_MOVE_CCW) {
-			Key_Stat.nb.enc5 = ENC_MOVE_CCW;
+			ENCSW_Stat.nb.enc5 = ENC_MOVE_CCW;
 			MIDI_CC_Dec(Lr_ENC5);
-			isKeyPressed = true;
+			isAnyMoved = true;
 			TIM15_Restart();
 			return;
 		} else if(op == ENC_STOPPED) {
-			Key_Stat.nb.enc5 = ENC_STOPPED;
-			isKeyPressed = true;
+			ENCSW_Stat.nb.enc5 = ENC_STOPPED;
+			isAnyMoved = true;
 			return;
 		} else {
-			Key_Stat.nb.enc5 = ENC_STOPPED;
-			isKeyPressed = false;
+			ENCSW_Stat.nb.enc5 = ENC_STOPPED;
+			isAnyMoved = false;
 		}
 	}
 
@@ -445,24 +445,24 @@ void EXTI4_15_IRQHandler(void)
 		if ( !(htim15.Instance->SR & TIM_SR_UIF)) {
 			return;
 		} else if (op == ENC_MOVE_CW) {
-			Key_Stat.nb.enc3 = ENC_MOVE_CW;
+			ENCSW_Stat.nb.enc3 = ENC_MOVE_CW;
 			MIDI_CC_Inc(Lr_ENC3);
-			isKeyPressed = true;
+			isAnyMoved = true;
 			TIM15_Restart();
 			return;
 		} else if(op == ENC_MOVE_CCW) {
-			Key_Stat.nb.enc3 = ENC_MOVE_CCW;
+			ENCSW_Stat.nb.enc3 = ENC_MOVE_CCW;
 			MIDI_CC_Dec(Lr_ENC3);
-			isKeyPressed = true;
+			isAnyMoved = true;
 			TIM15_Restart();
 			return;
 		} else if(op == ENC_STOPPED) {
-			Key_Stat.nb.enc3 = ENC_STOPPED;
-			isKeyPressed = true;
+			ENCSW_Stat.nb.enc3 = ENC_STOPPED;
+			isAnyMoved = true;
 			return;
 		} else {
-			Key_Stat.nb.enc3 = ENC_STOPPED;
-			isKeyPressed = false;
+			ENCSW_Stat.nb.enc3 = ENC_STOPPED;
+			isAnyMoved = false;
 		}
 	}
 
@@ -516,25 +516,25 @@ void TIM1_BRK_UP_TRG_COM_IRQHandler(void)
 	uint8_t r;
 
 	//keyboard matrix
-	switch(Key_Line) {
+	switch(ENCSW_Line) {
 		case L0:
 			r = (Mx_GPIO_Port->IDR) & LxMASK;
 			current_scan.nb.n0 = (r);
-			Key_Line++;
+			ENCSW_Line++;
 			HAL_GPIO_WritePin(L0_GPIO_Port, L0_Pin, GPIO_PIN_RESET);
 			HAL_GPIO_WritePin(L1_GPIO_Port, L1_Pin, GPIO_PIN_SET);
 			break;
 		case L1:
 			r = (Mx_GPIO_Port->IDR) & LxMASK;
 			current_scan.nb.n1 = (r);
-			Key_Line++;
+			ENCSW_Line++;
 			HAL_GPIO_WritePin(L1_GPIO_Port, L1_Pin, GPIO_PIN_RESET);
 			HAL_GPIO_WritePin(L2_GPIO_Port, L2_Pin, GPIO_PIN_SET);
 			break;
 		case L2:
 			r = (Mx_GPIO_Port->IDR) & LxMASK;
 			current_scan.nb.n2 = (r);
-			Key_Line++;
+			ENCSW_Line++;
 			HAL_GPIO_WritePin(L2_GPIO_Port, L2_Pin, GPIO_PIN_RESET);
 			HAL_GPIO_WritePin(L3_GPIO_Port, L3_Pin, GPIO_PIN_SET);
 			break;
@@ -543,16 +543,16 @@ void TIM1_BRK_UP_TRG_COM_IRQHandler(void)
 			current_scan.nb.n3 = (r);
 			HAL_GPIO_WritePin(L3_GPIO_Port, L3_Pin, GPIO_PIN_RESET);
 			HAL_GPIO_WritePin(L0_GPIO_Port, L0_Pin, GPIO_PIN_SET);
-			Key_Line = L0;
+			ENCSW_Line = L0;
 
-			//Key detection
+			//Switch detection
 			if (previous_scan == current_scan.wd){
 				current_key = current_scan.wd;
 				uint32_t dif = current_key ^ previous_key;
-				Key_Stat.wd = current_key;
+				ENCSW_Stat.wd = current_key;
 				if (dif != 0){
 					previous_key = current_key;
-					isKeyPressed = true;
+					isAnyMoved = true;
 				}
 			}
 			previous_scan = current_scan.wd;

@@ -1,6 +1,6 @@
 /*
  * @file	LrCommon.h
- * @brief	Common definitions on Lr****
+ * @brief	Common definitions on LrTMAX
  * @author	remov-b4-flight
  * @copyright	3-Clause BSD License
 */
@@ -9,12 +9,12 @@
 #define INC_LRCOMMON_H_
 #include <stdint.h>
 
-//! Lr**** Hardware definition
-#define KEY_COUNT	16	//(SW_COUNT+ENC_COUNT)
-#define SW_COUNT	8
-#define ENC_COUNT	8
+//! LrTMAX Hardware definition
+#define SW_COUNT		8
+#define ENC_COUNT		8
+#define ENC_SW_COUNT	(SW_COUNT + ENC_COUNT)
 
-typedef union keyscan_t {
+typedef union enc_sw_scan_t {
     uint32_t wd;
     struct ks_bit_t {
 		uint8_t n0:4;	//Switch Line0
@@ -30,9 +30,9 @@ typedef union keyscan_t {
 		uint8_t enc6:2;	//Rotary encoder
 		uint8_t enc7:2;	//Rotary encoder
     } nb;
-} KEYSCAN;
+} ENC_SW_SCAN;
 
-//! Lr**** State definition
+//! LrTMAX State definition
 enum lr_state_t {
 	LR_RESET,			//!< LR_RESET
 	LR_USB_NOLINK,		//!< LR_USB_NOLINK
@@ -42,7 +42,7 @@ enum lr_state_t {
 	LR_USB_DFU,
 };
 
-//! Key matrix lines
+//! switch-encoder matrix lines
 enum {
 	L0 = 0,
 	L1,
@@ -76,28 +76,28 @@ enum lr_matrix_t {
 };
 //! number of scene
 #define SCENE_COUNT		4
-//! Key define structure
-#define DEFINES_PER_SCENE	( KEY_COUNT + (ENC_COUNT * 2) )
+//! prof. define structure (in key_define.c)
+#define DEFINES_PER_SCENE	( ENC_SW_COUNT + (ENC_COUNT * 2) )
 //! Assigned notes per scene.
-	#define NOTES_PER_SCENE	8
+#define NOTES_PER_SCENE	8
 //! Define key that designated for scene change.
-#define SCENE_BIT			7
-//! number of cc channels that Lr**** controls.
-#define CC_COUNT			(ENC_COUNT * SCENE_COUNT)
+#define SCENE_BIT		7
+//! number of cc channels that LrTMAX controls.
+#define CC_COUNT		(ENC_COUNT * SCENE_COUNT)
 //!CC channel offset for Scene0-ENC0
 #define CC_CH_OFFSET	40
-#define NOTES_OFFSET (CC_CH_OFFSET-8)
+#define NOTES_OFFSET	(CC_CH_OFFSET-8)
 //!Assigned CC channel count per scene
 #define CC_CH_PER_SCENE	8
 //!maximum CC channel used in LrTMAX
-#define CC_CH_MAX	(CC_CH_OFFSET + CC_COUNT -1)
+#define CC_CH_MAX		(CC_CH_OFFSET + CC_COUNT -1)
 
 // LED timer definitions
-#define LED_TIM_NORM		21		//500ms (1 tick=24ms)
-#define LED_TIM_SHORT		4		//100ms
-#define LED_TIM_HALF		11		//250ms
-#define LED_TIM_LONG		42		//1.0Sec
-#define LED_TIM_CONNECT		64		//1.5Sec
+#define LED_TIM_NORM	21		//500ms (1 tick=24ms)
+#define LED_TIM_SHORT	4		//100ms
+#define LED_TIM_HALF	11		//250ms
+#define LED_TIM_LONG	42		//1.0Sec
+#define LED_TIM_CONNECT	64		//1.5Sec
 
 // Screen timer definitions
 #define MSG_TIMER_DEFAULT	122		//4Sec (1 tick=32.7ms)
