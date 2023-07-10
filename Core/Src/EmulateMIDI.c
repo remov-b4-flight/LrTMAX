@@ -17,7 +17,7 @@ extern	USBD_HandleTypeDef *pInstance;
 uint8_t	prev_note;
 //! If true, MIDI message previous sent is switch. If false, it's encoder
 bool	isPrev_SwPush;
-//! Indecate scene name appearing on OLED. need clearing buffers.
+//! Indicate scene name appearing on OLED. need clearing buffers.
 bool	isPrev_Scene;
 
 // MIDI variables
@@ -49,7 +49,7 @@ void EmulateMIDI() {
 
 		if ( ENCSW_Stat.wd & MASK_ENC_SW ) { //Check Matrix switches
 			//Send 'Note On' message from switches/encoders matrix.
-			uint8_t	note = ((ENCSW_Stat.wd & MASK_ENCPUSH)? NOTES_OFFSET : 0) + (LrScene * NOTES_PER_SCENE) + bitpos;
+			uint8_t	note = ((ENCSW_Stat.wd & MASK_ENCPUSH)? NOTE_OFFSET : 0) + (LrScene * NOTES_PER_SCENE) + bitpos;
 			if (ENCSW_Stat.wd == RESET_SW_PATTERN) {
 				HAL_NVIC_SystemReset();
 			}else if (bitpos == SCENE_BIT) { //is [SCENE] switch pressed?
