@@ -48,7 +48,6 @@ void EmulateMIDI_Init(){
 void EmulateMIDI() {
 	//! USB MIDI message structure for send
 	MIDI_MESSAGE	USBMIDI_TxMessage;
-	uint16_t		rx_ch_val;
 
 	if (isAnyMoved) {
 		uint8_t		bitpos = ntz32(ENCSW_Stat.wd);
@@ -66,8 +65,7 @@ void EmulateMIDI() {
 					LrScene = Lr_SCENE0;
 				}
 				LED_SetScene(LrScene);
-				sprintf(msg_string, "Scene %1d",LrScene);
-				strcpy(Msg_Buffer[0], msg_string);
+				sprintf(Msg_Buffer[0], "Scene %1d",LrScene);
 				strcpy(msg_string, scene_name[LrScene]);
 				isPrev_Scene = true;
 			}else{
@@ -142,22 +140,23 @@ void EmulateMIDI() {
 		isAnyMoved = false;
 	}
 	while (1) {
-		rx_ch_val = queue_dequeue(&midi_rx_que);
-		if (rx_ch_val != QUEUE_EMPTY){
-			uint8_t	cc_channel = (rx_ch_val >> 8);
-			uint8_t	cc_val = rx_ch_val & 0x7F;
-			uint8_t cc_index = cc_channel - CC_CH_OFFSET;
-
+		CH_VAL rx;
+		rx.wd = queue_dequeue(&midi_rx_que);
+		if (rx.wd != QUEUE_EMPTY){
+			uint8_t	cc_channel = rx.by.ch;
+			uint8_t cc_index = rx.by.ch - CC_CH_OFFSET;
 			uint8_t cc_scene = (cc_index / CC_CH_PER_SCENE) & 0x03;
 			uint8_t cc_axis = (cc_index % CC_CH_PER_SCENE);
-			MIDI_CC_Value[cc_scene][cc_axis] = cc_val;
-			SSD1306_SetScreen(ON);
-			sprintf(msg_string, CC_MSG_2DG, cc_channel, cc_val, cc_scene);
-			strcpy(Msg_Buffer[0], msg_string);
-			if (isPrev_Scene == true) {
-				memset(Msg_Buffer[1], (int)SPACE_CHAR, MSG_WIDTH );
+			MIDI_CC_Value[cc_scene][cc_axis] = rx.by.val;
+			if (queue_isempty(&midi_rx_que) == true) {
+				SSD1306_SetScreen(ON);
+				sprintf(msg_string, CC_MSG_2DG, cc_channel, rx.by.val, cc_scene);
+				strcpy(Msg_Buffer[0], msg_string);
+				if (isPrev_Scene == true) {
+					memset(Msg_Buffer[1], (int)SPACE_CHAR, MSG_WIDTH );
+				}
+				Msg_Print();
 			}
-			Msg_Print();
 		}else break;
 	}
 }

@@ -18,6 +18,15 @@
 #define RESET_SW_PATTERN	0x81	//[Undo]+[Scene]
 #define CC_MSG_2DG	"Ch%2u = %3u    S%1u"
 
+//! recived channel-value pair
+typedef union ch_val_t {
+	uint16_t	wd;
+	struct cval_t {
+		uint8_t	ch;
+		uint8_t	val;
+	} by;
+}CH_VAL;
+
 void EmulateMIDI();
 void EmulateMIDI_Init();
 

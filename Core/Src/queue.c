@@ -31,3 +31,7 @@ uint16_t queue_dequeue(QUEUE *q) {
 		return temp;
 	}
 }
+
+bool queue_isempty(QUEUE *q) {
+	return (q->head == q->tail)?	true:false;
+}

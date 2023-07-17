@@ -21,5 +21,6 @@ typedef struct queue_t {
 void queue_init(QUEUE *q);
 bool queue_enqueue(QUEUE *q, uint16_t value);
 uint16_t queue_dequeue(QUEUE *q);
+bool queue_isempty(QUEUE *q);
 
 #endif /* INC_QUEUE_H_ */
