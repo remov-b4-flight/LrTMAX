@@ -96,7 +96,7 @@ extern ENC_SW_SCAN	ENCSW_Stat;
 extern char		*Msg_Buffer[];
 extern bool		LED_Timer_Update;
 extern bool		Msg_Timer_Update;
-extern uint8_t	MIDI_CC_Value[SCENE_COUNT][ENC_COUNT];
+extern uint8_t	MIDI_CC_Value[CC_CH_COUNT];
 extern uint8_t	LrScene;
 /* USER CODE END EV */
 
@@ -631,14 +631,16 @@ void USB_IRQHandler(void)
  * @param	enc Encoder axis
  */
 static inline void MIDI_CC_Inc(uint8_t enc) {
-	if (MIDI_CC_Value[LrScene][enc] < MIDI_CC_MAX ) MIDI_CC_Value[LrScene][enc]++;
+	uint8_t index = CC_CH_OFFSET + (LrScene * CC_CH_PER_SCENE) + enc;
+	if (MIDI_CC_Value[index] < MIDI_CC_MAX ) MIDI_CC_Value[index]++;
 }
 /**
  * @brief	Fall CC message value
  * @param	enc Encoder axis
  */
 static inline void MIDI_CC_Dec(uint8_t enc) {
-	if (MIDI_CC_Value[LrScene][enc] >= (MIDI_CC_MIN + 1) ) MIDI_CC_Value[LrScene][enc]--;
+	uint8_t index = CC_CH_OFFSET + (LrScene * CC_CH_PER_SCENE) + enc;
+	if (MIDI_CC_Value[index] >= (MIDI_CC_MIN + 1) ) MIDI_CC_Value[index]--;
 }
 /**
  * @brief	Restart TIM15 value 0 on 'one pulse mode'

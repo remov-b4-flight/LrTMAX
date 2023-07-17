@@ -323,7 +323,6 @@ int main(void)
 
 	//Initialize CC Value table
 	EmulateMIDI_Init();
-//	memset(MIDI_CC_Value, MIDI_CC_INITIAL, CC_COUNT);
 
 	//LED Initialize
 	LED_SetScene(LrScene);

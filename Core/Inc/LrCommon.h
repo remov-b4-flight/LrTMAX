@@ -89,8 +89,6 @@ enum lr_matrix_t {
 #define NOTE_OFFSET	(CC_CH_OFFSET-8)
 //!Assigned CC channel count per scene
 #define CC_CH_PER_SCENE	8
-//!maximum CC channel used in LrTMAX
-#define CC_CH_MAX		(CC_CH_OFFSET + CC_COUNT -1)
 
 // LED timer definitions
 #define LED_TIM_NORM	21		//500ms (1 tick=24ms)

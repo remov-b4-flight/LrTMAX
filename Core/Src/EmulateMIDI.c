@@ -24,7 +24,7 @@ bool	isPrev_Scene;
 
 // MIDI variables
 //! MIDI CC message value for each channels.
-uint8_t	MIDI_CC_Value[SCENE_COUNT][ENC_COUNT];
+uint8_t	MIDI_CC_Value[CC_CH_COUNT];
 //! queing midi_rx;
 QUEUE	midi_rx_que;
 //OLED message buffer
@@ -36,7 +36,7 @@ char 	msg_string[MSG_WIDTH + 2];
 void EmulateMIDI_Init(){
 	isPrev_SwPush = false;
 	isPrev_Scene = false;
-	memset(MIDI_CC_Value, MIDI_CC_INITIAL, CC_COUNT);
+	memset(MIDI_CC_Value, MIDI_CC_INITIAL, CC_CH_COUNT);
 	queue_init(&midi_rx_que);
 }
 
@@ -94,19 +94,18 @@ void EmulateMIDI() {
 		}else if( ENCSW_Stat.wd & MASK_ENC ) { //Check encoder's movements
 			//Send CC message from encoders.
 			uint8_t axis = (bitpos - ENC_SW_COUNT) / 2;
-			uint8_t val = MIDI_CC_Value[LrScene][axis];
 			uint8_t channel = CC_CH_OFFSET + (LrScene * CC_CH_PER_SCENE) + axis;
 
 			USBMIDI_TxMessage.header = MIDI_CC_HEADER;
 			USBMIDI_TxMessage.status = MIDI_CC_STATUS;
 			USBMIDI_TxMessage.channel = channel;
-			USBMIDI_TxMessage.value = val;
+			USBMIDI_TxMessage.value = MIDI_CC_Value[channel];
 
 			isPrev_SwPush = false;
 
 			//Print Message to OLED & LEDs.
 			SSD1306_SetScreen(ON);
-			sprintf(msg_string, CC_MSG_2DG, channel, val, LrScene & 0x3);
+			sprintf(msg_string, CC_MSG_2DG, channel, MIDI_CC_Value[channel], LrScene & 0x3);
 			if (isPrev_Scene == true) {
 				memset(Msg_Buffer[0], (int)SPACE_CHAR, MSG_WIDTH );
 				isPrev_Scene = false;
@@ -143,20 +142,21 @@ void EmulateMIDI() {
 		CH_VAL rx;
 		rx.wd = queue_dequeue(&midi_rx_que);
 		if (rx.wd != QUEUE_EMPTY){
-			uint8_t	cc_channel = rx.by.ch;
-			uint8_t cc_index = rx.by.ch - CC_CH_OFFSET;
-			uint8_t cc_scene = (cc_index / CC_CH_PER_SCENE) & 0x03;
-			uint8_t cc_axis = (cc_index % CC_CH_PER_SCENE);
-			MIDI_CC_Value[cc_scene][cc_axis] = rx.by.val;
+			uint8_t cc_scene = ((rx.by.ch - CC_CH_OFFSET) / CC_CH_PER_SCENE) & 0x07;
+			if (rx.by.ch > CC_CH_MAX) {
+				continue;
+			}
+
+			MIDI_CC_Value[rx.by.ch] = rx.by.val;
 			if (queue_isempty(&midi_rx_que) == true) {
 				SSD1306_SetScreen(ON);
-				sprintf(msg_string, CC_MSG_2DG, cc_channel, rx.by.val, cc_scene);
-				strcpy(Msg_Buffer[0], msg_string);
+				sprintf(Msg_Buffer[0], CC_MSG_2DG, rx.by.ch, rx.by.val, cc_scene);
 				if (isPrev_Scene == true) {
 					memset(Msg_Buffer[1], (int)SPACE_CHAR, MSG_WIDTH );
+					isPrev_Scene = false;
 				}
 				Msg_Print();
 			}
-		}else break;
+		} else break;
 	}
 }

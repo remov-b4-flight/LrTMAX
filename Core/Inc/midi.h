@@ -78,5 +78,6 @@
 #define MIDI_CC_INITIAL		0x40
 
 //! Others
-
+#define CC_CH_COUNT			128
+#define	CC_CH_MAX			(CC_CH_COUNT-1)
 #endif /* INC_MIDI_NOTE_H_ */
