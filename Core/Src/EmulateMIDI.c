@@ -4,6 +4,8 @@
  * @brief	MIDI Emulation of LrTMAX
  */
 #include "EmulateMIDI.h"
+#include "queue.h"
+
 extern	ENC_SW_SCAN	ENCSW_Stat;
 extern	uint8_t	LrScene;
 extern	char *scene_name[SCENE_COUNT];
@@ -23,6 +25,10 @@ bool	isPrev_Scene;
 // MIDI variables
 //! MIDI CC message value for each channels.
 uint8_t	MIDI_CC_Value[SCENE_COUNT][ENC_COUNT];
+//! queing midi_rx;
+QUEUE	midi_rx_que;
+//OLED message buffer
+char 	msg_string[MSG_WIDTH + 2];
 
 /**
  * 	@brief	Initialize MIDI
@@ -31,7 +37,9 @@ void EmulateMIDI_Init(){
 	isPrev_SwPush = false;
 	isPrev_Scene = false;
 	memset(MIDI_CC_Value, MIDI_CC_INITIAL, CC_COUNT);
+	queue_init(&midi_rx_que);
 }
+
 /**
  *	@brief	Generate MIDI message and Send to host by User interaction.
  *	@pre	isAnyMoved	any Switches/Encoders was pressed/moved or not
@@ -40,9 +48,9 @@ void EmulateMIDI_Init(){
 void EmulateMIDI() {
 	//! USB MIDI message structure for send
 	MIDI_MESSAGE	USBMIDI_TxMessage;
+	uint16_t		rx_ch_val;
 
 	if (isAnyMoved) {
-		char 		msg_string[MSG_WIDTH + 2];
 		uint8_t		bitpos = ntz32(ENCSW_Stat.wd);
 		uint32_t	rstat = (ENCSW_Stat.wd);
 		bool 		isSendMIDIMessage = false;
@@ -132,5 +140,24 @@ void EmulateMIDI() {
 
 		/* Clear the switch pressed flag */
 		isAnyMoved = false;
+	}
+	while (1) {
+		rx_ch_val = queue_dequeue(&midi_rx_que);
+		if (rx_ch_val != QUEUE_EMPTY){
+			uint8_t	cc_channel = (rx_ch_val >> 8);
+			uint8_t	cc_val = rx_ch_val & 0x7F;
+			uint8_t cc_index = cc_channel - CC_CH_OFFSET;
+
+			uint8_t cc_scene = (cc_index / CC_CH_PER_SCENE) & 0x03;
+			uint8_t cc_axis = (cc_index % CC_CH_PER_SCENE);
+			MIDI_CC_Value[cc_scene][cc_axis] = cc_val;
+			SSD1306_SetScreen(ON);
+			sprintf(msg_string, CC_MSG_2DG, cc_channel, cc_val, cc_scene);
+			strcpy(Msg_Buffer[0], msg_string);
+			if (isPrev_Scene == true) {
+				memset(Msg_Buffer[1], (int)SPACE_CHAR, MSG_WIDTH );
+			}
+			Msg_Print();
+		}else break;
 	}
 }

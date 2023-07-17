@@ -30,6 +30,7 @@
 #include "stm32f0xx_hal.h"
 #include "midi.h"
 #include "EmulateMIDI.h"
+#include "queue.h"
 
 // basic MIDI RX/TX functions
 static uint16_t MIDI_DataRx(uint8_t *msg, uint16_t length);
@@ -38,6 +39,8 @@ static uint16_t MIDI_DataTx(uint8_t *msg, uint16_t length);
 extern uint8_t MIDI_CC_Value[SCENE_COUNT][ENC_COUNT];
 extern char Msg_Buffer[MSG_LINES][MSG_WIDTH + 1];
 extern bool isPrev_Scene;
+extern QUEUE midi_rx_que;
+
 /**
  *	@brief	Array of callback function pointer with MIDI.
  */
@@ -53,6 +56,21 @@ USBD_MIDI_ItfTypeDef USBD_Interface_fops_FS =
  *	@param	length	Length of received data.
  */
 static uint16_t MIDI_DataRx(uint8_t *msg, uint16_t length){
+#if 1
+	uint8_t	message_count = length / MIDI_MESSAGE_LENGTH;
+	MIDI_MESSAGE *rx_message = (MIDI_MESSAGE *)msg;
+	for (uint8_t i = 0; i < message_count; i++,rx_message++) {
+		if ( (rx_message->header & 0x0F) != MIDI_CC_HEADER
+				|| rx_message->channel < CC_CH_OFFSET
+				|| CC_CH_MAX < rx_message->channel ) {
+			continue;
+		}
+		uint16_t value = (rx_message->channel<< 8) + rx_message->value;
+		if(queue_enqueue(&midi_rx_que,value) == false) {
+			break;
+		}
+	}
+#else
 	char 		msg_string[MSG_WIDTH + 2];
 	uint8_t	message_count = length / MIDI_MESSAGE_LENGTH;
 	MIDI_MESSAGE *rx_message = (MIDI_MESSAGE *)msg;
@@ -67,6 +85,7 @@ static uint16_t MIDI_DataRx(uint8_t *msg, uint16_t length){
 
 		uint8_t cc_scene = (cc_index / CC_CH_PER_SCENE) & 0x03;
 		uint8_t cc_axis = (cc_index % CC_CH_PER_SCENE) & 0x7f;
+
 		MIDI_CC_Value[cc_scene][cc_axis] = rx_message->value;
 		SSD1306_SetScreen(ON);
 		sprintf(msg_string, CC_MSG_2DG, rx_message->channel, rx_message->value, cc_scene);
@@ -78,6 +97,7 @@ static uint16_t MIDI_DataRx(uint8_t *msg, uint16_t length){
 
 		Start_MsgTimer(MSG_TIMER_DEFAULT);
 	}
+#endif
 	return USBD_OK;
 }
 
