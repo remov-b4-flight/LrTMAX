@@ -10,7 +10,7 @@ extern	ENC_SW_SCAN	ENCSW_Stat;
 extern	uint8_t	LrScene;
 extern	char *scene_name[SCENE_COUNT];
 extern	ENC_SW_DEFINE	prof_table[SCENE_COUNT][DEFINES_PER_SCENE];
-extern	char Msg_Buffer[MSG_LINES][MSG_WIDTH + 1];
+extern	char Msg_Buffer[MSG_LINES][MSG_WIDTH + 2];
 extern	bool isAnyMoved;
 //! Instance Handle of USB interface
 extern	USBD_HandleTypeDef *pInstance;
@@ -50,8 +50,8 @@ void EmulateMIDI() {
 	MIDI_MESSAGE	USBMIDI_TxMessage;
 
 	if (isAnyMoved) {
-		uint8_t		bitpos = ntz32(ENCSW_Stat.wd);
 		uint32_t	rstat = (ENCSW_Stat.wd);
+		uint8_t		bitpos = ntz32(ENCSW_Stat.wd);
 		bool 		isSendMIDIMessage = false;
 
 		if ( ENCSW_Stat.wd & MASK_ENC_SW ) { //Check Matrix switches

@@ -61,13 +61,7 @@ static uint16_t MIDI_DataRx(uint8_t *msg, uint16_t length) {
 		CH_VAL rx;
 		rx.by.ch = rx_message->channel;
 		rx.by.val = rx_message->value;
-#if 1
 		queue_enqueue(&midi_rx_que, rx.wd);
-#else
-		if(queue_enqueue(&midi_rx_que, rx.wd) == false) {
-			return USBD_FAIL;
-		}
-#endif
 	}
 	return USBD_OK;
 }
