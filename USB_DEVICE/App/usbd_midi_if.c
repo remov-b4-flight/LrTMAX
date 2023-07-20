@@ -57,7 +57,9 @@ static uint16_t MIDI_DataRx(uint8_t *msg, uint16_t length) {
 	uint8_t	message_count = length / MIDI_MESSAGE_LENGTH;
 	MIDI_MESSAGE *rx_message = (MIDI_MESSAGE *)msg;
 	for (uint8_t i = 0; i < message_count; i++,rx_message++) {
-
+		if ((rx_message->header & 0x0F) != MIDI_CC_HEADER) {
+			continue;
+		}
 		CH_VAL rx;
 		rx.by.ch = rx_message->channel;
 		rx.by.val = rx_message->value;

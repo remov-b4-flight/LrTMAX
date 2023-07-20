@@ -16,9 +16,11 @@
 #include "led.h"
 //! deine switch combination to invoke reset
 #define RESET_SW_PATTERN	0x81	//[Undo]+[Scene]
+//CC message display format on OLED.
 #define CC_MSG_2DG	"Ch%2u = %3u    S%1u"
+#define CC_MSG_3DG	"C%3u = %3u    S%1u"
 
-//! recived channel-value pair
+//! Received from MIDI channel-value pair
 typedef union ch_val_t {
 	uint16_t	wd;
 	struct cval_t {
