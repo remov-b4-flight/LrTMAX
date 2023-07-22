@@ -82,11 +82,9 @@ enum lr_matrix_t {
 #define NOTES_PER_SCENE	8
 //! Define key that designated for scene change.
 #define SCENE_BIT		7
-//! number of cc channels that LrTMAX controls.
-#define CC_COUNT		(ENC_COUNT * SCENE_COUNT)
 //!CC channel offset for Scene0-ENC0
 #define CC_CH_OFFSET	40
-#define NOTE_OFFSET	(CC_CH_OFFSET-8)
+#define NOTE_OFFSET	(CC_CH_OFFSET - 8)
 //!Assigned CC channel count per scene
 #define CC_CH_PER_SCENE	8
 

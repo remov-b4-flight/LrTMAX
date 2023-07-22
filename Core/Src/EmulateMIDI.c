@@ -52,11 +52,9 @@ void EmulateMIDI() {
 		do {
 			rx.wd = queue_dequeue(&midi_rx_que);
 			cc_scene = ((rx.by.ch - CC_CH_OFFSET) / CC_CH_PER_SCENE) & 0x07;
-			if (rx.by.ch > CC_CH_MAX) {
-				continue;
+			if ( CC_MIN_INUSE <= rx.by.ch && rx.by.ch < CC_MAX_INUSE ) {
+				MIDI_CC_Value[rx.by.ch] = rx.by.val;
 			}
-			MIDI_CC_Value[rx.by.ch] = rx.by.val;
-
 		} while  (queue_isempty(&midi_rx_que) != true);
 		SSD1306_SetScreen(ON);
 		sprintf(Msg_Buffer[0], ((rx.by.ch <= 99)? CC_MSG_2DG:CC_MSG_3DG), rx.by.ch, rx.by.val, cc_scene);
@@ -66,7 +64,6 @@ void EmulateMIDI() {
 		}
 		Msg_Print();
 		Start_MsgTimer(MSG_TIMER_DEFAULT);
-		return;
 	} else if (isAnyMoved) {
 		//! USB MIDI message structure for send
 		MIDI_MESSAGE	USBMIDI_TxMessage;
