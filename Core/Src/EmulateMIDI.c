@@ -131,7 +131,7 @@ void EmulateMIDI() {
 			//Send CC message from encoders.
 			uint8_t axis = (bitpos - ENC_SW_COUNT) / 2;
 			uint8_t channel = CC_CH_OFFSET + (LrScene * CC_CH_PER_SCENE) + axis;
-			(bitpos % 2) ? MIDI_CC_Inc(channel):MIDI_CC_Dec(channel);
+			(bitpos % 2) ? MIDI_CC_Dec(channel):MIDI_CC_Inc(channel);
 
 			USBMIDI_TxMessage.header = MIDI_CC_HEADER;
 			USBMIDI_TxMessage.status = MIDI_CC_STATUS;
