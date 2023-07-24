@@ -53,8 +53,6 @@
 
 /* Private function prototypes -----------------------------------------------*/
 /* USER CODE BEGIN PFP */
-static inline void MIDI_CC_Inc(uint8_t enc);
-static inline void MIDI_CC_Dec(uint8_t enc);
 static inline void TIM15_Restart();
 /* USER CODE END PFP */
 
@@ -96,8 +94,6 @@ extern ENC_SW_SCAN	ENCSW_Stat;
 extern char		*Msg_Buffer[];
 extern bool		LED_Timer_Update;
 extern bool		Msg_Timer_Update;
-extern uint8_t	MIDI_CC_Value[CC_CH_COUNT];
-extern uint8_t	LrScene;
 /* USER CODE END EV */
 
 /******************************************************************************/
@@ -198,12 +194,12 @@ void EXTI0_1_IRQHandler(void)
 			return;
 		} else if (op == ENC_MOVE_CW) {
 			ENCSW_Stat.nb.enc4 = ENC_MOVE_CW;
-			MIDI_CC_Inc(Lr_ENC4);
+//			MIDI_CC_Inc(Lr_ENC4);
 			isAnyMoved = true;
 			TIM15_Restart();
 		} else if (op == ENC_MOVE_CCW) {
 			ENCSW_Stat.nb.enc4 = ENC_MOVE_CCW;
-			MIDI_CC_Dec(Lr_ENC4);
+//			MIDI_CC_Dec(Lr_ENC4);
 			isAnyMoved = true;
 			TIM15_Restart();
 		} else if (op == ENC_STOPPED) {
@@ -241,12 +237,12 @@ void EXTI2_3_IRQHandler(void)
 			return;
 		} else if (op == ENC_MOVE_CW) {
 			ENCSW_Stat.nb.enc6 = ENC_MOVE_CW;
-			MIDI_CC_Inc(Lr_ENC6);
+//			MIDI_CC_Inc(Lr_ENC6);
 			isAnyMoved = true;
 			TIM15_Restart();
 		} else if(op == ENC_MOVE_CCW) {
 			ENCSW_Stat.nb.enc6 = ENC_MOVE_CCW;
-			MIDI_CC_Dec(Lr_ENC6);
+//			MIDI_CC_Dec(Lr_ENC6);
 			isAnyMoved = true;
 			TIM15_Restart();
 		} else if(op == ENC_STOPPED) {
@@ -286,13 +282,13 @@ void EXTI4_15_IRQHandler(void)
 			return;
 		} else if (op == ENC_MOVE_CW) {
 			ENCSW_Stat.nb.enc0 = ENC_MOVE_CW;
-			MIDI_CC_Inc(Lr_ENC0);
+//			MIDI_CC_Inc(Lr_ENC0);
 			isAnyMoved = true;
 			TIM15_Restart();
 			return;
 		} else if(op == ENC_MOVE_CCW) {
 			ENCSW_Stat.nb.enc0 = ENC_MOVE_CCW;
-			MIDI_CC_Dec(Lr_ENC0);
+//			MIDI_CC_Dec(Lr_ENC0);
 			isAnyMoved = true;
 			TIM15_Restart();
 			return;
@@ -318,13 +314,13 @@ void EXTI4_15_IRQHandler(void)
 			return;
 		} else if (op == ENC_MOVE_CW) {
 			ENCSW_Stat.nb.enc7 = ENC_MOVE_CW;
-			MIDI_CC_Inc(Lr_ENC7);
+//			MIDI_CC_Inc(Lr_ENC7);
 			isAnyMoved = true;
 			TIM15_Restart();
 			return;
 		} else if(op == ENC_MOVE_CCW) {
 			ENCSW_Stat.nb.enc7 = ENC_MOVE_CCW;
-			MIDI_CC_Dec(Lr_ENC7);
+//			MIDI_CC_Dec(Lr_ENC7);
 			isAnyMoved = true;
 			TIM15_Restart();
 			return;
@@ -350,13 +346,13 @@ void EXTI4_15_IRQHandler(void)
 			return;
 		} else if (op == ENC_MOVE_CW) {
 			ENCSW_Stat.nb.enc1 = ENC_MOVE_CW;
-			MIDI_CC_Inc(Lr_ENC1);
+//			MIDI_CC_Inc(Lr_ENC1);
 			isAnyMoved = true;
 			TIM15_Restart();
 			return;
 		} else if(op == ENC_MOVE_CCW) {
 			ENCSW_Stat.nb.enc1 = ENC_MOVE_CCW;
-			MIDI_CC_Dec(Lr_ENC1);
+//			MIDI_CC_Dec(Lr_ENC1);
 			isAnyMoved = true;
 			TIM15_Restart();
 			return;
@@ -382,13 +378,13 @@ void EXTI4_15_IRQHandler(void)
 			return;
 		} else if (op == ENC_MOVE_CW) {
 			ENCSW_Stat.nb.enc2 = ENC_MOVE_CW;
-			MIDI_CC_Inc(Lr_ENC2);
+//			MIDI_CC_Inc(Lr_ENC2);
 			isAnyMoved = true;
 			TIM15_Restart();
 			return;
 		} else if(op == ENC_MOVE_CCW) {
 			ENCSW_Stat.nb.enc2 = ENC_MOVE_CCW;
-			MIDI_CC_Dec(Lr_ENC2);
+//			MIDI_CC_Dec(Lr_ENC2);
 			isAnyMoved = true;
 			TIM15_Restart();
 			return;
@@ -414,13 +410,13 @@ void EXTI4_15_IRQHandler(void)
 			return;
 		} else if (op == ENC_MOVE_CW) {
 			ENCSW_Stat.nb.enc5 = ENC_MOVE_CW;
-			MIDI_CC_Inc(Lr_ENC5);
+//			MIDI_CC_Inc(Lr_ENC5);
 			isAnyMoved = true;
 			TIM15_Restart();
 			return;
 		} else if(op == ENC_MOVE_CCW) {
 			ENCSW_Stat.nb.enc5 = ENC_MOVE_CCW;
-			MIDI_CC_Dec(Lr_ENC5);
+//			MIDI_CC_Dec(Lr_ENC5);
 			isAnyMoved = true;
 			TIM15_Restart();
 			return;
@@ -446,13 +442,13 @@ void EXTI4_15_IRQHandler(void)
 			return;
 		} else if (op == ENC_MOVE_CW) {
 			ENCSW_Stat.nb.enc3 = ENC_MOVE_CW;
-			MIDI_CC_Inc(Lr_ENC3);
+//			MIDI_CC_Inc(Lr_ENC3);
 			isAnyMoved = true;
 			TIM15_Restart();
 			return;
 		} else if(op == ENC_MOVE_CCW) {
 			ENCSW_Stat.nb.enc3 = ENC_MOVE_CCW;
-			MIDI_CC_Dec(Lr_ENC3);
+//			MIDI_CC_Dec(Lr_ENC3);
 			isAnyMoved = true;
 			TIM15_Restart();
 			return;
@@ -626,22 +622,6 @@ void USB_IRQHandler(void)
 }
 
 /* USER CODE BEGIN 1 */
-/**
- * @brief	Rise CC message value
- * @param	enc Encoder axis
- */
-static inline void MIDI_CC_Inc(uint8_t enc) {
-	uint8_t index = CC_CH_OFFSET + (LrScene * CC_CH_PER_SCENE) + enc;
-	if (MIDI_CC_Value[index] < MIDI_CC_MAX ) MIDI_CC_Value[index]++;
-}
-/**
- * @brief	Fall CC message value
- * @param	enc Encoder axis
- */
-static inline void MIDI_CC_Dec(uint8_t enc) {
-	uint8_t index = CC_CH_OFFSET + (LrScene * CC_CH_PER_SCENE) + enc;
-	if (MIDI_CC_Value[index] >= (MIDI_CC_MIN + 1) ) MIDI_CC_Value[index]--;
-}
 /**
  * @brief	Restart TIM15 value 0 on 'one pulse mode'
  */

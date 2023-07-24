@@ -31,6 +31,25 @@ QUEUE	midi_rx_que;
 char 	msg_string[MSG_WIDTH + 2];
 
 /**
+ * @brief	Rise CC message value
+ * @param	channel to modify
+ */
+static void MIDI_CC_Inc(uint8_t channel) {
+	if (MIDI_CC_Value[channel] < MIDI_CC_MAX ) {
+		MIDI_CC_Value[channel]++;
+	}
+}
+/**
+ * @brief	Fall CC message value
+ * @param	channel to modify
+ */
+static void MIDI_CC_Dec(uint8_t channel) {
+	if (MIDI_CC_Value[channel] >= (MIDI_CC_MIN + 1) ) {
+		MIDI_CC_Value[channel]--;
+	}
+}
+
+/**
  * 	@brief	Initialize MIDI
  */
 void EmulateMIDI_Init(){
@@ -112,6 +131,7 @@ void EmulateMIDI() {
 			//Send CC message from encoders.
 			uint8_t axis = (bitpos - ENC_SW_COUNT) / 2;
 			uint8_t channel = CC_CH_OFFSET + (LrScene * CC_CH_PER_SCENE) + axis;
+			(bitpos % 2) ? MIDI_CC_Inc(channel):MIDI_CC_Dec(channel);
 
 			USBMIDI_TxMessage.header = MIDI_CC_HEADER;
 			USBMIDI_TxMessage.status = MIDI_CC_STATUS;
