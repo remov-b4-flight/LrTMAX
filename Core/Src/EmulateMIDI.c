@@ -11,7 +11,6 @@ extern	uint8_t	LrScene;
 extern	char *scene_name[SCENE_COUNT];
 extern	ENC_SW_DEFINE	prof_table[SCENE_COUNT][DEFINES_PER_SCENE];
 extern	char Msg_Buffer[MSG_LINES][MSG_WIDTH + 1];
-extern	bool isAnyMoved;
 //! Instance Handle of USB interface
 extern	USBD_HandleTypeDef *pInstance;
 
@@ -29,6 +28,11 @@ uint8_t	MIDI_CC_Value[CC_CH_COUNT];
 QUEUE	midi_rx_que;
 //OLED message buffer
 char 	msg_string[MSG_WIDTH + 2];
+// keyboard variable
+//! If true, ISR detected any Switch/Encoder was moved.
+bool	isAnyMoved;
+//! Switch pressed/Encoder moved status set by timer scanning.
+ENC_SW_SCAN	ENCSW_Stat;
 
 /**
  * @brief	Rise CC message value
@@ -85,7 +89,7 @@ void EmulateMIDI() {
 		Start_MsgTimer(MSG_TIMER_DEFAULT);
 	} else if (isAnyMoved) {
 		//! USB MIDI message structure for send
-		MIDI_MESSAGE	USBMIDI_TxMessage;
+		MIDI_MESSAGE	MIDI_TxMessage;
 		uint32_t	rstat = (ENCSW_Stat.wd);
 		uint8_t		bitpos = ntz32(ENCSW_Stat.wd);
 		bool 		isSendMIDIMessage = false;
@@ -119,10 +123,10 @@ void EmulateMIDI() {
 
 			if (isSendMIDIMessage == true) {
 				//Set 'Note ON'
-				USBMIDI_TxMessage.header = MIDI_NT_ON;
-				USBMIDI_TxMessage.status = MIDI_NT_ON_S;
-				USBMIDI_TxMessage.channel = note;
-				USBMIDI_TxMessage.value = MIDI_NT_ON_VELOCITY;
+				MIDI_TxMessage.header = MIDI_NT_ON;
+				MIDI_TxMessage.status = MIDI_NT_ON_S;
+				MIDI_TxMessage.channel = note;
+				MIDI_TxMessage.value = MIDI_NT_ON_VELOCITY;
 
 				prev_note = note;
 				isPrev_SwPush = true;
@@ -133,10 +137,10 @@ void EmulateMIDI() {
 			uint8_t channel = CC_CH_OFFSET + (LrScene * CC_CH_PER_SCENE) + axis;
 			(bitpos % 2) ? MIDI_CC_Dec(channel):MIDI_CC_Inc(channel);
 
-			USBMIDI_TxMessage.header = MIDI_CC_HEADER;
-			USBMIDI_TxMessage.status = MIDI_CC_STATUS;
-			USBMIDI_TxMessage.channel = channel;
-			USBMIDI_TxMessage.value = MIDI_CC_Value[channel];
+			MIDI_TxMessage.header = MIDI_CC_HEADER;
+			MIDI_TxMessage.status = MIDI_CC_STATUS;
+			MIDI_TxMessage.channel = channel;
+			MIDI_TxMessage.value = MIDI_CC_Value[channel];
 
 			isPrev_SwPush = false;
 
@@ -158,9 +162,9 @@ void EmulateMIDI() {
 		} else if (isPrev_SwPush == true && rstat == 0) {// Is switch/encoder push released?
 			//Send 'Note Off' message.
 			USBMIDI_TxMessage.header = MIDI_NT_OFF;
-			USBMIDI_TxMessage.status = MIDI_NT_OFF_S;
-			USBMIDI_TxMessage.channel = prev_note;
-			USBMIDI_TxMessage.value = MIDI_NT_OFF_VELO;
+			MIDI_TxMessage.status = MIDI_NT_OFF_S;
+			MIDI_TxMessage.channel = prev_note;
+			MIDI_TxMessage.value = MIDI_NT_OFF_VELO;
 
 			isSendMIDIMessage = true;
 			isPrev_SwPush = false;
@@ -168,7 +172,7 @@ void EmulateMIDI() {
 
 		if (isSendMIDIMessage == true) {
 			//Send MIDI message via USB.
-			USBD_LL_Transmit (pInstance, MIDI_IN_EP, (uint8_t *)&USBMIDI_TxMessage, MIDI_MESSAGE_LENGTH);
+			USBD_LL_Transmit (pInstance, MIDI_IN_EP, (uint8_t *)&MIDI_TxMessage, MIDI_MESSAGE_LENGTH);
 			isSendMIDIMessage = false;
 		}
 

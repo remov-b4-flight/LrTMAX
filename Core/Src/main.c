@@ -82,11 +82,6 @@ extern	PCD_HandleTypeDef hpcd_USB_FS;
 uint8_t	LrState;
 //! LrTMAX Scene index
 uint8_t	LrScene;
-// keyboard variable
-//! If true, ISR detected any Switch/Encoder was moved.
-bool	isAnyMoved;
-//! Switch pressed/Encoder moved status set by timer scanning.
-ENC_SW_SCAN	ENCSW_Stat;
 //! In key scanning whether Line selected to read for key matrix.
 uint8_t	ENCSW_Line;
 // OLED variables
