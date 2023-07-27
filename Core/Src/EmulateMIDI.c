@@ -161,7 +161,7 @@ void EmulateMIDI() {
 
 		} else if (isPrev_SwPush == true && rstat == 0) {// Is switch/encoder push released?
 			//Send 'Note Off' message.
-			USBMIDI_TxMessage.header = MIDI_NT_OFF;
+			MIDI_TxMessage.header = MIDI_NT_OFF;
 			MIDI_TxMessage.status = MIDI_NT_OFF_S;
 			MIDI_TxMessage.channel = prev_note;
 			MIDI_TxMessage.value = MIDI_NT_OFF_VELO;
