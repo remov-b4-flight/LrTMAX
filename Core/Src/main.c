@@ -82,11 +82,6 @@ extern	PCD_HandleTypeDef hpcd_USB_FS;
 uint8_t	LrState;
 //! LrTMAX Scene index
 uint8_t	LrScene;
-// keyboard variable
-//! If true, ISR detected any Switch/Encoder was moved.
-bool	isAnyMoved;
-//! Switch pressed/Encoder moved status set by timer scanning.
-ENC_SW_SCAN	ENCSW_Stat;
 //! In key scanning whether Line selected to read for key matrix.
 uint8_t	ENCSW_Line;
 // OLED variables
@@ -226,12 +221,14 @@ void Msg_Print(){
 
 /**
  * @brief start/stop matrix L0-L3 control
+ * @param conrtol Lr_MATRIX_START / Lr_MATRIX_STOP
  */
 static void matrix_control(uint8_t control) {
 	HAL_GPIO_WritePin(L0_GPIO_Port, L0_Pin, (control == Lr_MATRIX_START)? GPIO_PIN_SET : GPIO_PIN_RESET);
 	HAL_GPIO_WritePin(L1_GPIO_Port, L1_Pin, GPIO_PIN_RESET);
 	HAL_GPIO_WritePin(L2_GPIO_Port, L2_Pin, GPIO_PIN_RESET);
 	HAL_GPIO_WritePin(L3_GPIO_Port, L3_Pin, GPIO_PIN_RESET);
+	ENCSW_Line = L0;
 }
 /* USER CODE END 0 */
 
@@ -252,7 +249,6 @@ int main(void)
   HAL_Init();
 
   /* USER CODE BEGIN Init */
-	ENCSW_Line = L0;
 	Msg_Off_Flag = false;
 	Msg_Timer_Enable = false;
 	Msg_Timer_Count = MSG_TIMER_DEFAULT;
