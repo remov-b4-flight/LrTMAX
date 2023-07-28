@@ -79,7 +79,6 @@ void EmulateMIDI() {
 				MIDI_CC_Value[rx.by.ch] = rx.by.val;
 			}
 		} while  (queue_isempty(&midi_rx_que) != true);
-#if 0
 		SSD1306_SetScreen(ON);
 		sprintf(Msg_Buffer[0], ((rx.by.ch <= 99)? CC_MSG_2DG:CC_MSG_3DG), rx.by.ch, rx.by.val, cc_scene);
 		if (isPrev_Scene == true) {
@@ -88,7 +87,6 @@ void EmulateMIDI() {
 		}
 		Msg_Print();
 		Start_MsgTimer(MSG_TIMER_DEFAULT);
-#endif
 	} else if (isAnyMoved) {
 		//! USB MIDI message structure for send
 		MIDI_MESSAGE	MIDI_TxMessage;
@@ -145,7 +143,7 @@ void EmulateMIDI() {
 			MIDI_TxMessage.value = MIDI_CC_Value[channel];
 
 			isPrev_SwPush = false;
-#if 0
+
 			//Print Message to OLED & LEDs.
 			SSD1306_SetScreen(ON);
 			sprintf(msg_string, CC_MSG_2DG, channel, MIDI_CC_Value[channel], LrScene & 0x3);
@@ -159,7 +157,6 @@ void EmulateMIDI() {
 			Start_MsgTimer(MSG_TIMER_DEFAULT);
 
 			LED_SetPulse(prof_table[LrScene][bitpos].axis, prof_table[LrScene][bitpos].color, prof_table[LrScene][bitpos].period);
-#endif
 			isSendMIDIMessage = true;
 
 		} else if (isPrev_SwPush == true && rstat == 0) {// Is switch/encoder push released?
