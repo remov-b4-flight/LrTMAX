@@ -186,20 +186,19 @@ void EXTI0_1_IRQHandler(void)
 
 	// Encoder 4 (EXTI[0:1] / PF[0:1])
 	if ( pr & PRMASK_E4 ) {
+		if ( !(htim15.Instance->SR & TIM_SR_UIF)) {
+			goto exit_enc4;
+		}
 		uint8_t	r4 = (ENC4_GPIO_Port->IDR) & ENC_MASK;
 		uint8_t op = enc_table[enc_prev[Lr_ENC4]][r4];
 		enc_prev[Lr_ENC4] = r4;
 
-		if ( !(htim15.Instance->SR & TIM_SR_UIF)) {
-			return;
-		} else if (op == ENC_MOVE_CW) {
+		if (op == ENC_MOVE_CW) {
 			ENCSW_Stat.nb.enc4 = ENC_MOVE_CW;
-//			MIDI_CC_Inc(Lr_ENC4);
 			isAnyMoved = true;
 			TIM15_Restart();
 		} else if (op == ENC_MOVE_CCW) {
 			ENCSW_Stat.nb.enc4 = ENC_MOVE_CCW;
-//			MIDI_CC_Dec(Lr_ENC4);
 			isAnyMoved = true;
 			TIM15_Restart();
 		} else if (op == ENC_STOPPED) {
@@ -210,7 +209,7 @@ void EXTI0_1_IRQHandler(void)
 			isAnyMoved = false;
 		}
 	}
-
+exit_enc4:
   /* USER CODE END EXTI0_1_IRQn 0 */
   HAL_GPIO_EXTI_IRQHandler(ENC4A_Pin);
   HAL_GPIO_EXTI_IRQHandler(ENC4B_Pin);
@@ -229,20 +228,20 @@ void EXTI2_3_IRQHandler(void)
 
 	// Encoder 6 (EXTI[2:3] / PB[2:3])
 	if ( pr & PRMASK_E6 ) {
+		if ( !(htim15.Instance->SR & TIM_SR_UIF)) {
+			goto exit_enc6;
+		}
+
 		uint8_t	r6 = (ENC6_GPIO_Port->IDR >> 2) & ENC_MASK;
 		uint8_t op = enc_table[enc_prev[Lr_ENC6]][r6];
 		enc_prev[Lr_ENC6] = r6;
 
-		if ( !(htim15.Instance->SR & TIM_SR_UIF)) {
-			return;
-		} else if (op == ENC_MOVE_CW) {
+		if (op == ENC_MOVE_CW) {
 			ENCSW_Stat.nb.enc6 = ENC_MOVE_CW;
-//			MIDI_CC_Inc(Lr_ENC6);
 			isAnyMoved = true;
 			TIM15_Restart();
 		} else if(op == ENC_MOVE_CCW) {
 			ENCSW_Stat.nb.enc6 = ENC_MOVE_CCW;
-//			MIDI_CC_Dec(Lr_ENC6);
 			isAnyMoved = true;
 			TIM15_Restart();
 		} else if(op == ENC_STOPPED) {
@@ -253,7 +252,7 @@ void EXTI2_3_IRQHandler(void)
 			isAnyMoved = false;
 		}
 	}
-
+exit_enc6:
   /* USER CODE END EXTI2_3_IRQn 0 */
   HAL_GPIO_EXTI_IRQHandler(ENC6A_Pin);
   HAL_GPIO_EXTI_IRQHandler(ENC6B_Pin);
@@ -272,23 +271,27 @@ void EXTI4_15_IRQHandler(void)
 
 	// Encoder 0 (EXTI[4:5] / PA[4:5]
 	if(pr & PRMASK_E0){
-		uint8_t	r0 = ((ENC0_GPIO_Port->IDR) >> 4 ) & ENC_MASK;
-		uint8_t op = enc_table[enc_prev[Lr_ENC0]][r0];
-		enc_prev[Lr_ENC0] = r0;
+		//Clear Interrupt source
 		HAL_GPIO_EXTI_IRQHandler(GPIO_PIN_4);
 		HAL_GPIO_EXTI_IRQHandler(GPIO_PIN_5);
 
+		//If de-chatter timer not flagged, igore it.
 		if ( !(htim15.Instance->SR & TIM_SR_UIF)) {
 			return;
-		} else if (op == ENC_MOVE_CW) {
+		}
+
+		//usual ISR
+		uint8_t	r0 = ((ENC0_GPIO_Port->IDR) >> 4 ) & ENC_MASK;
+		uint8_t op = enc_table[enc_prev[Lr_ENC0]][r0];
+		enc_prev[Lr_ENC0] = r0;
+
+		if (op == ENC_MOVE_CW) {
 			ENCSW_Stat.nb.enc0 = ENC_MOVE_CW;
-//			MIDI_CC_Inc(Lr_ENC0);
 			isAnyMoved = true;
 			TIM15_Restart();
 			return;
 		} else if(op == ENC_MOVE_CCW) {
 			ENCSW_Stat.nb.enc0 = ENC_MOVE_CCW;
-//			MIDI_CC_Dec(Lr_ENC0);
 			isAnyMoved = true;
 			TIM15_Restart();
 			return;
@@ -304,23 +307,24 @@ void EXTI4_15_IRQHandler(void)
 
 	// Encoder 7 (EXTI[6:7] / PB[6:7])
 	if (pr & PRMASK_E7) {
-		uint8_t	r7 = ((ENC7_GPIO_Port->IDR) >> 6 ) & ENC_MASK;
-		uint8_t op = enc_table[enc_prev[Lr_ENC7]][r7];
-		enc_prev[Lr_ENC7] = r7;
 		HAL_GPIO_EXTI_IRQHandler(GPIO_PIN_6);
 		HAL_GPIO_EXTI_IRQHandler(GPIO_PIN_7);
 
 		if ( !(htim15.Instance->SR & TIM_SR_UIF)) {
 			return;
-		} else if (op == ENC_MOVE_CW) {
+		}
+
+		uint8_t	r7 = ((ENC7_GPIO_Port->IDR) >> 6 ) & ENC_MASK;
+		uint8_t op = enc_table[enc_prev[Lr_ENC7]][r7];
+		enc_prev[Lr_ENC7] = r7;
+
+		if (op == ENC_MOVE_CW) {
 			ENCSW_Stat.nb.enc7 = ENC_MOVE_CW;
-//			MIDI_CC_Inc(Lr_ENC7);
 			isAnyMoved = true;
 			TIM15_Restart();
 			return;
 		} else if(op == ENC_MOVE_CCW) {
 			ENCSW_Stat.nb.enc7 = ENC_MOVE_CCW;
-//			MIDI_CC_Dec(Lr_ENC7);
 			isAnyMoved = true;
 			TIM15_Restart();
 			return;
@@ -336,23 +340,24 @@ void EXTI4_15_IRQHandler(void)
 
 	//Encoder 1 (EXTI[8:9] / PB[8:9])
 	if(pr & PRMASK_E1){
-		uint8_t	r1 = ((ENC1_GPIO_Port->IDR) >> 8) & ENC_MASK;
-		uint8_t op = enc_table[enc_prev[Lr_ENC1]][r1];
-		enc_prev[Lr_ENC1] = r1;
 		HAL_GPIO_EXTI_IRQHandler(GPIO_PIN_8);
 		HAL_GPIO_EXTI_IRQHandler(GPIO_PIN_9);
 
 		if ( !(htim15.Instance->SR & TIM_SR_UIF)) {
 			return;
-		} else if (op == ENC_MOVE_CW) {
+		}
+
+		uint8_t	r1 = ((ENC1_GPIO_Port->IDR) >> 8) & ENC_MASK;
+		uint8_t op = enc_table[enc_prev[Lr_ENC1]][r1];
+		enc_prev[Lr_ENC1] = r1;
+
+		if (op == ENC_MOVE_CW) {
 			ENCSW_Stat.nb.enc1 = ENC_MOVE_CW;
-//			MIDI_CC_Inc(Lr_ENC1);
 			isAnyMoved = true;
 			TIM15_Restart();
 			return;
 		} else if(op == ENC_MOVE_CCW) {
 			ENCSW_Stat.nb.enc1 = ENC_MOVE_CCW;
-//			MIDI_CC_Dec(Lr_ENC1);
 			isAnyMoved = true;
 			TIM15_Restart();
 			return;
@@ -368,23 +373,24 @@ void EXTI4_15_IRQHandler(void)
 
 	//Encoder 2 (EXTI[10:11] / PB[10:11])
 	if ( pr & PRMASK_E2 ) {
-		uint8_t	r2 = (ENC2_GPIO_Port->IDR >> 10 ) & ENC_MASK;
-		uint8_t op = enc_table[enc_prev[Lr_ENC2]][r2];
-		enc_prev[Lr_ENC2] = r2;
 		HAL_GPIO_EXTI_IRQHandler(GPIO_PIN_10);
 		HAL_GPIO_EXTI_IRQHandler(GPIO_PIN_11);
 
 		if ( !(htim15.Instance->SR & TIM_SR_UIF)) {
 			return;
-		} else if (op == ENC_MOVE_CW) {
+		}
+
+		uint8_t	r2 = (ENC2_GPIO_Port->IDR >> 10 ) & ENC_MASK;
+		uint8_t op = enc_table[enc_prev[Lr_ENC2]][r2];
+		enc_prev[Lr_ENC2] = r2;
+
+		if (op == ENC_MOVE_CW) {
 			ENCSW_Stat.nb.enc2 = ENC_MOVE_CW;
-//			MIDI_CC_Inc(Lr_ENC2);
 			isAnyMoved = true;
 			TIM15_Restart();
 			return;
 		} else if(op == ENC_MOVE_CCW) {
 			ENCSW_Stat.nb.enc2 = ENC_MOVE_CCW;
-//			MIDI_CC_Dec(Lr_ENC2);
 			isAnyMoved = true;
 			TIM15_Restart();
 			return;
@@ -400,23 +406,24 @@ void EXTI4_15_IRQHandler(void)
 
 	//Encoder 5 (EXTI[12:13] / PA[12],PC[13])
 	if ( pr & PRMASK_E5 ) {
- 		uint8_t r5 = ( (ENC5A_GPIO_Port->IDR & ENC5A_MASK) | (ENC5B_GPIO_Port->IDR & ENC5B_MASK) ) >> 12;
-		uint8_t op = enc_table[enc_prev[Lr_ENC5]][r5];
-		enc_prev[Lr_ENC5] = r5;
 		HAL_GPIO_EXTI_IRQHandler(GPIO_PIN_12);
 		HAL_GPIO_EXTI_IRQHandler(GPIO_PIN_13);
 
 		if ( !(htim15.Instance->SR & TIM_SR_UIF)) {
 			return;
-		} else if (op == ENC_MOVE_CW) {
+		}
+
+ 		uint8_t r5 = ( (ENC5A_GPIO_Port->IDR & ENC5A_MASK) | (ENC5B_GPIO_Port->IDR & ENC5B_MASK) ) >> 12;
+		uint8_t op = enc_table[enc_prev[Lr_ENC5]][r5];
+		enc_prev[Lr_ENC5] = r5;
+
+		if (op == ENC_MOVE_CW) {
 			ENCSW_Stat.nb.enc5 = ENC_MOVE_CW;
-//			MIDI_CC_Inc(Lr_ENC5);
 			isAnyMoved = true;
 			TIM15_Restart();
 			return;
 		} else if(op == ENC_MOVE_CCW) {
 			ENCSW_Stat.nb.enc5 = ENC_MOVE_CCW;
-//			MIDI_CC_Dec(Lr_ENC5);
 			isAnyMoved = true;
 			TIM15_Restart();
 			return;
@@ -432,23 +439,24 @@ void EXTI4_15_IRQHandler(void)
 
 	//Encoder 3 (EXTI[14:15] / PC[14:15])
 	if (pr & PRMASK_E3) { //EXTI14&15
-		uint8_t	r3 = ( (ENC3_GPIO_Port->IDR) >> 14 ) & ENC_MASK;
-		uint8_t op = enc_table[enc_prev[Lr_ENC3]][r3];
-		enc_prev[Lr_ENC3] = r3;
 		HAL_GPIO_EXTI_IRQHandler(GPIO_PIN_14);
 		HAL_GPIO_EXTI_IRQHandler(GPIO_PIN_15);
 
 		if ( !(htim15.Instance->SR & TIM_SR_UIF)) {
 			return;
-		} else if (op == ENC_MOVE_CW) {
+		}
+
+		uint8_t	r3 = ( (ENC3_GPIO_Port->IDR) >> 14 ) & ENC_MASK;
+		uint8_t op = enc_table[enc_prev[Lr_ENC3]][r3];
+		enc_prev[Lr_ENC3] = r3;
+
+		if (op == ENC_MOVE_CW) {
 			ENCSW_Stat.nb.enc3 = ENC_MOVE_CW;
-//			MIDI_CC_Inc(Lr_ENC3);
 			isAnyMoved = true;
 			TIM15_Restart();
 			return;
 		} else if(op == ENC_MOVE_CCW) {
 			ENCSW_Stat.nb.enc3 = ENC_MOVE_CCW;
-//			MIDI_CC_Dec(Lr_ENC3);
 			isAnyMoved = true;
 			TIM15_Restart();
 			return;
