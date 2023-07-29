@@ -203,11 +203,7 @@ void EXTI0_1_IRQHandler(void)
 			TIM15_Restart();
 		} else if (op == ENC_STOPPED) {
 			ENCSW_Stat.nb.enc4 = ENC_STOPPED;
-#if 1
 			isAnyMoved = false;
-#else
-			isAnyMoved = true;
-#endif
 		} else {
 			ENCSW_Stat.nb.enc4 = ENC_STOPPED;
 			isAnyMoved = false;
@@ -250,11 +246,7 @@ void EXTI2_3_IRQHandler(void)
 			TIM15_Restart();
 		} else if(op == ENC_STOPPED) {
 			ENCSW_Stat.nb.enc6 = ENC_STOPPED;
-#if 1
 			isAnyMoved = false;
-#else
-			isAnyMoved = true;
-#endif
 		} else {
 			ENCSW_Stat.nb.enc6 = ENC_STOPPED;
 			isAnyMoved = false;
@@ -305,11 +297,7 @@ void EXTI4_15_IRQHandler(void)
 			return;
 		} else if(op == ENC_STOPPED) {
 			ENCSW_Stat.nb.enc0 = ENC_STOPPED;
-#if 1
 			isAnyMoved = false;
-#else
-			isAnyMoved = true;
-#endif
 			return;
 		} else {
 			ENCSW_Stat.nb.enc0 = ENC_STOPPED;
@@ -342,11 +330,7 @@ void EXTI4_15_IRQHandler(void)
 			return;
 		} else if(op == ENC_STOPPED) {
 			ENCSW_Stat.nb.enc7 = ENC_STOPPED;
-#if 1
 			isAnyMoved = false;
-#else
-			isAnyMoved = true;
-#endif
 			return;
 		} else {
 			ENCSW_Stat.nb.enc7 = ENC_STOPPED;
@@ -379,11 +363,7 @@ void EXTI4_15_IRQHandler(void)
 			return;
 		} else if(op == ENC_STOPPED) {
 			ENCSW_Stat.nb.enc1 = ENC_STOPPED;
-#if 1
 			isAnyMoved = false;
-#else
-			isAnyMoved = true;
-#endif
 			return;
 		} else {
 			ENCSW_Stat.nb.enc1 = ENC_STOPPED;
@@ -416,11 +396,7 @@ void EXTI4_15_IRQHandler(void)
 			return;
 		} else if(op == ENC_STOPPED) {
 			ENCSW_Stat.nb.enc2 = ENC_STOPPED;
-#if 1
 			isAnyMoved = false;
-#else
-			isAnyMoved = true;
-#endif
 			return;
 		} else {
 			ENCSW_Stat.nb.enc2 = ENC_STOPPED;
@@ -453,11 +429,7 @@ void EXTI4_15_IRQHandler(void)
 			return;
 		} else if(op == ENC_STOPPED) {
 			ENCSW_Stat.nb.enc5 = ENC_STOPPED;
-#if 1
 			isAnyMoved = false;
-#else
-			isAnyMoved = true;
-#endif
 			return;
 		} else {
 			ENCSW_Stat.nb.enc5 = ENC_STOPPED;
@@ -490,11 +462,7 @@ void EXTI4_15_IRQHandler(void)
 			return;
 		} else if(op == ENC_STOPPED) {
 			ENCSW_Stat.nb.enc3 = ENC_STOPPED;
-#if 1
 			isAnyMoved = false;
-#else
-			isAnyMoved = true;
-#endif
 			return;
 		} else {
 			ENCSW_Stat.nb.enc3 = ENC_STOPPED;
