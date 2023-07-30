@@ -276,7 +276,7 @@ void EXTI4_15_IRQHandler(void)
 		HAL_GPIO_EXTI_IRQHandler(GPIO_PIN_5);
 
 		//If de-chatter timer not flagged, igore it.
-		if ( (htim15.Instance->SR & TIM_SR_UIF) == false) {
+		if ( (htim15.Instance->SR & TIM_SR_UIF) == 0) {
 			return;
 		}
 
@@ -306,7 +306,7 @@ void EXTI4_15_IRQHandler(void)
 	}
 
 	// Encoder 7 (EXTI[6:7] / PB[6:7])
-	if (pr & PRMASK_E7) {
+	if ( pr & PRMASK_E7 ) {
 		HAL_GPIO_EXTI_IRQHandler(GPIO_PIN_6);
 		HAL_GPIO_EXTI_IRQHandler(GPIO_PIN_7);
 
@@ -339,11 +339,11 @@ void EXTI4_15_IRQHandler(void)
 	}
 
 	//Encoder 1 (EXTI[8:9] / PB[8:9])
-	if(pr & PRMASK_E1){
+	if( pr & PRMASK_E1 ){
 		HAL_GPIO_EXTI_IRQHandler(GPIO_PIN_8);
 		HAL_GPIO_EXTI_IRQHandler(GPIO_PIN_9);
 
-		if ( (htim15.Instance->SR & TIM_SR_UIF) == false) {
+		if ( (htim15.Instance->SR & TIM_SR_UIF) == 0) {
 			return;
 		}
 
@@ -376,7 +376,7 @@ void EXTI4_15_IRQHandler(void)
 		HAL_GPIO_EXTI_IRQHandler(GPIO_PIN_10);
 		HAL_GPIO_EXTI_IRQHandler(GPIO_PIN_11);
 
-		if ( (htim15.Instance->SR & TIM_SR_UIF) == false) {
+		if ( (htim15.Instance->SR & TIM_SR_UIF) == 0) {
 			return;
 		}
 
@@ -409,7 +409,7 @@ void EXTI4_15_IRQHandler(void)
 		HAL_GPIO_EXTI_IRQHandler(GPIO_PIN_12);
 		HAL_GPIO_EXTI_IRQHandler(GPIO_PIN_13);
 
-		if ( (htim15.Instance->SR & TIM_SR_UIF) == false) {
+		if ( (htim15.Instance->SR & TIM_SR_UIF) == 0) {
 			return;
 		}
 
@@ -438,11 +438,11 @@ void EXTI4_15_IRQHandler(void)
 	}
 
 	//Encoder 3 (EXTI[14:15] / PC[14:15])
-	if (pr & PRMASK_E3) { //EXTI14&15
+	if ( pr & PRMASK_E3 ) { //EXTI14&15
 		HAL_GPIO_EXTI_IRQHandler(GPIO_PIN_14);
 		HAL_GPIO_EXTI_IRQHandler(GPIO_PIN_15);
 
-		if ( (htim15.Instance->SR & TIM_SR_UIF) == false) {
+		if ( (htim15.Instance->SR & TIM_SR_UIF) == 0) {
 			return;
 		}
 
