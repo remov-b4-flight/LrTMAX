@@ -30,7 +30,7 @@ typedef union enc_sw_scan_t {
 		uint8_t enc6:2;	//Rotary encoder
 		uint8_t enc7:2;	//Rotary encoder
     } nb;
-} ENC_SW_SCAN;
+} ENCSW_SCAN;
 
 //! LrTMAX State definition
 enum lr_state_t {

@@ -78,9 +78,10 @@ enum enc_move_t {
 #define ENC5A_MASK	0x1000
 #define ENC5B_MASK	0x2000
 
+#define TIM15_RUNNING	0
+
 // Definitions for Matrix
 #define LxMASK	0x0F
-
 /* USER CODE END EM */
 
 /* Exported functions prototypes ---------------------------------------------*/

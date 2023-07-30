@@ -215,7 +215,7 @@ void Start_MsgTimer(uint32_t tick){
 	Msg_Timer_Enable = true;
 }
 
-void Msg_Print(){
+inline void Msg_Print() {
 	isMsgFlash = true;
 }
 
@@ -329,11 +329,11 @@ int main(void)
 		//USB device configured by host
 		SSD1306_SetScreen(ON);
 
-		matrix_control(Lr_MATRIX_START);		//Initialize L0-3.
+		matrix_control(Lr_MATRIX_START);	//Initialize L0-3.
 		HAL_TIM_Base_Start_IT(&htim1);		//Start Switch matrix timer.
 
 		htim15.Instance->CNT = TIM_PERIOD_DCHAT;
-		HAL_TIM_Base_Start(&htim15);      //Start De-chatter timer.
+		HAL_TIM_Base_Start(&htim15);		//Start De-chatter timer.
 		Start_All_Encoders();				//Start rotary encoder.
 
 #ifdef DEBUG

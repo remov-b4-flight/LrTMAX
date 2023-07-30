@@ -63,7 +63,7 @@ uint32_t previous_scan = 0;
 uint32_t previous_key = 0;
 uint32_t current_key = 0;
 //! Value of scanned from key matrix.
-ENC_SW_SCAN current_scan;
+ENCSW_SCAN current_scan;
 uint8_t	enc_prev[ENC_COUNT];
 uint8_t	enc_timer[ENC_COUNT];
 
@@ -90,7 +90,7 @@ extern TIM_HandleTypeDef htim3;
 extern TIM_HandleTypeDef htim15;
 extern uint8_t	ENCSW_Line;
 extern bool		isAnyMoved;
-extern ENC_SW_SCAN	ENCSW_Stat;
+extern ENCSW_SCAN	ENCSW_Stat;
 extern char		*Msg_Buffer[];
 extern bool		LED_Timer_Update;
 extern bool		Msg_Timer_Update;
@@ -186,7 +186,7 @@ void EXTI0_1_IRQHandler(void)
 
 	// Encoder 4 (EXTI[0:1] / PF[0:1])
 	if ( pr & PRMASK_E4 ) {
-		if ( (htim15.Instance->SR & TIM_SR_UIF) == false) {
+		if ( (htim15.Instance->SR & TIM_SR_UIF) == TIM15_RUNNING ) {
 			goto exit_enc4;
 		}
 		uint8_t	r4 = (ENC4_GPIO_Port->IDR) & ENC_MASK;
@@ -228,7 +228,7 @@ void EXTI2_3_IRQHandler(void)
 
 	// Encoder 6 (EXTI[2:3] / PB[2:3])
 	if ( pr & PRMASK_E6 ) {
-		if ( (htim15.Instance->SR & TIM_SR_UIF) == false) {
+		if ( (htim15.Instance->SR & TIM_SR_UIF) == TIM15_RUNNING ) {
 			goto exit_enc6;
 		}
 
@@ -276,7 +276,7 @@ void EXTI4_15_IRQHandler(void)
 		HAL_GPIO_EXTI_IRQHandler(GPIO_PIN_5);
 
 		//If de-chatter timer not flagged, igore it.
-		if ( (htim15.Instance->SR & TIM_SR_UIF) == 0) {
+		if ( (htim15.Instance->SR & TIM_SR_UIF) == TIM15_RUNNING ) {
 			return;
 		}
 
@@ -310,7 +310,7 @@ void EXTI4_15_IRQHandler(void)
 		HAL_GPIO_EXTI_IRQHandler(GPIO_PIN_6);
 		HAL_GPIO_EXTI_IRQHandler(GPIO_PIN_7);
 
-		if ( (htim15.Instance->SR & TIM_SR_UIF) == false) {
+		if ( (htim15.Instance->SR & TIM_SR_UIF) == TIM15_RUNNING ) {
 			return;
 		}
 
@@ -343,7 +343,7 @@ void EXTI4_15_IRQHandler(void)
 		HAL_GPIO_EXTI_IRQHandler(GPIO_PIN_8);
 		HAL_GPIO_EXTI_IRQHandler(GPIO_PIN_9);
 
-		if ( (htim15.Instance->SR & TIM_SR_UIF) == 0) {
+		if ( (htim15.Instance->SR & TIM_SR_UIF) == TIM15_RUNNING ) {
 			return;
 		}
 
@@ -376,7 +376,7 @@ void EXTI4_15_IRQHandler(void)
 		HAL_GPIO_EXTI_IRQHandler(GPIO_PIN_10);
 		HAL_GPIO_EXTI_IRQHandler(GPIO_PIN_11);
 
-		if ( (htim15.Instance->SR & TIM_SR_UIF) == 0) {
+		if ( (htim15.Instance->SR & TIM_SR_UIF) == TIM15_RUNNING ) {
 			return;
 		}
 
@@ -409,7 +409,7 @@ void EXTI4_15_IRQHandler(void)
 		HAL_GPIO_EXTI_IRQHandler(GPIO_PIN_12);
 		HAL_GPIO_EXTI_IRQHandler(GPIO_PIN_13);
 
-		if ( (htim15.Instance->SR & TIM_SR_UIF) == 0) {
+		if ( (htim15.Instance->SR & TIM_SR_UIF) == TIM15_RUNNING ) {
 			return;
 		}
 
@@ -442,7 +442,7 @@ void EXTI4_15_IRQHandler(void)
 		HAL_GPIO_EXTI_IRQHandler(GPIO_PIN_14);
 		HAL_GPIO_EXTI_IRQHandler(GPIO_PIN_15);
 
-		if ( (htim15.Instance->SR & TIM_SR_UIF) == 0) {
+		if ( (htim15.Instance->SR & TIM_SR_UIF) == TIM15_RUNNING) {
 			return;
 		}
 

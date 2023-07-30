@@ -6,7 +6,7 @@
 #include "EmulateMIDI.h"
 #include "queue.h"
 
-extern	ENC_SW_SCAN	ENCSW_Stat;
+extern	ENCSW_SCAN	ENCSW_Stat;
 extern	uint8_t	LrScene;
 extern	char *scene_name[SCENE_COUNT];
 extern	ENC_SW_DEFINE	prof_table[SCENE_COUNT][DEFINES_PER_SCENE];
@@ -32,7 +32,7 @@ char 	msg_string[MSG_WIDTH + 2];
 //! If true, ISR detected any Switch/Encoder was moved.
 bool	isAnyMoved;
 //! Switch pressed/Encoder moved status set by timer scanning.
-ENC_SW_SCAN	ENCSW_Stat;
+ENCSW_SCAN	ENCSW_Stat;
 
 /**
  * @brief	Rise CC message value
