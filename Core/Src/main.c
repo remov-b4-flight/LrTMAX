@@ -105,7 +105,7 @@ bool	isLEDsendpulse;
 bool	LED_Timer_Update;
 
 // Scene related
-extern	ENC_SW_DEFINE	prof_table[SCENE_COUNT][DEFINES_PER_SCENE];
+extern	PROF_DEFINE	prof_table[SCENE_COUNT][DEFINES_PER_SCENE];
 extern	char 		*scene_name[SCENE_COUNT];
 extern	uint8_t		led_axis_table[DEFINES_PER_SCENE];
 
@@ -139,7 +139,7 @@ static void MX_TIM15_Init(void);
 /**
  * @brief jump into system memory (DFU bootloader)
  */
-void Jump2SystemMemory() {
+static void Jump2SystemMemory() {
 	void (*SysMemBootJump)(void);
 
 	/*

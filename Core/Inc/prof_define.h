@@ -8,7 +8,7 @@ typedef struct enc_sw_define_t {
 	uint8_t	axis;
 	uint8_t color;
 	uint8_t period;
-} ENC_SW_DEFINE;
+} PROF_DEFINE;
 
 #define RIGHTA	"\x7b"
 #define LEFTA	"\x7c"

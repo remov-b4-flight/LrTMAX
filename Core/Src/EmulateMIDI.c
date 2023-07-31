@@ -9,7 +9,7 @@
 extern	ENCSW_SCAN	ENCSW_Stat;
 extern	uint8_t	LrScene;
 extern	char *scene_name[SCENE_COUNT];
-extern	ENC_SW_DEFINE	prof_table[SCENE_COUNT][DEFINES_PER_SCENE];
+extern	PROF_DEFINE	prof_table[SCENE_COUNT][DEFINES_PER_SCENE];
 extern	char Msg_Buffer[MSG_LINES][MSG_WIDTH + 1];
 //! Instance Handle of USB interface
 extern	USBD_HandleTypeDef *pInstance;
@@ -89,7 +89,7 @@ void EmulateMIDI() {
 		Start_MsgTimer(MSG_TIMER_DEFAULT);
 	} else if (isAnyMoved) {
 		//! USB MIDI message structure for send
-		MIDI_MESSAGE	MIDI_TxMessage;
+		MIDI_MSG	MIDI_TxMessage;
 		uint32_t	rstat = (ENCSW_Stat.wd);
 		uint8_t		bitpos = ntz32(ENCSW_Stat.wd);
 		bool 		isSendMIDIMessage = false;

@@ -52,7 +52,7 @@ const uint8_t LED_Scene[SCENE_COUNT][LED_COUNT] = {
 	{LED_OFF,	LED_RED,	LED_ORANGE,	LED_YELLOW,	LED_GREEN,	LED_CYAN,	LED_BLUE,	LED_MAGENTA},//Scene3
 };
 //! @union Switches/Encoders configuration table
-const ENC_SW_DEFINE prof_table[SCENE_COUNT][DEFINES_PER_SCENE] = {
+const PROF_DEFINE prof_table[SCENE_COUNT][DEFINES_PER_SCENE] = {
 	{	//Scene0 switches/encoders push	(Library Tab)
 /*N00*/	{.axis = 0,	.color = LED_BLUE,		.period = LED_TIM_HALF},	//L0M0	SW1 'UNDO'
 /*N01*/	{.axis = 0,	.color = LED_YELLOW,	.period = LED_TIM_NORM},	//L0M1	SW2

@@ -36,7 +36,7 @@ typedef struct midi_message_t {
 	uint8_t	status;
 	uint8_t	channel;
 	uint8_t	value;
-} MIDI_MESSAGE;
+} MIDI_MSG;
 
 #ifdef __cplusplus
 }
