@@ -23,6 +23,7 @@
 #include "usb_device.h"
 #include "usbd_core.h"
 #include "usbd_desc.h"
+#include "usbd_hid.h"
 
 /* USER CODE BEGIN Includes */
 #include "usbd_midi.h"
@@ -96,6 +97,7 @@ void MX_USB_DEVICE_Init(void)
   {
     Error_Handler();
   }
+
   /* USER CODE BEGIN USB_DEVICE_Init_PostTreatment */
 #endif
   /* USER CODE END USB_DEVICE_Init_PostTreatment */
