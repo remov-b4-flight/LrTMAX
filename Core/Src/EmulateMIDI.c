@@ -6,7 +6,6 @@
 #include "EmulateMIDI.h"
 #include "queue.h"
 
-extern	ENCSW_SCAN	ENCSW_Stat;
 extern	uint8_t	LrScene;
 extern	char *scene_name[SCENE_COUNT];
 extern	PROF_DEFINE	prof_table[SCENE_COUNT][DEFINES_PER_SCENE];
@@ -29,10 +28,14 @@ QUEUE	midi_rx_que;
 //OLED message buffer
 char 	msg_string[MSG_WIDTH + 2];
 // keyboard variable
-//! If true, ISR detected any Switch/Encoder was moved.
-bool	isAnyMoved;
+//! If true, ISR detected any Switch was pushed.
+bool	isAnyMatrixPushed;
+bool	isAnyEncoderMoved;
 //! Switch pressed/Encoder moved status set by timer scanning.
-ENCSW_SCAN	ENCSW_Stat;
+MTRX_SCAN	MTRX_Stat;
+ENC_SCAN	ENC_Stat;
+//! USB MIDI message structure for send
+MIDI_MSG	MIDI_TxMessage;
 
 /**
  * @brief	Rise CC message value
@@ -69,6 +72,7 @@ void EmulateMIDI_Init(){
  *	@pre	ENCSW_Stat	current Switches/Encoders status
  */
 void EmulateMIDI() {
+	bool isSendMIDIMessage = false;
 	if (queue_isempty(&midi_rx_que) != true) {
 		CH_VAL rx;
 		uint8_t cc_scene = 0;
@@ -87,17 +91,14 @@ void EmulateMIDI() {
 		}
 		Msg_Print();
 		Start_MsgTimer(MSG_TIMER_DEFAULT);
-	} else if (isAnyMoved) {
-		//! USB MIDI message structure for send
-		MIDI_MSG	MIDI_TxMessage;
-		uint32_t	rstat = (ENCSW_Stat.wd);
-		uint8_t		bitpos = ntz32(ENCSW_Stat.wd);
-		bool 		isSendMIDIMessage = false;
+	} else if ( isAnyMatrixPushed ) {
+		uint16_t	rstat = (MTRX_Stat.wd);
+		uint8_t		bitpos = ntz16(MTRX_Stat.wd);
 
-		if ( ENCSW_Stat.wd & MASK_ENC_SW ) { //Check Matrix switches
+		if ( MTRX_Stat.wd != 0) { //Check Matrix switches
 			//Send 'Note On' message from switches/encoders matrix.
-			uint8_t	note = ((ENCSW_Stat.wd & MASK_ENCPUSH)? NOTE_OFFSET : 0) + (LrScene * NOTES_PER_SCENE) + bitpos;
-			if (ENCSW_Stat.wd == RESET_SW_PATTERN) {
+			uint8_t	note = ((MTRX_Stat.wd & MASK_ENCPUSH)? NOTE_OFFSET : 0) + (LrScene * NOTES_PER_SCENE) + bitpos;
+			if (MTRX_Stat.wd == RESET_SW_PATTERN) {
 				HAL_NVIC_SystemReset();
 			}else if (bitpos == SCENE_BIT) { //is [SCENE] switch pressed?
 			   	//Move to next Scene.
@@ -131,34 +132,6 @@ void EmulateMIDI() {
 				prev_note = note;
 				isPrev_SwPush = true;
 			}
-		}else if( ENCSW_Stat.wd & MASK_ENC ) { //Check encoder's movements
-			//Send CC message from encoders.
-			uint8_t axis = (bitpos - ENC_SW_COUNT) / 2;
-			uint8_t channel = CC_CH_OFFSET + (LrScene * CC_CH_PER_SCENE) + axis;
-			(bitpos % 2) ? MIDI_CC_Dec(channel):MIDI_CC_Inc(channel);
-
-			MIDI_TxMessage.header = MIDI_CC_HEADER;
-			MIDI_TxMessage.status = MIDI_CC_STATUS;
-			MIDI_TxMessage.channel = channel;
-			MIDI_TxMessage.value = MIDI_CC_Value[channel];
-
-			isPrev_SwPush = false;
-
-			//Print Message to OLED & LEDs.
-			SSD1306_SetScreen(ON);
-			sprintf(msg_string, CC_MSG_2DG, channel, MIDI_CC_Value[channel], LrScene & 0x3);
-			if (isPrev_Scene == true) {
-				memset(Msg_Buffer[0], (int)SPACE_CHAR, MSG_WIDTH );
-				isPrev_Scene = false;
-			}
-			strcpy(Msg_Buffer[1], msg_string);
-			Msg_Print();
-
-			Start_MsgTimer(MSG_TIMER_DEFAULT);
-
-			LED_SetPulse(prof_table[LrScene][bitpos].axis, prof_table[LrScene][bitpos].color, prof_table[LrScene][bitpos].period);
-			isSendMIDIMessage = true;
-
 		} else if (isPrev_SwPush == true && rstat == 0) {// Is switch/encoder push released?
 			//Send 'Note Off' message.
 			MIDI_TxMessage.header = MIDI_NT_OFF;
@@ -169,14 +142,41 @@ void EmulateMIDI() {
 			isSendMIDIMessage = true;
 			isPrev_SwPush = false;
 		}
+		isAnyMatrixPushed = false;
+	}else if ( isAnyEncoderMoved ) {
+		uint8_t		bitpos = ntz16(ENC_Stat.wd);
+		//Send CC message from encoders.
+		uint8_t axis = (bitpos - ENC_SW_COUNT) / 2;
+		uint8_t channel = CC_CH_OFFSET + (LrScene * CC_CH_PER_SCENE) + axis;
+		(bitpos % 2) ? MIDI_CC_Dec(channel):MIDI_CC_Inc(channel);
 
-		if (isSendMIDIMessage == true) {
-			//Send MIDI message via USB.
-			USBD_LL_Transmit (pInstance, MIDI_IN_EP, (uint8_t *)&MIDI_TxMessage, MIDI_MESSAGE_LENGTH);
-			isSendMIDIMessage = false;
+		MIDI_TxMessage.header = MIDI_CC_HEADER;
+		MIDI_TxMessage.status = MIDI_CC_STATUS;
+		MIDI_TxMessage.channel = channel;
+		MIDI_TxMessage.value = MIDI_CC_Value[channel];
+
+		isPrev_SwPush = false;
+
+		//Print Message to OLED & LEDs.
+		SSD1306_SetScreen(ON);
+		sprintf(msg_string, CC_MSG_2DG, channel, MIDI_CC_Value[channel], LrScene & 0x3);
+		if (isPrev_Scene == true) {
+			memset(Msg_Buffer[0], (int)SPACE_CHAR, MSG_WIDTH );
+			isPrev_Scene = false;
 		}
+		strcpy(Msg_Buffer[1], msg_string);
+		Msg_Print();
 
-		/* Clear the switch pressed flag */
-		isAnyMoved = false;
+		Start_MsgTimer(MSG_TIMER_DEFAULT);
+
+		LED_SetPulse(prof_table[LrScene][bitpos].axis, prof_table[LrScene][bitpos].color, prof_table[LrScene][bitpos].period);
+		isSendMIDIMessage = true;
+		isAnyEncoderMoved = false;
 	}
+	if (isSendMIDIMessage == true) {
+		//Send MIDI message via USB.
+		USBD_LL_Transmit (pInstance, MIDI_IN_EP, (uint8_t *)&MIDI_TxMessage, MIDI_MESSAGE_LENGTH);
+		isSendMIDIMessage = false;
+	}
+
 }

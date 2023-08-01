@@ -53,17 +53,17 @@
 
 /* Private function prototypes -----------------------------------------------*/
 /* USER CODE BEGIN PFP */
-static inline void TIM15_Restart();
+
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
 
-uint32_t previous_scan = 0;
-uint32_t previous_key = 0;
-uint32_t current_key = 0;
+uint16_t previous_mtrx = 0;
+uint16_t previous_push = 0;
+uint16_t current_push = 0;
 //! Value of scanned from key matrix.
-ENCSW_SCAN current_scan;
+MTRX_SCAN current_scan;
 uint8_t	enc_prev[ENC_COUNT];
 uint8_t	enc_timer[ENC_COUNT];
 
@@ -74,6 +74,10 @@ const uint8_t enc_table[4][4] = {
 	{ENC_STOPPED,	ENC_INVALID,	ENC_INVALID,	ENC_STOPPED,	},//prev = 2
 	{ENC_INVALID,	ENC_MOVE_CCW,	ENC_MOVE_CW,	ENC_INVALID,	},//prev = 3
 };
+ENC_SCAN current_enc;
+uint16_t previous_enc;
+uint16_t previous_move;
+uint16_t current_move;
 
 /* USER CODE END 0 */
 
@@ -83,14 +87,15 @@ extern DMA_HandleTypeDef hdma_i2c2_tx;
 extern I2C_HandleTypeDef hi2c2;
 extern DMA_HandleTypeDef hdma_tim3_ch1_trig;
 extern TIM_HandleTypeDef htim1;
+extern TIM_HandleTypeDef htim2;
 extern TIM_HandleTypeDef htim6;
 extern TIM_HandleTypeDef htim7;
 /* USER CODE BEGIN EV */
 extern TIM_HandleTypeDef htim3;
-extern TIM_HandleTypeDef htim15;
 extern uint8_t	ENCSW_Line;
-extern bool		isAnyMoved;
-extern ENCSW_SCAN	ENCSW_Stat;
+extern bool		isAnyMatrixPushed;
+extern MTRX_SCAN	MTRX_Stat;
+extern ENC_SCAN	ENC_Stat;
 extern char		*Msg_Buffer[];
 extern bool		LED_Timer_Update;
 extern bool		Msg_Timer_Update;
@@ -238,16 +243,16 @@ void TIM1_BRK_UP_TRG_COM_IRQHandler(void)
 			ENCSW_Line = L0;
 
 			//Switch detection
-			if (previous_scan == current_scan.wd){
-				current_key = current_scan.wd;
-				uint32_t dif = current_key ^ previous_key;
-				ENCSW_Stat.wd = current_key;
+			if (previous_mtrx == current_scan.wd){
+				current_push = current_scan.wd;
+				uint16_t dif = current_push ^ previous_push;
+				MTRX_Stat.wd = current_push;
 				if (dif != 0){
-					previous_key = current_key;
-					isAnyMoved = true;
+					previous_push = current_push;
+					isAnyMatrixPushed = true;
 				}
 			}
-			previous_scan = current_scan.wd;
+			previous_mtrx = current_scan.wd;
 			break;
 	}
   /* USER CODE END TIM1_BRK_UP_TRG_COM_IRQn 0 */
@@ -255,6 +260,56 @@ void TIM1_BRK_UP_TRG_COM_IRQHandler(void)
   /* USER CODE BEGIN TIM1_BRK_UP_TRG_COM_IRQn 1 */
 
   /* USER CODE END TIM1_BRK_UP_TRG_COM_IRQn 1 */
+}
+
+/**
+  * @brief This function handles TIM2 global interrupt.
+  */
+void TIM2_IRQHandler(void)
+{
+  /* USER CODE BEGIN TIM2_IRQn 0 */
+	//GPIOA reading
+#if 1
+	current_enc.nb.enc0 = ((ENC0_GPIO_Port->IDR) >> 4 ) & ENC_MASK;
+	//GPIOB reading
+	current_enc.nb.enc1 = ((ENC1_GPIO_Port->IDR) >> 8) & ENC_MASK;
+	current_enc.nb.enc2 = (ENC2_GPIO_Port->IDR >> 10 ) & ENC_MASK;
+	current_enc.nb.enc6 = (ENC6_GPIO_Port->IDR >> 2) & ENC_MASK;
+	current_enc.nb.enc7 = ((ENC7_GPIO_Port->IDR) >> 6 ) & ENC_MASK;
+	//GPIOC reading
+	current_enc.nb.enc3 = ( (ENC3_GPIO_Port->IDR) >> 14 ) & ENC_MASK;
+	current_enc.nb.enc4 = (ENC4_GPIO_Port->IDR) & ENC_MASK;
+	//GPIO B&C reading
+	current_enc.nb.enc5 = ( (ENC5A_GPIO_Port->IDR & ENC5A_MASK) | (ENC5B_GPIO_Port->IDR & ENC5B_MASK) ) >> 12;
+
+	if (previous_enc == current_enc.wd){
+		current_move = current_enc.wd;
+		uint16_t dif = previous_move ^ current_push;
+		ENC_Stat.wd = current_move;
+		if (dif != 0){
+			previous_move = current_move;
+		}
+	}
+	previous_enc = current_enc.wd;
+
+#else
+	uint8_t	r0 = ((ENC0_GPIO_Port->IDR) >> 4 ) & ENC_MASK;
+	//GPIOB reading
+	uint8_t	r1 = ((ENC1_GPIO_Port->IDR) >> 8) & ENC_MASK;
+	uint8_t	r2 = (ENC2_GPIO_Port->IDR >> 10 ) & ENC_MASK;
+	uint8_t	r6 = (ENC6_GPIO_Port->IDR >> 2) & ENC_MASK;
+	uint8_t	r7 = ((ENC7_GPIO_Port->IDR) >> 6 ) & ENC_MASK;
+	//GPIOC reading
+	uint8_t	r3 = ( (ENC3_GPIO_Port->IDR) >> 14 ) & ENC_MASK;
+	uint8_t	r4 = (ENC4_GPIO_Port->IDR) & ENC_MASK;
+	//GPIO B&C reading
+	uint8_t r5 = ( (ENC5A_GPIO_Port->IDR & ENC5A_MASK) | (ENC5B_GPIO_Port->IDR & ENC5B_MASK) ) >> 12;
+#endif
+  /* USER CODE END TIM2_IRQn 0 */
+  HAL_TIM_IRQHandler(&htim2);
+  /* USER CODE BEGIN TIM2_IRQn 1 */
+
+  /* USER CODE END TIM2_IRQn 1 */
 }
 
 /**
@@ -318,12 +373,5 @@ void USB_IRQHandler(void)
 }
 
 /* USER CODE BEGIN 1 */
-/**
- * @brief	Restart TIM15 value 0 on 'one pulse mode'
- */
-static inline void TIM15_Restart() {
-	htim15.Instance->CNT = 0;
-	htim15.Instance->SR &= ~TIM_SR_UIF;
-	htim15.Instance->CR1 |= TIM_CR1_CEN;
-}
+
 /* USER CODE END 1 */

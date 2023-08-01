@@ -61,19 +61,19 @@ void Msg_Print();
 /* USER CODE END EFP */
 
 /* Private defines -----------------------------------------------------------*/
-#define TIM_PERIOD_RGBLED 24576
-#define Lr_PID 0xA380
-#define TIM_PERIOD_MATRIX 7999
-#define TIM_PERIOD_OLED 32767
 #define TIM_PERIOD_NPIX 279
 #define Lr_PRODUCT "LrTMAX"
 #define PWM_HI 38
-#define Lr_VENDOR "Ruffles Inc."
-#define TIM_PRESC_1uS 47
-#define TIM_PRESC_100uS 4799
+#define TIM_PERIOD_RGBLED 24576
 #define PWM_LO 15
 #define PWM_PERIOD 59
-#define TIM_PERIOD_DCHAT 11
+#define Lr_PID 0xA380
+#define TIM_PERIOD_ENC 999
+#define TIM_PRESC_100uS 4799
+#define Lr_VENDOR "Ruffles Inc."
+#define TIM_PRESC_1uS 47
+#define TIM_PERIOD_MATRIX 7999
+#define TIM_PERIOD_OLED 32767
 #define ENC5B_Pin GPIO_PIN_13
 #define ENC5B_GPIO_Port GPIOC
 #define ENC3A_Pin GPIO_PIN_14
