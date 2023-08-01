@@ -156,18 +156,20 @@ __ALIGN_BEGIN uint8_t USBD_FS_DeviceDesc[USB_LEN_DEV_DESC] __ALIGN_END =
 {
   0x12,                       /*bLength */
   USB_DESC_TYPE_DEVICE,       /*bDescriptorType*/
-  0x00,                       /*bcdUSB */
-  0x02,
-  0x00,                       /*bDeviceClass*/
-  0x00,                       /*bDeviceSubClass*/
+/* USER CODE BEGIN DESC. */
+  LOBYTE(USB_VERSION),        /*bcdUSB */
+  HIBYTE(USB_VERSION),
+  DEVICE_CLASS,
+  DEVICE_SUBCLASS,
+/* USER CODE END DESC. */
   0x00,                       /*bDeviceProtocol*/
   USB_MAX_EP0_SIZE,           /*bMaxPacketSize*/
   LOBYTE(USBD_VID),           /*idVendor*/
   HIBYTE(USBD_VID),           /*idVendor*/
   LOBYTE(USBD_PID_FS),        /*idProduct*/
   HIBYTE(USBD_PID_FS),        /*idProduct*/
-  0x00,                       /*bcdDevice rel. 2.00*/
-  0x02,
+  USBD_DEVICE_VER_MIN,        /*bcdDevice minor*/
+  USBD_DEVICE_VER_MAJ,        /*bcdDevice major*/
   USBD_IDX_MFC_STR,           /*Index of manufacturer  string*/
   USBD_IDX_PRODUCT_STR,       /*Index of product string*/
   USBD_IDX_SERIAL_STR,        /*Index of serial number string*/

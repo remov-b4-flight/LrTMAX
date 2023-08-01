@@ -32,6 +32,7 @@
 #include "usbd_midi_if.h"
 #include "ssd1306.h"
 #include "EmulateMIDI.h"
+#include <prof_define.h>
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -275,7 +276,7 @@ int main(void)
   MX_TIM3_Init();
   MX_TIM1_Init();
   MX_TIM14_Init();
-  MX_USB_DEVICE_Init();
+//MX_USB_DEVICE_Init();
   MX_I2C2_Init();
   MX_TIM7_Init();
   MX_TIM6_Init();
@@ -471,9 +472,9 @@ int main(void)
 #if 0
 	HAL_PWR_EnterSLEEPMode(PWR_LOWPOWERREGULATOR_ON, PWR_SLEEPENTRY_WFI);
 #endif
-    /* USER CODE END WHILE */
+  /* USER CODE END WHILE */
 
-    /* USER CODE BEGIN 3 */
+  /* USER CODE BEGIN 3 */
   }
   /* USER CODE END 3 */
 }
