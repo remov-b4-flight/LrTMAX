@@ -281,7 +281,7 @@ void EXTI4_15_IRQHandler(void)
 		}
 
 		//usual ISR
-		uint8_t	r0 = ((ENC0_GPIO_Port->IDR) >> 4 ) & ENC_MASK;
+		uint8_t	r0 = (ENC0_GPIO_Port->IDR >> 4 ) & ENC_MASK;
 		uint8_t op = enc_table[enc_prev[Lr_ENC0]][r0];
 		enc_prev[Lr_ENC0] = r0;
 
@@ -314,7 +314,7 @@ void EXTI4_15_IRQHandler(void)
 			return;
 		}
 
-		uint8_t	r7 = ((ENC7_GPIO_Port->IDR) >> 6 ) & ENC_MASK;
+		uint8_t	r7 = (ENC7_GPIO_Port->IDR >> 6 ) & ENC_MASK;
 		uint8_t op = enc_table[enc_prev[Lr_ENC7]][r7];
 		enc_prev[Lr_ENC7] = r7;
 
@@ -347,7 +347,7 @@ void EXTI4_15_IRQHandler(void)
 			return;
 		}
 
-		uint8_t	r1 = ((ENC1_GPIO_Port->IDR) >> 8) & ENC_MASK;
+		uint8_t	r1 = (ENC1_GPIO_Port->IDR >> 8) & ENC_MASK;
 		uint8_t op = enc_table[enc_prev[Lr_ENC1]][r1];
 		enc_prev[Lr_ENC1] = r1;
 
@@ -446,7 +446,7 @@ void EXTI4_15_IRQHandler(void)
 			return;
 		}
 
-		uint8_t	r3 = ( (ENC3_GPIO_Port->IDR) >> 14 ) & ENC_MASK;
+		uint8_t	r3 = ( ENC3_GPIO_Port->IDR >> 14 ) & ENC_MASK;
 		uint8_t op = enc_table[enc_prev[Lr_ENC3]][r3];
 		enc_prev[Lr_ENC3] = r3;
 
