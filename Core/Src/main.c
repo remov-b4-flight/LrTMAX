@@ -355,7 +355,7 @@ int main(void)
 		SSD1306_RenderBanner(Msg_Buffer[0], 88, 16);
 		SSD1306_FlashScreen();
 #endif
-		Start_MsgTimer(MSG_TIMER_DEFAULT);
+		Start_MsgTimer(MSG_TIMER_CONNECT);
 		memcpy(LEDColor,LED_Scene[LrScene],LED_COUNT);
 		LED_SetPulse(LED_IDX_ENC0, LED_PINK, LED_TIM_CONNECT);
 		LrState = LR_USB_LINKED;

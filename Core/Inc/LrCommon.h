@@ -122,7 +122,8 @@ enum lr_matrix_t {
 #define LED_TIM_CONNECT	64		//1.5Sec
 
 // Screen timer definitions
-#define MSG_TIMER_DEFAULT	122		//4Sec (1 tick=32.7ms)
+#define MSG_TIMER_DEFAULT	47		//1.5Sec (1 tick=32.7ms)
 #define MSG_TIMER_NOLINK	31		//1Sec (OLED update in USB not connected)
+#define MSG_TIMER_CONNECT	122		//4Sec (USB connected)
 
 #endif /* INC_LRCOMMON_H_ */
