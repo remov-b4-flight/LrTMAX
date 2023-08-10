@@ -362,5 +362,17 @@ void USB_IRQHandler(void)
 }
 
 /* USER CODE BEGIN 1 */
+void ENC_Init() {
+	//! Initialize all enc_prev[] for current pin value
+	enc_prev[Lr_ENC4] = current_enc.nb.enc4 = (ENC4_GPIO_Port->IDR) & ENC_MASK;
+	enc_prev[Lr_ENC1] = current_enc.nb.enc1 = (ENC1_GPIO_Port->IDR >> 8) & ENC_MASK;
+	enc_prev[Lr_ENC2] = current_enc.nb.enc2 = (ENC2_GPIO_Port->IDR >> 10) & ENC_MASK;
+	enc_prev[Lr_ENC6] = current_enc.nb.enc6 = (ENC6_GPIO_Port->IDR >> 2) & ENC_MASK;
+	enc_prev[Lr_ENC7] = current_enc.nb.enc7 = (ENC7_GPIO_Port->IDR >> 6) & ENC_MASK;
+	enc_prev[Lr_ENC5] = current_enc.nb.enc5 = ( (ENC5A_GPIO_Port->IDR & ENC5A_MASK) | (ENC5B_GPIO_Port->IDR & ENC5B_MASK) ) >> 12;
+	enc_prev[Lr_ENC0] = current_enc.nb.enc0 = (ENC0_GPIO_Port->IDR >> 4 ) & ENC_MASK;
+	enc_prev[Lr_ENC3] = current_enc.nb.enc3 = (ENC3_GPIO_Port->IDR >> 14 ) & ENC_MASK;
 
+	previous_move = previous_enc = current_enc.wd;
+}
 /* USER CODE END 1 */
