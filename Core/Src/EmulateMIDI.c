@@ -125,7 +125,7 @@ void EmulateMIDI() {
 			Start_MsgTimer(MSG_TIMER_DEFAULT);
 
 			if (isSendMIDIMessage == true) {
-				//Set 'Note ON'
+				//Set 'Note On' message
 				MIDI_TxMessage.header = MIDI_NT_ON;
 				MIDI_TxMessage.status = MIDI_NT_ON_S;
 				MIDI_TxMessage.channel = note;
@@ -135,7 +135,7 @@ void EmulateMIDI() {
 				isPrev_SwPush = true;
 			}
 		} else if (isPrev_SwPush == true && rstat == 0) {// Is switch/encoder push released?
-			//Send 'Note Off' message.
+			//Set 'Note Off' message.
 			MIDI_TxMessage.header = MIDI_NT_OFF;
 			MIDI_TxMessage.status = MIDI_NT_OFF_S;
 			MIDI_TxMessage.channel = prev_note;
@@ -146,23 +146,19 @@ void EmulateMIDI() {
 		}
 		isAnyMatrixPushed = false;
 	}else if ( isAnyEncoderMoved ) {
-#if 1
 		uint8_t	axis = enc_move.bits.axis;
-		uint8_t bitpos = PROF_ENC1ST + (axis*2);
+		uint8_t bitpos = PROF_ENC1ST + (axis * 2);
 		uint8_t channel = CC_CH_OFFSET + (LrScene * CC_CH_PER_SCENE) + axis;
+
 		if (enc_move.bits.move == ENC_MOVE_CW){
 			MIDI_CC_Inc(channel);
-		}else if (enc_move.bits.move == ENC_MOVE_CCW){
+		} else if (enc_move.bits.move == ENC_MOVE_CCW){
 			MIDI_CC_Dec(channel);
 			bitpos += 1;
+		} else {
+			goto rot_stopped_exits;
 		}
-#else
-		uint8_t		bitpos = ntz16(ENC_Stat.wd);
-		//Send CC message from encoders.
-		uint8_t axis = (bitpos - ENC_SW_COUNT) / 2;
-		uint8_t channel = CC_CH_OFFSET + (LrScene * CC_CH_PER_SCENE) + axis;
-		(bitpos % 2) ? MIDI_CC_Dec(channel):MIDI_CC_Inc(channel);
-#endif
+
 		MIDI_TxMessage.header = MIDI_CC_HEADER;
 		MIDI_TxMessage.status = MIDI_CC_STATUS;
 		MIDI_TxMessage.channel = channel;
@@ -184,8 +180,10 @@ void EmulateMIDI() {
 
 		LED_SetPulse(prof_table[LrScene][bitpos].axis, prof_table[LrScene][bitpos].color, prof_table[LrScene][bitpos].period);
 		isSendMIDIMessage = true;
+rot_stopped_exits:
 		isAnyEncoderMoved = false;
 	}
+	//Send MIDI message
 	if (isSendMIDIMessage == true) {
 		//Send MIDI message via USB.
 		USBD_LL_Transmit (pInstance, MIDI_IN_EP, (uint8_t *)&MIDI_TxMessage, MIDI_MESSAGE_LENGTH);

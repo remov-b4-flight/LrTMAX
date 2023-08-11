@@ -15,10 +15,7 @@ typedef struct enc_sw_define_t {
 #define UPA		"\x7d"
 #define DOWNA	"\x7e"
 
-#define MASK_ENC_SW		0x0000ffff
-#define MASK_ENC		0xffff0000
-#define MASK_ENCPUSH	0x0000ff00
-
+#define MASK_ENCPUSH	0xff00
 #define PROF_ENC1ST		16
 
 #endif /* _PROF_DEFINE_H */
