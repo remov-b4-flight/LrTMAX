@@ -32,7 +32,7 @@ extern "C" {
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 #define USBD_DEVICE_VER_MAJ	0x00
-#define USBD_DEVICE_VER_MIN	0x67
+#define USBD_DEVICE_VER_MIN	0x68
 /* USER CODE END Includes */
 
 /* Exported types ------------------------------------------------------------*/
@@ -61,34 +61,29 @@ void Msg_Print();
 /* USER CODE END EFP */
 
 /* Private defines -----------------------------------------------------------*/
-#define TIM_PERIOD_RGBLED 24576
-#define Lr_PID 0xA380
-#define TIM_PERIOD_MATRIX 7999
-#define TIM_PERIOD_OLED 32767
 #define TIM_PERIOD_NPIX 279
 #define Lr_PRODUCT "LrTMAX"
 #define PWM_HI 38
-#define Lr_VENDOR "Ruffles Inc."
-#define TIM_PRESC_1uS 47
-#define TIM_PRESC_100uS 4799
+#define TIM_PERIOD_RGBLED 24576
 #define PWM_LO 15
 #define PWM_PERIOD 59
-#define TIM_PERIOD_DCHAT 11
+#define Lr_PID 0xA380
+#define TIM_PERIOD_ENC 999
+#define TIM_PRESC_100uS 4799
+#define Lr_VENDOR "Ruffles Inc."
+#define TIM_PRESC_1uS 47
+#define TIM_PERIOD_MATRIX 7999
+#define TIM_PERIOD_OLED 32767
 #define ENC5B_Pin GPIO_PIN_13
 #define ENC5B_GPIO_Port GPIOC
-#define ENC5B_EXTI_IRQn EXTI4_15_IRQn
 #define ENC3A_Pin GPIO_PIN_14
 #define ENC3A_GPIO_Port GPIOC
-#define ENC3A_EXTI_IRQn EXTI4_15_IRQn
 #define ENC3B_Pin GPIO_PIN_15
 #define ENC3B_GPIO_Port GPIOC
-#define ENC3B_EXTI_IRQn EXTI4_15_IRQn
 #define ENC4A_Pin GPIO_PIN_0
 #define ENC4A_GPIO_Port GPIOF
-#define ENC4A_EXTI_IRQn EXTI0_1_IRQn
 #define ENC4B_Pin GPIO_PIN_1
 #define ENC4B_GPIO_Port GPIOF
-#define ENC4B_EXTI_IRQn EXTI0_1_IRQn
 #define M0_Pin GPIO_PIN_0
 #define M0_GPIO_Port GPIOA
 #define M1_Pin GPIO_PIN_1
@@ -99,24 +94,18 @@ void Msg_Print();
 #define M3_GPIO_Port GPIOA
 #define ENC0A_Pin GPIO_PIN_4
 #define ENC0A_GPIO_Port GPIOA
-#define ENC0A_EXTI_IRQn EXTI4_15_IRQn
 #define ENC0B_Pin GPIO_PIN_5
 #define ENC0B_GPIO_Port GPIOA
-#define ENC0B_EXTI_IRQn EXTI4_15_IRQn
 #define LED_DON_Pin GPIO_PIN_6
 #define LED_DON_GPIO_Port GPIOA
 #define ENC6A_Pin GPIO_PIN_2
 #define ENC6A_GPIO_Port GPIOB
-#define ENC6A_EXTI_IRQn EXTI2_3_IRQn
 #define ENC2A_Pin GPIO_PIN_10
 #define ENC2A_GPIO_Port GPIOB
-#define ENC2A_EXTI_IRQn EXTI4_15_IRQn
 #define ENC2B_Pin GPIO_PIN_11
 #define ENC2B_GPIO_Port GPIOB
-#define ENC2B_EXTI_IRQn EXTI4_15_IRQn
 #define ENC5A_Pin GPIO_PIN_12
 #define ENC5A_GPIO_Port GPIOB
-#define ENC5A_EXTI_IRQn EXTI4_15_IRQn
 #define SCL_Pin GPIO_PIN_13
 #define SCL_GPIO_Port GPIOB
 #define SDA_Pin GPIO_PIN_14
@@ -135,23 +124,19 @@ void Msg_Print();
 #define SWCLK_GPIO_Port GPIOA
 #define ENC6B_Pin GPIO_PIN_3
 #define ENC6B_GPIO_Port GPIOB
-#define ENC6B_EXTI_IRQn EXTI2_3_IRQn
 #define L1_Pin GPIO_PIN_4
 #define L1_GPIO_Port GPIOB
 #define L2_Pin GPIO_PIN_5
 #define L2_GPIO_Port GPIOB
 #define ENC7A_Pin GPIO_PIN_6
 #define ENC7A_GPIO_Port GPIOB
-#define ENC7A_EXTI_IRQn EXTI4_15_IRQn
 #define ENC7B_Pin GPIO_PIN_7
 #define ENC7B_GPIO_Port GPIOB
-#define ENC7B_EXTI_IRQn EXTI4_15_IRQn
 #define ENC1A_Pin GPIO_PIN_8
 #define ENC1A_GPIO_Port GPIOB
-#define ENC1A_EXTI_IRQn EXTI4_15_IRQn
 #define ENC1B_Pin GPIO_PIN_9
 #define ENC1B_GPIO_Port GPIOB
-#define ENC1B_EXTI_IRQn EXTI4_15_IRQn
+
 /* USER CODE BEGIN Private defines */
 
 //! LED TIM3 definitions
