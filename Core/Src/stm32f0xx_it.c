@@ -65,7 +65,6 @@ uint32_t current_key = 0;
 //! Value of scanned from key matrix.
 ENCSW_SCAN current_scan;
 uint8_t	enc_prev[ENC_COUNT];
-uint8_t	enc_timer[ENC_COUNT];
 
 const uint8_t enc_table[4][4] = {
 //now =	0			1				2				3
