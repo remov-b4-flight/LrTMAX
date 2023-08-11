@@ -194,27 +194,15 @@ static void Jump2SystemMemory() {
 /**
  *	@brief	Mask all EXTI lines of encoders
  */
-static void Stop_All_Encoders(){
-#if 1
+static inline void Stop_All_Encoders(){
 	HAL_TIM_Base_Stop_IT(&htim2);
-#else
-	uint32_t temp = EXTI->IMR;
-	temp &= 0xffff0000;
-	EXTI->IMR = temp;
-#endif
 }
 
 /**
  * @brief	Release all EXTI lines masked by StopAllEncoders()
  */
-static void Start_All_Encoders(){
-#if 1
+static inline void Start_All_Encoders(){
 	HAL_TIM_Base_Start_IT(&htim2);
-#else
-	uint32_t temp = EXTI->IMR;
-	temp |= 0x0000ffff;
-	EXTI->IMR = temp;
-#endif
 }
 
 void Start_MsgTimer(uint32_t tick){
@@ -354,6 +342,7 @@ int main(void)
 		sprintf(Msg_Buffer[0], CONN_MSG, USBD_DEVICE_VER_MAJ, USBD_DEVICE_VER_MIN);
 		SSD1306_RenderBanner(Msg_Buffer[0], 88, 16);
 		SSD1306_FlashScreen();
+		memset(Msg_Buffer[0], (int)SPACE_CHAR, MSG_WIDTH );
 #endif
 		Start_MsgTimer(MSG_TIMER_CONNECT);
 		memcpy(LEDColor,LED_Scene[LrScene],LED_COUNT);
