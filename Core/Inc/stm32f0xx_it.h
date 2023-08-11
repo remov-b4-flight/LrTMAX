@@ -100,7 +100,7 @@ void TIM7_IRQHandler(void);
 void I2C2_IRQHandler(void);
 void USB_IRQHandler(void);
 /* USER CODE BEGIN EFP */
-
+void ENC_Init();
 /* USER CODE END EFP */
 
 #ifdef __cplusplus

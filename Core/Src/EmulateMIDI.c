@@ -14,7 +14,6 @@ extern	PROF_DEFINE	prof_table[SCENE_COUNT][DEFINES_PER_SCENE];
 extern	char Msg_Buffer[MSG_LINES][MSG_WIDTH + 1];
 //! Instance Handle of USB interface
 extern	USBD_HandleTypeDef *pInstance;
-extern	uint8_t	enc_prev[ENC_COUNT];
 //! keeps previous 'Note On' note number For sending 'Note Off' message.
 uint8_t	prev_note;
 //! If true, MIDI message previous sent is switch. If false, it's encoder
@@ -61,16 +60,7 @@ void EmulateMIDI_Init(){
 	isPrev_SwPush = false;
 	isPrev_Scene = false;
 
-	//! Initialize all enc_prev[] for current pin value
-	enc_prev[Lr_ENC4] = (ENC4_GPIO_Port->IDR) & ENC_MASK;
-	enc_prev[Lr_ENC1] = (ENC1_GPIO_Port->IDR >> 8) & ENC_MASK;
-	enc_prev[Lr_ENC2] = (ENC2_GPIO_Port->IDR >> 10) & ENC_MASK;
-	enc_prev[Lr_ENC6] = (ENC6_GPIO_Port->IDR >> 2) & ENC_MASK;
-	enc_prev[Lr_ENC7] = (ENC7_GPIO_Port->IDR >> 6) & ENC_MASK;
-	enc_prev[Lr_ENC5] = ( (ENC5A_GPIO_Port->IDR & ENC5A_MASK) | (ENC5B_GPIO_Port->IDR & ENC5B_MASK) ) >> 12;
-	enc_prev[Lr_ENC0] = (ENC0_GPIO_Port->IDR >> 4 ) & ENC_MASK;
-	enc_prev[Lr_ENC3] = (ENC3_GPIO_Port->IDR >> 14 ) & ENC_MASK;
-
+	ENC_Init();
 	memset(MIDI_CC_Value, MIDI_CC_INITIAL, CC_CH_COUNT);
 	queue_init(&midi_rx_que);
 }

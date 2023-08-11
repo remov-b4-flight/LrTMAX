@@ -630,6 +630,21 @@ void USB_IRQHandler(void)
 
 /* USER CODE BEGIN 1 */
 /**
+ * @brief Initialize Encoders.
+ */
+void ENC_Init() {
+	//! Initialize all enc_prev[] for current pin value
+	enc_prev[Lr_ENC4] = (ENC4_GPIO_Port->IDR) & ENC_MASK;
+	enc_prev[Lr_ENC1] = (ENC1_GPIO_Port->IDR >> 8) & ENC_MASK;
+	enc_prev[Lr_ENC2] = (ENC2_GPIO_Port->IDR >> 10) & ENC_MASK;
+	enc_prev[Lr_ENC6] = (ENC6_GPIO_Port->IDR >> 2) & ENC_MASK;
+	enc_prev[Lr_ENC7] = (ENC7_GPIO_Port->IDR >> 6) & ENC_MASK;
+	enc_prev[Lr_ENC5] = ( (ENC5A_GPIO_Port->IDR & ENC5A_MASK) | (ENC5B_GPIO_Port->IDR & ENC5B_MASK) ) >> 12;
+	enc_prev[Lr_ENC0] = (ENC0_GPIO_Port->IDR >> 4 ) & ENC_MASK;
+	enc_prev[Lr_ENC3] = (ENC3_GPIO_Port->IDR >> 14 ) & ENC_MASK;
+
+}
+/**
  * @brief	Restart TIM15 value 0 on 'one pulse mode'
  */
 static inline void TIM15_Restart() {
