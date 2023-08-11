@@ -372,14 +372,6 @@ void USB_IRQHandler(void)
 
 /* USER CODE BEGIN 1 */
 /**
- * @brief	Restart TIM15 value 0 on 'one pulse mode'
- */
-static inline void TIM15_Restart() {
-	htim15.Instance->CNT = 0;
-	htim15.Instance->SR &= ~TIM_SR_UIF;
-	htim15.Instance->CR1 |= TIM_CR1_CEN;
-
-/**
  * @brief Initialize Encoders.
  */
 void ENC_Init() {
