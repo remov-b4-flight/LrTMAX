@@ -19,4 +19,6 @@ typedef struct enc_sw_define_t {
 #define MASK_ENC		0xffff0000
 #define MASK_ENCPUSH	0x0000ff00
 
+#define PROF_ENC1ST		16
+
 #endif /* _PROF_DEFINE_H */
