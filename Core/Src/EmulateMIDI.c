@@ -37,7 +37,7 @@ MTRX_SCAN	MTRX_Stat;
 ENC_SCAN	ENC_Stat;
 //! USB MIDI message structure for send
 MIDI_MSG	MIDI_TxMessage;
-
+ENC_MOVE	enc_move;
 /**
  * @brief	Rise CC message value
  * @param	channel to modify

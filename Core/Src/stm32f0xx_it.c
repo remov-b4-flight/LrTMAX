@@ -26,6 +26,7 @@
 #include <string.h>
 #include "LrCommon.h"
 #include "midi.h"
+#include "bitcount.h"
 #include "stm32f0xx_hal_tim.h"
 #include "ssd1306.h"
 #include "ssd1306_fonts.h"
@@ -65,7 +66,7 @@ uint16_t current_push = 0;
 //! Value of scanned from key matrix.
 MTRX_SCAN current_scan;
 uint8_t	enc_prev[ENC_COUNT];
-uint8_t	enc_timer[ENC_COUNT];
+uint8_t	enc_current[ENC_COUNT];
 
 const uint8_t enc_table[4][4] = {
 //now =	0			1				2				3
@@ -100,6 +101,7 @@ extern ENC_SCAN	ENC_Stat;
 extern char		*Msg_Buffer[];
 extern bool		LED_Timer_Update;
 extern bool		Msg_Timer_Update;
+extern ENC_MOVE	enc_move;
 /* USER CODE END EV */
 
 /******************************************************************************/
@@ -271,24 +273,31 @@ void TIM2_IRQHandler(void)
   /* USER CODE BEGIN TIM2_IRQn 0 */
 
 	//GPIOA reading
-	current_enc.nb.enc0 = ((ENC0_GPIO_Port->IDR) >> 4 ) & ENC_MASK;
+	current_enc.nb.enc0 = enc_current[Lr_ENC0] = ((ENC0_GPIO_Port->IDR) >> 4 ) & ENC_MASK;
 	//GPIOB reading
-	current_enc.nb.enc1 = ((ENC1_GPIO_Port->IDR) >> 8) & ENC_MASK;
-	current_enc.nb.enc2 = (ENC2_GPIO_Port->IDR >> 10 ) & ENC_MASK;
-	current_enc.nb.enc6 = (ENC6_GPIO_Port->IDR >> 2) & ENC_MASK;
-	current_enc.nb.enc7 = ((ENC7_GPIO_Port->IDR) >> 6 ) & ENC_MASK;
+	current_enc.nb.enc1 = enc_current[Lr_ENC1] = ((ENC1_GPIO_Port->IDR) >> 8) & ENC_MASK;
+	current_enc.nb.enc2 = enc_current[Lr_ENC2] = (ENC2_GPIO_Port->IDR >> 10 ) & ENC_MASK;
+	current_enc.nb.enc6 = enc_current[Lr_ENC6] = (ENC6_GPIO_Port->IDR >> 2) & ENC_MASK;
+	current_enc.nb.enc7 = enc_current[Lr_ENC7] = ((ENC7_GPIO_Port->IDR) >> 6 ) & ENC_MASK;
 	//GPIOC reading
-	current_enc.nb.enc3 = ( (ENC3_GPIO_Port->IDR) >> 14 ) & ENC_MASK;
-	current_enc.nb.enc4 = (ENC4_GPIO_Port->IDR) & ENC_MASK;
+	current_enc.nb.enc3 = enc_current[Lr_ENC3] = ( (ENC3_GPIO_Port->IDR) >> 14 ) & ENC_MASK;
+	current_enc.nb.enc4 = enc_current[Lr_ENC4] = (ENC4_GPIO_Port->IDR) & ENC_MASK;
 	//GPIO B&C reading
-	current_enc.nb.enc5 = ( (ENC5A_GPIO_Port->IDR & ENC5A_MASK) | (ENC5B_GPIO_Port->IDR & ENC5B_MASK) ) >> 12;
+	current_enc.nb.enc5 = enc_current[Lr_ENC5] = ( (ENC5A_GPIO_Port->IDR & ENC5A_MASK) | (ENC5B_GPIO_Port->IDR & ENC5B_MASK) ) >> 12;
 
 	if (previous_enc == current_enc.wd){
 		current_move = current_enc.wd;
 		uint16_t dif = previous_move ^ current_move;
-		ENC_Stat.wd = current_move;
 		if (dif != 0){
 			previous_move = current_move;
+
+			uint8_t	movedbits = ntz16(dif);
+			uint8_t	axis = movedbits/2;
+
+			enc_move.bits.move = enc_table[enc_prev[axis]] [enc_current[axis]];
+			enc_move.bits.axis = axis;
+
+			enc_prev[axis] = enc_current[axis];
 			isAnyEncoderMoved = true;
 		}
 	}

@@ -58,6 +58,15 @@ typedef union enc_sw_scan_t {
 } ENCSW_SCAN;
 #endif
 
+typedef union enc_m_t {
+	uint8_t	wd;
+	struct enc_mm_t {
+		uint8_t	move:2;
+		uint8_t axis:3;
+		uint8_t	dummy:3;
+	} bits;
+} ENC_MOVE;
+
 //! LrTMAX State definition
 enum lr_state_t {
 	LR_RESET,			//!< LR_RESET
