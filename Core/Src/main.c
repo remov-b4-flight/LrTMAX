@@ -32,7 +32,7 @@
 #include "usbd_midi_if.h"
 #include "ssd1306.h"
 #include "EmulateMIDI.h"
-#include <prof_define.h>
+#include "prof_define.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -327,10 +327,6 @@ int main(void)
 
 		matrix_control(Lr_MATRIX_START);	//Initialize L0-3.
 		HAL_TIM_Base_Start_IT(&htim1);		//Start Switch matrix timer.
-#if 0
-		htim15.Instance->CNT = TIM_PERIOD_DCHAT;
-		HAL_TIM_Base_Start(&htim15);		//Start De-chatter timer.
-#endif
 		Start_All_Encoders();				//Start rotary encoder.
 
 #ifdef DEBUG

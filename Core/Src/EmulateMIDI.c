@@ -60,7 +60,7 @@ static void MIDI_CC_Dec(uint8_t channel) {
 /**
  * 	@brief	Initialize MIDI
  */
-void EmulateMIDI_Init(){
+void EmulateMIDI_Init() {
 	isPrev_SwPush = false;
 	isPrev_Scene = false;
 	ENC_Init();
