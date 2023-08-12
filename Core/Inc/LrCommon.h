@@ -14,7 +14,7 @@
 #define ENC_COUNT		8
 #define ENC_SW_COUNT	(SW_COUNT + ENC_COUNT)
 
-#if 1
+//! Type for Encoders
 typedef union enc_scan_t {
     uint16_t wd;
     struct enc_bits_t {
@@ -29,6 +29,7 @@ typedef union enc_scan_t {
     } nb;
 } ENC_SCAN;
 
+//! Type for switch matrix
 typedef union mtrx_scan_t {
     uint16_t wd;
     struct ks_bits_t {
@@ -38,26 +39,8 @@ typedef union mtrx_scan_t {
 		uint8_t n3:4;	//Switch Line3
     } nb;
 } MTRX_SCAN;
-#else
-typedef union enc_sw_scan_t {
-    uint32_t wd;
-    struct ks_bit_t {
-		uint8_t n0:4;	//Switch Line0
-		uint8_t n1:4;	//Switch Line1
-		uint8_t n2:4;	//Switch Line2
-		uint8_t n3:4;	//Switch Line3
-		uint8_t enc0:2;	//Rotary encoder
-		uint8_t enc1:2;	//Rotary encoder
-		uint8_t enc2:2;	//Rotary encoder
-		uint8_t enc3:2;	//Rotary encoder
-		uint8_t enc4:2;	//Rotary encoder
-		uint8_t enc5:2;	//Rotary encoder
-		uint8_t enc6:2;	//Rotary encoder
-		uint8_t enc7:2;	//Rotary encoder
-    } nb;
-} ENCSW_SCAN;
-#endif
 
+//! Encoder movement expression
 typedef union enc_m_t {
 	uint8_t	wd;
 	struct enc_mm_t {

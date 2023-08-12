@@ -31,13 +31,17 @@ char 	msg_string[MSG_WIDTH + 2];
 // keyboard variable
 //! If true, ISR detected any Switch was pushed.
 bool	isAnyMatrixPushed;
+//! If true ISR detected any Encoder was moved.
 bool	isAnyEncoderMoved;
-//! Switch pressed/Encoder moved status set by timer scanning.
+//! Switch pressed status set by timer scanning.
 MTRX_SCAN	MTRX_Stat;
+//! Encoder moved status set by timer scanning.
 ENC_SCAN	ENC_Stat;
 //! USB MIDI message structure for send
 MIDI_MSG	MIDI_TxMessage;
+//! Encoder move information
 ENC_MOVE	enc_move;
+
 /**
  * @brief	Rise CC message value
  * @param	channel to modify

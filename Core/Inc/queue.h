@@ -1,6 +1,6 @@
 /**
-* @file queue.h
-* @brief basic queue
+* @file		queue.h
+* @brief	Basic queue functions
 */
 
 #ifndef INC_QUEUE_H_
@@ -12,6 +12,7 @@
 #define	QUEUE_DEPTH	250
 #define QUEUE_EMPTY	(uint16_t)0xffff
 
+//! Structure for queue
 typedef struct queue_t {
 	uint16_t	data[QUEUE_DEPTH];
 	uint8_t		head;

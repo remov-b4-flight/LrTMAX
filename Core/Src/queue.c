@@ -3,7 +3,10 @@
 * @brief basic queue
 */
 #include "queue.h"
-
+/**
+ * @brief Initialize queue structure
+ * @param *q pointer to queue structure.
+ */
 void queue_init(QUEUE *q) {
 	q->head = 0;
 	q->tail = 0;
@@ -11,7 +14,11 @@ void queue_init(QUEUE *q) {
 		q->data[i] = 0;
 	}
 }
-
+/**
+ * @brief push value to queue
+ * @param *q pointer to queue structure
+ * @param value value to push
+ */
 bool queue_enqueue(QUEUE *q, uint16_t value) {
 	if (q->tail >= QUEUE_DEPTH) {
 		return false;
@@ -21,7 +28,11 @@ bool queue_enqueue(QUEUE *q, uint16_t value) {
 	}
 	return true;
 }
-
+/**
+ * @brief 	pull value from queue
+ * @param 	*q pointer to structure
+ * @retval	 pulled value from queue
+ */
 uint16_t queue_dequeue(QUEUE *q) {
 	if (q->head == q->tail) {
 		return	QUEUE_EMPTY;
@@ -32,6 +43,10 @@ uint16_t queue_dequeue(QUEUE *q) {
 	}
 }
 
+/**
+ * @brief	Empty check for queue
+ * @retval	true if queue is empty
+ */
 bool queue_isempty(QUEUE *q) {
 	return (q->head == q->tail)?	true:false;
 }

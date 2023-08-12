@@ -1,8 +1,7 @@
 /*
- * EmulateMIDI.h
- *
- *  Created on: Jun 26, 2023
- *      Author: jenoki
+ * @file	EmulateMIDI.h
+ * @author	remov-b4-flight
+ * @copyright	3-Clause BSD License
  */
 
 #ifndef INC_EMULATEMIDI_H_
@@ -24,6 +23,7 @@
 #define CC_COUNT_INUSE	(ENC_COUNT * SCENE_COUNT)
 #define CC_MAX_INUSE	(CC_CH_OFFSET + CC_COUNT_INUSE)
 #define CC_MIN_INUSE	CC_CH_OFFSET
+
 //! Received from MIDI channel-value pair
 typedef union ch_val_t {
 	uint16_t	wd;
