@@ -21,6 +21,7 @@ void queue_init(QUEUE *q) {
  * @brief push value to queue
  * @param *q pointer to queue structure
  * @param value value to push
+ * @retval true when queue is full
  */
 bool queue_enqueue(QUEUE *q, uint16_t value) {
 	if (q->tail >= QUEUE_DEPTH) {
