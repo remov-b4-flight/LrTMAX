@@ -1,6 +1,8 @@
 /**
-* @file		queue.h
-* @brief	Basic queue functions
+* @file			queue.h
+* @brief		Basic queue functions
+* @author		remov-b4-flight
+* @copyright	3-Clause BSD License
 */
 
 #ifndef INC_QUEUE_H_

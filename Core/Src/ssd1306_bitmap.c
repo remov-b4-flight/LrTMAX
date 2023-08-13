@@ -1,6 +1,7 @@
 /**
- * @file ssd1306_bitmap.c
- * @author remov-b4-flight
+ * @file	ssd1306_bitmap.c
+ * @brief	LrTMAX banner image
+ * @author	remov-b4-flight
  */
 
 #include "ssd1306.h"

@@ -1,6 +1,9 @@
 /**
-* @file queue.c
-* @brief basic queue
+* @file 		queue.c
+* @brief 		basic queue
+* @author		remov-b4-flight
+* @copyright	3-Clause BSD License
+*
 */
 #include "queue.h"
 /**
@@ -30,7 +33,7 @@ bool queue_enqueue(QUEUE *q, uint16_t value) {
 }
 /**
  * @brief 	pull value from queue
- * @param 	*q pointer to structure
+ * @param 	*q pointer to queue structure
  * @retval	 pulled value from queue
  */
 uint16_t queue_dequeue(QUEUE *q) {
@@ -45,6 +48,7 @@ uint16_t queue_dequeue(QUEUE *q) {
 
 /**
  * @brief	Empty check for queue
+ * @param	*q pointer to queue structure
  * @retval	true if queue is empty
  */
 bool queue_isempty(QUEUE *q) {
