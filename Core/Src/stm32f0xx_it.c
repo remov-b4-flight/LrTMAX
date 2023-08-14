@@ -285,10 +285,10 @@ void TIM2_IRQHandler(void)
 	//GPIO B&C reading
 	current_enc.nb.enc5 = enc_current[Lr_ENC5] = ( (ENC5A_GPIO_Port->IDR & ENC5A_MASK) | (ENC5B_GPIO_Port->IDR & ENC5B_MASK) ) >> 12;
 
-	if (previous_enc == current_enc.wd){
+	if (previous_enc == current_enc.wd) { // Encoder signals are stable
 		current_move = current_enc.wd;
 		uint16_t dif = previous_move ^ current_move;
-		if (dif != 0){
+		if (dif != 0) { // If any encoder has moved.
 			previous_move = current_move;
 
 			uint8_t	movedbits = ntz16(dif);
@@ -300,9 +300,9 @@ void TIM2_IRQHandler(void)
 			enc_prev[axis] = enc_current[axis];
 			isAnyEncoderMoved = true;
 		}
+	} else {
+		previous_enc = current_enc.wd;
 	}
-	previous_enc = current_enc.wd;
-
   /* USER CODE END TIM2_IRQn 0 */
   HAL_TIM_IRQHandler(&htim2);
   /* USER CODE BEGIN TIM2_IRQn 1 */
