@@ -68,7 +68,7 @@ void Msg_Print();
 #define PWM_LO 15
 #define PWM_PERIOD 59
 #define Lr_PID 0xA380
-#define TIM_PERIOD_ENC 1999
+#define TIM_PERIOD_ENC 1666
 #define TIM_PRESC_100uS 4799
 #define Lr_VENDOR "Ruffles Inc."
 #define TIM_PRESC_1uS 47
