@@ -12,8 +12,8 @@
  */
 void queue_init(QUEUE *q) {
 	q->head = 0;
-	q->tail = 0;
-	for (uint8_t i = 0; i < QUEUE_DEPTH; i++) {
+	q->tail = -1;
+	for (uint16_t i = 0; i < QUEUE_DEPTH; i++) {
 		q->data[i] = 0;
 	}
 }
@@ -24,11 +24,11 @@ void queue_init(QUEUE *q) {
  * @retval true when queue is full
  */
 bool queue_enqueue(QUEUE *q, uint16_t value) {
-	if (q->tail >= QUEUE_DEPTH) {
+	if ((q->tail + 2) % QUEUE_DEPTH == q->head) {
 		return false;
 	} else {
-		q->data[ q->tail ] = value;
-		q->tail++;
+		q->data[ (q->tail + 1) % QUEUE_DEPTH ] = value;
+		q->tail = (q->tail + 1) % QUEUE_DEPTH;
 	}
 	return true;
 }
@@ -38,11 +38,11 @@ bool queue_enqueue(QUEUE *q, uint16_t value) {
  * @retval	 pulled value from queue
  */
 uint16_t queue_dequeue(QUEUE *q) {
-	if (q->head == q->tail) {
+	if ( queue_isempty(q) ) {
 		return	QUEUE_EMPTY;
 	} else {
 		uint16_t temp = q->data[ q->head ];
-		q->head++;
+		q->head = (q->head + 1) % QUEUE_DEPTH;
 		return temp;
 	}
 }
@@ -53,5 +53,5 @@ uint16_t queue_dequeue(QUEUE *q) {
  * @retval	true if queue is empty
  */
 bool queue_isempty(QUEUE *q) {
-	return (q->head == q->tail)?	true:false;
+	return ((q->tail + 1) % QUEUE_DEPTH == q->head)?	true:false;
 }
