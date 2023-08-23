@@ -13,7 +13,7 @@
 void queue_init(QUEUE *q) {
 	q->head = 0;
 	q->tail = -1;
-	for (uint16_t i = 0; i < QUEUE_DEPTH; i++) {
+	for (uint8_t i = 0; i < QUEUE_DEPTH; i++) {
 		q->data[i] = 0;
 	}
 }

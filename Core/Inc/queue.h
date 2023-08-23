@@ -11,14 +11,14 @@
 #include <stdint.h>
 #include <stdbool.h>
 
-#define	QUEUE_DEPTH	1024	// 2^n is recommended
+#define	QUEUE_DEPTH	128	// 2^n is recommended
 #define QUEUE_EMPTY	(uint16_t)0xffff
 
 //! Structure for queue
 typedef struct queue_t {
 	uint16_t	data[QUEUE_DEPTH + 1];
-	uint16_t	head;
-	uint16_t	tail;
+	uint8_t	head;
+	uint8_t	tail;
 } QUEUE;
 
 void queue_init(QUEUE *q);

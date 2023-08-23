@@ -74,7 +74,8 @@ void EmulateMIDI_Init() {
 
 /**
  *	@brief	Generate MIDI message and Send to host by User interaction.
- *	@pre	isAnyMoved	any Switches/Encoders was pressed/moved or not
+ *	@pre	isAnyMatrixPushed 	any Switches was pressed or not
+ *	@pre	isAnyEncodersMoved 	any Encoders was moved or not
  *	@pre	ENCSW_Stat	current Switches/Encoders status
  */
 void EmulateMIDI() {
@@ -97,7 +98,7 @@ void EmulateMIDI() {
 		}
 		Msg_Print();
 		Start_MsgTimer(MSG_TIMER_DEFAULT);
-	} else if ( isAnyMatrixPushed ) {
+	} else if ( isAnyMatrixPushed == true) {
 		uint16_t	rstat = (MTRX_Stat.wd);
 		uint8_t		bitpos = ntz16(MTRX_Stat.wd);
 
@@ -149,7 +150,7 @@ void EmulateMIDI() {
 			isPrev_SwPush = false;
 		}
 		isAnyMatrixPushed = false;
-	}else if ( isAnyEncoderMoved ) {
+	}else if ( isAnyEncoderMoved == true) {
 		uint8_t	axis = enc_move.bits.axis;
 		uint8_t bitpos = PROF_ENC1ST + (axis * 2);
 		uint8_t channel = CC_CH_OFFSET + (LrScene * CC_CH_PER_SCENE) + axis;
@@ -190,8 +191,9 @@ rot_stopped_exits:
 	//Send MIDI message
 	if (isSendMIDIMessage == true) {
 		//Send MIDI message via USB.
-		USBD_LL_Transmit (pInstance, MIDI_IN_EP, (uint8_t *)&MIDI_TxMessage, MIDI_MESSAGE_LENGTH);
-		isSendMIDIMessage = false;
+		if (USBD_LL_Transmit (pInstance, MIDI_IN_EP, (uint8_t *)&MIDI_TxMessage, MIDI_MESSAGE_LENGTH) == USBD_OK) {
+			isSendMIDIMessage = false;
+		}
 	}
 
 }
