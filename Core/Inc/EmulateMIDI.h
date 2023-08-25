@@ -1,6 +1,7 @@
 /*
- * @file	EmulateMIDI.h
- * @author	remov-b4-flight
+ * @file		EmulateMIDI.h
+ * @brief		Definitions	for EmulateMIDI() function
+ * @author		remov-b4-flight
  * @copyright	3-Clause BSD License
  */
 
@@ -13,7 +14,7 @@
 #include "bitcount.h"
 #include "ssd1306.h"
 #include "led.h"
-//! deine switch combination to invoke reset
+//! define switch combination to invoke reset
 #define RESET_SW_PATTERN	0x81	//[Undo]+[Scene]
 //CC message display format on OLED.
 #define CC_MSG_2DG	"Ch%2u = %3u    S%1u"

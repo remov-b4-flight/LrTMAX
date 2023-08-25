@@ -1,9 +1,8 @@
 /**
- *	@file	bitcount.c
- *	@brief 'bit count' functions
- *	@author	remov-b4-flight
+ *	@file		bitcount.c
+ *	@brief		'bit count' functions
+ *	@author		remov-b4-flight
  *	@copyright	3-Clause BSD License
- *
  */
 /* Includes ------------------------------------------------------------------*/
 #include "bitcount.h"

@@ -1,9 +1,9 @@
 /**
- * @file	ssd1306.h
- * @brief	SSD1306 OLED Library Header.
- * @author	totally modified by remov-b4-flight
+ * @file		ssd1306.h
+ * @brief		SSD1306 OLED Library Header.
+ * @author		totally modified by remov-b4-flight
  * @copyright	MIT License
- * This Library was originally written by Olivier Van den Eede (4ilo) in 2016.
+ * @note		This Library was originally written by Olivier Van den Eede (4ilo) in 2016.
  * Some refactoring was done and SPI support was added by Aleksander Alekseev (afiskon) in 2018.
  *
  * https://github.com/afiskon/stm32-ssd1306

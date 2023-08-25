@@ -1,3 +1,9 @@
+/**
+ * @file		prof_define.h
+ * @brief		definitions for prof_define.c
+ * @author		remov-b4-flight
+ * @copyright	3-Clause BSD License
+ */
 #ifndef _PROF_DEFINE_H
 #define _PROF_DEFINE_H
 #include <stdint.h>

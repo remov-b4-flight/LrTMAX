@@ -1,7 +1,8 @@
 /**
- * @file	EmulateMIDI.c
- * @author	remov-b4-flight
- * @brief	MIDI Emulation of LrTMAX
+ * @file		EmulateMIDI.c
+ * @brief		MIDI Emulation of LrTMAX
+ * @author		remov-b4-flight
+ * @copyright	3-Clause BSD License
  */
 #include "EmulateMIDI.h"
 #include "queue.h"

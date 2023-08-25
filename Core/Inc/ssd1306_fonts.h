@@ -1,3 +1,9 @@
+/**
+ * @file		ssd1306_fonts.h
+ * @brief		definitions for ssd1306_fonts.c
+ * @author		remov-b4-flight
+ * @copyright	3-Clause BSD License
+ */
 #include <stdint.h>
 
 #ifndef __SSD1306_FONTS_H__
