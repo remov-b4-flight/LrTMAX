@@ -43,7 +43,7 @@
 /* Exported macro ------------------------------------------------------------*/
 /* USER CODE BEGIN EM */
 
- //! LrTMAX Ports on Board
+ //! @def LrTMAX Ports on Board
 #define Mx_GPIO_Port GPIOA
 #define ENC0_GPIO_Port GPIOA
 #define ENC1_GPIO_Port GPIOB
@@ -57,7 +57,7 @@
 #define ENC6_GPIO_Port GPIOB
 #define ENC7_GPIO_Port GPIOB
 
-// Definitions for Encoders
+//! @def Definitions for Encoders
 #define PRMASK_E0	0x0030
 #define PRMASK_E1	0x0300
 #define PRMASK_E2	0x0C00
@@ -67,6 +67,7 @@
 #define PRMASK_E6	0x000C
 #define PRMASK_E7	0x00C0
 
+ //! @enum Encoder condition
 enum enc_move_t {
 	ENC_STOPPED = 0,
 	ENC_MOVE_CW,
@@ -78,7 +79,7 @@ enum enc_move_t {
 #define ENC5A_MASK	0x1000
 #define ENC5B_MASK	0x2000
 
-// Definitions for Matrix
+//! @def Definitions for Matrix
 #define LxMASK	0x0F
 /* USER CODE END EM */
 

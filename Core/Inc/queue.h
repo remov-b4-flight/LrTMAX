@@ -17,8 +17,8 @@
 //! Structure for queue
 typedef struct queue_t {
 	uint16_t	data[QUEUE_DEPTH + 1];
-	uint8_t	head;
-	uint8_t	tail;
+	uint8_t		head;
+	uint8_t		tail;
 } QUEUE;
 
 void queue_init(QUEUE *q);

@@ -14,6 +14,7 @@
 #include "bitcount.h"
 #include "ssd1306.h"
 #include "led.h"
+
 //! define switch combination to invoke reset
 #define RESET_SW_PATTERN	0x81	//[Undo]+[Scene]
 //CC message display format on OLED.
