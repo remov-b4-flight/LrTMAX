@@ -38,9 +38,9 @@
 #define EP0_OUT	0x00
 #define EP0_IN	0x80
 #define	EP0_OUT_PMA		0x18
-#define	EP0_IN_PMA		(EP0_OUT_PMA + 0x40)
+#define	EP0_IN_PMA		(EP0_OUT_PMA + USB_MAX_EP0_SIZE)
 #define MIDI_IN_PMA		0xC0
-#define MIDI_OUT_PMA	(MIDI_IN_PMA + 0x40)
+#define MIDI_OUT_PMA	(MIDI_IN_PMA + MIDI_DATA_IN_PACKET_SIZE)
 /* USER CODE END INCLUDE */
 
 /** @addtogroup USBD_OTG_DRIVER
