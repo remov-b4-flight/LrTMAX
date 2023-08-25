@@ -338,8 +338,10 @@ USBD_StatusTypeDef USBD_LL_Init(USBD_HandleTypeDef *pdev)
   HAL_PCD_RegisterIsoInIncpltCallback(&hpcd_USB_FS, PCD_ISOINIncompleteCallback);
 #endif /* USE_HAL_PCD_REGISTER_CALLBACKS */
   /* USER CODE BEGIN EndPoint_Configuration */
+  // EP0 definitions
   HAL_PCDEx_PMAConfig((PCD_HandleTypeDef*)pdev->pData, EP0_OUT,		PCD_SNG_BUF, EP0_OUT_PMA);
   HAL_PCDEx_PMAConfig((PCD_HandleTypeDef*)pdev->pData, EP0_IN,		PCD_SNG_BUF, EP0_IN_PMA);
+  // USB MIDI definitions
   HAL_PCDEx_PMAConfig((PCD_HandleTypeDef*)pdev->pData, MIDI_IN_EP,	PCD_SNG_BUF, MIDI_IN_PMA);
   HAL_PCDEx_PMAConfig((PCD_HandleTypeDef*)pdev->pData, MIDI_OUT_EP,	PCD_SNG_BUF, MIDI_OUT_PMA);
   /* USER CODE END EndPoint_Configuration */

@@ -35,6 +35,7 @@
 #include "stm32f0xx_hal.h"
 
 /* USER CODE BEGIN INCLUDE */
+//! @def PMA setting.
 #define EP0_OUT	0x00
 #define EP0_IN	0x80
 #define	EP0_OUT_PMA		0x18

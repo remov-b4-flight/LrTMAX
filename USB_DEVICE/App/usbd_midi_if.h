@@ -31,6 +31,7 @@
 
 extern USBD_MIDI_ItfTypeDef  USBD_Interface_fops_FS;
 
+//! @def MIDI message definition.
 typedef struct midi_message_t {
 	uint8_t	header;
 	uint8_t	status;
