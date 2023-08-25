@@ -338,16 +338,10 @@ USBD_StatusTypeDef USBD_LL_Init(USBD_HandleTypeDef *pdev)
   HAL_PCD_RegisterIsoInIncpltCallback(&hpcd_USB_FS, PCD_ISOINIncompleteCallback);
 #endif /* USE_HAL_PCD_REGISTER_CALLBACKS */
   /* USER CODE BEGIN EndPoint_Configuration */
-#if 1
-  HAL_PCDEx_PMAConfig((PCD_HandleTypeDef*)pdev->pData, EP0_OUT,		PCD_SNG_BUF, 0x018);
-  HAL_PCDEx_PMAConfig((PCD_HandleTypeDef*)pdev->pData, EP0_IN,		PCD_SNG_BUF, 0x058);
-  HAL_PCDEx_PMAConfig((PCD_HandleTypeDef*)pdev->pData, MIDI_IN_EP,	PCD_SNG_BUF, 0x0C0);
-  HAL_PCDEx_PMAConfig((PCD_HandleTypeDef*)pdev->pData, MIDI_OUT_EP,	PCD_SNG_BUF, 0x100);
-#else
-  HAL_PCDEx_PMAConfig((PCD_HandleTypeDef*)pdev->pData , 0x00 , PCD_SNG_BUF, 0x18);
-  HAL_PCDEx_PMAConfig((PCD_HandleTypeDef*)pdev->pData , 0x80 , PCD_SNG_BUF, 0x58);
-  HAL_PCDEx_PMAConfig((PCD_HandleTypeDef*)pdev->pData , 0x81 , PCD_SNG_BUF, 0xC0);
-#endif
+  HAL_PCDEx_PMAConfig((PCD_HandleTypeDef*)pdev->pData, EP0_OUT,		PCD_SNG_BUF, EP0_OUT_PMA);
+  HAL_PCDEx_PMAConfig((PCD_HandleTypeDef*)pdev->pData, EP0_IN,		PCD_SNG_BUF, EP0_IN_PMA);
+  HAL_PCDEx_PMAConfig((PCD_HandleTypeDef*)pdev->pData, MIDI_IN_EP,	PCD_SNG_BUF, MIDI_IN_PMA);
+  HAL_PCDEx_PMAConfig((PCD_HandleTypeDef*)pdev->pData, MIDI_OUT_EP,	PCD_SNG_BUF, MIDI_OUT_PMA);
   /* USER CODE END EndPoint_Configuration */
   return USBD_OK;
 }
