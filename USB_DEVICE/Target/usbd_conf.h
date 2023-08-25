@@ -35,7 +35,8 @@
 #include "stm32f0xx_hal.h"
 
 /* USER CODE BEGIN INCLUDE */
-
+#define EP0_OUT	0x00
+#define EP0_IN	0x80
 /* USER CODE END INCLUDE */
 
 /** @addtogroup USBD_OTG_DRIVER
