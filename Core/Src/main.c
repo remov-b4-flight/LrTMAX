@@ -463,9 +463,9 @@ int main(void)
 		}
 		continue;
 	}
-#if 0
+
 	HAL_PWR_EnterSLEEPMode(PWR_LOWPOWERREGULATOR_ON, PWR_SLEEPENTRY_WFI);
-#endif
+
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
