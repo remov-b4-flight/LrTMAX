@@ -31,6 +31,7 @@ extern "C" {
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
+//! @defgroup Define LrTMAX version.
 #define USBD_DEVICE_VER_MAJ	0x00
 #define USBD_DEVICE_VER_MIN	0x69
 /* USER CODE END Includes */

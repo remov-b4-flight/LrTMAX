@@ -9,7 +9,7 @@
 #ifndef __SSD1306_FONTS_H__
 #define __SSD1306_FONTS_H__
 
-//! @def Font size definition
+//! @defgroup Font size definition
 #define FONT_WIDTH	8
 #define FONT_HEIGHT	16
 

@@ -17,9 +17,9 @@
 extern uint8_t Font8x16[];
 extern uint8_t connect_bitmap[];
 
-//! @brief string buffer to render for Frame_Buffer[].
+//! string buffer to render for Frame_Buffer[].
 char Msg_Buffer[MSG_LINES][MSG_WIDTH+1];
-//! @brief SSD1306 OLED frame buffer
+//! SSD1306 OLED frame buffer
 static uint8_t Frame_Buffer[SSD1306_WIDTH * (MAX_PAGE+1)];
 
 /**

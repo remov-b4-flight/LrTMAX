@@ -17,7 +17,9 @@ typedef struct enc_sw_define_t {
 	uint8_t period;
 } PROF_DEFINE;
 
+//! Bit mask pattern for Encoder push
 #define MASK_ENCPUSH	0xff00
+//! Bit position for 1st encoder
 #define PROF_ENC1ST		16
 
 #endif /* _PROF_DEFINE_H */

@@ -9,7 +9,7 @@
 #define INC_LRCOMMON_H_
 #include <stdint.h>
 
-//! LrTMAX Hardware definition
+//! @defgroup LrTMAX Hardware definition
 #define SW_COUNT		8
 #define ENC_COUNT		8
 #define ENC_SW_COUNT	(SW_COUNT + ENC_COUNT)
@@ -106,14 +106,14 @@ enum lr_matrix_t {
 //!Assigned CC channel count per scene
 #define CC_CH_PER_SCENE	8
 
-// LED timer definitions
+//! @defgroup LED timer definitions
 #define LED_TIM_NORM	21		//500ms (1 tick=24ms)
 #define LED_TIM_SHORT	4		//100ms
 #define LED_TIM_HALF	11		//250ms
 #define LED_TIM_LONG	42		//1.0Sec
 #define LED_TIM_CONNECT	64		//1.5Sec
 
-// Screen timer definitions
+//! @defgroup Screen timer definitions
 #define MSG_TIMER_DEFAULT	47		//1.5Sec (1 tick=32.7ms)
 #define MSG_TIMER_NOLINK	31		//1Sec (OLED update in USB not connected)
 #define MSG_TIMER_CONNECT	122		//4Sec (USB connected)

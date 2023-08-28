@@ -48,6 +48,7 @@
 #define CONN_MSG	"%2x.%02x"
 #endif
 
+//! @defgroup for call STM32 internal bootloader
 #define DFU_MSG	"DFU Bootloader."
 #define SWMASK	0x0F
 #define SW1_MASK	1
@@ -205,6 +206,9 @@ static inline void Start_All_Encoders(){
 	HAL_TIM_Base_Start_IT(&htim2);
 }
 
+/**
+ * @brief OLED off timer start
+*/
 void Start_MsgTimer(uint32_t tick){
 	Msg_Off_Flag = false;
 	Msg_Timer_Count = tick;
@@ -305,20 +309,20 @@ int main(void)
 	Start_MsgTimer(MSG_TIMER_DEFAULT);
 	LrState = LR_USB_NOLINK;
 
-	//Check SW1 and SW3 at Power On
+	// Check SW1 and SW3 at Power On
 	if ((GPIOA->IDR & SWMASK) == (SW1_MASK | SW3_MASK)) {
 		LrState = LR_USB_DFU;
 	} else {
 		MX_USB_DEVICE_Init();
 	}
 
-	//Initialize CC Value table
+	// Initialize CC Value table
 	EmulateMIDI_Init();
 
-	//LED Initialize
+	// LED Initialize
 	LED_SetScene(LrScene);
 
-	//Main loop
+	// Main loop
 	while (1) {
 		if (LrState == LR_USB_LINKUP) {
 			// USB device configured by host
@@ -408,7 +412,7 @@ int main(void)
 
 		}// LrState
 
-		//LED Timer
+		// LED Timer
 		if (LED_Timer_Update == true) { //24ms interval
 			for (uint8_t i = 0; i < LED_COUNT; i++){
 				if (LEDTimer[i] != LED_TIMER_CONSTANT && --LEDTimer[i] == 0) {
@@ -419,7 +423,7 @@ int main(void)
 			continue;
 		}
 
-		//Flashing LEDs
+		// Flashing LEDs
 		if (isLEDsendpulse == true) {
 			if (LED_SendPulse() == true) {
 				isLEDsendpulse = false;
@@ -429,7 +433,7 @@ int main(void)
 			continue;
 		}
 
-		//OLED timer
+		// OLED timer
 		if (Msg_Timer_Update == true) {	//32.7ms interval
 			if (Msg_Timer_Enable == true && (--Msg_Timer_Count) <= 0) {
 				Msg_Timer_Enable = false;

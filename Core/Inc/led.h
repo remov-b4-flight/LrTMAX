@@ -56,6 +56,7 @@ enum led_color_t {
 #define	LED_IDX_ENC0	0
 //! timer constant for LED reset.
 #define LED_RESET_WIDTH	330	//in usec.(more than 280)
+
 /**
  * @typedef RGB LED intensity definition
  * @brief used for set RGB LED intensity definition.

@@ -20,24 +20,24 @@ _BEGIN_STD_C
 
 #include "stm32f0xx_hal.h"
 #include "ssd1306_fonts.h"
+extern	I2C_HandleTypeDef		SSD1306_I2C_PORT;
 
 #define SSD1306_USE_DMA	1
 
-//! @def LrTMAX I2C hardware
+//! @defgroup LrTMAX I2C hardware
 #define SSD1306_I2C_PORT		hi2c2
 #define SSD1306_I2C_ADDR        (0x3C << 1)
-extern	I2C_HandleTypeDef		SSD1306_I2C_PORT;
 #define SSD1306_PWRUP_WAIT		5	//(ms)
 
+//! @defgroup SSD1306 hardware constants
 #define SSD1306_CMD				0x00
 #define	SSD1306_DATA			0x40
-
 #define SSD1306_CONTINUE    	0x80
 #define SSD1306_TAIL        	0
 #define SSD1306_WRITE       	0
 #define	SSD1306_TRANSMIT_TO		250
 
-//! @def SSD1306 Commands
+//! @defgroup SSD1306 Commands
 #define	CMD_SET_ADDRESS_MD		0x20
 #define CMD_SET_PAGE_RANGE		0x22
 #define CMD_SET_START_LINE		0x40
@@ -61,6 +61,7 @@ extern	I2C_HandleTypeDef		SSD1306_I2C_PORT;
 #define CMD_SET_COMCONFIG		0xDA
 #define	CMD_SET_VCOMH			0xDB
 
+//! @defgroup Constants for SSD1306 commands
 #define VAL_HORIZON_ADDRSS		0x00
 #define VAL_CONTRAST_MAX		0xFF
 #define VAL_OSC_FREQ_MAX		0xF0
@@ -68,19 +69,18 @@ extern	I2C_HandleTypeDef		SSD1306_I2C_PORT;
 #define VAL_VCOMH_DEFAULT		0x20
 #define	VAL_CHG_PUMP_ENABLE		0x14
 #define VAL_VOFFSET_NONE		0x00
-
 #define VAL_MPX_RATIO_32L		0x1F
 #define VAL_COM_CONFIG_32L		0x02
 #define VAL_START_PAGE			0x00
 #define VAL_END_PAGE_32L		0x03
 
-//! @def SSD1306 OLED screen dimensions
+//! @defgroup SSD1306 OLED screen dimensions
 #define SSD1306_HEIGHT          32		// height
 #define SSD1306_WIDTH           128		// width
 #define MSG_LINES	(SSD1306_HEIGHT / FONT_HEIGHT)
 #define MSG_WIDTH	(SSD1306_WIDTH / FONT_WIDTH)
 
-//! @def SSD1306 OLED character rendering
+//! @defgroup SSD1306 OLED character rendering
 #define SCREEN_BLANK			0x00
 #define FONT_PRINTABLE_START	0x20
 #define FONT_PRINTABLE_END		0x7e
@@ -89,6 +89,7 @@ extern	I2C_HandleTypeDef		SSD1306_I2C_PORT;
 #define MAX_PAGE				((SSD1306_HEIGHT / BITS_PER_PAGE) - 1)
 #define FB_SIZE					(SSD1306_WIDTH * (SSD1306_HEIGHT / BITS_PER_PAGE))
 
+//! Constants for SSD1306_SetScreen()
 enum screen_stat {
 	OFF = false,//!< OFF
 	ON = true,  //!< ON
