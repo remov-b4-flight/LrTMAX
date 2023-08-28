@@ -17,11 +17,11 @@
 
 //! define switch combination to invoke reset
 #define RESET_SW_PATTERN	0x81	//[Undo]+[Scene]
-//CC message display format on OLED.
+//! @defgroup CC message display format on OLED.
 #define CC_MSG_2DG	"Ch%2u = %3u    S%1u"
 #define CC_MSG_3DG	"C%3u = %3u    S%1u"
 
-//! number of cc channels that LrTMAX controls.
+//! @defgroup number of cc channels that LrTMAX controls.
 #define CC_COUNT_INUSE	(ENC_COUNT * SCENE_COUNT)
 #define CC_MAX_INUSE	(CC_CH_OFFSET + CC_COUNT_INUSE)
 #define CC_MIN_INUSE	CC_CH_OFFSET

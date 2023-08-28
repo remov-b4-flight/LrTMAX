@@ -14,9 +14,8 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-/**
- * @enum constants for expressing LED light color.
- */
+
+//! constants for expressing LED light color.
 enum led_color_t {
 	LED_OFF = 0,//!< LED_COLOR_OFF
 	LED_RED,	//!< LED_COLOR_RED
@@ -35,12 +34,12 @@ enum led_color_t {
 };
 #define COLOR_MAX 14
 
-//! @def LrTMAX board definition
+//! @defgroup LrTMAX board definition
 #define LED_COUNT		8
 #define BITS_PER_LED	24  // (RGB) 3 * 8bit
 #define TOTAL_BITS		(LED_COUNT * BITS_PER_LED)
 
-//! @def LED intensity definition
+//! @defgroup LED intensity definition
 #define LHIL	0xC0
 #define LBRIGHT	0x80
 #define LMAX	0x78
@@ -51,8 +50,11 @@ enum led_color_t {
 #define LMIN	0x08
 #define LOFF	0x00
 
+//! LED counter value to constantly 'on'
 #define LED_TIMER_CONSTANT	0xFF
+
 #define	LED_IDX_ENC0	0
+//! timer constant for LED reset.
 #define LED_RESET_WIDTH	330	//in usec.(more than 280)
 /**
  * @typedef RGB LED intensity definition

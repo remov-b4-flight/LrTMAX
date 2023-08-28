@@ -230,7 +230,6 @@ static void matrix_control(uint8_t control) {
 
 /**
   * @brief  The application entry point.
-  * @retval int
   */
 int main(void)
 {
@@ -321,150 +320,151 @@ int main(void)
 
 	//Main loop
 	while (1) {
-	if (LrState == LR_USB_LINKUP) {
-		//USB device configured by host
-		SSD1306_SetScreen(ON);
+		if (LrState == LR_USB_LINKUP) {
+			// USB device configured by host
+			SSD1306_SetScreen(ON);
 
-		matrix_control(Lr_MATRIX_START);	//Initialize L0-3.
-		HAL_TIM_Base_Start_IT(&htim1);		//Start Switch matrix timer.
-		Start_All_Encoders();				//Start rotary encoder.
+			matrix_control(Lr_MATRIX_START);	//Initialize L0-3.
+			HAL_TIM_Base_Start_IT(&htim1);		//Start Switch matrix timer.
+			Start_All_Encoders();				//Start rotary encoder.
 
-#ifdef DEBUG
-		sprintf(Msg_Buffer[0], CONN_MSG_D, Lr_PRODUCT, USBD_DEVICE_VER_MAJ, USBD_DEVICE_VER_MIN);
-		memset(Msg_Buffer[1], (int)SPACE_CHAR, MSG_WIDTH );
-		Msg_Print();
-#else
-		SSD1306_LoadBitmap();
-		sprintf(Msg_Buffer[0], CONN_MSG, USBD_DEVICE_VER_MAJ, USBD_DEVICE_VER_MIN);
-		SSD1306_RenderBanner(Msg_Buffer[0], 88, 16);
-		SSD1306_FlashScreen();
-		memset(Msg_Buffer[0], (int)SPACE_CHAR, MSG_WIDTH );
-#endif
-		Start_MsgTimer(MSG_TIMER_CONNECT);
-		memcpy(LEDColor,LED_Scene[LrScene],LED_COUNT);
-		LED_SetPulse(LED_IDX_ENC0, LED_PINK, LED_TIM_CONNECT);
-		LrState = LR_USB_LINKED;
+			// Connection banner
+	#ifdef DEBUG
+			sprintf(Msg_Buffer[0], CONN_MSG_D, Lr_PRODUCT, USBD_DEVICE_VER_MAJ, USBD_DEVICE_VER_MIN);
+			memset(Msg_Buffer[1], (int)SPACE_CHAR, MSG_WIDTH );
+			Msg_Print();
+	#else
+			SSD1306_LoadBitmap();
+			sprintf(Msg_Buffer[0], CONN_MSG, USBD_DEVICE_VER_MAJ, USBD_DEVICE_VER_MIN);
+			SSD1306_RenderBanner(Msg_Buffer[0], 88, 16);
+			SSD1306_FlashScreen();
+			memset(Msg_Buffer[0], (int)SPACE_CHAR, MSG_WIDTH );
+	#endif
+			Start_MsgTimer(MSG_TIMER_CONNECT);
+			memcpy(LEDColor,LED_Scene[LrScene],LED_COUNT);
+			LED_SetPulse(LED_IDX_ENC0, LED_PINK, LED_TIM_CONNECT);
+			LrState = LR_USB_LINKED;
 
-	} else if (LrState == LR_USB_LINKED) {
-		//Operate as MIDI Instruments.
-		EmulateMIDI();
-	} else if (LrState == LR_USB_LINK_LOST) {
-		LrScene	= Lr_SCENE0;
-		Stop_All_Encoders();
+		} else if (LrState == LR_USB_LINKED) {
+			//Operate as MIDI Instruments.
+			EmulateMIDI();
+		} else if (LrState == LR_USB_LINK_LOST) {
+			LrScene	= Lr_SCENE0;
+			Stop_All_Encoders();
 
-		HAL_TIM_Base_Stop(&htim1);
-		matrix_control(Lr_MATRIX_STOP);		//Stop L0-L3
+			HAL_TIM_Base_Stop(&htim1);
+			matrix_control(Lr_MATRIX_STOP);		//Stop L0-L3
 
-		LED_TestPattern();
-		Msg_1st_timeout = false;
-		Start_MsgTimer(MSG_TIMER_DEFAULT);
-		nc_count = 0;
-		LrState = LR_USB_NOLINK;
+			LED_TestPattern();
+			Msg_1st_timeout = false;
+			Start_MsgTimer(MSG_TIMER_DEFAULT);
+			nc_count = 0;
+			LrState = LR_USB_NOLINK;
 
-	} else if (LrState == LR_USB_NOLINK) {
-		//USB can't be configured or disconnected by host.
+		} else if (LrState == LR_USB_NOLINK) {
+			//USB can't be configured or disconnected by host.
+			if (Msg_Off_Flag == true) {
+				if (Msg_1st_timeout == true) {
+					LrState = LR_USB_LINK_LOST;
+				} else { // 2nd or more
+					sprintf(Msg_Buffer[0], "%12ld", nc_count++);
+					SSD1306_SetScreen(ON);
+
+					Msg_Print();
+
+					//Restart OLED timer.
+					Start_MsgTimer(MSG_TIMER_NOLINK);
+
+					//Rotate LED colors
+					uint8_t	tempcolor = LEDColor[7];
+					LEDColor[7] = LEDColor[6];
+					LEDColor[6] = LEDColor[5];
+					LEDColor[5] = LEDColor[4];
+					LEDColor[4] = LEDColor[3];
+					LEDColor[3] = LEDColor[2];
+					LEDColor[2] = LEDColor[1];
+					LEDColor[1] = LEDColor[0];
+					LEDColor[0] = tempcolor;
+
+					isLEDsendpulse = true;
+				}
+			}// Msg_Off_Flag
+		} else if (LrState == LR_USB_DFU) {
+			if (Msg_Off_Flag == true) {
+				if (nc_count == 0){
+					strcpy(Msg_Buffer[0], DFU_MSG);
+					SSD1306_SetScreen(ON);
+					Msg_Print();
+					nc_count++;
+				}else if(nc_count == 1){
+					LED_TestPattern();
+					nc_count++;
+				}else if (nc_count <= 2){
+					LED_Initialize();
+					Jump2SystemMemory();
+				}
+				Start_MsgTimer(MSG_TIMER_NOLINK/2);
+			}
+
+		}// LrState
+
+		//LED Timer
+		if (LED_Timer_Update == true) { //24ms interval
+			for (uint8_t i = 0; i < LED_COUNT; i++){
+				if (LEDTimer[i] != LED_TIMER_CONSTANT && --LEDTimer[i] == 0) {
+					LED_SetPulse(i, LED_Scene[LrScene][i], LED_TIMER_CONSTANT);
+				}
+			}
+			LED_Timer_Update = false;
+			continue;
+		}
+
+		//Flashing LEDs
+		if (isLEDsendpulse == true) {
+			if (LED_SendPulse() == true) {
+				isLEDsendpulse = false;
+			} else {
+				HAL_Delay(LED_TIM_RETRY_WAIT);	// i2c is busy, retry with interval
+			}
+			continue;
+		}
+
+		//OLED timer
+		if (Msg_Timer_Update == true) {	//32.7ms interval
+			if (Msg_Timer_Enable == true && (--Msg_Timer_Count) <= 0) {
+				Msg_Timer_Enable = false;
+				Msg_Off_Flag = true;
+			}
+			Msg_Timer_Update = false;
+			continue;
+		}
+
+		// OLED off Timer
 		if (Msg_Off_Flag == true) {
-			if (Msg_1st_timeout == true) {
-				LrState = LR_USB_LINK_LOST;
-			} else { // 2nd or more
-				sprintf(Msg_Buffer[0], "%12ld", nc_count++);
-				SSD1306_SetScreen(ON);
+			Msg_Off_Flag = false;
+			SSD1306_SetScreen(OFF);
+			SSD1306_ClearBuffer();
+			memset(Msg_Buffer[0], (int)SPACE_CHAR, MSG_WIDTH );
+			memset(Msg_Buffer[1], (int)SPACE_CHAR, MSG_WIDTH );
+			continue;
+		}
 
-				Msg_Print();
-
-				//Restart OLED timer.
-				Start_MsgTimer(MSG_TIMER_NOLINK);
-
-				//Rotate LED colors
-				uint8_t	tempcolor = LEDColor[7];
-				LEDColor[7] = LEDColor[6];
-				LEDColor[6] = LEDColor[5];
-				LEDColor[5] = LEDColor[4];
-				LEDColor[4] = LEDColor[3];
-				LEDColor[3] = LEDColor[2];
-				LEDColor[2] = LEDColor[1];
-				LEDColor[1] = LEDColor[0];
-				LEDColor[0] = tempcolor;
-
-				isLEDsendpulse = true;
+		// Flashing OLED display.
+		if (isMsgFlash == true) {
+			if (isRender == true) {
+				SSD1306_Render2Buffer();
+				isRender = false;
 			}
-		}// Msg_Off_Flag
-	} else if (LrState == LR_USB_DFU) {
-		if (Msg_Off_Flag == true) {
-			if (nc_count == 0){
-				strcpy(Msg_Buffer[0], DFU_MSG);
-				SSD1306_SetScreen(ON);
-				Msg_Print();
-				nc_count++;
-			}else if(nc_count == 1){
-				LED_TestPattern();
-				nc_count++;
-			}else if (nc_count <= 2){
-				LED_Initialize();
-				Jump2SystemMemory();
+			if (SSD1306_FlashScreen() == true) {
+				isMsgFlash = false;	// success to flash
+				isRender = true;
+			} else {
+				HAL_Delay(I2C_RETRY_WAIT);	// i2c is busy, retry with interval
 			}
-			Start_MsgTimer(MSG_TIMER_NOLINK/2);
+			continue;
 		}
 
-	}// LrState
-
-	//LED Timer
-	if (LED_Timer_Update == true) { //24ms interval
-		for (uint8_t i = 0; i < LED_COUNT; i++){
-			if (LEDTimer[i] != LED_TIMER_CONSTANT && --LEDTimer[i] == 0) {
-				LED_SetPulse(i, LED_Scene[LrScene][i], LED_TIMER_CONSTANT);
-			}
-		}
-		LED_Timer_Update = false;
-		continue;
-	}
-
-	//Flashing LEDs
-	if (isLEDsendpulse == true) {
-		if (LED_SendPulse() == true) {
-			isLEDsendpulse = false;
-		} else {
-			HAL_Delay(LED_TIM_RETRY_WAIT);	// i2c is busy, retry with interval
-		}
-		continue;
-	}
-
-	//OLED timer
-	if (Msg_Timer_Update == true) {	//32.7ms interval
-		if (Msg_Timer_Enable == true && (--Msg_Timer_Count) <= 0) {
-			Msg_Timer_Enable = false;
-			Msg_Off_Flag = true;
-		}
-		Msg_Timer_Update = false;
-		continue;
-	}
-
-	//OLED off Timer
-	if (Msg_Off_Flag == true) {
-		Msg_Off_Flag = false;
-		SSD1306_SetScreen(OFF);
-		SSD1306_ClearBuffer();
-		memset(Msg_Buffer[0], (int)SPACE_CHAR, MSG_WIDTH );
-		memset(Msg_Buffer[1], (int)SPACE_CHAR, MSG_WIDTH );
-		continue;
-	}
-
-	//Flashing OLED.
-	if (isMsgFlash == true) {
-		if (isRender == true) {
-			SSD1306_Render2Buffer();
-			isRender = false;
-		}
-		if (SSD1306_FlashScreen() == true) {
-			isMsgFlash = false;	// success to flash
-			isRender = true;
-		} else {
-			HAL_Delay(I2C_RETRY_WAIT);	// i2c is busy, retry with interval
-		}
-		continue;
-	}
-
-	HAL_PWR_EnterSLEEPMode(PWR_LOWPOWERREGULATOR_ON, PWR_SLEEPENTRY_WFI);
+		HAL_PWR_EnterSLEEPMode(PWR_LOWPOWERREGULATOR_ON, PWR_SLEEPENTRY_WFI);
 
     /* USER CODE END WHILE */
 
