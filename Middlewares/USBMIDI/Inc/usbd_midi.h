@@ -17,7 +17,7 @@
 
 /* Includes ------------------------------------------------------------------*/
 #include  "usbd_ioreq.h"
-
+//! @defgroup USB MIDI Endpoints
 #define MIDI_IN_EP									0x81  /* EP1 for data IN */
 #define MIDI_OUT_EP									0x02  /* EP1 for data OUT */
 
@@ -28,6 +28,7 @@
 #define MIDI_DATA_IN_PACKET_SIZE					MIDI_DATA_FS_MAX_PACKET_SIZE
 #define MIDI_DATA_OUT_PACKET_SIZE					MIDI_DATA_FS_MAX_PACKET_SIZE
 
+//! @defgroup Jack definition of USB MIDI descriptor 
 #define MIDI_JACK_NO_IN_ENB		0x10
 #define MIDI_JACK_NO_IN_EXT		0x20
 #define MIDI_JACK_NO_OUT_ENB	0x30
