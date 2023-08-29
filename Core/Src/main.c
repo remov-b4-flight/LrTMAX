@@ -309,7 +309,7 @@ int main(void)
 	Start_MsgTimer(MSG_TIMER_DEFAULT);
 	LrState = LR_USB_NOLINK;
 
-	// Check SW1 and SW3 at Power On
+	// Check SW1 and SW3 is pushed at Power On
 	if ((GPIOA->IDR & SWMASK) == (SW1_MASK | SW3_MASK)) {
 		LrState = LR_USB_DFU;
 	} else {
@@ -395,16 +395,19 @@ int main(void)
 			}// Msg_Off_Flag
 		} else if (LrState == LR_USB_DFU) {
 			if (Msg_Off_Flag == true) {
-				if (nc_count == 0){
+				if (nc_count == 0) {
+					// Show DFU banner
 					strcpy(Msg_Buffer[0], DFU_MSG);
 					SSD1306_SetScreen(ON);
 					Msg_Print();
 					nc_count++;
-				}else if(nc_count == 1){
+				} else if(nc_count == 1) {
+					// Show LED pattern
 					LED_TestPattern();
 					nc_count++;
-				}else if (nc_count <= 2){
+				} else if (nc_count <= 2) {
 					LED_Initialize();
+					// Jump ro bootloader
 					Jump2SystemMemory();
 				}
 				Start_MsgTimer(MSG_TIMER_NOLINK/2);

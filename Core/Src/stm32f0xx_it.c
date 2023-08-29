@@ -291,6 +291,7 @@ void TIM2_IRQHandler(void)
 		if (dif != 0) { // If any encoder has moved.
 			previous_move = current_move;
 
+			// Determine axis
 			uint8_t	movedbits = ntz16(dif);
 			uint8_t	axis = movedbits / 2;
 
