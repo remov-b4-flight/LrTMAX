@@ -42,6 +42,7 @@
 
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
+//! Version message on connect
 #ifdef DEBUG
 #define CONN_MSG_D	"%s %2x.%02xD"
 #else
@@ -99,13 +100,12 @@ static	bool	isMsgFlash;
 //! If true, frame_buffer[] contents flashes the screen.
 static	bool	isRender;
 
-// LED variables
+//! LED variables
 //! If true, LEDs are flashed by LEDColor[] array.
 bool	isLEDsendpulse;
 //! Flag is set by timer ISR, It makes LED_Timer[] count up in main()
 bool	LED_Timer_Update;
 
-// Scene related
 extern	PROF_DEFINE	prof_table[SCENE_COUNT][DEFINES_PER_SCENE];
 extern	char 		*scene_name[SCENE_COUNT];
 extern	uint8_t		led_axis_table[DEFINES_PER_SCENE];
@@ -221,7 +221,7 @@ inline void Msg_Print() {
 
 /**
  * @brief start/stop matrix L0-L3 control
- * @param conrtol Lr_MATRIX_START / Lr_MATRIX_STOP
+ * @param control Lr_MATRIX_START / Lr_MATRIX_STOP
  */
 static void matrix_control(uint8_t control) {
 	HAL_GPIO_WritePin(L0_GPIO_Port, L0_Pin, (control == Lr_MATRIX_START)? GPIO_PIN_SET : GPIO_PIN_RESET);
