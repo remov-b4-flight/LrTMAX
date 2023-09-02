@@ -33,6 +33,7 @@
 #include "ssd1306.h"
 #include "EmulateMIDI.h"
 #include "prof_define.h"
+#include "stm32f0xx_it.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -195,14 +196,15 @@ static void Jump2SystemMemory() {
 /**
  *	@brief	Mask all EXTI lines of encoders
  */
-static inline void Stop_All_Encoders(){
+static inline void Stop_All_Encoders() {
 	HAL_TIM_Base_Stop_IT(&htim2);
 }
 
 /**
  * @brief	Release all EXTI lines masked by StopAllEncoders()
  */
-static inline void Start_All_Encoders(){
+static inline void Start_All_Encoders() {
+	ENC_Init();
 	HAL_TIM_Base_Start_IT(&htim2);
 }
 
@@ -224,6 +226,10 @@ inline void Msg_Print() {
  * @param control Lr_MATRIX_START / Lr_MATRIX_STOP
  */
 static void matrix_control(uint8_t control) {
+	if (control == Lr_MATRIX_START) {
+		MTRX_Init();
+	}
+
 	HAL_GPIO_WritePin(L0_GPIO_Port, L0_Pin, (control == Lr_MATRIX_START)? GPIO_PIN_SET : GPIO_PIN_RESET);
 	HAL_GPIO_WritePin(L1_GPIO_Port, L1_Pin, GPIO_PIN_RESET);
 	HAL_GPIO_WritePin(L2_GPIO_Port, L2_Pin, GPIO_PIN_RESET);
@@ -281,19 +287,19 @@ int main(void)
   MX_TIM6_Init();
   MX_TIM2_Init();
   /* USER CODE BEGIN 2 */
-	//Stop All Encoders until USB link up
+	// Stop All Encoders until USB link up
 	Stop_All_Encoders();
 	//Initialize Switch matrix
-	HAL_GPIO_WritePin(L0_GPIO_Port, L0_Pin, GPIO_PIN_SET);	//Initialize L0-3.
+	HAL_GPIO_WritePin(L0_GPIO_Port, L0_Pin, GPIO_PIN_SET);	// Initialize L0-3.
 
-	//Initialize series of WS2812C
-	GPIOA->PUPDR |= GPIO_PUPDR_PUPDR6_0;	//Pull up PA6 (WS2812C-2020 workaround)
+	// Initialize series of WS2812C
+	GPIOA->PUPDR |= GPIO_PUPDR_PUPDR6_0;	// Pull up PA6 (WS2812C-2020 workaround)
 	GPIOA->ODR |= GPIO_PIN_6;				//'RESET' state
 	//AF -> GPIO
 	GPIOA->MODER &= ~(GPIO_MODER_MODER6_1);
 	GPIOA->MODER |=	GPIO_MODER_MODER6_0;
 
-	LED_Initialize();						//Set all LEDs to 'OFF'
+	LED_Initialize();					// Set all LEDs to 'OFF'
 
 	//Initialize SSD1306 OLED
 	HAL_Delay(SSD1306_PWRUP_WAIT);		//Wait for OLED module power up.
@@ -328,9 +334,9 @@ int main(void)
 			// USB device configured by host
 			SSD1306_SetScreen(ON);
 
-			matrix_control(Lr_MATRIX_START);	//Initialize L0-3.
-			HAL_TIM_Base_Start_IT(&htim1);		//Start Switch matrix timer.
-			Start_All_Encoders();				//Start rotary encoder.
+			matrix_control(Lr_MATRIX_START);	// Initialize L0-3.
+			HAL_TIM_Base_Start_IT(&htim1);		// Start Switch matrix timer.
+			Start_All_Encoders();				// Start rotary encoder.
 
 			// Connection banner
 	#ifdef DEBUG
@@ -350,14 +356,14 @@ int main(void)
 			LrState = LR_USB_LINKED;
 
 		} else if (LrState == LR_USB_LINKED) {
-			//Operate as MIDI Instruments.
+			// Operate as MIDI Instruments.
 			EmulateMIDI();
 		} else if (LrState == LR_USB_LINK_LOST) {
 			LrScene	= Lr_SCENE0;
 			Stop_All_Encoders();
 
 			HAL_TIM_Base_Stop(&htim1);
-			matrix_control(Lr_MATRIX_STOP);		//Stop L0-L3
+			matrix_control(Lr_MATRIX_STOP);		// Stop L0-L3
 
 			LED_TestPattern();
 			Msg_1st_timeout = false;
@@ -366,7 +372,7 @@ int main(void)
 			LrState = LR_USB_NOLINK;
 
 		} else if (LrState == LR_USB_NOLINK) {
-			//USB can't be configured or disconnected by host.
+			// USB can't be configured or disconnected by host.
 			if (Msg_Off_Flag == true) {
 				if (Msg_1st_timeout == true) {
 					LrState = LR_USB_LINK_LOST;
@@ -376,10 +382,10 @@ int main(void)
 
 					Msg_Print();
 
-					//Restart OLED timer.
+					// Restart OLED timer.
 					Start_MsgTimer(MSG_TIMER_NOLINK);
 
-					//Rotate LED colors
+					// Rotate LED colors
 					uint8_t	tempcolor = LEDColor[7];
 					LEDColor[7] = LEDColor[6];
 					LEDColor[6] = LEDColor[5];
@@ -416,7 +422,7 @@ int main(void)
 		}// LrState
 
 		// LED Timer
-		if (LED_Timer_Update == true) { //24ms interval
+		if (LED_Timer_Update == true) { // 24ms interval
 			for (uint8_t i = 0; i < LED_COUNT; i++){
 				if (LEDTimer[i] != LED_TIMER_CONSTANT && --LEDTimer[i] == 0) {
 					LED_SetPulse(i, LED_Scene[LrScene][i], LED_TIMER_CONSTANT);

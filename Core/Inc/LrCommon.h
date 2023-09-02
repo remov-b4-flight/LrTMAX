@@ -52,12 +52,12 @@ typedef union enc_m_t {
 
 //! LrTMAX State definition
 enum lr_state_t {
-	LR_RESET,			//!< LR_RESET
-	LR_USB_NOLINK,		//!< LR_USB_NOLINK
-	LR_USB_LINKUP,		//!< LR_USB_LINKUP
-	LR_USB_LINKED,		//!< LR_USB_LINKED
-	LR_USB_LINK_LOST,	//!< LR_USB_LINK_LOST
-	LR_USB_DFU,
+	LR_RESET,			//!< Power on reset
+	LR_USB_NOLINK,		//!< No USB connection idling.
+	LR_USB_LINKUP,		//!< USB just connected.
+	LR_USB_LINKED,		//!< operate USB function
+	LR_USB_LINK_LOST,	//!< USB just disconnected.
+	LR_USB_DFU,			//!< Launch bootloader & not return.
 };
 
 //! switch-encoder matrix lines

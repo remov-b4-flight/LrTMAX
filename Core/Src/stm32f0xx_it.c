@@ -60,9 +60,9 @@
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
 
-uint16_t previous_mtrx = 0;
-uint16_t previous_push = 0;
-uint16_t current_push = 0;
+uint16_t previous_mtrx;
+uint16_t previous_push;
+uint16_t current_push;
 //! Value of scanned from key matrix.
 MTRX_SCAN current_scan;
 uint8_t	enc_prev[ENC_COUNT];
@@ -387,5 +387,10 @@ void ENC_Init() {
 	enc_prev[Lr_ENC3] = current_enc.nb.enc3 = (ENC3_GPIO_Port->IDR >> 14 ) & ENC_MASK;
 
 	previous_move = previous_enc = current_enc.wd;
+}
+void MTRX_Init() {
+	previous_mtrx = 0;
+	previous_push = 0;
+	current_push = 0;
 }
 /* USER CODE END 1 */

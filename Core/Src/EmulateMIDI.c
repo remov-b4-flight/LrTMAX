@@ -68,7 +68,6 @@ static void MIDI_CC_Dec(uint8_t channel) {
 void EmulateMIDI_Init() {
 	isPrev_SwPush = false;
 	isPrev_Scene = false;
-	ENC_Init();
 	memset(MIDI_CC_Value, MIDI_CC_INITIAL, CC_CH_COUNT);
 	queue_init(&midi_rx_que);
 }
@@ -81,7 +80,7 @@ void EmulateMIDI_Init() {
  */
 void EmulateMIDI() {
 	bool isSendMIDIMessage = false;
-	if (queue_isempty(&midi_rx_que) != true) {
+	if (queue_isempty(&midi_rx_que) != true) { // Check MIDI CC message
 		CH_VAL rx;
 		uint8_t cc_scene = 0;
 		do {
@@ -103,7 +102,7 @@ void EmulateMIDI() {
 		uint16_t	rstat = (MTRX_Stat.wd);
 		uint8_t		bitpos = ntz16(MTRX_Stat.wd);
 
-		if ( MTRX_Stat.wd != 0) { //Check Matrix switches
+		if ( MTRX_Stat.wd != 0) { //Check Matrix switches/encoders
 			//Send 'Note On' message from switches/encoders matrix.
 			uint8_t	note = ((MTRX_Stat.wd & MASK_ENCPUSH)? NOTE_OFFSET : 0) + (LrScene * NOTES_PER_SCENE) + bitpos;
 			if (MTRX_Stat.wd == RESET_SW_PATTERN) {
@@ -151,7 +150,7 @@ void EmulateMIDI() {
 			isPrev_SwPush = false;
 		}
 		isAnyMatrixPushed = false;
-	}else if ( isAnyEncoderMoved == true) {
+	}else if ( isAnyEncoderMoved == true) { //check encoder movements
 		uint8_t	axis = enc_move.bits.axis;
 		uint8_t bitpos = PROF_ENC1ST + (axis * 2);
 		uint8_t channel = CC_CH_OFFSET + (LrScene * CC_CH_PER_SCENE) + axis;
