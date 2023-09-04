@@ -216,7 +216,9 @@ void Start_MsgTimer(uint32_t tick){
 	Msg_Timer_Count = tick;
 	Msg_Timer_Enable = true;
 }
-
+/**
+ * @brief	raise flag to message flash
+ */
 inline void Msg_Print() {
 	isMsgFlash = true;
 }
