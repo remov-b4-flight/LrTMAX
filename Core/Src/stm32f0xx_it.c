@@ -60,14 +60,19 @@
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
 
-uint16_t previous_mtrx;
-uint16_t previous_push;
+//! Current detected bits as push
 uint16_t current_push;
+//! Previous detected bits
+uint16_t previous_push;
 //! Value of scanned from key matrix.
 MTRX_SCAN current_scan;
+//! Previous scanned bits
+uint16_t previous_mtrx;
+//! Previous encoder state array
 uint8_t	enc_prev[ENC_COUNT];
+//! CUrrent encoder state array
 uint8_t	enc_current[ENC_COUNT];
-
+//! Encoder movement definition table
 const uint8_t enc_table[4][4] = {
 //now =	0			1				2				3
 	{ENC_INVALID,	ENC_MOVE_CW,	ENC_MOVE_CCW,	ENC_INVALID,	},//prev = 0
@@ -75,10 +80,14 @@ const uint8_t enc_table[4][4] = {
 	{ENC_STOPPED,	ENC_INVALID,	ENC_INVALID,	ENC_STOPPED,	},//prev = 2
 	{ENC_INVALID,	ENC_MOVE_CCW,	ENC_MOVE_CW,	ENC_INVALID,	},//prev = 3
 };
+//! Current encoder scan value load by timer interrupt
 ENC_SCAN current_enc;
+//! previous encoder scan value
 uint16_t previous_enc;
-uint16_t previous_move;
+//! Current detected bits as movement
 uint16_t current_move;
+//! Previous detected bits
+uint16_t previous_move;
 
 /* USER CODE END 0 */
 
