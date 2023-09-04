@@ -373,7 +373,7 @@ void USB_IRQHandler(void)
 
 /* USER CODE BEGIN 1 */
 /**
- * @brief Initialize Encoders.
+ * @brief	Load momental encoder values as initialize encoders.
  */
 void ENC_Init() {
 	//! Initialize all enc_prev[] for current pin value
@@ -388,6 +388,9 @@ void ENC_Init() {
 
 	previous_move = previous_enc = current_enc.wd;
 }
+/**
+ * @brief	Initialize Matrix related variables.
+ */
 void MTRX_Init() {
 	previous_mtrx = 0;
 	previous_push = 0;
