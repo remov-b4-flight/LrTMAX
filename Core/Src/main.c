@@ -60,7 +60,15 @@
 
 /* Private macro -------------------------------------------------------------*/
 /* USER CODE BEGIN PM */
-
+extern	PROF_DEFINE	prof_table[SCENE_COUNT][DEFINES_PER_SCENE];
+extern	char 		*scene_name[SCENE_COUNT];
+extern	uint8_t		led_axis_table[DEFINES_PER_SCENE];
+extern	uint8_t	LED_Scene[SCENE_COUNT][LED_COUNT];
+extern	uint8_t	LEDColor[LED_COUNT];
+extern	uint8_t	LEDTimer[LED_COUNT];
+extern	char	Msg_Buffer[MSG_LINES][MSG_WIDTH + 1];
+extern	USBD_HandleTypeDef hUsbDeviceFS;
+extern	PCD_HandleTypeDef hpcd_USB_FS;
 /* USER CODE END PM */
 
 /* Private variables ---------------------------------------------------------*/
@@ -79,8 +87,6 @@ DMA_HandleTypeDef hdma_tim3_ch1_trig;
 
 //! STM32 TIM3 instance handle
 TIM_HandleTypeDef htim3;
-extern	USBD_HandleTypeDef hUsbDeviceFS;
-extern	PCD_HandleTypeDef hpcd_USB_FS;
 //! LrTMAX USB connection state
 uint8_t	LrState;
 //! LrTMAX Scene index
@@ -106,17 +112,6 @@ static	bool	isRender;
 bool	isLEDsendpulse;
 //! Flag is set by timer ISR, It makes LED_Timer[] count up in main()
 bool	LED_Timer_Update;
-
-extern	PROF_DEFINE	prof_table[SCENE_COUNT][DEFINES_PER_SCENE];
-extern	char 		*scene_name[SCENE_COUNT];
-extern	uint8_t		led_axis_table[DEFINES_PER_SCENE];
-
-extern	uint8_t	LED_Scene[SCENE_COUNT][LED_COUNT];
-extern	uint8_t	LEDColor[LED_COUNT];
-extern	uint8_t	LEDTimer[LED_COUNT];
-
-//! String message buffer of screen
-extern	char Msg_Buffer[MSG_LINES][MSG_WIDTH + 1];
 
 /* USER CODE END PV */
 
@@ -194,14 +189,14 @@ static void Jump2SystemMemory() {
 }
 
 /**
- *	@brief	Mask all EXTI lines of encoders
+ *	@brief	Stop encoder scan
  */
 static inline void Stop_All_Encoders() {
 	HAL_TIM_Base_Stop_IT(&htim2);
 }
 
 /**
- * @brief	Release all EXTI lines masked by StopAllEncoders()
+ * @brief	Start encoder scan by timer
  */
 static inline void Start_All_Encoders() {
 	ENC_Init();
@@ -209,7 +204,7 @@ static inline void Start_All_Encoders() {
 }
 
 /**
- * @brief OLED off timer start
+ * @brief Start OLED off timer
 */
 void Start_MsgTimer(uint32_t tick){
 	Msg_Off_Flag = false;
