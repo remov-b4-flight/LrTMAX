@@ -62,8 +62,8 @@ const PROF_DEFINE prof_table[SCENE_COUNT][DEFINES_PER_SCENE] = {
 		{.axis = 0,	.color = LED_YELLOW,	.period = LED_TIM_NORM},	//L0M3	SW4
 		{.axis = 0,	.color = LED_YELLOW,	.period = LED_TIM_NORM},	//L1M0	SW5
 		{.axis = 0,	.color = LED_YELLOW,	.period = LED_TIM_NORM},	//L1M1	SW6
-		{.axis = 0,	.color = LED_YELLOW,	.period = LED_TIM_NORM},	//L1M2	SW7
-/*N07*/	{.axis = 0,	.color = LED_PINK,		.period = LED_TIM_LONG},	//L1M3	SW8 [SCENE]
+		{.axis = 0,	.color = LED_GREEN,		.period = LED_TIM_NORM},	//L1M2	SW7
+/*N07*/	{.axis = 0,	.color = LED_WHITE,		.period = LED_TIM_LONG},	//L1M3	SW8 [SCENE]
 /*N40*/	{.axis = 0,	.color = LED_RED,		.period = LED_TIM_NORM},	//L2M0	enc0 push 'reject'
 		{.axis = 1,	.color = LED_GLAY,		.period = LED_TIM_NORM},	//L2M1	enc1 push
 		{.axis = 2,	.color = LED_GLAY,		.period = LED_TIM_NORM},	//L2M2	enc2 push
@@ -96,8 +96,8 @@ const PROF_DEFINE prof_table[SCENE_COUNT][DEFINES_PER_SCENE] = {
 		{.axis = 0,	.color = LED_YELLOW,	.period = LED_TIM_NORM},	//L0M3	SW4
 		{.axis = 0,	.color = LED_YELLOW,	.period = LED_TIM_NORM},	//L1M0	SW5
 		{.axis = 0,	.color = LED_YELLOW,	.period = LED_TIM_NORM},	//L1M1	SW6
-		{.axis = 0,	.color = LED_YELLOW,	.period = LED_TIM_NORM},	//L1M2	SW7
-/*N23*/	{.axis = 0,	.color = LED_PINK,		.period = LED_TIM_LONG},	//L1M3	SW8 [SCENE]
+		{.axis = 0,	.color = LED_GREEN,		.period = LED_TIM_NORM},	//L1M2	SW7
+/*N23*/	{.axis = 0,	.color = LED_WHITE,		.period = LED_TIM_LONG},	//L1M3	SW8 [SCENE]
 /*N48*/	{.axis = 0,	.color = LED_RED,		.period = LED_TIM_NORM},	//L2M0	enc0 push 'reject'
 		{.axis = 1,	.color = LED_GLAY,		.period = LED_TIM_NORM},	//L2M1	enc1 push
 		{.axis = 2,	.color = LED_GLAY,		.period = LED_TIM_NORM},	//L2M2	enc2 push
@@ -130,8 +130,8 @@ const PROF_DEFINE prof_table[SCENE_COUNT][DEFINES_PER_SCENE] = {
 		{.axis = 0,	.color = LED_YELLOW,	.period = LED_TIM_NORM},	//L0M3	SW4
 		{.axis = 0,	.color = LED_YELLOW,	.period = LED_TIM_NORM},	//L1M0	SW5
 		{.axis = 0,	.color = LED_YELLOW,	.period = LED_TIM_NORM},	//L1M1	SW6
-		{.axis = 0,	.color = LED_YELLOW,	.period = LED_TIM_NORM},	//L1M2	SW7
-/*N40*/	{.axis = 0,	.color = LED_PINK,		.period = LED_TIM_LONG},	//L1M3	SW8 [SCENE]
+		{.axis = 0,	.color = LED_GREEN,		.period = LED_TIM_NORM},	//L1M2	SW7
+/*N40*/	{.axis = 0,	.color = LED_WHITE,		.period = LED_TIM_LONG},	//L1M3	SW8 [SCENE]
 /*N56*/	{.axis = 0,	.color = LED_RED,		.period = LED_TIM_NORM},	//L2M0	enc0 push 'reject'
 		{.axis = 1,	.color = LED_GLAY,		.period = LED_TIM_NORM},	//L2M1	enc1 push
 		{.axis = 2,	.color = LED_GLAY,		.period = LED_TIM_NORM},	//L2M2	enc2 push
@@ -164,8 +164,8 @@ const PROF_DEFINE prof_table[SCENE_COUNT][DEFINES_PER_SCENE] = {
 		{.axis = 0,	.color = LED_YELLOW,	.period = LED_TIM_NORM},	//L0M3	SW4
 		{.axis = 0,	.color = LED_YELLOW,	.period = LED_TIM_NORM},	//L1M0	SW5
 		{.axis = 0,	.color = LED_YELLOW,	.period = LED_TIM_NORM},	//L1M1	SW6
-		{.axis = 0,	.color = LED_YELLOW,	.period = LED_TIM_NORM},	//L1M2	SW7
-/*N64*/	{.axis = 0,	.color = LED_PINK,		.period = LED_TIM_LONG},	//L1M3	SW8 [SCENE]
+		{.axis = 0,	.color = LED_GREEN,		.period = LED_TIM_NORM},	//L1M2	SW7
+/*N64*/	{.axis = 0,	.color = LED_WHITE,		.period = LED_TIM_LONG},	//L1M3	SW8 [SCENE]
 		{.axis = 0,	.color = LED_RED,		.period = LED_TIM_NORM},	//L2M0	enc0 push 'reject'
 		{.axis = 1,	.color = LED_GLAY,		.period = LED_TIM_NORM},	//L2M1	enc1 push
 		{.axis = 2,	.color = LED_GLAY,		.period = LED_TIM_NORM},	//L2M2	enc2 push
