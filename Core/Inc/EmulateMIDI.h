@@ -7,7 +7,7 @@
 
 #ifndef INC_EMULATEMIDI_H_
 #define INC_EMULATEMIDI_H_
-#include <prof_define.h>
+#include <opr_define.h>
 #include "main.h"
 #include "midi.h"
 #include "usbd_midi_if.h"

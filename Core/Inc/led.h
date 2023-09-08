@@ -31,8 +31,15 @@ enum led_color_t {
 	LED_HILIGHT,//!< LED_COLOR_HILIGHT
 	LED_PINK,
 	LED_MINT,
+	LED_DARKRED,
+	LED_DARKGREEN,
+	LED_DARKBLUE,
+	LED_DARKORANGE,
+	LED_DARKYELLOW,
+	LED_DARKCYAN,
+	LED_DARKMAGENTA,
 };
-#define COLOR_MAX 14
+#define COLOR_MAX 21
 
 //! @defgroup LrTMAX board definition
 #define LED_COUNT		8

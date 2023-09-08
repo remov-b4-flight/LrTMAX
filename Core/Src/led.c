@@ -40,6 +40,13 @@ const LEDDATA LEDTable[COLOR_MAX] = {
 	{.rgbw = {.r=LHIL,.g=LHIL,.b=LHIL}},//LED_HILIGHT,
 	{.rgbw = {.r=LMAX,.g=LQTR,.b=LHLF}},//LED_PINK,
 	{.rgbw = {.r=LQTR,.g=LMAX,.b=LQTR}},//LED_MINT,
+	{.rgbw = {.r=LHLF,.g=LOFF,.b=LOFF}},//LED_DARKRED,
+	{.rgbw = {.r=LOFF,.g=LHLF,.b=LOFF}},//LED_DARKGREEN,
+	{.rgbw = {.r=LOFF,.g=LOFF,.b=LHLF}},//LED_DARKBLUE,
+	{.rgbw = {.r=LHLF,.g=LDRK,.b=LOFF}},//LED_DARKORANGE,
+	{.rgbw = {.r=LDRK,.g=LDRK,.b=LOFF}},//LED_DARKYELLOW,
+	{.rgbw = {.r=LOFF,.g=LDRK,.b=LDRK}},//LED_DARKCYAN,
+	{.rgbw = {.r=LDRK,.g=LOFF,.b=LDRK}},//LED_DARKMAGENTA,
 };
 const uint8_t LED_Testpattern[LED_COUNT] = {
 	LED_WHITE,LED_RED,LED_ORANGE,LED_YELLOW,

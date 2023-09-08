@@ -31,7 +31,7 @@
 */
 
 /* Includes ------------------------------------------------------------------*/
-#include <prof_define.h>
+#include <opr_define.h>
 #include "main.h"
 #include "LrCommon.h"
 #include "led.h"
@@ -76,11 +76,11 @@ const PROF_DEFINE prof_table[SCENE_COUNT][DEFINES_PER_SCENE] = {
 /*C40*/	{.axis = 0,	.color = LED_MINT,		.period = LED_TIM_SHORT},	//enc0 CW
 		{.axis = 0,	.color = LED_MINT,		.period = LED_TIM_SHORT},	//enc0 CCW
 /*C41*/	{.axis = 1,	.color = LED_GREEN,		.period = LED_TIM_NORM},	//enc1 CW
-		{.axis = 1,	.color = LED_GREEN,		.period = LED_TIM_NORM},	//enc1 CCW
+		{.axis = 1,	.color = LED_DARKGREEN,	.period = LED_TIM_NORM},	//enc1 CCW
 /*C42*/	{.axis = 2,	.color = LED_BLUE,		.period = LED_TIM_NORM},	//enc2 CW
-		{.axis = 2,	.color = LED_BLUE,		.period = LED_TIM_NORM},	//enc2 CCW
+		{.axis = 2,	.color = LED_DARKBLUE,	.period = LED_TIM_NORM},	//enc2 CCW
 /*C43*/	{.axis = 3,	.color = LED_YELLOW,	.period = LED_TIM_NORM},	//enc3 CW
-		{.axis = 3,	.color = LED_YELLOW,	.period = LED_TIM_NORM},	//enc3 CCW
+		{.axis = 3,	.color = LED_DARKYELLOW,.period = LED_TIM_NORM},	//enc3 CCW
 /*C44*/	{.axis = 4,	.color = LED_CYAN,		.period = LED_TIM_NORM},	//enc4 CW
 		{.axis = 4,	.color = LED_CYAN,		.period = LED_TIM_NORM},	//enc4 CCW
 /*C45*/	{.axis = 5,	.color = LED_ORANGE,	.period = LED_TIM_NORM},	//enc5 CW
@@ -178,19 +178,19 @@ const PROF_DEFINE prof_table[SCENE_COUNT][DEFINES_PER_SCENE] = {
 /*C64*/	{.axis = 0,	.color = LED_MINT,		.period = LED_TIM_SHORT},	//enc0 CW
 		{.axis = 0,	.color = LED_MINT,		.period = LED_TIM_SHORT},	//enc0 CCW
 /*C65*/	{.axis = 1,	.color = LED_RED,		.period = LED_TIM_NORM},	//enc1 CW
-		{.axis = 1,	.color = LED_RED,		.period = LED_TIM_HALF},	//enc1 CCW
+		{.axis = 1,	.color = LED_DARKRED,	.period = LED_TIM_NORM},	//enc1 CCW
 /*C66*/	{.axis = 2,	.color = LED_ORANGE,	.period = LED_TIM_NORM},	//enc2 CW
-		{.axis = 2,	.color = LED_ORANGE,	.period = LED_TIM_HALF},	//enc2 CCW
+		{.axis = 2,	.color = LED_DARKORANGE,.period = LED_TIM_NORM},	//enc2 CCW
 /*C67*/	{.axis = 3,	.color = LED_YELLOW,	.period = LED_TIM_NORM},	//enc3 CW
-		{.axis = 3,	.color = LED_YELLOW,	.period = LED_TIM_HALF},	//enc3 CCW
+		{.axis = 3,	.color = LED_DARKYELLOW,.period = LED_TIM_NORM},	//enc3 CCW
 /*C68*/	{.axis = 4,	.color = LED_GREEN,		.period = LED_TIM_NORM},	//enc4 CW
-		{.axis = 4,	.color = LED_GREEN,		.period = LED_TIM_HALF},	//enc4 CCW
+		{.axis = 4,	.color = LED_DARKGREEN,	.period = LED_TIM_NORM},	//enc4 CCW
 /*C69*/	{.axis = 5,	.color = LED_CYAN,		.period = LED_TIM_NORM},	//enc5 CW
-		{.axis = 5,	.color = LED_CYAN,		.period = LED_TIM_HALF},	//enc5 CCW
+		{.axis = 5,	.color = LED_DARKCYAN,	.period = LED_TIM_NORM},	//enc5 CCW
 /*C70*/	{.axis = 6,	.color = LED_BLUE,		.period = LED_TIM_NORM},	//enc6 CW
-		{.axis = 6,	.color = LED_BLUE,		.period = LED_TIM_HALF},	//enc6 CCW
+		{.axis = 6,	.color = LED_DARKBLUE,	.period = LED_TIM_NORM},	//enc6 CCW
 /*C71*/	{.axis = 7,	.color = LED_MAGENTA,	.period = LED_TIM_NORM},	//enc7 CW
-		{.axis = 7,	.color = LED_MAGENTA,	.period = LED_TIM_HALF},	//enc7 CCW
+		{.axis = 7,	.color = LED_DARKMAGENTA,.period = LED_TIM_NORM},	//enc7 CCW
 	}
 };
 /* ******************************************************* **** END OF FILE****/

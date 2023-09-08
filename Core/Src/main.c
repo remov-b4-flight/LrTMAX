@@ -19,6 +19,7 @@
   */
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
+#include <opr_define.h>
 #include "main.h"
 #include "usb_device.h"
 
@@ -32,7 +33,6 @@
 #include "usbd_midi_if.h"
 #include "ssd1306.h"
 #include "EmulateMIDI.h"
-#include "prof_define.h"
 #include "stm32f0xx_it.h"
 /* USER CODE END Includes */
 
