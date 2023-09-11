@@ -28,3 +28,6 @@
 #macOS related
 .DS_Store
 ._*
+
+#STM32 VSCode Extention
+/build/
