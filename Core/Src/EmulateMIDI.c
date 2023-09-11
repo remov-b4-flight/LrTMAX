@@ -86,7 +86,7 @@ void EmulateMIDI() {
 		uint8_t cc_scene = 0;
 		do {
 			rx.wd = queue_dequeue(&midi_rx_que);
-			cc_scene = ((rx.by.ch - CC_CH_OFFSET) / CC_CH_PER_SCENE) & 0x07;
+			cc_scene = ((rx.by.ch - CC_CH_OFFSET) / CC_CH_PER_SCENE) & CH_SCENE_MASK;
 			if ( CC_MIN_INUSE <= rx.by.ch && rx.by.ch < CC_MAX_INUSE ) {
 				MIDI_CC_Value[rx.by.ch] = rx.by.val;
 			}
@@ -186,13 +186,14 @@ void EmulateMIDI() {
 
 		LED_SetPulse(prof_table[LrScene][bitpos].axis, prof_table[LrScene][bitpos].color, prof_table[LrScene][bitpos].period);
 		isSendMIDIMessage = true;
+
 rot_stopped_exits:
 		isAnyEncoderMoved = false;
 	}
 	//Send MIDI message
 	if (isSendMIDIMessage == true) {
 		//Send MIDI message via USB.
-		if (USBD_LL_Transmit (pInstance, MIDI_IN_EP, (uint8_t *)&MIDI_TxMessage, MIDI_MESSAGE_LENGTH) == USBD_OK) {
+		if (USBD_LL_Transmit(pInstance, MIDI_IN_EP, (uint8_t *)&MIDI_TxMessage, MIDI_MESSAGE_LENGTH) == USBD_OK) {
 			isSendMIDIMessage = false;
 		}
 	}
