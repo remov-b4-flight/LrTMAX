@@ -10,13 +10,13 @@
       "MIMode": "gdb",
       "miDebuggerPath": "${command:vscode-embedded.st.gdb}",
       "miDebuggerServerAddress": "localhost:3333",
-      "debugServerPath": "${command:vscode-embedded.st.gdbserver}",
+      "debugServerPath": "/opt/st/stm32cubeclt/STLink-gdb-server/bin/ST-LINK_gdbserver",
       "debugServerArgs": "--stm32cubeprogrammer-path ${command:vscode-embedded.st.cubeprogrammer} --swd --port-number 3333",
       "serverStarted": "Waiting for connection on port .*\\.\\.\\.",
       "stopAtConnect": true,
       "postRemoteConnectCommands": [
         {
-          "text": "load build/debug/build/LrTMAX.elf"
+          "text": "load build/release/build/LrTMAX.elf"
         }
       ],
       "logging": {
