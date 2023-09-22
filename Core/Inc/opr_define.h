@@ -1,6 +1,6 @@
 /**
- * @file		prof_define.h
- * @brief		definitions for prof_define.c
+ * @file		opr_define.h
+ * @brief		definitions for opr_define.c
  * @author		remov-b4-flight
  * @copyright	3-Clause BSD License
  */

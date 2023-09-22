@@ -222,7 +222,7 @@ inline void Msg_Print() {
  * @brief start/stop matrix L0-L3 control
  * @param control Lr_MATRIX_START / Lr_MATRIX_STOP
  */
-static void matrix_control(uint8_t control) {
+static void Matrix_Control(uint8_t control) {
 	if (control == Lr_MATRIX_START) {
 		MTRX_Init();
 	}
@@ -331,7 +331,7 @@ int main(void)
 			// USB device configured by host
 			SSD1306_SetScreen(ON);
 
-			matrix_control(Lr_MATRIX_START);	// Initialize L0-3.
+			Matrix_Control(Lr_MATRIX_START);	// Initialize L0-3.
 			HAL_TIM_Base_Start_IT(&htim1);		// Start Switch matrix timer.
 			Start_All_Encoders();				// Start rotary encoder.
 
@@ -360,7 +360,7 @@ int main(void)
 			Stop_All_Encoders();
 
 			HAL_TIM_Base_Stop(&htim1);
-			matrix_control(Lr_MATRIX_STOP);		// Stop L0-L3
+			Matrix_Control(Lr_MATRIX_STOP);		// Stop L0-L3
 
 			LED_TestPattern();
 			Msg_1st_timeout = false;

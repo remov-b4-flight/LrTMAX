@@ -1,6 +1,6 @@
 /**
-* @file			prof_define.c
-* @brief		MIDI channel/note definition
+* @file			opr_define.c
+* @brief		LED/OLED operation definition
 * @author		remov-b4-flight
 * @copyright	3-Clause BSD License
 * @details This file defines MIDI Control Change(CC) / Note ON-OFF message on MIDI.
