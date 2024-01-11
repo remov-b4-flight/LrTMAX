@@ -34,6 +34,7 @@
 #include "ssd1306.h"
 #include "EmulateMIDI.h"
 #include "stm32f0xx_it.h"
+#include "stm32f0xx_hal_dma.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -717,7 +718,7 @@ static void MX_TIM3_Init(void)
     Error_Handler();
   }
   /* USER CODE BEGIN TIM3_Init 2 */
-	hdma_tim3_ch1_trig.Instance->CCR &= ~(DMA_CCR_HTIE | DMA_CCR_TEIE);		//Disable DMA1 half or error transfer interrupt(for LEDs).
+	__HAL_DMA_DISABLE_IT(&hdma_tim3_ch1_trig,(DMA_CCR_HTIE | DMA_CCR_TEIE));//Disable DMA1 half or error transfer interrupt(for LEDs).
   /* USER CODE END TIM3_Init 2 */
   HAL_TIM_MspPostInit(&htim3);
 
