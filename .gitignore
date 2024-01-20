@@ -31,3 +31,6 @@
 
 #STM32 VSCode Extention
 /build/
+/.vs/
+/.vscode/
+
