@@ -48,18 +48,24 @@ ENC_MOVE	enc_move;
  * @brief	Rise CC message value
  * @param	channel to modify
  */
-static void MIDI_CC_Inc(uint8_t channel) {
+static bool MIDI_CC_Inc(uint8_t channel) {
 	if (MIDI_CC_Value[channel] < MIDI_CC_MAX ) {
 		MIDI_CC_Value[channel]++;
+		return true;
+	} else {
+		return false;
 	}
 }
 /**
  * @brief	Fall CC message value
  * @param	channel to modify
  */
-static void MIDI_CC_Dec(uint8_t channel) {
+static bool MIDI_CC_Dec(uint8_t channel) {
 	if (MIDI_CC_Value[channel] >= (MIDI_CC_MIN + 1) ) {
 		MIDI_CC_Value[channel]--;
+		return true;
+	} else {
+		return false;
 	}
 }
 
@@ -157,9 +163,9 @@ void EmulateMIDI() {
 		uint8_t channel = CC_CH_OFFSET + (LrScene * CC_CH_PER_SCENE) + axis;
 
 		if (enc_move.bits.move == ENC_MOVE_CW){
-			MIDI_CC_Inc(channel);
+			isSendMIDIMessage = MIDI_CC_Inc(channel);
 		} else if (enc_move.bits.move == ENC_MOVE_CCW){
-			MIDI_CC_Dec(channel);
+			isSendMIDIMessage = MIDI_CC_Dec(channel);
 			bitpos += 1;
 		} else {
 			goto rot_stopped_exits;
@@ -185,7 +191,6 @@ void EmulateMIDI() {
 		Start_MsgTimer(MSG_TIMER_DEFAULT);
 
 		LED_SetPulse(prof_table[LrScene][bitpos].axis, prof_table[LrScene][bitpos].color, prof_table[LrScene][bitpos].period);
-		isSendMIDIMessage = true;
 
 rot_stopped_exits:
 		isAnyEncoderMoved = false;
