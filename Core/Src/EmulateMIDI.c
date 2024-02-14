@@ -87,6 +87,7 @@ void EmulateMIDI_Init() {
  */
 void EmulateMIDI() {
 	bool isSendMIDIMessage = false;
+	uint8_t		bitpos;
 	if (queue_isempty(&midi_rx_que) != true) { // Check MIDI CC message
 		CH_VAL rx;
 		uint8_t cc_scene = 0;
@@ -107,7 +108,7 @@ void EmulateMIDI() {
 		Start_MsgTimer(MSG_TIMER_DEFAULT);
 	} else if ( isAnyMatrixPushed == true) {
 		uint16_t	rstat = (MTRX_Stat.wd);
-		uint8_t		bitpos = ntz16(MTRX_Stat.wd);
+		bitpos = ntz16(MTRX_Stat.wd);
 
 		if ( MTRX_Stat.wd != 0) { //Check Matrix switches/encoders
 			//Send 'Note On' message from switches/encoders matrix.
@@ -159,8 +160,9 @@ void EmulateMIDI() {
 		isAnyMatrixPushed = false;
 	}else if ( isAnyEncoderMoved == true) { //check encoder movements
 		uint8_t	axis = enc_move.bits.axis;
-		uint8_t bitpos = PROF_ENC1ST + (axis * 2);
 		uint8_t channel = CC_CH_OFFSET + (LrScene * CC_CH_PER_SCENE) + axis;
+
+		bitpos = PROF_ENC1ST + (axis * 2);
 
 		if (enc_move.bits.move == ENC_MOVE_CW){
 			isSendMIDIMessage = MIDI_CC_Inc(channel);
@@ -190,13 +192,14 @@ void EmulateMIDI() {
 
 		Start_MsgTimer(MSG_TIMER_DEFAULT);
 
-		LED_SetPulse(prof_table[LrScene][bitpos].axis, prof_table[LrScene][bitpos].color, prof_table[LrScene][bitpos].period);
 
 rot_stopped_exits:
 		isAnyEncoderMoved = false;
 	}
 	//Send MIDI message
 	if (isSendMIDIMessage == true) {
+		//flash LED.
+		LED_SetPulse(prof_table[LrScene][bitpos].axis, prof_table[LrScene][bitpos].color, prof_table[LrScene][bitpos].period);
 		//Send MIDI message via USB.
 		if (USBD_LL_Transmit(pInstance, MIDI_IN_EP, (uint8_t *)&MIDI_TxMessage, MIDI_MESSAGE_LENGTH) == USBD_OK) {
 			isSendMIDIMessage = false;
