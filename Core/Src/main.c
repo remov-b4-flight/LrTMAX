@@ -61,15 +61,15 @@
 
 /* Private macro -------------------------------------------------------------*/
 /* USER CODE BEGIN PM */
-extern	PROF_DEFINE	prof_table[SCENE_COUNT][DEFINES_PER_SCENE];
-extern	char 		*scene_name[SCENE_COUNT];
-extern	uint8_t		led_axis_table[DEFINES_PER_SCENE];
+//extern	PROF_DEFINE	prof_table[SCENE_COUNT][DEFINES_PER_SCENE];
+//extern	char 		*scene_name[SCENE_COUNT];
+//extern	uint8_t		led_axis_table[DEFINES_PER_SCENE];
 extern	uint8_t	LED_Scene[SCENE_COUNT][LED_COUNT];
 extern	uint8_t	LEDColor[LED_COUNT];
 extern	uint8_t	LEDTimer[LED_COUNT];
 extern	char	Msg_Buffer[MSG_LINES][MSG_WIDTH + 1];
-extern	USBD_HandleTypeDef hUsbDeviceFS;
-extern	PCD_HandleTypeDef hpcd_USB_FS;
+//extern	USBD_HandleTypeDef hUsbDeviceFS;
+//extern	PCD_HandleTypeDef hpcd_USB_FS;
 /* USER CODE END PM */
 
 /* Private variables ---------------------------------------------------------*/
