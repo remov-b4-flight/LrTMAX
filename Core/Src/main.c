@@ -61,15 +61,10 @@
 
 /* Private macro -------------------------------------------------------------*/
 /* USER CODE BEGIN PM */
-//extern	PROF_DEFINE	prof_table[SCENE_COUNT][DEFINES_PER_SCENE];
-//extern	char 		*scene_name[SCENE_COUNT];
-//extern	uint8_t		led_axis_table[DEFINES_PER_SCENE];
 extern	uint8_t	LED_Scene[SCENE_COUNT][LED_COUNT];
 extern	uint8_t	LEDColor[LED_COUNT];
 extern	uint8_t	LEDTimer[LED_COUNT];
 extern	char	Msg_Buffer[MSG_LINES][MSG_WIDTH + 1];
-//extern	USBD_HandleTypeDef hUsbDeviceFS;
-//extern	PCD_HandleTypeDef hpcd_USB_FS;
 /* USER CODE END PM */
 
 /* Private variables ---------------------------------------------------------*/
@@ -285,7 +280,7 @@ int main(void)
   MX_TIM6_Init();
   MX_TIM2_Init();
   /* USER CODE BEGIN 2 */
-        // Set all LEDs to 'OFF'
+	// Set all LEDs to 'OFF'
 	LED_Initialize();
 	// Stop All Encoders until USB link up
 	Stop_All_Encoders();

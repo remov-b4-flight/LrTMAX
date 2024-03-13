@@ -13,7 +13,6 @@ extern	char *scene_name[SCENE_COUNT];
 extern	PROF_DEFINE	prof_table[SCENE_COUNT][DEFINES_PER_SCENE];
 extern	char Msg_Buffer[MSG_LINES][MSG_WIDTH + 1];
 extern	USBD_HandleTypeDef *pInstance;
-//extern	uint8_t	enc_prev[ENC_COUNT];
 
 //! keeps previous 'Note On' note number For sending 'Note Off' message.
 uint8_t	prev_note;
