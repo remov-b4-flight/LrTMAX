@@ -285,6 +285,8 @@ int main(void)
   MX_TIM6_Init();
   MX_TIM2_Init();
   /* USER CODE BEGIN 2 */
+        // Set all LEDs to 'OFF'
+	LED_Initialize();
 	// Stop All Encoders until USB link up
 	Stop_All_Encoders();
 	//Initialize Switch matrix
@@ -297,7 +299,7 @@ int main(void)
 	GPIOA->MODER &= ~(GPIO_MODER_MODER6_1);
 	GPIOA->MODER |=	GPIO_MODER_MODER6_0;
 
-	LED_Initialize();					// Set all LEDs to 'OFF'
+
 
 	//Initialize SSD1306 OLED
 	HAL_Delay(SSD1306_PWRUP_WAIT);		//Wait for OLED module power up.
