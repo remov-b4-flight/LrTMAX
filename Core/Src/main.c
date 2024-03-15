@@ -346,7 +346,7 @@ int main(void)
 			memset(Msg_Buffer[0], (int)SPACE_CHAR, MSG_WIDTH );
 	#endif
 			Start_MsgTimer(MSG_TIMER_CONNECT);
-			memcpy(LEDColor,LED_Scene[LrScene],LED_COUNT);
+			memcpy(LEDColor, LED_Scene[LrScene], LED_COUNT);
 			LED_SetPulse(LED_IDX_ENC0, LED_PINK, LED_TIM_CONNECT);
 			LrState = LR_USB_LINKED;
 
