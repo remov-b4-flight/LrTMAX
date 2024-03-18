@@ -91,8 +91,8 @@ extern	I2C_HandleTypeDef		SSD1306_I2C_PORT;
 
 //! Constants for SSD1306_SetScreen()
 enum screen_stat {
-	OFF = false,//!< OFF
-	ON = true,  //!< ON
+	OFF = false,//! < set display off
+	ON = true,  //! < set display on
 };
 
 /*

@@ -18,14 +18,14 @@
 typedef union enc_scan_t {
     uint16_t wd;
     struct enc_bits_t {
-		uint8_t enc0:2;	//Rotary encoder
-		uint8_t enc1:2;	//Rotary encoder
-		uint8_t enc2:2;	//Rotary encoder
-		uint8_t enc3:2;	//Rotary encoder
-		uint8_t enc4:2;	//Rotary encoder
-		uint8_t enc5:2;	//Rotary encoder
-		uint8_t enc6:2;	//Rotary encoder
-		uint8_t enc7:2;	//Rotary encoder
+		uint8_t enc0:2;	//! < Rotary encoder0
+		uint8_t enc1:2;	//! < Rotary encoder1
+		uint8_t enc2:2;	//! < Rotary encoder2
+		uint8_t enc3:2;	//! < Rotary encoder3
+		uint8_t enc4:2;	//! < Rotary encoder4
+		uint8_t enc5:2;	//! < Rotary encoder5
+		uint8_t enc6:2;	//! < Rotary encoder6
+		uint8_t enc7:2;	//! < Rotary encoder7
     } nb;
 } ENC_SCAN;
 
@@ -33,10 +33,10 @@ typedef union enc_scan_t {
 typedef union mtrx_scan_t {
     uint16_t wd;
     struct ks_bits_t {
-		uint8_t n0:4;	//Switch Line0
-		uint8_t n1:4;	//Switch Line1
-		uint8_t n2:4;	//Switch Line2
-		uint8_t n3:4;	//Switch Line3
+		uint8_t n0:4;	//! < Switch Line0
+		uint8_t n1:4;	//! < Switch Line1
+		uint8_t n2:4;	//! < Switch Line2
+		uint8_t n3:4;	//! < Switch Line3
     } nb;
 } MTRX_SCAN;
 
@@ -44,20 +44,20 @@ typedef union mtrx_scan_t {
 typedef union enc_m_t {
 	uint8_t	wd;
 	struct enc_mm_t {
-		uint8_t	move:2;
-		uint8_t axis:3;
+		uint8_t	move:2;	//! < ENC_MOVE_CW/ENC_MOVE_CCW
+		uint8_t axis:3;	//! < axis
 		uint8_t	dummy:3;
 	} bits;
 } ENC_MOVE;
 
 //! LrTMAX State definition
 enum lr_state_t {
-	LR_RESET,			//!< Power on reset
-	LR_USB_NOLINK,		//!< No USB connection idling.
-	LR_USB_LINKUP,		//!< USB just connected.
-	LR_USB_LINKED,		//!< operate USB function
-	LR_USB_LINK_LOST,	//!< USB just disconnected.
-	LR_USB_DFU,			//!< Launch bootloader & not return.
+	LR_RESET,			//! < Power on reset
+	LR_USB_NOLINK,		//! < No USB connection idling.
+	LR_USB_LINKUP,		//! < USB just connected.
+	LR_USB_LINKED,		//! < operate USB function
+	LR_USB_LINK_LOST,	//! < USB just disconnected.
+	LR_USB_DFU,			//! < Launch bootloader & not return.
 };
 
 //! switch-encoder matrix lines

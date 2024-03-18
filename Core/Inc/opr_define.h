@@ -9,12 +9,12 @@
 #include <stdint.h>
 
 /**
- * @brief prof definition structure.
+ * @brief prof. definition structure.
  */
 typedef struct enc_sw_define_t {
-	uint8_t	axis;
-	uint8_t color;
-	uint8_t period;
+	uint8_t	axis;	//! < axis to light
+	uint8_t color;	//! < color to light
+	uint8_t period;	//! < light period
 } PROF_DEFINE;
 
 //! Bit mask pattern for Encoder push

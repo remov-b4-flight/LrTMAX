@@ -17,18 +17,18 @@ extern "C" {
 
 //! constants for expressing LED light color.
 enum led_color_t {
-	LED_OFF = 0,//!< LED_COLOR_OFF
-	LED_RED,	//!< LED_COLOR_RED
-	LED_BLUE,	//!< LED_COLOR_BLUE
-	LED_GREEN,	//!< LED_COLOR_GREEN
-	LED_WHITE,	//!< LED_COLOR_WHITE
-	LED_YELLOW,	//!< LED_COLOR_YELLOW
-	LED_MAGENTA,//!< LED_COLOR_MAGENTA
-	LED_CYAN,	//!< LED_COLOR_CYAN
-	LED_ORANGE,	//!< LED_COLOR_ORANGE
-	LED_GLAY,	//!< LED_COLOR_GLAY
-	LED_DARK,	//!< LED_COLOR_DARK
-	LED_HILIGHT,//!< LED_COLOR_HILIGHT
+	LED_OFF = 0,
+	LED_RED,
+	LED_BLUE,
+	LED_GREEN,
+	LED_WHITE,
+	LED_YELLOW,
+	LED_MAGENTA,
+	LED_CYAN,
+	LED_ORANGE,
+	LED_GLAY,
+	LED_DARK,
+	LED_HILIGHT,
 	LED_PINK,
 	LED_MINT,
 	LED_DARKRED,
@@ -74,9 +74,9 @@ typedef union leddata_t {
 	uint32_t	n;
 	struct	rgbw_t {
 		uint8_t	padding;
-		uint8_t	b;
-		uint8_t	r;
-		uint8_t g;
+		uint8_t	b;	//! < blue
+		uint8_t	r;	//! < red
+		uint8_t g;	//! < green
 	}	rgbw;
 } LEDDATA;
 

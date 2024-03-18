@@ -30,8 +30,8 @@
 typedef union ch_val_t {
 	uint16_t	wd;
 	struct cval_t {
-		uint8_t	ch;
-		uint8_t	val;
+		uint8_t	ch;	//! < MIDI channel
+		uint8_t	val;//! < MIDI value
 	} by;
 }CH_VAL;
 

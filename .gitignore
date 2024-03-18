@@ -33,4 +33,7 @@
 /build/
 /.vs/
 /.vscode/
-
+/cmake/
+CMakeLists.txt
+CMakePresets.json
+vcpkg-configuration.json

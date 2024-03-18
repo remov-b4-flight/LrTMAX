@@ -67,10 +67,10 @@
 
  //! Encoder condition
 enum enc_move_t {
-	ENC_STOPPED = 0,
-	ENC_MOVE_CW,
-	ENC_MOVE_CCW,
-	ENC_INVALID,
+	ENC_STOPPED = 0,	//! < encoder just stopped.
+	ENC_MOVE_CW,		//! < encoder moved clockwise.
+	ENC_MOVE_CCW,		//! < encoder moved counterclockwise.
+	ENC_INVALID,		//! < invalid signal condition, must be ignored.
 };
 
 //! @defgroup bit mask pattern for indevidual encoder
