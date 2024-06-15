@@ -233,9 +233,11 @@ static void Matrix_Control(uint8_t control) {
 
 /**
   * @brief  The application entry point.
+  * @retval int
   */
 int main(void)
 {
+
   /* USER CODE BEGIN 1 */
 	//! Indicates 1st Msg_Timer timeout has occurred from power on reset.
 	bool Msg_1st_timeout = true;
