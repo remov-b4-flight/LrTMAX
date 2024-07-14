@@ -13,7 +13,7 @@ extern	char *scene_name[SCENE_COUNT];
 extern	PROF_DEFINE	prof_table[SCENE_COUNT][DEFINES_PER_SCENE];
 extern	char Msg_Buffer[MSG_LINES][MSG_WIDTH + 1];
 extern	USBD_HandleTypeDef *pInstance;
-
+extern isScene_Timeout;
 //! keeps previous 'Note On' note number For sending 'Note Off' message.
 uint8_t	prev_note;
 //! If true, MIDI message previous sent is switch. If false, it's encoder
@@ -116,9 +116,15 @@ void EmulateMIDI() {
 				HAL_NVIC_SystemReset();
 			}else if (bitpos == SCENE_BIT) { //is [SCENE] switch pressed?
 			   	//Move to next Scene.
-				if ( (++LrScene) >= SCENE_COUNT ) {
+				if ( (++LrScene) >= SCENE_COUNT  ) {
 					LrScene = Lr_SCENE0;
 				}
+
+				else if ( isScene_Timeout == true ){
+					LrScene = Lr_SCENE0;
+					isScene_Timeout = false;
+				}
+
 				LED_SetScene(LrScene);
 				sprintf(Msg_Buffer[0], "Scene %1d",LrScene);
 				strcpy(msg_string, scene_name[LrScene]);

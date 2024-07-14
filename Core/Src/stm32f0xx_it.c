@@ -88,7 +88,8 @@ uint16_t previous_enc;
 uint16_t current_move;
 //! Previous detected bits
 uint16_t previous_move;
-
+//! Scene counter
+uint32_t scene_timer;
 /* USER CODE END 0 */
 
 /* External variables --------------------------------------------------------*/
@@ -111,6 +112,7 @@ extern char		*Msg_Buffer[];
 extern bool		LED_Timer_Update;
 extern bool		Msg_Timer_Update;
 extern ENC_MOVE	enc_move;
+extern bool		isScene_Timeout;
 /* USER CODE END EV */
 
 /******************************************************************************/
@@ -262,10 +264,17 @@ void TIM1_BRK_UP_TRG_COM_IRQHandler(void)
 				if (dif != 0){
 					previous_push = current_push;
 					isAnyMatrixPushed = true;
+					scene_timer = 0;
 				}
 			}
 			previous_mtrx = current_scan.wd;
 			break;
+	}
+	if (scene_timer++ > SCENE_TIMEOUT) {
+		isScene_Timeout = true;
+		MTRX_Stat.wd = (1 << SCENE_BIT);
+		isAnyMatrixPushed = true;
+		scene_timer = 0;
 	}
   /* USER CODE END TIM1_BRK_UP_TRG_COM_IRQn 0 */
   HAL_TIM_IRQHandler(&htim1);
@@ -309,6 +318,7 @@ void TIM2_IRQHandler(void)
 
 			enc_prev[axis] = enc_current[axis];
 			isAnyEncoderMoved = true;
+			scene_timer = 0;
 		}
 	} else {
 		previous_enc = current_enc.wd;

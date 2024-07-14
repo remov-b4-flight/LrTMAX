@@ -109,6 +109,8 @@ bool	isLEDsendpulse;
 //! Flag is set by timer ISR, It makes LED_Timer[] count up in main()
 bool	LED_Timer_Update;
 
+//! Scene time out
+bool	isScene_Timeout;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -261,6 +263,7 @@ int main(void)
 	isLEDsendpulse = false;
 	Msg_Timer_Update = false;
 	LED_Timer_Update = false;
+	isScene_Timeout = false;
   /* USER CODE END Init */
 
   /* Configure the system clock */

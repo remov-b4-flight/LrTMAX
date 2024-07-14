@@ -33,7 +33,7 @@ extern "C" {
 /* USER CODE BEGIN Includes */
 //! @defgroup Define LrTMAX version.
 #define USBD_DEVICE_VER_MAJ	0x00
-#define USBD_DEVICE_VER_MIN	0x70
+#define USBD_DEVICE_VER_MIN	0x71
 /* USER CODE END Includes */
 
 /* Exported types ------------------------------------------------------------*/

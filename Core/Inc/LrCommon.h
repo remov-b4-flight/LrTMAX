@@ -100,6 +100,8 @@ enum lr_matrix_t {
 #define NOTES_PER_SCENE	8
 //! Define key that designated for scene change.
 #define SCENE_BIT		7
+//! Scene timeout (1 hour)
+#define SCENE_TIMEOUT (3600*1000/8)
 //!CC channel offset for Scene0-ENC0
 #define CC_CH_OFFSET	40
 #define NOTE_OFFSET	(CC_CH_OFFSET - 8)
