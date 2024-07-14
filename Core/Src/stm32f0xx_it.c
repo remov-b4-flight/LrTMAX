@@ -113,6 +113,7 @@ extern bool		LED_Timer_Update;
 extern bool		Msg_Timer_Update;
 extern ENC_MOVE	enc_move;
 extern bool		isScene_Timeout;
+extern uint8_t	LrScene;
 /* USER CODE END EV */
 
 /******************************************************************************/
@@ -275,6 +276,7 @@ void TIM1_BRK_UP_TRG_COM_IRQHandler(void)
 		MTRX_Stat.wd = (1 << SCENE_BIT);
 		isAnyMatrixPushed = true;
 		scene_timer = 0;
+		LrScene = Lr_SCENE3;
 	}
   /* USER CODE END TIM1_BRK_UP_TRG_COM_IRQn 0 */
   HAL_TIM_IRQHandler(&htim1);
