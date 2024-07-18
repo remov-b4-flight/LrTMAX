@@ -273,11 +273,13 @@ void TIM1_BRK_UP_TRG_COM_IRQHandler(void)
 	}
 	if (scene_timer++ > SCENE_TIMEOUT) {
 		scene_timer = 0;
+#ifndef NO_SCENE_TO
 		if (LrScene != Lr_SCENE0) {
 			isScene_Timeout = true;
 			MTRX_Stat.wd = (1 << SCENE_BIT);
 			isAnyMatrixPushed = true;
 			LrScene = Lr_SCENE3;
+#endif
 		}
 	}
   /* USER CODE END TIM1_BRK_UP_TRG_COM_IRQn 0 */
