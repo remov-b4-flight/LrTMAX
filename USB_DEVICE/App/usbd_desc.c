@@ -166,8 +166,8 @@ __ALIGN_BEGIN uint8_t USBD_FS_DeviceDesc[USB_LEN_DEV_DESC] __ALIGN_END =
   LOBYTE(USBD_PID_FS),        /*idProduct*/
   HIBYTE(USBD_PID_FS),        /*idProduct*/
  /* USER CODE BEGIN DESC. */
-  USBD_DEVICE_VER_MIN,        /*bcdDevice minor*/
-  USBD_DEVICE_VER_MAJ,        /*bcdDevice major*/
+  LOBYTE(USBD_DEVICE_VER),    /*bcdDevice minor*/
+  HIBYTE(USBD_DEVICE_VER),    /*bcdDevice major*/
 /* USER CODE END DESC. */
   USBD_IDX_MFC_STR,           /*Index of manufacturer  string*/
   USBD_IDX_PRODUCT_STR,       /*Index of product string*/

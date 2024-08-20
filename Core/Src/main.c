@@ -340,12 +340,12 @@ int main(void)
 
 			// Connection banner
 	#ifdef DEBUG
-			sprintf(Msg_Buffer[0], CONN_MSG_D, Lr_PRODUCT, USBD_DEVICE_VER_MAJ, USBD_DEVICE_VER_MIN);
+			sprintf(Msg_Buffer[0], CONN_MSG_D, Lr_PRODUCT, HIBYTE(USBD_DEVICE_VER), LOBYTE(USBD_DEVICE_VER));
 			memset(Msg_Buffer[1], (int)SPACE_CHAR, MSG_WIDTH );
 			Msg_Print();
 	#else
 			SSD1306_LoadBitmap();
-			sprintf(Msg_Buffer[0], CONN_MSG, USBD_DEVICE_VER_MAJ, USBD_DEVICE_VER_MIN);
+			sprintf(Msg_Buffer[0], CONN_MSG, HIBYTE(USBD_DEVICE_VER), LOBYTE(USBD_DEVICE_VER));
 			SSD1306_RenderBanner(Msg_Buffer[0], 88, 16);
 			SSD1306_FlashScreen();
 			memset(Msg_Buffer[0], (int)SPACE_CHAR, MSG_WIDTH );
