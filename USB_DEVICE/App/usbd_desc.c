@@ -156,9 +156,9 @@ __ALIGN_BEGIN uint8_t USBD_FS_DeviceDesc[USB_LEN_DEV_DESC] __ALIGN_END =
 {
   0x12,                       /*bLength */
   USB_DESC_TYPE_DEVICE,       /*bDescriptorType*/
+  0x00,                       /*bcdUSB */
+  0x02,
 /* USER CODE BEGIN DESC. */
-  LOBYTE(USB_VERSION),        /*bcdUSB */
-  HIBYTE(USB_VERSION),
   DEVICE_CLASS,
   DEVICE_SUBCLASS,
 /* USER CODE END DESC. */
