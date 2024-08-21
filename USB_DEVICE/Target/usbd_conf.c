@@ -43,7 +43,18 @@ PCD_HandleTypeDef hpcd_USB_FS;
 void Error_Handler(void);
 
 /* USER CODE BEGIN 0 */
-
+#if (USE_HAL_PCD_REGISTER_CALLBACKS == 1U)
+static void LR_SetupStageCallback(PCD_HandleTypeDef *hpcd)
+{
+  LrState = LR_USB_LINKUP;
+  USBD_LL_SetupStage((USBD_HandleTypeDef*)hpcd->pData, (uint8_t *)hpcd->Setup);
+}
+static void LR_DisconnectCallback(PCD_HandleTypeDef *hpcd)
+{
+  LrState = LR_USB_LINK_LOST;
+  USBD_LL_DevDisconnected((USBD_HandleTypeDef*)hpcd->pData);
+}
+#endif
 /* USER CODE END 0 */
 
 /* USER CODE BEGIN PFP */
@@ -112,9 +123,6 @@ static void PCD_SetupStageCallback(PCD_HandleTypeDef *hpcd)
 void HAL_PCD_SetupStageCallback(PCD_HandleTypeDef *hpcd)
 #endif /* USE_HAL_PCD_REGISTER_CALLBACKS */
 {
-  /* USER CODE BEGIN 0 */
-  LrState = LR_USB_LINKUP;
-  /* USER CODE END 0 */
   USBD_LL_SetupStage((USBD_HandleTypeDef*)hpcd->pData, (uint8_t *)hpcd->Setup);
 }
 
@@ -288,9 +296,6 @@ static void PCD_DisconnectCallback(PCD_HandleTypeDef *hpcd)
 void HAL_PCD_DisconnectCallback(PCD_HandleTypeDef *hpcd)
 #endif /* USE_HAL_PCD_REGISTER_CALLBACKS */
 {
-  /* USER CODE BEGIN 1 */
-  LrState = LR_USB_LINK_LOST;
-  /* USER CODE END 1 */
   USBD_LL_DevDisconnected((USBD_HandleTypeDef*)hpcd->pData);
 }
 
@@ -325,12 +330,16 @@ USBD_StatusTypeDef USBD_LL_Init(USBD_HandleTypeDef *pdev)
 #if (USE_HAL_PCD_REGISTER_CALLBACKS == 1U)
   /* Register USB PCD CallBacks */
   HAL_PCD_RegisterCallback(&hpcd_USB_FS, HAL_PCD_SOF_CB_ID, PCD_SOFCallback);
-  HAL_PCD_RegisterCallback(&hpcd_USB_FS, HAL_PCD_SETUPSTAGE_CB_ID, PCD_SetupStageCallback);
+  /* USER CODE BEGIN SetupStageCallback */
+  HAL_PCD_RegisterCallback(&hpcd_USB_FS, HAL_PCD_SETUPSTAGE_CB_ID, LR_SetupStageCallback);
+  /* USER CODE END SetupStageCallback */
   HAL_PCD_RegisterCallback(&hpcd_USB_FS, HAL_PCD_RESET_CB_ID, PCD_ResetCallback);
   HAL_PCD_RegisterCallback(&hpcd_USB_FS, HAL_PCD_SUSPEND_CB_ID, PCD_SuspendCallback);
   HAL_PCD_RegisterCallback(&hpcd_USB_FS, HAL_PCD_RESUME_CB_ID, PCD_ResumeCallback);
   HAL_PCD_RegisterCallback(&hpcd_USB_FS, HAL_PCD_CONNECT_CB_ID, PCD_ConnectCallback);
-  HAL_PCD_RegisterCallback(&hpcd_USB_FS, HAL_PCD_DISCONNECT_CB_ID, PCD_DisconnectCallback);
+  /* USER CODE BEGIN DisconnectCallback */
+  HAL_PCD_RegisterCallback(&hpcd_USB_FS, HAL_PCD_DISCONNECT_CB_ID, LR_DisconnectCallback);
+  /* USER CODE END DisconnectCallback */
 
   HAL_PCD_RegisterDataOutStageCallback(&hpcd_USB_FS, PCD_DataOutStageCallback);
   HAL_PCD_RegisterDataInStageCallback(&hpcd_USB_FS, PCD_DataInStageCallback);
@@ -597,12 +606,14 @@ void USBD_LL_Delay(uint32_t Delay)
   */
 void *USBD_static_malloc(uint32_t size)
 {
+  /* USER CODE BEGIN USBD_static_malloc */
 #if 0
   static uint32_t mem[(sizeof(USBD_HID_HandleTypeDef)/4)+1];/* On 32-bit boundary */
   return mem;
 #else
   return NULL;
 #endif
+  /* USER CODE END USBD_static_malloc */
 }
 
 /**
