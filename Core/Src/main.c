@@ -19,7 +19,6 @@
   */
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
-#include <opr_define.h>
 #include "main.h"
 #include "usb_device.h"
 
@@ -35,6 +34,7 @@
 #include "EmulateMIDI.h"
 #include "stm32f0xx_it.h"
 #include "stm32f0xx_hal_dma.h"
+#include "opr_define.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -413,7 +413,7 @@ int main(void)
 					nc_count++;
 				} else if (nc_count <= 2) {
 					LED_Initialize();
-					// Jump ro bootloader
+					// Jump to BOOTLOADER
 					Jump2SystemMemory();
 				}
 				Start_MsgTimer(MSG_TIMER_NOLINK/2);
