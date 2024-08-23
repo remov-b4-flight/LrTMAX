@@ -318,8 +318,6 @@ int main(void)
 	// Check SW1 and SW3 is pushed at Power On
 	if ((GPIOA->IDR & SWMASK) == (SW1_MASK | SW3_MASK)) {
 		LrState = LR_USB_DFU;
-	} else {
-		MX_USB_DEVICE_Init();
 	}
 
 	// Initialize CC Value table
