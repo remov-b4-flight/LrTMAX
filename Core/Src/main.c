@@ -1,14 +1,14 @@
 /* USER CODE BEGIN Header */
 /**
   ******************************************************************************
-  * @file main.c
-  * @brief  Main program body
+  * @file           : main.c
+  * @brief          : Main program body
   * @author	remov-b4-flight
   * @copyright	3-Clause BSD License
   ******************************************************************************
   * @attention
   *
-  * Copyright (c) 2023 STMicroelectronics.
+  * Copyright (c) 2024 STMicroelectronics.
   * All rights reserved.
   *
   * This software is licensed under terms that can be found in the LICENSE file
