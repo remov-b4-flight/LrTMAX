@@ -330,16 +330,16 @@ USBD_StatusTypeDef USBD_LL_Init(USBD_HandleTypeDef *pdev)
 #if (USE_HAL_PCD_REGISTER_CALLBACKS == 1U)
   /* Register USB PCD CallBacks */
   HAL_PCD_RegisterCallback(&hpcd_USB_FS, HAL_PCD_SOF_CB_ID, PCD_SOFCallback);
-  /* USER CODE BEGIN SetupStageCallback */
+  /* USER CODE BEGIN SetupStageCallback LrTMAX*/
   HAL_PCD_RegisterCallback(&hpcd_USB_FS, HAL_PCD_SETUPSTAGE_CB_ID, LR_SetupStageCallback);
-  /* USER CODE END SetupStageCallback */
+  /* USER CODE END SetupStageCallback LrTMAX*/
   HAL_PCD_RegisterCallback(&hpcd_USB_FS, HAL_PCD_RESET_CB_ID, PCD_ResetCallback);
   HAL_PCD_RegisterCallback(&hpcd_USB_FS, HAL_PCD_SUSPEND_CB_ID, PCD_SuspendCallback);
   HAL_PCD_RegisterCallback(&hpcd_USB_FS, HAL_PCD_RESUME_CB_ID, PCD_ResumeCallback);
   HAL_PCD_RegisterCallback(&hpcd_USB_FS, HAL_PCD_CONNECT_CB_ID, PCD_ConnectCallback);
-  /* USER CODE BEGIN DisconnectCallback */
+  /* USER CODE BEGIN DisconnectCallback LrTMAX*/
   HAL_PCD_RegisterCallback(&hpcd_USB_FS, HAL_PCD_DISCONNECT_CB_ID, LR_DisconnectCallback);
-  /* USER CODE END DisconnectCallback */
+  /* USER CODE END DisconnectCallback LrTMAX*/
 
   HAL_PCD_RegisterDataOutStageCallback(&hpcd_USB_FS, PCD_DataOutStageCallback);
   HAL_PCD_RegisterDataInStageCallback(&hpcd_USB_FS, PCD_DataInStageCallback);
@@ -606,14 +606,14 @@ void USBD_LL_Delay(uint32_t Delay)
   */
 void *USBD_static_malloc(uint32_t size)
 {
-  /* USER CODE BEGIN USBD_static_malloc */
+  /* USER CODE BEGIN USBD_static_malloc LrTMAX*/
 #if 0
   static uint32_t mem[(sizeof(USBD_HID_HandleTypeDef)/4)+1];/* On 32-bit boundary */
   return mem;
 #else
   return NULL;
 #endif
-  /* USER CODE END USBD_static_malloc */
+  /* USER CODE END USBD_static_malloc LrTMAX*/
 }
 
 /**

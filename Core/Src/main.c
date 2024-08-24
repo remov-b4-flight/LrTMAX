@@ -51,12 +51,6 @@
 #define CONN_MSG	"%2x.%02x"
 #endif
 
-//! @defgroup for call STM32 internal bootloader
-#define DFU_MSG	"DFU Bootloader."
-#define SWMASK	0x0F
-#define SW1_MASK	1
-#define SW3_MASK	4
-
 /* USER CODE END PD */
 
 /* Private macro -------------------------------------------------------------*/
