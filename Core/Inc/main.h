@@ -148,9 +148,9 @@ void Msg_Print();
 #define SYSTEM_MEMORY	0x1FFFC800
 //! @defgroup for call STM32 internal bootloader
 #define DFU_MSG	"DFU Bootloader."
-#define SWMASK	0x0F
 #define SW1_MASK	1
 #define SW3_MASK	4
+#define SWMASK	(SW1_MASK | SW3_MASK)
 
 /* USER CODE END Private defines */
 

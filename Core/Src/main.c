@@ -273,7 +273,7 @@ int main(void)
   MX_TIM3_Init();
   MX_TIM1_Init();
   MX_TIM14_Init();
-  MX_USB_DEVICE_Init();
+//  MX_USB_DEVICE_Init();
   MX_I2C2_Init();
   MX_TIM7_Init();
   MX_TIM6_Init();
@@ -293,8 +293,6 @@ int main(void)
 	GPIOA->MODER &= ~(GPIO_MODER_MODER6_1);
 	GPIOA->MODER |=	GPIO_MODER_MODER6_0;
 
-
-
 	//Initialize SSD1306 OLED
 	HAL_Delay(SSD1306_PWRUP_WAIT);		//Wait for OLED module power up.
 	SSD1306_Initialize();
@@ -307,11 +305,14 @@ int main(void)
 	HAL_TIM_Base_Start_IT(&htim6);		//Start LED timer.
 	HAL_TIM_Base_Start_IT(&htim7);		//Start Message timer.
 	Start_MsgTimer(MSG_TIMER_DEFAULT);
-	LrState = LR_USB_NOLINK;
 
 	// Check SW1 and SW3 is pushed at Power On
-	if ((GPIOA->IDR & SWMASK) == (SW1_MASK | SW3_MASK)) {
+	if ((GPIOA->IDR & SWMASK) == SWMASK ) {
 		LrState = LR_USB_DFU;
+	} else {
+		// MX_USB_DEVICE_Init() must be delayed until here for launch DFU.
+		MX_USB_DEVICE_Init();
+		LrState = LR_USB_NOLINK;
 	}
 
 	// Initialize CC Value table
