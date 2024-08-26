@@ -144,8 +144,6 @@ void Msg_Print();
 #define LED_TIM_RETRY_WAIT	21		//Transfer period for I2C
 //! I2C time definitions
 #define I2C_RETRY_WAIT		2		//Transfer period for TIM3 PWM
-//! Start address of DFU bootloader
-#define SYSTEM_MEMORY	0x1FFFC800
 //! @defgroup for call STM32 internal bootloader
 #define DFU_MSG	"DFU Bootloader."
 #define SW1_MASK	1
