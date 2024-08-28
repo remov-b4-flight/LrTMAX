@@ -32,7 +32,7 @@ extern "C" {
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 //! @defgroup Define LrTMAX version.
-#define USBD_DEVICE_VER	0x0071
+#define USBD_DEVICE_VER	0x0072
 /* USER CODE END Includes */
 
 /* Exported types ------------------------------------------------------------*/
