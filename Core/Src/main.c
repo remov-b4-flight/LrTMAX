@@ -119,7 +119,7 @@ static void MX_TIM7_Init(void);
 static void MX_TIM6_Init(void);
 static void MX_TIM2_Init(void);
 /* USER CODE BEGIN PFP */
-
+void Jump2SystemMemory();
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
