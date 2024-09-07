@@ -1,10 +1,11 @@
 /**
 * @file		Jump2System.c
 * @author	remov-b4-flight
-* @note		code is lent from STMicro. application note
+* @note		Code is lent from ST Micro. application note
+* @note		Code for STM32F072
 */
 #include "main.h"
-//! Start address of DFU BOOTLOADER
+//! Start address of STM32F072 DFU BOOTLOADER
 #define SYSTEM_MEMORY	0x1FFFC800
 
 /**

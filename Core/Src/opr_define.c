@@ -30,13 +30,13 @@
 * Scene3	Note 24~31
 */
 
-/* Includes ------------------------------------------------------------------*/
+/* Includes */
 #include <opr_define.h>
 #include "main.h"
 #include "LrCommon.h"
 #include "led.h"
 
-/* Variables ----------------------------------------------------------------*/
+/* Constants */
 //! User-friendly scene names appears on OLED display.
 const char *scene_name[SCENE_COUNT] = {
 /*		 0123456789ABCDEF */
@@ -193,4 +193,3 @@ const PROF_DEFINE prof_table[SCENE_COUNT][DEFINES_PER_SCENE] = {
 		{.axis = 7,	.color = LED_DARKMAGENTA,.period = LED_TIM_SHORT},	//enc7 CCW
 	}
 };
-/* ******************************************************* **** END OF FILE****/
