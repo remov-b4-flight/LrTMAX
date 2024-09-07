@@ -218,7 +218,9 @@ int main(void)
   MX_TIM3_Init();
   MX_TIM1_Init();
   MX_TIM14_Init();
+/* USER CODE BEGIN MX_USB_Devive_Init LrTMAX*/
 //  MX_USB_DEVICE_Init(); must be delayed.
+/* USER CODE END MX_USB_Devive_Init LrTMAX*/
   MX_I2C2_Init();
   MX_TIM7_Init();
   MX_TIM6_Init();
