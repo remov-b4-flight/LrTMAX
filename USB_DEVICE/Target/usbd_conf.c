@@ -43,18 +43,7 @@ PCD_HandleTypeDef hpcd_USB_FS;
 void Error_Handler(void);
 
 /* USER CODE BEGIN 0 */
-#if (USE_HAL_PCD_REGISTER_CALLBACKS == 1U)
-static void LR_SetupStageCallback(PCD_HandleTypeDef *hpcd)
-{
-  LrState = LR_USB_LINKUP;
-  USBD_LL_SetupStage((USBD_HandleTypeDef*)hpcd->pData, (uint8_t *)hpcd->Setup);
-}
-static void LR_DisconnectCallback(PCD_HandleTypeDef *hpcd)
-{
-  LrState = LR_USB_LINK_LOST;
-  USBD_LL_DevDisconnected((USBD_HandleTypeDef*)hpcd->pData);
-}
-#endif
+
 /* USER CODE END 0 */
 
 /* USER CODE BEGIN PFP */
@@ -123,6 +112,9 @@ static void PCD_SetupStageCallback(PCD_HandleTypeDef *hpcd)
 void HAL_PCD_SetupStageCallback(PCD_HandleTypeDef *hpcd)
 #endif /* USE_HAL_PCD_REGISTER_CALLBACKS */
 {
+/* USER CODE BEGIN SetupStageCallback LrTMAX*/
+	LrState = LR_USB_LINKUP;
+/* USER CODE END SetupStageCallback LrTMAX*/
   USBD_LL_SetupStage((USBD_HandleTypeDef*)hpcd->pData, (uint8_t *)hpcd->Setup);
 }
 
@@ -296,6 +288,9 @@ static void PCD_DisconnectCallback(PCD_HandleTypeDef *hpcd)
 void HAL_PCD_DisconnectCallback(PCD_HandleTypeDef *hpcd)
 #endif /* USE_HAL_PCD_REGISTER_CALLBACKS */
 {
+/* USER CODE BEGIN DisconnectCallback LrTMAX*/
+	LrState = LR_USB_LINK_LOST;
+/* USER CODE END DisconnectCallback LrTMAX*/
   USBD_LL_DevDisconnected((USBD_HandleTypeDef*)hpcd->pData);
 }
 
@@ -330,17 +325,12 @@ USBD_StatusTypeDef USBD_LL_Init(USBD_HandleTypeDef *pdev)
 #if (USE_HAL_PCD_REGISTER_CALLBACKS == 1U)
   /* Register USB PCD CallBacks */
   HAL_PCD_RegisterCallback(&hpcd_USB_FS, HAL_PCD_SOF_CB_ID, PCD_SOFCallback);
-  /* USER CODE BEGIN SetupStageCallback LrTMAX*/
-  HAL_PCD_RegisterCallback(&hpcd_USB_FS, HAL_PCD_SETUPSTAGE_CB_ID, LR_SetupStageCallback);
-  /* USER CODE END SetupStageCallback LrTMAX*/
+  HAL_PCD_RegisterCallback(&hpcd_USB_FS, HAL_PCD_SETUPSTAGE_CB_ID, PCD_SetupStageCallback);
   HAL_PCD_RegisterCallback(&hpcd_USB_FS, HAL_PCD_RESET_CB_ID, PCD_ResetCallback);
   HAL_PCD_RegisterCallback(&hpcd_USB_FS, HAL_PCD_SUSPEND_CB_ID, PCD_SuspendCallback);
   HAL_PCD_RegisterCallback(&hpcd_USB_FS, HAL_PCD_RESUME_CB_ID, PCD_ResumeCallback);
   HAL_PCD_RegisterCallback(&hpcd_USB_FS, HAL_PCD_CONNECT_CB_ID, PCD_ConnectCallback);
-  /* USER CODE BEGIN DisconnectCallback LrTMAX*/
-  HAL_PCD_RegisterCallback(&hpcd_USB_FS, HAL_PCD_DISCONNECT_CB_ID, LR_DisconnectCallback);
-  /* USER CODE END DisconnectCallback LrTMAX*/
-
+  HAL_PCD_RegisterCallback(&hpcd_USB_FS, HAL_PCD_DISCONNECT_CB_ID, PCD_DisconnectCallback);
   HAL_PCD_RegisterDataOutStageCallback(&hpcd_USB_FS, PCD_DataOutStageCallback);
   HAL_PCD_RegisterDataInStageCallback(&hpcd_USB_FS, PCD_DataInStageCallback);
   HAL_PCD_RegisterIsoOutIncpltCallback(&hpcd_USB_FS, PCD_ISOOUTIncompleteCallback);
