@@ -299,7 +299,6 @@ int main(void)
 			// Operate as MIDI Instruments.
 			EmulateMIDI();
 		} else if (LrState == LR_USB_LINK_LOST) {
-			LrScene	= Lr_SCENE0;
 			Stop_All_Encoders();
 
 			HAL_TIM_Base_Stop(&htim1);
