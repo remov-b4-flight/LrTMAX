@@ -98,7 +98,7 @@ void EmulateMIDI() {
 			}
 		} while  (queue_isempty(&midi_rx_que) != true);
 		SSD1306_SetScreen(ON);
-		sprintf(Msg_Buffer[0], ((rx.by.ch <= 99)? CC_MSG_2DG:CC_MSG_3DG), rx.by.ch, rx.by.val, cc_scene);
+		sprintf(Msg_Buffer[0], ((rx.by.ch <= MAX_2DG)? CC_MSG_2DG:CC_MSG_3DG), rx.by.ch, rx.by.val, cc_scene);
 		if (isPrev_Scene == true) {
 			memset(Msg_Buffer[1], (int)SPACE_CHAR, MSG_WIDTH );
 			isPrev_Scene = false;
