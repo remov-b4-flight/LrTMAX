@@ -98,9 +98,9 @@ void EmulateMIDI() {
 			}
 		} while  (queue_isempty(&midi_rx_que) != true);
 		SSD1306_SetScreen(ON);
-		sprintf(Msg_Buffer[0], ((rx.by.ch <= MAX_2DG)? CC_MSG_2DG:CC_MSG_3DG), rx.by.ch, rx.by.val, cc_scene);
+		sprintf(Msg_Buffer[Lr_OLED_TOP], ((rx.by.ch <= MAX_2DG)? CC_MSG_2DG:CC_MSG_3DG), rx.by.ch, rx.by.val, cc_scene);
 		if (isPrev_Scene == true) {
-			memset(Msg_Buffer[1], (int)SPACE_CHAR, MSG_WIDTH );
+			memset(Msg_Buffer[Lr_OLED_BOTTOM], (int)SPACE_CHAR, MSG_WIDTH );
 			isPrev_Scene = false;
 		}
 		Msg_Print();
@@ -124,19 +124,19 @@ void EmulateMIDI() {
 				}
 
 				LED_SetScene(LrScene);
-				sprintf(Msg_Buffer[0], "Scene %1d",LrScene);
+				sprintf(Msg_Buffer[Lr_OLED_TOP], "Scene %1d",LrScene);
 				strcpy(msg_string, scene_name[LrScene]);
 				isPrev_Scene = true;
 			}else{
 				LED_SetPulse(prof_table[LrScene][bitpos].axis, prof_table[LrScene][bitpos].color, prof_table[LrScene][bitpos].period);
-				memset(Msg_Buffer[0], (int)SPACE_CHAR, MSG_WIDTH );
+				memset(Msg_Buffer[Lr_OLED_TOP], (int)SPACE_CHAR, MSG_WIDTH );
 				sprintf(msg_string, "Note: %3d    S%1d", note, (LrScene % SCENE_COUNT) );
 			}
 			isSendMIDIMessage = true;
 
 			//Print Message to OLED & LED
 			SSD1306_SetScreen(ON);
-			strcpy(Msg_Buffer[1], msg_string);
+			strcpy(Msg_Buffer[Lr_OLED_BOTTOM], msg_string);
 			Msg_Print();
 			Start_MsgTimer(MSG_TIMER_DEFAULT);
 
@@ -187,10 +187,10 @@ void EmulateMIDI() {
 		SSD1306_SetScreen(ON);
 		sprintf(msg_string, CC_MSG_2DG, channel, MIDI_CC_Value[channel], LrScene & 0x3);
 		if (isPrev_Scene == true) {
-			memset(Msg_Buffer[0], (int)SPACE_CHAR, MSG_WIDTH );
+			memset(Msg_Buffer[Lr_OLED_TOP], (int)SPACE_CHAR, MSG_WIDTH );
 			isPrev_Scene = false;
 		}
-		strcpy(Msg_Buffer[1], msg_string);
+		strcpy(Msg_Buffer[Lr_OLED_BOTTOM], msg_string);
 		Msg_Print();
 
 		Start_MsgTimer(MSG_TIMER_DEFAULT);
