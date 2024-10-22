@@ -87,11 +87,16 @@ enum lr_scene_t {
 	Lr_SCENE2 = 2,
 	Lr_SCENE3 = 3,
 };
-//!
+//! Key matrix states
 enum lr_matrix_t {
 	Lr_MATRIX_STOP = 0,
 	Lr_MATRIX_START = 1,
 };
+//! OLED Lines
+enum lr_oled_t {
+	Lr_OLED_TOP = 0,
+	Lr_OLED_BOTTOM = 1,
+}
 //! number of scene
 #define SCENE_COUNT		4
 //! prof. define structure (in key_define.c)
