@@ -58,7 +58,7 @@
 extern	uint8_t	LED_Scene[SCENE_COUNT][LED_COUNT];
 extern	uint8_t	LEDColor[LED_COUNT];
 extern	uint8_t	LEDTimer[LED_COUNT];
-extern	char	Msg_Buffer[MSG_LINES][MSG_WIDTH + 1];
+extern	char	[MSG_LINES][MSG_WIDTH + 1];
 /* USER CODE END PM */
 
 /* Private variables ---------------------------------------------------------*/
@@ -92,7 +92,7 @@ int32_t	Msg_Timer_Count;
 bool	Msg_Timer_Enable;
 //! If true, Screen is cleared in main() that is determined on timer interrupt.
 bool	Msg_Off_Flag;
-//! If true, Screen is flashed by Msg_Buffer[] at main() function.
+//! If true, Screen is flashed by [] at main() function.
 static	bool	isMsgFlash;
 //! If true, frame_buffer[] contents flashes the screen.
 static	bool	isRender;
@@ -280,15 +280,15 @@ int main(void)
 
 			// Connection banner
 	#ifdef DEBUG
-			sprintf(Msg_Buffer[0], CONN_MSG_D, Lr_PRODUCT, HIBYTE(USBD_DEVICE_VER), LOBYTE(USBD_DEVICE_VER));
-			memset(Msg_Buffer[1], (int)SPACE_CHAR, MSG_WIDTH );
+			sprintf(Msg_Buffer[Lr_OLED_TOP], CONN_MSG_D, Lr_PRODUCT, HIBYTE(USBD_DEVICE_VER), LOBYTE(USBD_DEVICE_VER));
+			memset(Msg_Buffer[Lr_OLED_BOTTOM], (int)SPACE_CHAR, MSG_WIDTH );
 			Msg_Print();
 	#else
 			SSD1306_LoadBitmap();
-			sprintf(Msg_Buffer[0], CONN_MSG, HIBYTE(USBD_DEVICE_VER), LOBYTE(USBD_DEVICE_VER));
-			SSD1306_RenderBanner(Msg_Buffer[0], 88, 16);
+			sprintf(Msg_Buffer[Lr_OLED_TOP], CONN_MSG, HIBYTE(USBD_DEVICE_VER), LOBYTE(USBD_DEVICE_VER));
+			SSD1306_RenderBanner(Msg_Buffer[Lr_OLED_TOP], 88, 16);
 			SSD1306_FlashScreen();
-			memset(Msg_Buffer[0], (int)SPACE_CHAR, MSG_WIDTH );
+			memset(Msg_Buffer[Lr_OLED_TOP], (int)SPACE_CHAR, MSG_WIDTH );
 	#endif
 			Start_MsgTimer(MSG_TIMER_CONNECT);
 			memcpy(LEDColor, LED_Scene[LrScene], LED_COUNT);
@@ -316,7 +316,7 @@ int main(void)
 				if (Msg_1st_timeout == true) {
 					LrState = LR_USB_LINK_LOST;
 				} else { // 2nd or more
-					sprintf(Msg_Buffer[0], "%12ld", nc_count++);
+					sprintf(Msg_Buffer[Lr_OLED_TOP], "%12ld", nc_count++);
 					SSD1306_SetScreen(ON);
 
 					Msg_Print();
@@ -396,8 +396,8 @@ int main(void)
 			Msg_Off_Flag = false;
 			SSD1306_SetScreen(OFF);
 			SSD1306_ClearBuffer();
-			memset(Msg_Buffer[0], (int)SPACE_CHAR, MSG_WIDTH );
-			memset(Msg_Buffer[1], (int)SPACE_CHAR, MSG_WIDTH );
+			memset(Msg_Buffer[Lr_OLED_TOP], (int)SPACE_CHAR, MSG_WIDTH );
+			memset(Msg_Buffer[Lr_OLED_BOTTOM], (int)SPACE_CHAR, MSG_WIDTH );
 			continue;
 		}
 
@@ -872,7 +872,7 @@ void Error_Handler(void)
   /* USER CODE BEGIN Error_Handler_Debug */
 	/* User can add his own implementation to report the HAL error return state */
 	__disable_irq();
-	strcpy(Msg_Buffer[0], "Error");
+	strcpy(Msg_Buffer[Lr_OLED_TOP], "Error");
 	Msg_Print();
   /* USER CODE END Error_Handler_Debug */
 }
