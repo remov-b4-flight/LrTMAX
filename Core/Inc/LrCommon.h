@@ -96,7 +96,7 @@ enum lr_matrix_t {
 enum lr_oled_t {
 	Lr_OLED_TOP = 0,
 	Lr_OLED_BOTTOM = 1,
-}
+};
 //! number of scene
 #define SCENE_COUNT		4
 //! prof. define structure (in key_define.c)
