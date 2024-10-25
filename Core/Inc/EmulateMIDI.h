@@ -21,6 +21,7 @@
 #define CC_MSG_2DG	"Ch%2u = %3u    S%1u"
 #define CC_MSG_3DG	"C%3u = %3u    S%1u"
 #define MAX_2DG		99
+#define	SCENE_MSK	0x3
 
 //! @defgroup number of cc channels that LrTMAX controls.
 #define CC_COUNT_INUSE	(ENC_COUNT * SCENE_COUNT)

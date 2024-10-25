@@ -45,6 +45,8 @@ enum led_color_t {
 #define LED_COUNT		8
 #define BITS_PER_LED	24  // (RGB) 3 * 8bit
 #define TOTAL_BITS		(LED_COUNT * BITS_PER_LED)
+#define	B31_MASK		0x80000000
+#define	B7_MASK			0x80
 
 //! @defgroup LED intensity definition
 #define LHIL	0xC0

@@ -56,7 +56,7 @@ const uint8_t LED_Testpattern[LED_COUNT] = {
  * @brief	LED Initialize - Sets all LEDs to 'OFF'
  * @pre		TIM3 Initialized.
  */
-void LED_Initialize(){
+void LED_Initialize() {
 	memset(LEDColor, LED_OFF, LED_COUNT);
 	memset(LEDTimer, LED_TIMER_CONSTANT, LED_COUNT);
 	LED_SendPulse();
@@ -115,7 +115,7 @@ static void Color2Pulse() {
 	for(uint8_t led = 0; led < LED_COUNT; led++){
 		uint8_t c = LEDColor[led];
 		leddata.n = LEDTable[c].n;
-		for (uint32_t mask = 0x80000000; mask > 0x80; mask >>= 1){
+		for (uint32_t mask = B31_MASK; mask > B7_MASK; mask >>= 1){
 			LEDPulse[pulse++] = (leddata.n & mask)? PWM_HI:PWM_LO;
 		}
 	}

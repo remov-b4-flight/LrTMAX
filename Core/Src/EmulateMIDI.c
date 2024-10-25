@@ -13,7 +13,7 @@ extern	char *scene_name[SCENE_COUNT];
 extern	PROF_DEFINE	prof_table[SCENE_COUNT][DEFINES_PER_SCENE];
 extern	char Msg_Buffer[MSG_LINES][MSG_WIDTH + 1];
 extern	USBD_HandleTypeDef *pInstance;
-extern bool isScene_Timeout;
+extern	bool isScene_Timeout;
 //! keeps previous 'Note On' note number For sending 'Note Off' message.
 uint8_t	prev_note;
 //! If true, MIDI message previous sent is switch. If false, it's encoder
@@ -35,7 +35,7 @@ bool	isAnyMatrixPushed;
 //! If true ISR detected any Encoder was moved.
 bool	isAnyEncoderMoved;
 //! Switch pressed status set by timer scanning.
-MTRX_SCAN	MTRX_Stat;
+MTX_SCAN	MTX_Stat;
 //! Encoder moved status set by timer scanning.
 ENC_SCAN	ENC_Stat;
 //! USB MIDI message structure for send
@@ -106,13 +106,13 @@ void EmulateMIDI() {
 		Msg_Print();
 		Start_MsgTimer(MSG_TIMER_DEFAULT);
 	} else if ( isAnyMatrixPushed == true) {
-		uint16_t	rstat = (MTRX_Stat.wd);
-		bitpos = ntz16(MTRX_Stat.wd);
+		uint16_t	rstat = (MTX_Stat.wd);
+		bitpos = ntz16(MTX_Stat.wd);
 
-		if ( MTRX_Stat.wd != 0) { //Check Matrix switches/encoders
+		if ( MTX_Stat.wd != 0) { //Check Matrix switches/encoders
 			//Send 'Note On' message from switches/encoders matrix.
-			uint8_t	note = ((MTRX_Stat.wd & MASK_ENCPUSH)? NOTE_OFFSET : 0) + (LrScene * NOTES_PER_SCENE) + bitpos;
-			if (MTRX_Stat.wd == RESET_SW_PATTERN) {
+			uint8_t	note = ((MTX_Stat.wd & MASK_ENCPUSH)? NOTE_OFFSET : 0) + (LrScene * NOTES_PER_SCENE) + bitpos;
+			if (MTX_Stat.wd == RESET_SW_PATTERN) {
 				HAL_NVIC_SystemReset();
 			}else if (bitpos == SCENE_BIT) { //is [SCENE] switch pressed?
 			   	//Move to next Scene.
@@ -185,7 +185,7 @@ void EmulateMIDI() {
 
 		//Print Message to OLED & LEDs.
 		SSD1306_SetScreen(ON);
-		sprintf(msg_string, CC_MSG_2DG, channel, MIDI_CC_Value[channel], LrScene & 0x3);
+		sprintf(msg_string, CC_MSG_2DG, channel, MIDI_CC_Value[channel], LrScene & SCENE_MSK);
 		if (isPrev_Scene == true) {
 			memset(Msg_Buffer[Lr_OLED_TOP], (int)SPACE_CHAR, MSG_WIDTH );
 			isPrev_Scene = false;

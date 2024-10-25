@@ -362,7 +362,7 @@ int main(void)
 
 		// LED Timer
 		if (LED_Timer_Update == true) { // 24ms interval
-			for (uint8_t i = 0; i < LED_COUNT; i++){
+			for (uint8_t i = 0; i < LED_COUNT; i++) {
 				if (LEDTimer[i] != LED_TIMER_CONSTANT && --LEDTimer[i] == 0) {
 					LED_SetPulse(i, LED_Scene[LrScene][i], LED_TIMER_CONSTANT);
 				}

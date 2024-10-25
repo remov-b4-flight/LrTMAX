@@ -38,7 +38,7 @@ typedef union mtrx_scan_t {
 		uint8_t n2:4;	//! < Switch Line2
 		uint8_t n3:4;	//! < Switch Line3
     } nb;
-} MTRX_SCAN;
+} MTX_SCAN;
 
 //! Encoder movement expression
 typedef union enc_m_t {

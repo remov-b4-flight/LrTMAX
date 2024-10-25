@@ -65,7 +65,7 @@ uint16_t current_push;
 //! Previous detected bits
 uint16_t previous_push;
 //! Value of scanned from key matrix.
-MTRX_SCAN current_scan;
+MTX_SCAN current_scan;
 //! Previous scanned bits
 uint16_t previous_mtrx;
 //! Previous encoder state array
@@ -106,7 +106,7 @@ extern TIM_HandleTypeDef htim3;
 extern uint8_t	ENCSW_Line;
 extern bool		isAnyMatrixPushed;
 extern bool		isAnyEncoderMoved;
-extern MTRX_SCAN	MTRX_Stat;
+extern MTX_SCAN	MTX_Stat;
 extern ENC_SCAN	ENC_Stat;
 extern char		*Msg_Buffer[];
 extern bool		LED_Timer_Update;
@@ -261,7 +261,7 @@ void TIM1_BRK_UP_TRG_COM_IRQHandler(void)
 			if (previous_mtrx == current_scan.wd){
 				current_push = current_scan.wd;
 				uint16_t dif = current_push ^ previous_push;
-				MTRX_Stat.wd = current_push;
+				MTX_Stat.wd = current_push;
 				if (dif != 0){
 					previous_push = current_push;
 					isAnyMatrixPushed = true;
@@ -276,7 +276,7 @@ void TIM1_BRK_UP_TRG_COM_IRQHandler(void)
 #ifndef NO_SCENE_TO
 		if (LrScene != Lr_SCENE0) {
 			isScene_Timeout = true;
-			MTRX_Stat.wd = (1 << SCENE_BIT);
+			MTX_Stat.wd = (1 << SCENE_BIT);
 			isAnyMatrixPushed = true;
 			LrScene = Lr_SCENE3;
 #endif
