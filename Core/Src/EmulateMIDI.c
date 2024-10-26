@@ -86,8 +86,8 @@ void EmulateMIDI_Init() {
  */
 void EmulateMIDI() {
 	bool isSendMIDIMessage = false;
-	uint8_t		bitpos;
-	if (queue_isempty(&midi_rx_que) != true) { // Check MIDI CC message
+	uint8_t	bitpos;
+	if (queue_isempty(&midi_rx_que) != true) { // Check MIDI CC message received.
 		CH_VAL rx;
 		uint8_t cc_scene = 0;
 		do {
@@ -105,8 +105,7 @@ void EmulateMIDI() {
 		}
 		Msg_Print();
 		Start_MsgTimer(MSG_TIMER_DEFAULT);
-	} else if ( isAnyMatrixPushed == true) {
-		uint16_t	rstat = (MTX_Stat.wd);
+	} else if (isAnyMatrixPushed == true) {
 		bitpos = ntz16(MTX_Stat.wd);
 
 		if ( MTX_Stat.wd != 0) { //Check Matrix switches/encoders
@@ -114,11 +113,11 @@ void EmulateMIDI() {
 			uint8_t	note = ((MTX_Stat.wd & MASK_ENCPUSH)? NOTE_OFFSET : 0) + (LrScene * NOTES_PER_SCENE) + bitpos;
 			if (MTX_Stat.wd == RESET_SW_PATTERN) {
 				HAL_NVIC_SystemReset();
-			}else if (bitpos == SCENE_BIT) { //is [SCENE] switch pressed?
+			} else if (bitpos == SCENE_BIT) { //is [SCENE] switch pressed?
 			   	//Move to next Scene.
 				if ( (++LrScene) >= SCENE_COUNT  ) {
 					LrScene = Lr_SCENE0;
-				}else if ( isScene_Timeout == true ) {
+				} else if ( isScene_Timeout == true ) {
 					LrScene = Lr_SCENE0;
 					isScene_Timeout = false;
 				}
@@ -127,7 +126,7 @@ void EmulateMIDI() {
 				sprintf(Msg_Buffer[Lr_OLED_TOP], "Scene %1d",LrScene);
 				strcpy(msg_string, scene_name[LrScene]);
 				isPrev_Scene = true;
-			}else{
+			} else {
 				LED_SetPulse(prof_table[LrScene][bitpos].axis, prof_table[LrScene][bitpos].color, prof_table[LrScene][bitpos].period);
 				memset(Msg_Buffer[Lr_OLED_TOP], (int)SPACE_CHAR, MSG_WIDTH );
 				sprintf(msg_string, "Note: %3d    S%1d", note, (LrScene % SCENE_COUNT) );
@@ -150,7 +149,7 @@ void EmulateMIDI() {
 				prev_note = note;
 				isPrev_SwPush = true;
 			}
-		} else if (isPrev_SwPush == true && rstat == 0) {// Is switch/encoder push released?
+		} else if (isPrev_SwPush == true) {// Is switch/encoder push released?
 			//Set 'Note Off' message.
 			MIDI_TxMessage.header = MIDI_NT_OFF;
 			MIDI_TxMessage.status = MIDI_NT_OFF_S;
@@ -161,7 +160,7 @@ void EmulateMIDI() {
 			isPrev_SwPush = false;
 		}
 		isAnyMatrixPushed = false;
-	}else if ( isAnyEncoderMoved == true) { //check encoder movements
+	} else if ( isAnyEncoderMoved == true) { //check encoder movements
 		uint8_t	axis = enc_move.bits.axis;
 		uint8_t channel = CC_CH_OFFSET + (LrScene * CC_CH_PER_SCENE) + axis;
 
@@ -201,8 +200,11 @@ rot_stopped_exits:
 	}
 	//Send MIDI message
 	if (isSendMIDIMessage == true) {
-		//flash LED.
-		LED_SetPulse(prof_table[LrScene][bitpos].axis, prof_table[LrScene][bitpos].color, prof_table[LrScene][bitpos].period);
+		//Flash LED.
+		if (isPrev_SwPush == true) {
+			LED_SetPulse(prof_table[LrScene][bitpos].axis,
+					prof_table[LrScene][bitpos].color, prof_table[LrScene][bitpos].period);
+		}
 		//Send MIDI message via USB.
 		if (USBD_LL_Transmit(pInstance, MIDI_IN_EP, (uint8_t *)&MIDI_TxMessage, MIDI_MESSAGE_LENGTH) == USBD_OK) {
 			isSendMIDIMessage = false;
