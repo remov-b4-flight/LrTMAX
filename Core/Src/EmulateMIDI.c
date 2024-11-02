@@ -86,6 +86,7 @@ void EmulateMIDI_Init() {
  */
 void EmulateMIDI() {
 	bool isSendMIDIMessage = false;
+	bool isLEDflash = false;
 	uint8_t	bitpos;
 	if (queue_isempty(&midi_rx_que) != true) { // Check MIDI CC message received.
 		CH_VAL rx;
@@ -148,6 +149,7 @@ void EmulateMIDI() {
 
 				prev_note = note;
 				isPrev_SwPush = true;
+				isLEDflash = true;
 			}
 		} else if (isPrev_SwPush == true) {// Is switch/encoder push released?
 			//Set 'Note Off' message.
@@ -174,6 +176,7 @@ void EmulateMIDI() {
 		} else {
 			goto rot_stopped_exits;
 		}
+		isLEDflash = isSendMIDIMessage;
 
 		MIDI_TxMessage.header = MIDI_CC_HEADER;
 		MIDI_TxMessage.status = MIDI_CC_STATUS;
@@ -200,15 +203,15 @@ rot_stopped_exits:
 	}
 	//Send MIDI message
 	if (isSendMIDIMessage == true) {
-		//Flash LED.
-		if (isPrev_SwPush == true) {
-			LED_SetPulse(prof_table[LrScene][bitpos].axis,
-					prof_table[LrScene][bitpos].color, prof_table[LrScene][bitpos].period);
-		}
 		//Send MIDI message via USB.
 		if (USBD_LL_Transmit(pInstance, MIDI_IN_EP, (uint8_t *)&MIDI_TxMessage, MIDI_MESSAGE_LENGTH) == USBD_OK) {
 			isSendMIDIMessage = false;
 		}
+	}
+	//Flash LED.
+	if (isLEDflash == true) {
+		LED_SetPulse(prof_table[LrScene][bitpos].axis,
+					prof_table[LrScene][bitpos].color, prof_table[LrScene][bitpos].period);
 	}
 
 }
