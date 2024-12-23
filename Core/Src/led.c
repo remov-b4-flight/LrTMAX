@@ -100,7 +100,7 @@ void LED_TestPattern() {
  */
 inline void LED_SetPulse(uint8_t index, uint8_t color, uint8_t pulse) {
 	LEDColor[index] = color;
-    LEDTimer[index] = pulse;	// 24ms unit (i.e. pulse=25 => 600ms)
+	LEDTimer[index] = pulse;	// 24ms unit (i.e. pulse=25 => 600ms)
 	isLEDsendpulse = true;
 }
 
