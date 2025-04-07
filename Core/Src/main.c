@@ -1,9 +1,9 @@
 /* USER CODE BEGIN Header */
 /**
   ******************************************************************************
-  * @file           : main.c
-  * @brief          : Main program body
-  * @author	remov-b4-flight
+  * @file		main.c
+  * @brief		Main program body
+  * @author		remov-b4-flight
   * @copyright	3-Clause BSD License
   ******************************************************************************
   * @attention

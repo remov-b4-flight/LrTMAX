@@ -69,7 +69,7 @@ static bool MIDI_CC_Dec(uint8_t channel) {
 }
 
 /**
- * 	@brief	Initialize MIDI
+ * 	@brief	Initialize MIDI value memory, queue.
  */
 void EmulateMIDI_Init() {
 	isPrev_SwPush = false;
