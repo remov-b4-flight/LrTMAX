@@ -24,14 +24,14 @@ _BEGIN_STD_C
 #define SSD1306_USE_DMA	1
 
 //! @defgroup LrTMAX I2C hardware
-#define SSD1306_I2C_PORT			hi2c2
+#define SSD1306_I2C_PORT		hi2c2
 #define SSD1306_I2C_ADDR        (0x3C << 1)
-#define SSD1306_PWRUP_WAIT		5	//(ms)
-extern	I2C_HandleTypeDef			SSD1306_I2C_PORT;
+#define SSD1306_PWRUP_WAIT		10	//(ms)
+extern	I2C_HandleTypeDef		SSD1306_I2C_PORT;
 
 //! @defgroup SSD1306 hardware constants
 #define SSD1306_CMD				0x00
-#define SSD1306_DATA				0x40
+#define SSD1306_DATA			0x40
 #define SSD1306_CONTINUE    	0x80
 #define SSD1306_TAIL        	0
 #define SSD1306_WRITE       	0
@@ -41,11 +41,11 @@ extern	I2C_HandleTypeDef			SSD1306_I2C_PORT;
 #define CMD_SET_ADDRESS_MD		0x20
 #define CMD_SET_PAGE_RANGE		0x22
 #define CMD_SET_START_LINE		0x40
-#define CMD_SET_CONTRAST			0x81
+#define CMD_SET_CONTRAST		0x81
 #define CMD_SET_CHARGE_PUMP		0x8D
 #define CMD_NON_MIRROR			0xA0
 #define CMD_MIRROR				0xA1
-#define CMD_REFLECT_FBUF			0xA4
+#define CMD_REFLECT_FBUF		0xA4
 #define CMD_ALL_DOTS_ON			0xA5
 #define CMD_NON_INVERT			0xA6
 #define CMD_INVERT				0xA7
@@ -63,16 +63,16 @@ extern	I2C_HandleTypeDef			SSD1306_I2C_PORT;
 
 //! @defgroup Constants for SSD1306 commands
 #define VAL_HORIZON_ADDRSS		0x00
-#define VAL_CONTRAST_MAX			0xFF
-#define VAL_OSC_FREQ_MAX			0xF0
+#define VAL_CONTRAST_MAX		0xFF
+#define VAL_OSC_FREQ_MAX		0xF0
 #define VAL_PRECHG_DEFAULT		0x22
 #define VAL_VCOMH_DEFAULT		0x20
 #define VAL_CHG_PUMP_ENABLE		0x14
-#define VAL_VOFFSET_NONE			0x00
+#define VAL_VOFFSET_NONE		0x00
 #define VAL_MPX_RATIO_32L		0x1F
 #define VAL_COM_CONFIG_32L		0x02
 #define VAL_START_PAGE			0x00
-#define VAL_END_PAGE_32L			0x03
+#define VAL_END_PAGE_32L		0x03
 
 //! @defgroup SSD1306 OLED screen dimensions
 #define SSD1306_HEIGHT          32		// height
