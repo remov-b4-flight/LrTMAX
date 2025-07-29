@@ -81,7 +81,7 @@ extern	I2C_HandleTypeDef		SSD1306_I2C_PORT;
 #define MSG_WIDTH	(SSD1306_WIDTH / FONT_WIDTH)
 
 //! @defgroup SSD1306 OLED character rendering
-#define SCREEN_BLANK				0x00
+#define SCREEN_BLANK			0x00
 #define FONT_PRINTABLE_START	0x20
 #define FONT_PRINTABLE_END		0x7e
 #define BYTES_PER_CHAR_DATA		16
