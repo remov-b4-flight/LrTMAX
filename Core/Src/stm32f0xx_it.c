@@ -90,6 +90,8 @@ uint16_t current_move;
 uint16_t previous_move;
 //! Scene counter
 uint32_t scene_timer;
+//! De-chatter timer counter
+uint32_t dechatter_timer;
 /* USER CODE END 0 */
 
 /* External variables --------------------------------------------------------*/
@@ -323,11 +325,17 @@ void TIM2_IRQHandler(void)
 			enc_move.bits.axis = axis;
 
 			enc_prev[axis] = enc_current[axis];
-			isAnyEncoderMoved = true;
-			scene_timer = 0;
+			if (dechatter_timer >= DECHATTER_TO) {
+				isAnyEncoderMoved = true;
+				scene_timer = 0;
+			}
+			dechatter_timer = 0;
 		}
 	} else {
 		previous_enc = current_enc.wd;
+	}
+	if (dechatter_timer < DECHATTER_TO) {
+		dechatter_timer++;
 	}
   /* USER CODE END TIM2_IRQn 0 */
   HAL_TIM_IRQHandler(&htim2);
@@ -412,6 +420,8 @@ void ENC_Init() {
 	enc_prev[Lr_ENC3] = current_enc.nb.enc3 = (ENC3_GPIO_Port->IDR >> 14 ) & ENC_MASK;
 
 	previous_move = previous_enc = current_enc.wd;
+	scene_timer = 0;
+	dechatter_timer = 0;
 }
 /**
  * @brief	Initialize Matrix related variables.

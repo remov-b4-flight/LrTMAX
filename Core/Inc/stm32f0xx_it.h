@@ -73,13 +73,16 @@ enum enc_move_t {
 	ENC_INVALID,		//! < invalid signal condition, must be ignored.
 };
 
-//! @defgroup bit mask pattern for indevidual encoder
+//! @defgroup bit mask pattern for individual encoder
 #define ENC_MASK	0x03
 #define ENC5A_MASK	0x1000
 #define ENC5B_MASK	0x2000
 
 //! Definitions for Matrix
 #define LxMASK	0x0F
+//! Duration of omit next MIDI message send.
+#define DECHATTER_TO 24
+
 /* USER CODE END EM */
 
 /* Exported functions prototypes ---------------------------------------------*/
