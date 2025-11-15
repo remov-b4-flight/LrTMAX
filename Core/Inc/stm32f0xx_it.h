@@ -81,7 +81,8 @@ enum enc_move_t {
 //! Definitions for Matrix
 #define LxMASK	0x0F
 //! Duration of omit next MIDI message send.
-#define DECHATTER_TO 30
+#define DECHATTER_TO 10
+
 
 /* USER CODE END EM */
 
