@@ -91,7 +91,7 @@ uint16_t previous_move;
 //! Scene counter
 uint32_t scene_timer;
 //! De-chatter timer counter
-uint32_t dechatter_timer;
+uint8_t dechatter_timer;
 /* USER CODE END 0 */
 
 /* External variables --------------------------------------------------------*/
