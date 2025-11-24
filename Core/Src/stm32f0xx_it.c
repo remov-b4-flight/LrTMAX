@@ -92,6 +92,8 @@ uint16_t previous_move;
 uint32_t scene_timer;
 //! De-chatter timer counter
 uint8_t dechatter_timer;
+//! De-chatter timer counter
+uint8_t dechatter_limit;
 /* USER CODE END 0 */
 
 /* External variables --------------------------------------------------------*/
@@ -325,16 +327,22 @@ void TIM2_IRQHandler(void)
 			enc_move.bits.axis = axis;
 
 			enc_prev[axis] = enc_current[axis];
-			if (dechatter_timer >= DECHATTER_TO) {
+			if (dechatter_timer >= dechatter_limit) {
 				isAnyEncoderMoved = true;
 				scene_timer = 0;
+			}else{
+				if(( dechatter_limit - dechatter_timer) > 4) {
+					dechatter_limit -= DECHATTER_DEC;
+				}
 			}
 			dechatter_timer = 0;
+		}else{
+			dechatter_limit = DECHATTER_MAX;
 		}
 	} else {
 		previous_enc = current_enc.wd;
 	}
-	if (dechatter_timer < DECHATTER_TO) {
+	if (dechatter_timer < dechatter_limit) {
 		dechatter_timer++;
 	}
   /* USER CODE END TIM2_IRQn 0 */
@@ -422,6 +430,7 @@ void ENC_Init() {
 	previous_move = previous_enc = current_enc.wd;
 	scene_timer = 0;
 	dechatter_timer = 0;
+	dechatter_limit = DECHATTER_MAX;
 }
 /**
  * @brief	Initialize Matrix related variables.
