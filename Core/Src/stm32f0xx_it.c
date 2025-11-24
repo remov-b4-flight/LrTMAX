@@ -93,7 +93,7 @@ uint32_t scene_timer;
 //! De-chatter timer counter
 uint8_t dechatter_timer;
 //! De-chatter timer counter
-uint8_t dechatter_limit;
+uint8_t dechatter_rate;
 /* USER CODE END 0 */
 
 /* External variables --------------------------------------------------------*/
@@ -327,25 +327,25 @@ void TIM2_IRQHandler(void)
 			enc_move.bits.axis = axis;
 
 			enc_prev[axis] = enc_current[axis];
-			if (dechatter_timer >= dechatter_limit) {
+			if (dechatter_timer >= dechatter_rate) {
 				isAnyEncoderMoved = true;
 				scene_timer = 0;
 			} else {
-				if(( dechatter_limit - dechatter_timer) > DECHATTER_THR) {
-					dechatter_limit -= DECHATTER_DEC;
-					if (dechatter_limit < DECHATTER_MIN) {
-						dechatter_limit = DECHATTER_MIN;
+				if(( dechatter_rate - dechatter_timer) > DECHATTER_THR) {
+					dechatter_rate -= DECHATTER_DEC;
+					if (dechatter_rate < DECHATTER_MIN) {
+						dechatter_rate = DECHATTER_MIN;
 					}
 				}
 			}
 			dechatter_timer = 0;
 		} else { // all encoder not moved.
-			dechatter_limit = DECHATTER_MAX;
+			dechatter_rate = DECHATTER_MAX;
 		}
 	} else {
 		previous_enc = current_enc.wd;
 	}
-	if (dechatter_timer < dechatter_limit) {
+	if (dechatter_timer < dechatter_rate) {
 		dechatter_timer++;
 	}
   /* USER CODE END TIM2_IRQn 0 */
@@ -433,7 +433,7 @@ void ENC_Init() {
 	previous_move = previous_enc = current_enc.wd;
 	scene_timer = 0;
 	dechatter_timer = 0;
-	dechatter_limit = DECHATTER_MAX;
+	dechatter_rate = DECHATTER_MAX;
 }
 /**
  * @brief	Initialize Matrix related variables.

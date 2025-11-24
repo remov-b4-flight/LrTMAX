@@ -82,7 +82,7 @@ enum enc_move_t {
 #define LxMASK	0x0F
 //! Duration of omit next MIDI message send.
 #define DECHATTER_MAX 10
-#define DECHATTER_MIN 4
+#define DECHATTER_MIN 3
 #define DECHATTER_DEC 2
 #define DECHATTER_THR 4
 /* USER CODE END EM */
