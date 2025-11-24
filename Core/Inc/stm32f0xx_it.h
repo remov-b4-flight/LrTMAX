@@ -84,6 +84,7 @@ enum enc_move_t {
 #define DECHATTER_MAX 10
 #define DECHATTER_MIN 4
 #define DECHATTER_DEC 2
+#define DECHATTER_THR 4
 /* USER CODE END EM */
 
 /* Exported functions prototypes ---------------------------------------------*/

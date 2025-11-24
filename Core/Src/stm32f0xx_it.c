@@ -330,13 +330,16 @@ void TIM2_IRQHandler(void)
 			if (dechatter_timer >= dechatter_limit) {
 				isAnyEncoderMoved = true;
 				scene_timer = 0;
-			}else{
-				if(( dechatter_limit - dechatter_timer) > 4) {
+			} else {
+				if(( dechatter_limit - dechatter_timer) > DECHATTER_THR) {
 					dechatter_limit -= DECHATTER_DEC;
+					if (dechatter_limit < DECHATTER_MIN) {
+						dechatter_limit = DECHATTER_MIN;
+					}
 				}
 			}
 			dechatter_timer = 0;
-		}else{
+		} else { // all encoder not moved.
 			dechatter_limit = DECHATTER_MAX;
 		}
 	} else {
