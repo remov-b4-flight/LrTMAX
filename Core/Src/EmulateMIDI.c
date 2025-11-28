@@ -55,6 +55,7 @@ static bool MIDI_CC_Inc(uint8_t channel) {
 		return false;
 	}
 }
+
 /**
  * @brief	Fall CC message value
  * @param	channel to modify
