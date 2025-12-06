@@ -58,7 +58,7 @@
 extern	uint8_t	LED_Scene[SCENE_COUNT][LED_COUNT];
 extern	uint8_t	LEDColor[LED_COUNT];
 extern	uint8_t	LEDTimer[LED_COUNT];
-extern	char	Msg_Buffer[MSG_LINES][MSG_WIDTH + 1];
+extern	char	Msg_Buffer[MSG_LINES][MSG_WIDTH+1];
 /* USER CODE END PM */
 
 /* Private variables ---------------------------------------------------------*/

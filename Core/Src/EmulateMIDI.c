@@ -11,7 +11,7 @@
 extern	uint8_t	LrScene;
 extern	char *scene_name[SCENE_COUNT];
 extern	PROF_DEFINE	prof_table[SCENE_COUNT][DEFINES_PER_SCENE];
-extern	char Msg_Buffer[MSG_LINES][MSG_WIDTH + 1];
+extern	char Msg_Buffer[MSG_LINES][MSG_WIDTH+1];
 extern	USBD_HandleTypeDef *pInstance;
 extern	bool isScene_Timeout;
 //! keeps previous 'Note On' note number For sending 'Note Off' message.
@@ -27,7 +27,7 @@ uint8_t	MIDI_CC_Value[CC_CH_COUNT];
 //! Queing received MIDI message;
 QUEUE	midi_rx_que;
 //OLED message buffer
-char 	msg_string[MSG_WIDTH + 2];
+char 	msg_string[MSG_WIDTH+2];
 
 // keyboard variable
 //! If true, ISR detected any Switch was pushed.
@@ -61,7 +61,7 @@ static bool MIDI_CC_Inc(uint8_t channel) {
  * @param	channel to modify
  */
 static bool MIDI_CC_Dec(uint8_t channel) {
-	if (MIDI_CC_Value[channel] >= (MIDI_CC_MIN + 1) ) {
+	if (MIDI_CC_Value[channel] >= (MIDI_CC_MIN+1) ) {
 		MIDI_CC_Value[channel]--;
 		return true;
 	} else {
