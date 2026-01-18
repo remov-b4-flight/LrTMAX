@@ -50,6 +50,8 @@
 #else
 #define CONN_MSG	"%2x.%02x"
 #endif
+#define BANNER_VER_X	(SSD1306_WIDTH - (FONT_WIDTH * 4)) // 4 is length of CONN_MSG
+#define BANNER_VER_Y	((SSD1306_HEIGHT / 2) + (FONT_HEIGHT / 4))
 
 /* USER CODE END PD */
 
@@ -286,7 +288,7 @@ int main(void)
 	#else
 			SSD1306_LoadBitmap();
 			sprintf(Msg_Buffer[Lr_OLED_TOP], CONN_MSG, HIBYTE(USBD_DEVICE_VER), LOBYTE(USBD_DEVICE_VER));
-			SSD1306_RenderBanner(Msg_Buffer[Lr_OLED_TOP], 88, 16);
+			SSD1306_RenderBanner(Msg_Buffer[Lr_OLED_TOP], BANNER_VER_X, BANNER_VER_Y);
 			SSD1306_FlashScreen();
 			memset(Msg_Buffer[Lr_OLED_TOP], (int)SPACE_CHAR, MSG_WIDTH );
 	#endif
