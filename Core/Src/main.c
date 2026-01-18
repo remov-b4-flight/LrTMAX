@@ -50,6 +50,7 @@
 #else
 #define CONN_MSG	"%2x.%02x"
 #endif
+//! Position of version info on OLED banner
 #define BANNER_VER_X	(SSD1306_WIDTH - (FONT_WIDTH * 4)) // 4 is length of CONN_MSG
 #define BANNER_VER_Y	((SSD1306_HEIGHT / 2) + (FONT_HEIGHT / 4))
 

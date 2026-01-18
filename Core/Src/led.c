@@ -48,6 +48,9 @@ const LEDDATA LEDTable[COLOR_MAX] = {
 	{.rgbw = {.r=LOFF,.g=LDRK,.b=LDRK}},//LED_DARKCYAN,
 	{.rgbw = {.r=LDRK,.g=LOFF,.b=LDRK}},//LED_DARKMAGENTA,
 };
+/**
+ * @brief Test pattern data when on offline
+ */
 const uint8_t LED_Testpattern[LED_COUNT] = {
 	LED_WHITE,LED_RED,LED_ORANGE,LED_YELLOW,
 	LED_GREEN,LED_CYAN,LED_BLUE,LED_MAGENTA,
