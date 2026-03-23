@@ -173,7 +173,7 @@ void EmulateMIDI() {
 			isSendMIDIMessage = MIDI_CC_Inc(channel);
 		} else if (enc_move.bits.move == ENC_MOVE_CCW){
 			isSendMIDIMessage = MIDI_CC_Dec(channel);
-			bitpos += 1;
+			bitpos += 1;	// for LED_SetPulse()
 		} else {
 			goto rot_stopped_exits;
 		}
