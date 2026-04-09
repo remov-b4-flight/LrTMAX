@@ -99,11 +99,11 @@ void LED_TestPattern() {
  *	@brief	Make LED flashing by setting LEDTimer[]
  *	@param	index	index of LEDs.
  *	@param	color	color of LED.
- *	@param	pulse	duration of pulse in 4ms unit(i.e. pulse=25 => 100ms).
+ *	@param	pulse	duration of pulse in 24ms unit(i.e. pulse=25 => 600ms).
  */
 inline void LED_SetPulse(uint8_t index, uint8_t color, uint8_t pulse) {
 	LEDColor[index] = color;
-	LEDTimer[index] = pulse;	// 24ms unit (i.e. pulse=25 => 600ms)
+	LEDTimer[index] = pulse;
 	isLEDsendpulse = true;
 }
 
